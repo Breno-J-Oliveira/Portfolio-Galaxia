@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre — BRENO J. OLIVEIRA</title>
+  <meta name="description" content="Conheça Breno J. Oliveira, Backend Developer & Systems Engineer especializado em Node.js, Python, C/C++ e sistemas embarcados.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <meta name="theme-color" content="#00ffff">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Breno J. Oliveira — Sobre mim">
+  <meta property="og:description" content="Backend Developer & Systems Engineer. Formado pelo SENAI, focado em APIs robustas e sistemas embarcados.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Breno J. Oliveira — Sobre">
+  <meta name="twitter:description" content="Backend Developer & Systems Engineer focado em APIs e IoT.">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="src/app/styles/globals.css" />
+  <link rel="stylesheet" href="src/widgets/hud/hud.css" />
+  <link rel="stylesheet" href="src/pages/about/styles/about.css" />
+</head>
+<body>
+  <a href="#hero" class="skip-link">Pular para o conteúdo</a>
+  <div id="page-transition" aria-hidden="true"></div>
+
+  <!-- BG CANVAS -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- READING PROGRESS -->
+  <div id="read-progress"></div>
+
+  <!-- SCANLINES -->
+  <div id="scanlines"></div>
+
+  <!-- CURSOR -->
+  <div id="cursor-ring"></div>
+  <div id="cursor-dot"></div>
+
+  <!-- CORNER DECO -->
+  <div class="corner-deco tl"></div>
+  <div class="corner-deco tr"></div>
+  <div class="corner-deco bl"></div>
+  <div class="corner-deco br"></div>
+
+  <!-- HUD TOP NAV (injetado via fetch) -->
+  <div id="hud-container"></div>
+  <script>
+    window.HUD_ACTIVE = 'about';
+    fetch('src/widgets/hud/hud.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('hud-container').innerHTML = html;
+        const s = document.createElement('script');
+        s.src = 'src/widgets/hud/hud.js';
+        document.body.appendChild(s);
+      })
+      .catch(err => console.error('HUD fetch failed:', err));
+  </script>
+
+  <!-- PAGE WRAPPER -->
+  <div class="page-wrapper page-enter">
+
+    <nav id="section-dots" aria-label="Navegação por seções"></nav>
+
+    <!-- ============================================================
+         HERO
+    ============================================================ -->
+    <section id="hero">
+
+      <div class="hero-left">
+        <div class="hero-eyebrow reveal">SOBRE MIM</div>
+        <h1 class="hero-name reveal reveal-delay-1">
+          <span class="line-1">BRENO J. OLIVEIRA</span>
+          <span class="line-2">BACKEND DEVELOPER & SYSTEMS ENGINEER</span>
+        </h1>
+        <p class="hero-bio reveal reveal-delay-2">
+          Desenvolvedor focado em <strong>sistemas que funcionam de verdade</strong>.
+          Especializado em APIs robustas, <strong>sistemas embarcados</strong> e automação
+          — do firmware ao servidor. Formado pelo SENAI, com paixão por
+          <strong>código limpo e arquitetura que escala</strong>.
+        </p>
+        <div class="hero-actions reveal reveal-delay-4">
+          <a class="btn-primary" href="contact.html">
+            <span>ENTRAR EM CONTATO</span>
+            <span>→</span>
+          </a>
+          <a class="btn-secondary" href="assets/curriculo.pdf" download>
+            <span>DOWNLOAD CV</span>
+            <span>↓</span>
+          </a>
+        </div>
+        <div class="hero-line-h"></div>
+      </div>
+
+      <div class="hero-right">
+        <div class="avatar-wrap">
+          <div class="avatar-orbit-2">
+            <div class="orbit-dot orbit-dot-3"></div>
+          </div>
+          <div class="avatar-orbit">
+            <div class="orbit-dot orbit-dot-1"></div>
+            <div class="orbit-dot orbit-dot-2" style="top:auto;bottom:-3px;"></div>
+          </div>
+          <div class="avatar-img">
+            <div class="avatar-placeholder">BJO</div>
+            <div class="avatar-glow"></div>
+          </div>
+          <div class="avatar-tags left">
+            <span class="atag">BACKEND</span>
+            <span class="atag">EMBEDDED</span>
+            <span class="atag">AUTOMACAO</span>
+          </div>
+          <div class="avatar-tags right">
+            <span class="atag">NODE.JS</span>
+            <span class="atag">C/C++</span>
+            <span class="atag">PYTHON</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         STATS
+    ============================================================ -->
+    <div id="stats-bar">
+      <div class="stat-item reveal">
+        <div class="stat-num" data-target="20" data-suffix="+">0</div>
+        <div class="stat-label">Projetos Entregues</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-1">
+        <div class="stat-num" data-target="3" data-suffix="+">0</div>
+        <div class="stat-label">Anos de Experiência</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-2">
+        <div class="stat-num" data-target="8">0</div>
+        <div class="stat-label">Tecnologias Dominadas</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-3">
+        <div class="stat-num" data-target="100">0</div>
+        <div class="stat-label">% de Café Consumido</div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         SKILLS
+    ============================================================ -->
+    <section id="skills" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-num">01 — COMPETÊNCIAS</div>
+          <h2 class="section-title">Stack &<br/>Habilidades</h2>
+        </div>
+        <div class="section-subtitle">O QUE EU FAÇO BEM</div>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-card c1 reveal">
+          <span class="skill-icon">⬡</span>
+          <div class="skill-name">BACK-END</div>
+          <div class="skill-items">
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Express</span>
+            <span class="skill-tag">REST API</span>
+            <span class="skill-tag">GraphQL</span>
+          </div>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-width="90"></div></div>
+        </div>
+
+        <div class="skill-card c2 reveal reveal-delay-1">
+          <span class="skill-icon">⬡</span>
+          <div class="skill-name">SISTEMAS EMBARCADOS</div>
+          <div class="skill-items">
+            <span class="skill-tag">C/C++</span>
+            <span class="skill-tag">Arduino</span>
+            <span class="skill-tag">ESP32</span>
+            <span class="skill-tag">Raspberry Pi</span>
+            <span class="skill-tag">MQTT</span>
+          </div>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-width="85"></div></div>
+        </div>
+
+        <div class="skill-card c3 reveal reveal-delay-2">
+          <span class="skill-icon">⬡</span>
+          <div class="skill-name">BANCO DE DADOS</div>
+          <div class="skill-items">
+            <span class="skill-tag">PostgreSQL</span>
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">MongoDB</span>
+            <span class="skill-tag">Redis</span>
+          </div>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-width="82"></div></div>
+        </div>
+
+        <div class="skill-card c4 reveal">
+          <span class="skill-icon">⬡</span>
+          <div class="skill-name">AUTOMAÇÃO & DEVOPS</div>
+          <div class="skill-items">
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">Linux</span>
+            <span class="skill-tag">CI/CD</span>
+            <span class="skill-tag">Shell Script</span>
+          </div>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-width="80"></div></div>
+        </div>
+
+        <div class="skill-card c5 reveal reveal-delay-1">
+          <span class="skill-icon">⬡</span>
+          <div class="skill-name">IoT & REDES</div>
+          <div class="skill-items">
+            <span class="skill-tag">MQTT</span>
+            <span class="skill-tag">WebSocket</span>
+            <span class="skill-tag">TCP/IP</span>
+            <span class="skill-tag">HTTP/REST</span>
+          </div>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-width="78"></div></div>
+        </div>
+
+        <div class="skill-card c6 reveal reveal-delay-2">
+          <span class="skill-icon">⬡</span>
+          <div class="skill-name">LINGUAGENS</div>
+          <div class="skill-items">
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">C/C++</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Bash</span>
+          </div>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-width="88"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TIMELINE
+    ============================================================ -->
+    <section id="timeline" class="section section-alt">
+      <div class="section-header">
+        <div>
+          <div class="section-num">02 — TRAJETÓRIA</div>
+          <h2 class="section-title">Minha<br/>Jornada</h2>
+        </div>
+        <div class="section-subtitle">DE ONDE VIM</div>
+      </div>
+
+      <div class="timeline">
+
+        <!-- 2024 – PRESENTE -->
+        <div class="timeline-item tl-c1">
+          <div class="timeline-node"><div class="timeline-dot"></div></div>
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-role">Backend Developer &amp; Systems Engineer</div>
+              <div class="timeline-company">SENAI — Brasil</div>
+            </div>
+            <div class="timeline-year">2024 — PRESENTE</div>
+          </div>
+          <div class="timeline-body">
+            <p class="timeline-desc">
+              Atuação completa no desenvolvimento de APIs RESTful de alta performance, sistemas
+              embarcados e automação industrial. Responsável pela arquitetura de soluções IoT
+              end-to-end — do firmware ao servidor — com foco em confiabilidade e escala.
+            </p>
+            <div class="timeline-achievements">
+              <div class="timeline-achievement">Projeto de telemetria industrial com ESP32 + MQTT + Node.js, monitorando 40+ sensores em tempo real</div>
+              <div class="timeline-achievement">API RESTful documentada com Swagger, cobertura de testes acima de 80%, deploy automatizado via CI/CD</div>
+              <div class="timeline-achievement">Integração de sistemas embarcados com bancos de dados de séries temporais (InfluxDB + Grafana)</div>
+            </div>
+            <div class="timeline-skills">
+              <span class="timeline-skill">Node.js</span>
+              <span class="timeline-skill">ESP32</span>
+              <span class="timeline-skill">MQTT</span>
+              <span class="timeline-skill">PostgreSQL</span>
+              <span class="timeline-skill">Docker</span>
+              <span class="timeline-skill">GitHub Actions</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2023 – 2024 -->
+        <div class="timeline-item tl-c3">
+          <div class="timeline-node"><div class="timeline-dot"></div></div>
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-role">Desenvolvedor Backend — Freelance</div>
+              <div class="timeline-company">PROJETOS INDEPENDENTES — Remoto</div>
+            </div>
+            <div class="timeline-year">2023 — 2024</div>
+          </div>
+          <div class="timeline-body">
+            <p class="timeline-desc">
+              Desenvolvimento de APIs e sistemas para clientes de diversas áreas: e-commerce,
+              gestão de estoque e automação de processos. Primeira experiência com clientes reais,
+              prazos reais e requisitos que mudam no meio do projeto.
+            </p>
+            <div class="timeline-achievements">
+              <div class="timeline-achievement">Sistema de controle de estoque com alertas via webhook e relatórios em PDF automatizados</div>
+              <div class="timeline-achievement">Módulo de autenticação OAuth2 reutilizável com rate limiting e blacklist de tokens via Redis</div>
+              <div class="timeline-achievement">Bot de monitoramento de servidores com alertas Telegram e deploy via Docker Compose</div>
+            </div>
+            <div class="timeline-skills">
+              <span class="timeline-skill">Express.js</span>
+              <span class="timeline-skill">MongoDB</span>
+              <span class="timeline-skill">Redis</span>
+              <span class="timeline-skill">OAuth2</span>
+              <span class="timeline-skill">Python</span>
+              <span class="timeline-skill">Telegram API</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2022 – 2023 -->
+        <div class="timeline-item tl-c4">
+          <div class="timeline-node"><div class="timeline-dot"></div></div>
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-role">Técnico em Sistemas Embarcados</div>
+              <div class="timeline-company">SENAI — Formação Técnica</div>
+            </div>
+            <div class="timeline-year">2022 — 2023</div>
+          </div>
+          <div class="timeline-body">
+            <p class="timeline-desc">
+              Formação técnica intensiva em sistemas embarcados. Aprofundamento em C/C++ para
+              microcontroladores, protocolos de comunicação (UART, SPI, I2C, MQTT) e desenvolvimento
+              de firmware. Primeiros projetos IoT com integração a serviços cloud.
+            </p>
+            <div class="timeline-achievements">
+              <div class="timeline-achievement">Sistema de controle de acesso RFID com Arduino — banco de dados em EEPROM, log serial e LCD</div>
+              <div class="timeline-achievement">Estação meteorológica com Raspberry Pi, API REST em Flask e dashboard de histórico</div>
+              <div class="timeline-achievement">Conclusão do curso técnico com projeto integrador avaliado como destaque da turma</div>
+            </div>
+            <div class="timeline-skills">
+              <span class="timeline-skill">C/C++</span>
+              <span class="timeline-skill">Arduino</span>
+              <span class="timeline-skill">Raspberry Pi</span>
+              <span class="timeline-skill">I2C / SPI</span>
+              <span class="timeline-skill">Flask</span>
+              <span class="timeline-skill">SQLite</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2021 – 2022 -->
+        <div class="timeline-item tl-c2">
+          <div class="timeline-node"><div class="timeline-dot"></div></div>
+          <div class="timeline-header">
+            <div>
+              <div class="timeline-role">Explorador &amp; Autodidata</div>
+              <div class="timeline-company">INÍCIO DA JORNADA — Brasil</div>
+            </div>
+            <div class="timeline-year">2021 — 2022</div>
+          </div>
+          <div class="timeline-body">
+            <p class="timeline-desc">
+              Onde tudo começou. Python, HTML, CSS, JavaScript — cada tutorial ensinando que código
+              é a linguagem mais poderosa que existe. A descoberta de que hardware e software podem
+              conversar entre si mudou tudo: aqui nasceu a obsessão por sistemas embarcados.
+            </p>
+            <div class="timeline-achievements">
+              <div class="timeline-achievement">Primeiro script Python funcional: automação de tarefas repetitivas do dia a dia</div>
+              <div class="timeline-achievement">Primeiro LED piscando com Arduino — aquele momento que fisgou de vez</div>
+              <div class="timeline-achievement">Decisão de estudar sistemas embarcados formalmente no SENAI</div>
+            </div>
+            <div class="timeline-skills">
+              <span class="timeline-skill">Python</span>
+              <span class="timeline-skill">HTML/CSS</span>
+              <span class="timeline-skill">JavaScript</span>
+              <span class="timeline-skill">Arduino</span>
+              <span class="timeline-skill">Lógica</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TOOLS
+    ============================================================ -->
+    <section id="tools" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-num">03 — FERRAMENTAS</div>
+          <h2 class="section-title">Meu<br/>Arsenal</h2>
+        </div>
+        <div class="section-subtitle">O QUE USO TODO DIA</div>
+      </div>
+
+      <div class="tools-cloud reveal">
+        <span class="tool-pill t1"><span>⬡ Node.js</span></span>
+        <span class="tool-pill t2"><span>⬡ Python</span></span>
+        <span class="tool-pill t3"><span>⬡ C/C++</span></span>
+        <span class="tool-pill t4"><span>⬡ Arduino</span></span>
+        <span class="tool-pill t5"><span>⬡ ESP32</span></span>
+        <span class="tool-pill t6"><span>⬡ Raspberry Pi</span></span>
+        <span class="tool-pill t1"><span>⬡ PostgreSQL</span></span>
+        <span class="tool-pill t2"><span>⬡ MongoDB</span></span>
+        <span class="tool-pill t3"><span>⬡ Redis</span></span>
+        <span class="tool-pill t4"><span>⬡ Docker</span></span>
+        <span class="tool-pill t5"><span>⬡ Git</span></span>
+        <span class="tool-pill t6"><span>⬡ Linux</span></span>
+        <span class="tool-pill t1"><span>⬡ VS Code</span></span>
+        <span class="tool-pill t2"><span>⬡ MQTT</span></span>
+        <span class="tool-pill t3"><span>⬡ REST API</span></span>
+        <span class="tool-pill t4"><span>⬡ WebSocket</span></span>
+        <span class="tool-pill t5"><span>⬡ Express.js</span></span>
+        <span class="tool-pill t6"><span>⬡ Shell Script</span></span>
+        <span class="tool-pill t1"><span>⬡ Postman</span></span>
+        <span class="tool-pill t2"><span>⬡ Nginx</span></span>
+        <span class="tool-pill t3"><span>⬡ MySQL</span></span>
+        <span class="tool-pill t4"><span>⬡ GraphQL</span></span>
+        <span class="tool-pill t5"><span>⬡ Prisma</span></span>
+        <span class="tool-pill t6"><span>⬡ CI/CD</span></span>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         VALUES
+    ============================================================ -->
+    <section class="section section-alt">
+      <div class="section-header">
+        <div>
+          <div class="section-num">04 — PRINCÍPIOS</div>
+          <h2 class="section-title">O Que<br/>Me Move</h2>
+        </div>
+        <div class="section-subtitle">VALORES & FILOSOFIA</div>
+      </div>
+
+      <div class="values-grid">
+        <div class="value-card reveal">
+          <div class="value-num">01</div>
+          <div class="value-title">PERFORMANCE É UMA FEATURE</div>
+          <p class="value-text">
+            Latência de API, tempo de resposta, uso de memória — não são detalhes,
+            são requisitos. Código que funciona mas é lento é código incompleto.
+            Performance é parte do produto, não bônus.
+          </p>
+        </div>
+        <div class="value-card reveal reveal-delay-1">
+          <div class="value-num">02</div>
+          <div class="value-title">CÓDIGO LEGÍVEL É DOCUMENTAÇÃO</div>
+          <p class="value-text">
+            Código que precisa de comentário para ser entendido é código mal escrito.
+            Nomes claros, funções pequenas, responsabilidades separadas — isso é
+            respeito pelo próximo desenvolvedor (e pelo futuro eu).
+          </p>
+        </div>
+        <div class="value-card reveal reveal-delay-2">
+          <div class="value-num">03</div>
+          <div class="value-title">AUTOMAÇÃO PARA TUDO QUE REPETE</div>
+          <p class="value-text">
+            Se você faz a mesma coisa mais de duas vezes, é hora de automatizar.
+            Pipelines, scripts, bots — liberar tempo humano para trabalho que
+            realmente exige criatividade e raciocínio.
+          </p>
+        </div>
+        <div class="value-card reveal">
+          <div class="value-num">04</div>
+          <div class="value-title">SISTEMAS QUE ESCALAM</div>
+          <p class="value-text">
+            Arquitetura pensada antes de uma linha escrita. A escolha do banco
+            de dados, do protocolo, da estrutura de dados — essas decisões
+            definem se o sistema aguenta 10 ou 10 mil usuários.
+          </p>
+        </div>
+        <div class="value-card reveal reveal-delay-1">
+          <div class="value-num">05</div>
+          <div class="value-title">DO HARDWARE AO SERVIDOR</div>
+          <p class="value-text">
+            Pensar na stack completa — do firmware rodando no microcontrolador
+            até a API recebendo os dados na nuvem. Soluções IoT reais precisam
+            de visão de ponta a ponta, não de silos.
+          </p>
+        </div>
+        <div class="value-card reveal reveal-delay-2">
+          <div class="value-num">06</div>
+          <div class="value-title">APRENDIZADO CONTÍNUO</div>
+          <p class="value-text">
+            A tecnologia não para. Embedded systems, cloud, protocolos novos —
+            ficar parado é regredir. Cada projeto é uma oportunidade de aprender
+            algo que ainda não sei, e isso nunca vai mudar.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT
+    ============================================================ -->
+    <section id="contact">
+      <div class="contact-bg"></div>
+      <div class="contact-label reveal">VAMOS TRABALHAR JUNTOS</div>
+      <h2 class="contact-title reveal">
+        <span>PRONTO PARA</span><br/>
+        <span class="hollow">DECOLAR?</span>
+      </h2>
+      <p class="contact-sub reveal">
+        Tenho disponibilidade para projetos freelance, contratos e posições full-time.
+        Manda uma mensagem — eu respondo o mais rápido possível.
+      </p>
+      <a class="contact-email reveal" href="mailto:[SEU@EMAIL.COM]">
+        [SEU@EMAIL.COM]
+      </a>
+      <div class="contact-socials reveal">
+        <a class="social-link" href="#" onclick="return false;">LinkedIn</a>
+        <a class="social-link" href="#" onclick="return false;">GitHub</a>
+        <a class="social-link" href="#" onclick="return false;">Twitter</a>
+        <a class="social-link" href="#" onclick="return false;">Dribbble</a>
+        <a class="social-link" href="#" onclick="return false;">Behance</a>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         FOOTER
+    ============================================================ -->
+    <footer>
+      <span class="footer-copy">© 2025 BRENO J. OLIVEIRA — TODOS OS DIREITOS RESERVADOS</span>
+      <button class="footer-back-top" id="back-to-top-footer" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        ↑ VOLTAR AO TOPO
+      </button>
+    </footer>
+
+  </div><!-- /page-wrapper -->
+
+  <!-- AVAILABILITY BADGE -->
+  <div id="availability-badge" aria-label="Status: disponível para projetos">
+    <span class="badge-dot"></span>
+    <span class="badge-text">Disponível para projetos</span>
+  </div>
+
+  <!-- BACK TO TOP -->
+  <button id="back-to-top" aria-label="Voltar ao topo" title="Voltar ao topo">🚀</button>
+
+  <script src="src/app/data/index.js"></script>
+  <script src="src/shared/lib/utils.js"></script>
+  <script src="src/pages/about/model/about.js"></script>
+  <script src="src/features/shortcuts/shortcuts.js"></script>
+  <script src="src/features/transitions/transitions.js"></script>
+</body>
+</html>

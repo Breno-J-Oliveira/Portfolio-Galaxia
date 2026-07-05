@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BRENO J. OLIVEIRA — Portfolio</title>
+  <meta name="description" content="Portfólio de Breno J. Oliveira, Backend Developer & Systems Engineer. Projetos em Node.js, Python, C/C++, IoT e sistemas embarcados.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <meta name="theme-color" content="#00ffff">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Breno J. Oliveira — Backend Developer & Systems Engineer">
+  <meta property="og:description" content="Portfólio com projetos em Node.js, Python, C/C++, IoT e sistemas embarcados.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Breno J. Oliveira — Backend Developer">
+  <meta name="twitter:description" content="Portfólio com projetos em Node.js, Python, C/C++, IoT e sistemas embarcados.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Breno J. Oliveira",
+    "jobTitle": "Backend Developer & Systems Engineer",
+    "knowsAbout": ["Node.js", "Python", "C/C++", "JavaScript", "MySQL", "IoT", "Arduino", "ESP32"],
+    "sameAs": ["https://github.com/Breno-J-Oliveira"]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="src/app/styles/globals.css" />
+  <link rel="stylesheet" href="src/widgets/hud/hud.css" />
+  <link rel="stylesheet" href="src/widgets/loader/loader.css" />
+  <link rel="stylesheet" href="src/pages/galaxy/styles/galaxy.css" />
+</head>
+<body>
+  <a href="#galaxy-canvas" class="skip-link">Pular para o conteúdo</a>
+  <div id="page-transition" aria-hidden="true"></div>
+
+  <!-- LOADING SCREEN (injetado via fetch) -->
+  <div id="loader-container"></div>
+  <script>
+    fetch('src/widgets/loader/loader.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('loader-container').innerHTML = html;
+      })
+      .catch(err => console.error('Loader fetch failed:', err));
+  </script>
+
+  <!-- SCANLINES -->
+  <div id="scanlines"></div>
+
+  <!-- CORNER DECORATIONS -->
+  <div class="corner-deco tl"></div>
+  <div class="corner-deco tr"></div>
+  <div class="corner-deco bl"></div>
+  <div class="corner-deco br"></div>
+
+  <!-- CUSTOM CURSOR -->
+  <div id="cursor-ring"></div>
+  <div id="cursor-dot"></div>
+
+  <!-- MAIN GALAXY CANVAS -->
+  <canvas id="galaxy-canvas"></canvas>
+
+  <!-- CONSTELLATION OVERLAY -->
+  <canvas id="constellation-canvas"></canvas>
+
+  <!-- WARP TRANSITION -->
+  <div id="warp-overlay">
+    <canvas class="warp-canvas" id="warp-canvas"></canvas>
+    <div class="warp-text" id="warp-text">WARPING TO DESTINATION</div>
+  </div>
+
+  <!-- HUD TOP (injetado via fetch) -->
+  <div id="hud-container"></div>
+  <script>
+    fetch('src/widgets/hud/hud.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('hud-container').innerHTML = html;
+        const s = document.createElement('script');
+        s.src = 'src/widgets/hud/hud.js';
+        document.body.appendChild(s);
+      })
+      .catch(err => console.error('HUD fetch failed:', err));
+  </script>
+
+  <!-- HUD LEFT -->
+  <div id="hud-left">
+    <div class="hud-vert-line"></div>
+    <div class="hud-vert-text">LATITUDE 41.2°N</div>
+    <div class="hud-vert-line"></div>
+  </div>
+
+  <!-- HUD RIGHT -->
+  <div id="hud-right">
+    <div class="hud-star-count">ESTRELAS <span id="star-count">0</span></div>
+    <div class="hud-star-count">PROJETOS <span id="project-count">0</span></div>
+    <div class="hud-star-count">ZOOM <span id="zoom-level">1.0x</span></div>
+    <div class="hud-vert-line" style="width:1px;height:60px;background:linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent);"></div>
+  </div>
+
+  <!-- HUD BOTTOM -->
+  <div id="hud-bottom">
+    <div class="hud-coords" id="hud-coords">X: 0 / Y: 0</div>
+    <div class="hud-hint">NAVEGUE PELA GALÁXIA — CLIQUE NAS ESTRELAS BRILHANTES</div>
+    <div class="hud-scale" id="hud-scale">RA: 0h 0m / DEC: 0°</div>
+  </div>
+
+  <!-- SCROLL HINT -->
+  <div id="scroll-hint">
+    <div class="scroll-wheel"><div class="scroll-dot"></div></div>
+    <div class="scroll-text">Scroll para zoom</div>
+  </div>
+
+  <!-- TOOLTIP -->
+  <div id="tooltip">
+    <div class="tooltip-inner">
+      <div class="tooltip-corner tl"></div>
+      <div class="tooltip-corner tr"></div>
+      <div class="tooltip-corner bl"></div>
+      <div class="tooltip-corner br"></div>
+      <div class="tooltip-label" id="tt-label">Projeto</div>
+      <div class="tooltip-name" id="tt-name">—</div>
+      <div class="tooltip-desc" id="tt-desc">—</div>
+      <div class="tooltip-tags" id="tt-tags"></div>
+      <div class="tooltip-action">↩ CLIQUE PARA EXPLORAR</div>
+    </div>
+  </div>
+
+  <!-- AUDIO TOGGLE -->
+  <button id="audio-btn" onclick="toggleAudio()">◎ SOM</button>
+
+  <!-- BACK TO TOP -->
+  <button id="back-to-top" aria-label="Voltar ao topo" title="Voltar ao topo">🚀</button>
+
+  <script src="src/shared/lib/utils.js"></script>
+  <script src="src/widgets/loader/loader.js" defer></script>
+  <script src="src/pages/galaxy/model/galaxy.js" defer></script>
+  <script src="src/features/shortcuts/shortcuts.js"></script>
+  <script src="src/features/transitions/transitions.js"></script>
+  <script>
+    Utils.registerSW();
+    Utils.initBackToTop();
+  </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+.env
+.env.*
+*.v1
+BACKUP/
+prototipo.html
+/projetos/*/node_modules/
+/projetos/*/vendor/
+/projetos/*/.env
+.DS_Store
+Thumbs.db
+*.log

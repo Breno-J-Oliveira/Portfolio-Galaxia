@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projetos — BRENO J. OLIVEIRA</title>
+  <meta name="description" content="Projetos de Breno J. Oliveira: ARQON ERP, API de autenticação, sistema IoT, dashboard financeiro e mais.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <meta name="theme-color" content="#00ffff">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Breno J. Oliveira — Projetos">
+  <meta property="og:description" content="ARQON ERP, API de autenticação, sistema IoT, dashboard financeiro e mais.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Breno J. Oliveira — Projetos">
+  <meta name="twitter:description" content="Projetos backend, IoT, automação e web full-stack.">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="src/app/styles/globals.css" />
+  <link rel="stylesheet" href="src/widgets/hud/hud.css" />
+  <link rel="stylesheet" href="src/widgets/modal/modal.css" />
+  <link rel="stylesheet" href="src/pages/projects/styles/projects.css" />
+</head>
+<body>
+  <a href="#hero" class="skip-link">Pular para o conteúdo</a>
+  <div id="page-transition" aria-hidden="true"></div>
+
+  <canvas id="bg-canvas"></canvas>
+  <div id="read-progress"></div>
+  <div id="scanlines"></div>
+  <div id="cursor-ring"></div>
+  <div id="cursor-dot"></div>
+  <div class="corner-deco tl"></div>
+  <div class="corner-deco tr"></div>
+  <div class="corner-deco bl"></div>
+  <div class="corner-deco br"></div>
+
+  <!-- HUD TOP NAV (injetado via fetch) -->
+  <div id="hud-container"></div>
+  <script>
+    window.HUD_ACTIVE = 'projects';
+    fetch('src/widgets/hud/hud.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('hud-container').innerHTML = html;
+        const s = document.createElement('script');
+        s.src = 'src/widgets/hud/hud.js';
+        document.body.appendChild(s);
+      })
+      .catch(err => console.error('HUD fetch failed:', err));
+  </script>
+
+  <div class="page-wrapper page-enter">
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-eyebrow reveal">PORTFÓLIO</div>
+      <h1 class="hero-title reveal">
+        PROJETOS QUE<br/><span class="hollow">FUNCIONAM</span>
+      </h1>
+      <p class="hero-desc reveal">
+        Código real, problemas reais, soluções reais.
+        Cada projeto aqui tem uma história de engenharia por trás
+        — do firmware ao servidor.
+      </p>
+    </section>
+
+    <!-- FILTER BAR -->
+    <div id="filter-bar">
+      <input type="search" id="search-projects" placeholder="Buscar por tecnologia (PHP, React, Node...)" aria-label="Buscar projetos por tecnologia">
+      <button class="filter-btn active" data-filter="all">TODOS</button>
+      <button class="filter-btn" data-filter="fullstack">FULLSTACK</button>
+      <button class="filter-btn" data-filter="backend">BACKEND</button>
+      <button class="filter-btn" data-filter="frontend">FRONTEND</button>
+    </div>
+
+    <!-- STATS -->
+    <div id="stats-bar">
+      <div class="stat-item reveal">
+        <div class="stat-num" data-target="10" data-suffix="+">0</div>
+        <div class="stat-label">Projetos</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-1">
+        <div class="stat-num" data-target="3">0</div>
+        <div class="stat-label">Áreas de Atuação</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-2">
+        <div class="stat-num" data-target="2" data-suffix="+">0</div>
+        <div class="stat-label">Anos de Projetos</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-3">
+        <div class="stat-num" data-target="100">0</div>
+        <div class="stat-label">% Código Próprio</div>
+      </div>
+    </div>
+
+    <!-- PROJETOS -->
+    <section id="projects" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-num">01 — BACKEND & APIs</div>
+          <h2 class="section-title">Servidores &<br/>Interfaces</h2>
+        </div>
+        <div class="section-subtitle">CÓDIGO QUE ESCALA</div>
+      </div>
+
+      <div class="projects-grid" id="projects-grid"><!-- Cards renderizados via JS a partir do array PROJECTS --></div>
+    </section>
+
+    <!-- CONTACT CTA -->
+    <section id="contact-cta">
+      <div class="cta-bg"></div>
+      <div class="cta-label reveal">TEM UM PROJETO?</div>
+      <h2 class="cta-title reveal">
+        <span>VAMOS</span><br/>
+        <span class="hollow">CONSTRUIR</span>
+      </h2>
+      <p class="cta-sub reveal">
+        Tem uma ideia que precisa sair do papel?
+        API, sistema embarcado, automação — manda a mensagem.
+      </p>
+      <a class="btn-primary reveal" href="contact.html">
+        <span>ENTRAR EM CONTATO</span>
+        <span>→</span>
+      </a>
+    </section>
+
+    <footer>
+      <span class="footer-copy">© 2025 BRENO J. OLIVEIRA — TODOS OS DIREITOS RESERVADOS</span>
+      <button class="footer-back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ VOLTAR AO TOPO</button>
+    </footer>
+
+  </div>
+
+  <!-- AVAILABILITY BADGE -->
+  <div id="availability-badge" aria-label="Status: disponível para projetos">
+    <span class="badge-dot"></span>
+    <span class="badge-text">Disponível para projetos</span>
+  </div>
+
+  <!-- BACK TO TOP -->
+  <button id="back-to-top" aria-label="Voltar ao topo" title="Voltar ao topo">🚀</button>
+
+  <!-- ============================================================
+       PROJECT MODAL (injetado via fetch)
+  ============================================================ -->
+  <div id="modal-container"></div>
+  <script>
+    fetch('src/widgets/modal/modal.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('modal-container').innerHTML = html;
+      })
+      .catch(err => console.error('Modal fetch failed:', err));
+  </script>
+
+  <script src="src/app/data/index.js"></script>
+  <script src="src/shared/lib/utils.js"></script>
+  <script src="src/pages/projects/model/projects.js"></script>
+  <script src="src/features/shortcuts/shortcuts.js"></script>
+  <script src="src/features/transitions/transitions.js"></script>
+</body>
+</html>

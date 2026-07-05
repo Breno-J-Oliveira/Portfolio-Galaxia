@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Estrela Perdida</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Orbitron:wght@700;900&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="src/app/styles/globals.css">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#00ffff">
+  <style>
+    body { display:flex; flex-direction:column; align-items:center;
+           justify-content:center; min-height:100vh; text-align:center; padding:2rem;
+           font-family: var(--font-body); }
+    .star-404 { font-size:6rem; animation: float 3s ease-in-out infinite; }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
+    h1 { font-size:2rem; color:var(--c1); margin:1rem 0 0.5rem;
+         font-family: var(--font-display); letter-spacing: 0.15em; }
+    p  { color:var(--dim); margin-bottom:2rem; font-family: var(--font-mono); font-size: 0.85rem; }
+    .btn-home { padding:0.75rem 2rem; background:var(--c1); color:#000;
+                border:none; border-radius:8px; font-weight:700; cursor:pointer;
+                text-decoration:none; transition:opacity 0.2s, transform 0.2s var(--ease);
+                font-family: var(--font-mono); letter-spacing: 0.1em; font-size: 0.8rem; }
+    .btn-home:hover { opacity:0.8; transform: translateY(-2px); }
+  </style>
+</head>
+<body>
+  <div class="star-404">⭐</div>
+  <h1>404 — ESTRELA PERDIDA</h1>
+  <p>Esta página derivou para fora da galáxia...</p>
+  <a href="index.html" class="btn-home">↩ VOLTAR À GALÁXIA</a>
+</body>
+</html>

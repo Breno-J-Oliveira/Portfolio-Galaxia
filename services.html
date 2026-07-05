@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Serviços — BRENO J. OLIVEIRA</title>
+  <meta name="description" content="Serviços de desenvolvimento backend, sistemas embarcados/IoT, automação e web full-stack com Breno J. Oliveira.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <meta name="theme-color" content="#00ffff">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Breno J. Oliveira — Serviços">
+  <meta property="og:description" content="Backend, IoT, automação e web full-stack sob medida.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Breno J. Oliveira — Serviços">
+  <meta name="twitter:description" content="Backend, IoT, automação e web full-stack.">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="src/app/styles/globals.css" />
+  <link rel="stylesheet" href="src/widgets/hud/hud.css" />
+  <link rel="stylesheet" href="src/pages/services/styles/services.css" />
+</head>
+<body>
+  <a href="#hero" class="skip-link">Pular para o conteúdo</a>
+  <div id="page-transition" aria-hidden="true"></div>
+
+  <canvas id="bg-canvas"></canvas>
+  <div id="read-progress"></div>
+  <div id="scanlines"></div>
+  <div id="cursor-ring"></div>
+  <div id="cursor-dot"></div>
+  <div class="corner-deco tl"></div><div class="corner-deco tr"></div>
+  <div class="corner-deco bl"></div><div class="corner-deco br"></div>
+
+  <!-- HUD TOP NAV (injetado via fetch) -->
+  <div id="hud-container"></div>
+  <script>
+    window.HUD_ACTIVE = 'services';
+    fetch('src/widgets/hud/hud.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('hud-container').innerHTML = html;
+        const s = document.createElement('script');
+        s.src = 'src/widgets/hud/hud.js';
+        document.body.appendChild(s);
+      })
+      .catch(err => console.error('HUD fetch failed:', err));
+  </script>
+
+  <div class="page-wrapper page-enter">
+
+    <section id="hero">
+      <div class="hero-eyebrow reveal">O QUE OFEREÇO</div>
+      <h1 class="hero-title reveal">SOLUÇÕES QUE<br/><span class="hollow">FUNCIONAM</span></h1>
+      <p class="hero-desc reveal">
+        Desenvolvimento backend, sistemas embarcados e automação.
+        Entregas no prazo, código limpo e comunicação clara — sem surpresas.
+      </p>
+    </section>
+
+    <!-- SERVIÇOS -->
+    <section id="services" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-num">01 — ESPECIALIDADES</div>
+          <h2 class="section-title">Áreas de<br/>Atuação</h2>
+        </div>
+        <div class="section-subtitle">O QUE EU ENTREGO</div>
+      </div>
+      <div class="services-grid">
+
+        <div class="service-card c1 reveal">
+          <span class="service-icon">⚙️</span>
+          <div class="service-name">BACKEND & APIs</div>
+          <p class="service-desc">APIs RESTful e GraphQL robustas, escaláveis e bem documentadas. Do MVP ao sistema de produção.</p>
+          <ul class="service-includes">
+            <li>Endpoints REST / GraphQL</li>
+            <li>Autenticação JWT / OAuth2</li>
+            <li>Banco de dados relacionais e NoSQL</li>
+            <li>Documentação Swagger / OpenAPI</li>
+            <li>Testes automatizados</li>
+            <li>Deploy com Docker</li>
+          </ul>
+          <div class="service-meta">
+            <div class="service-meta-item">
+              <span class="service-meta-label">Prazo estimado</span>
+              <span class="service-meta-value">2–6 sem.</span>
+            </div>
+            <div class="service-meta-item">
+              <span class="service-meta-label">Investimento</span>
+              <span class="service-meta-value">Sob consulta</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-card c2 reveal reveal-delay-1">
+          <span class="service-icon">🔌</span>
+          <div class="service-name">SISTEMAS EMBARCADOS & IoT</div>
+          <p class="service-desc">Firmware e soluções IoT end-to-end — do microcontrolador à nuvem, passando pelo protocolo certo.</p>
+          <ul class="service-includes">
+            <li>Firmware Arduino / ESP32 / STM32</li>
+            <li>Protocolos MQTT, I2C, SPI, UART</li>
+            <li>Integração com backend / cloud</li>
+            <li>Dashboard de monitoramento</li>
+            <li>Documentação técnica completa</li>
+            <li>Raspberry Pi e Linux embarcado</li>
+          </ul>
+          <div class="service-meta">
+            <div class="service-meta-item">
+              <span class="service-meta-label">Prazo estimado</span>
+              <span class="service-meta-value">3–8 sem.</span>
+            </div>
+            <div class="service-meta-item">
+              <span class="service-meta-label">Investimento</span>
+              <span class="service-meta-value">Sob consulta</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-card c3 reveal reveal-delay-2">
+          <span class="service-icon">🤖</span>
+          <div class="service-name">AUTOMAÇÃO & BOTS</div>
+          <p class="service-desc">Scripts, bots e pipelines que eliminam trabalho repetitivo e conectam sistemas que não conversam.</p>
+          <ul class="service-includes">
+            <li>Scripts Python / Shell</li>
+            <li>Bots Telegram / WhatsApp</li>
+            <li>Pipelines CI/CD</li>
+            <li>Automação de tarefas web</li>
+            <li>Integração entre sistemas</li>
+            <li>Agendamento com cron</li>
+          </ul>
+          <div class="service-meta">
+            <div class="service-meta-item">
+              <span class="service-meta-label">Prazo estimado</span>
+              <span class="service-meta-value">1–3 sem.</span>
+            </div>
+            <div class="service-meta-item">
+              <span class="service-meta-label">Investimento</span>
+              <span class="service-meta-value">Sob consulta</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="service-card c4 reveal">
+          <span class="service-icon">🌐</span>
+          <div class="service-name">WEB FULL-STACK</div>
+          <p class="service-desc">Aplicações web completas com backend robusto. Foco em performance, segurança e manutenibilidade.</p>
+          <ul class="service-includes">
+            <li>Front-end responsivo</li>
+            <li>Backend Node.js / Python</li>
+            <li>Banco de dados integrado</li>
+            <li>Autenticação de usuários</li>
+            <li>Painel administrativo</li>
+            <li>Deploy em produção</li>
+          </ul>
+          <div class="service-meta">
+            <div class="service-meta-item">
+              <span class="service-meta-label">Prazo estimado</span>
+              <span class="service-meta-value">4–10 sem.</span>
+            </div>
+            <div class="service-meta-item">
+              <span class="service-meta-label">Investimento</span>
+              <span class="service-meta-value">Sob consulta</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PROCESSO -->
+    <section id="process" class="section section-alt">
+      <div class="section-header">
+        <div>
+          <div class="section-num">02 — COMO TRABALHO</div>
+          <h2 class="section-title">Processo<br/>Transparente</h2>
+        </div>
+        <div class="section-subtitle">SEM SURPRESAS</div>
+      </div>
+      <div class="process-steps">
+        <div class="process-step reveal">
+          <div class="process-step-num">01</div>
+          <div>
+            <div class="process-step-title">BRIEFING</div>
+            <p class="process-step-desc">Entendo o problema, os objetivos e as restrições. Quanto mais detalhes você trouxer, melhor a proposta.</p>
+          </div>
+        </div>
+        <div class="process-step reveal">
+          <div class="process-step-num">02</div>
+          <div>
+            <div class="process-step-title">PROPOSTA</div>
+            <p class="process-step-desc">Escopo detalhado, prazo realista e valor claro. Sem promessas vazias, sem escopo aberto.</p>
+          </div>
+        </div>
+        <div class="process-step reveal">
+          <div class="process-step-num">03</div>
+          <div>
+            <div class="process-step-title">DESENVOLVIMENTO</div>
+            <p class="process-step-desc">Desenvolvimento iterativo com atualizações semanais. Você acompanha o progresso em tempo real.</p>
+          </div>
+        </div>
+        <div class="process-step reveal">
+          <div class="process-step-num">04</div>
+          <div>
+            <div class="process-step-title">REVISÃO</div>
+            <p class="process-step-desc">Duas rodadas de ajustes incluídas no escopo. Feedback direto, implementação rápida.</p>
+          </div>
+        </div>
+        <div class="process-step reveal">
+          <div class="process-step-num">05</div>
+          <div>
+            <div class="process-step-title">ENTREGA</div>
+            <p class="process-step-desc">Deploy, documentação, código-fonte e 30 dias de suporte pós-entrega para bugs.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-num">03 — DÚVIDAS</div>
+          <h2 class="section-title">Perguntas<br/>Frequentes</h2>
+        </div>
+        <div class="section-subtitle">RESPONDENDO ANTES DE PERGUNTAR</div>
+      </div>
+      <div id="faq-list">
+        <div class="faq-item">
+          <button class="faq-question reveal"><span>Você trabalha com projetos internacionais?</span><div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">Sim. Atendo clientes remotamente e tenho experiência em comunicação em inglês. Pagamentos em reais ou dólar via transferência bancária, PayPal ou crypto.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question reveal"><span>Qual é o prazo mínimo para um projeto?</span><div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">Automações simples podem ficar prontas em 1 semana. APIs completas levam de 2 a 6 semanas dependendo da complexidade. Projetos IoT costumam levar de 3 a 8 semanas.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question reveal"><span>Você entrega o código-fonte?</span><div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">Sempre. O código-fonte completo, repositório Git com histórico e documentação técnica são entregues em todos os projetos. Você é dono do que foi construído.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question reveal"><span>Como é feito o pagamento?</span><div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">50% de entrada antes de começar e 50% na entrega final. Para projetos longos, podemos combinar parcelas mensais. Aceito PIX, transferência bancária e PayPal.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question reveal"><span>E se eu precisar de manutenção depois?</span><div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">Ofereço 30 dias de suporte gratuito para correção de bugs pós-entrega. Para manutenção contínua ou evolução do projeto, podemos combinar um contrato mensal.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question reveal"><span>Você assina NDA (acordo de confidencialidade)?</span><div class="faq-icon">+</div></button>
+          <div class="faq-answer"><div class="faq-answer-inner">Sim, sem problema. Privacidade e confidencialidade são parte do profissionalismo. Posso assinar NDAs e acordos de exclusividade antes de qualquer troca de informações.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact-cta">
+      <div class="cta-bg"></div>
+      <div class="cta-label reveal">PRONTO PARA COMEÇAR?</div>
+      <h2 class="cta-title reveal">
+        <span>ME CONTA</span><br/>
+        <span class="hollow">SEU PROJETO</span>
+      </h2>
+      <p class="cta-sub reveal">
+        Respondo em até 24 horas com uma análise inicial gratuita
+        e uma proposta sem compromisso.
+      </p>
+      <a class="btn-primary reveal" href="contact.html">
+        <span>SOLICITAR ORÇAMENTO</span><span>→</span>
+      </a>
+    </section>
+
+    <footer>
+      <span class="footer-copy">© 2025 BRENO J. OLIVEIRA — TODOS OS DIREITOS RESERVADOS</span>
+      <button class="footer-back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ VOLTAR AO TOPO</button>
+    </footer>
+  </div>
+
+  <!-- AVAILABILITY BADGE -->
+  <div id="availability-badge" aria-label="Status: disponível para projetos">
+    <span class="badge-dot"></span>
+    <span class="badge-text">Disponível para projetos</span>
+  </div>
+
+  <!-- BACK TO TOP -->
+  <button id="back-to-top" aria-label="Voltar ao topo" title="Voltar ao topo">🚀</button>
+
+  <script src="src/app/data/index.js"></script>
+  <script src="src/shared/lib/utils.js"></script>
+  <script src="src/pages/services/model/services.js"></script>
+  <script src="src/features/shortcuts/shortcuts.js"></script>
+  <script src="src/features/transitions/transitions.js"></script>
+</body>
+</html>

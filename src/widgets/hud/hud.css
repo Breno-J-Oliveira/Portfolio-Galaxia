@@ -1,0 +1,77 @@
+/* ============================================================
+   HUD.CSS — Header / navegação superior
+   Padronizado e compartilhado por todas as páginas.
+============================================================ */
+#hud-top {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  z-index: 100;
+  pointer-events: none;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  backdrop-filter: blur(20px);
+  background: rgba(0,0,0,0.55);
+}
+
+.hud-logo {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  pointer-events: all;
+  cursor: none;
+  text-decoration: none;
+  color: #fff;
+  position: relative;
+}
+.hud-logo .logo-dot { color: var(--c1); }
+.hud-logo::before {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--c1);
+  transition: width 0.4s var(--ease);
+}
+.hud-logo:hover::before { width: 100%; }
+
+.hud-nav {
+  display: flex;
+  gap: 32px;
+  pointer-events: all;
+  list-style: none;
+}
+.hud-nav a {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  color: var(--dim);
+  text-decoration: none;
+  cursor: none;
+  transition: color 0.3s;
+  text-transform: uppercase;
+  position: relative;
+}
+.hud-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--c1);
+  transition: width 0.3s var(--ease);
+}
+.hud-nav a:hover { color: #fff; }
+.hud-nav a:hover::after { width: 100%; }
+.hud-nav a.active { color: var(--c1); }
+.hud-nav a.active::after { width: 100%; }
+
+/* Responsivo */
+@media (max-width: 768px) {
+  #hud-top { padding: 0 20px; }
+  .hud-nav { display: none; }
+}

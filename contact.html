@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contato — BRENO J. OLIVEIRA</title>
+  <meta name="description" content="Entre em contato com Breno J. Oliveira para projetos de backend, IoT, automação e web full-stack.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <meta name="theme-color" content="#00ffff">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Breno J. Oliveira — Contato">
+  <meta property="og:description" content="Vamos construir algo funcional juntos. Backend, IoT, automação e web.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Breno J. Oliveira — Contato">
+  <meta name="twitter:description" content="Entre em contato para projetos de backend, IoT e automação.">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="src/app/styles/globals.css" />
+  <link rel="stylesheet" href="src/widgets/hud/hud.css" />
+  <link rel="stylesheet" href="src/pages/contact/styles/contact.css" />
+</head>
+<body>
+  <a href="#hero" class="skip-link">Pular para o conteúdo</a>
+  <div id="page-transition" aria-hidden="true"></div>
+
+  <canvas id="bg-canvas"></canvas>
+  <div id="read-progress"></div>
+  <div id="scanlines"></div>
+  <div id="cursor-ring"></div>
+  <div id="cursor-dot"></div>
+  <div class="corner-deco tl"></div><div class="corner-deco tr"></div>
+  <div class="corner-deco bl"></div><div class="corner-deco br"></div>
+
+  <!-- HUD TOP NAV (injetado via fetch) -->
+  <div id="hud-container"></div>
+  <script>
+    window.HUD_ACTIVE = 'contact';
+    fetch('src/widgets/hud/hud.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('hud-container').innerHTML = html;
+        const s = document.createElement('script');
+        s.src = 'src/widgets/hud/hud.js';
+        document.body.appendChild(s);
+      })
+      .catch(err => console.error('HUD fetch failed:', err));
+  </script>
+
+  <div class="page-wrapper page-enter">
+
+    <section id="hero">
+      <div class="hero-eyebrow reveal">VAMOS CONVERSAR</div>
+      <h1 class="hero-title reveal">
+        PRONTO PARA<br/><span class="hollow">CONSTRUIR?</span>
+      </h1>
+      <p class="hero-desc reveal">
+        Tem um projeto, uma dúvida ou quer trocar uma ideia sobre tecnologia?
+        Manda a mensagem — respondo em até 24 horas úteis.
+      </p>
+    </section>
+
+    <div class="contact-grid">
+
+      <!-- INFO -->
+      <div class="contact-info">
+
+        <div class="info-block reveal">
+          <div class="info-label">Disponibilidade</div>
+          <div class="availability">
+            <div class="avail-dot"></div>
+            <span class="avail-text">Disponível para projetos</span>
+          </div>
+          <div class="info-sub" style="margin-top:8px;">
+            Aberto a oportunidades full-stack e projetos freelance.
+          </div>
+        </div>
+
+        <div class="info-block reveal">
+          <div class="info-label">E-mail</div>
+          <div class="info-value">[SEU@EMAIL.COM]</div>
+          <a class="info-link" href="mailto:[SEU@EMAIL.COM]">ENVIAR E-MAIL →</a>
+        </div>
+
+        <div class="info-block reveal">
+          <div class="info-label">Instagram</div>
+          <div class="info-value">[@SEU_INSTAGRAM]</div>
+          <a class="info-link" href="#" onclick="return false;">ABRIR PERFIL →</a>
+        </div>
+
+        <div class="info-block reveal">
+          <div class="info-label">Localização</div>
+          <div class="info-value">[CIDADE, ESTADO]</div>
+          <div class="info-sub">Atendimento remoto para todo o Brasil e exterior.</div>
+        </div>
+
+        <div class="info-block reveal">
+          <div class="info-label">Redes Sociais</div>
+          <div class="social-links">
+            <a class="social-link" href="https://github.com/Breno-J-Oliveira" target="_blank" rel="noopener">GitHub</a>
+            <a class="social-link" href="#" onclick="return false;">LinkedIn</a>
+            <a class="social-link" href="#" onclick="return false;">Instagram</a>
+          </div>
+        </div>
+
+        <div class="info-block reveal">
+          <div class="info-label">Horário de Atendimento</div>
+          <div class="info-value">Seg–Sex, 9h–18h</div>
+          <div class="info-sub">Horário de Brasília (BRT/UTC-3).</div>
+        </div>
+
+      </div>
+
+      <!-- FORM -->
+      <div>
+        <form id="contact-form" class="contact-form" novalidate>
+
+          <!-- Honeypot anti-spam -->
+          <div class="form-honeypot" aria-hidden="true">
+            <input type="text" name="_honeypot" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group reveal">
+              <label class="form-label" for="name">Nome <span class="required">*</span></label>
+              <input class="form-input" type="text" id="name" name="name" placeholder="Seu nome completo" required autocomplete="name" />
+              <span class="form-error" id="name-error">Por favor, informe seu nome.</span>
+            </div>
+            <div class="form-group reveal reveal-delay-1">
+              <label class="form-label" for="email">E-mail <span class="required">*</span></label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="seu@email.com" required autocomplete="email" />
+              <span class="form-error" id="email-error">E-mail inválido.</span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group reveal">
+              <label class="form-label" for="project-type">Tipo de Projeto</label>
+              <select class="form-select" id="project-type" name="project_type">
+                <option value="">Selecione...</option>
+                <option value="backend">API / Backend</option>
+                <option value="embedded">Embarcados / IoT</option>
+                <option value="automation">Automação / Bots</option>
+                <option value="web">Web Full-Stack</option>
+                <option value="other">Outro</option>
+              </select>
+            </div>
+            <div class="form-group reveal reveal-delay-1">
+              <label class="form-label" for="budget">Orçamento Estimado</label>
+              <select class="form-select" id="budget" name="budget">
+                <option value="">Selecione...</option>
+                <option value="500-1500">R$ 500 – R$ 1.500</option>
+                <option value="1500-5000">R$ 1.500 – R$ 5.000</option>
+                <option value="5000-15000">R$ 5.000 – R$ 15.000</option>
+                <option value="15000+">Acima de R$ 15.000</option>
+                <option value="discuss">Prefiro discutir</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group reveal">
+            <label class="form-label" for="message">Mensagem <span class="required">*</span></label>
+            <textarea class="form-textarea" id="message" name="message" placeholder="Descreva seu projeto, necessidades e qualquer detalhe relevante..." required></textarea>
+            <span class="form-error" id="message-error">Mensagem muito curta. Descreva um pouco mais.</span>
+          </div>
+
+          <div class="form-group reveal" id="submit-wrap">
+            <button class="btn-submit" type="submit" id="submit-btn">
+              <span id="submit-label">ENVIAR MENSAGEM</span>
+              <span>→</span>
+            </button>
+          </div>
+
+          <div class="form-success" id="form-success">
+            <div class="success-icon">🚀</div>
+            <div class="success-title">MENSAGEM ENVIADA!</div>
+            <p class="success-text">Obrigado pelo contato. Responderei em até 24 horas úteis.</p>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+
+    <footer>
+      <span class="footer-copy">© 2025 BRENO J. OLIVEIRA — TODOS OS DIREITOS RESERVADOS</span>
+      <button class="footer-back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ VOLTAR AO TOPO</button>
+    </footer>
+  </div>
+
+  <!-- AVAILABILITY BADGE -->
+  <div id="availability-badge" aria-label="Status: disponível para projetos">
+    <span class="badge-dot"></span>
+    <span class="badge-text">Disponível para projetos</span>
+  </div>
+
+  <!-- BACK TO TOP -->
+  <button id="back-to-top" aria-label="Voltar ao topo" title="Voltar ao topo">🚀</button>
+
+  <script src="src/app/data/index.js"></script>
+  <script src="src/shared/lib/utils.js"></script>
+  <script src="src/pages/contact/model/contact.js"></script>
+  <script src="src/features/shortcuts/shortcuts.js"></script>
+  <script src="src/features/transitions/transitions.js"></script>
+</body>
+</html>
