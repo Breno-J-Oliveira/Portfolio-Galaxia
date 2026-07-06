@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARQON | Feminine Vault — Acervo Feminino</title>
+
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/header.css">
+    <link rel="stylesheet" href="style/botao_carrinho.css">
+    <link rel="stylesheet" href="style/footer.css">
+    <link rel="stylesheet" href="style/feminino.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="header"></div>
+
+    <main class="fem-wrapper">
+
+        <!-- ATMOSFERA DE FUNDO -->
+        <div class="fem-atmosphere">
+            <div class="fem-orb-primary"></div>
+            <div class="fem-orb-secondary"></div>
+            <div class="fem-grid-overlay"></div>
+        </div>
+
+        <!-- HERO EDITORIAL -->
+        <div class="fem-hero">
+            <div class="fem-hero-inner">
+                <div class="fem-hero-text">
+                    <span class="fem-hero-label">// ARQON INDUSTRIAL LABS — ACERVO MASCULINO</span>
+                    <h1 class="fem-hero-title">ÁREA<br><span class="fem-hero-title--stroke">FEMININA</span></h1>
+                    <p class="fem-hero-sub">Alta costura utilitária e alfaiataria disruptiva para custódia imediata.</p>
+                </div>
+                <div class="fem-hero-tags">
+                    <span class="fem-tag active" data-filter="all">Acervo Completo</span>
+                    <span class="fem-tag" data-filter="techwear">Techwear</span>
+                    <span class="fem-tag" data-filter="tailoring">Neo-Tailoring</span>
+                    <span class="fem-tag" data-filter="avant">Avant-Garde</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- LAYOUT PRINCIPAL (Sidebar + Grid) -->
+        <div class="fem-layout">
+
+            <!-- SIDEBAR -->
+            <aside class="fem-sidebar">
+                <div class="fem-sidebar-header">
+                    <i class="fas fa-sliders-h"></i> FILTRAR ACERVO
+                </div>
+
+                <div class="fem-filter-section">
+                    <h4>Diretriz de Design</h4>
+                    <ul class="fem-filter-options" id="fem-filter-category">
+                        <li class="active" data-value="all">Todos os Artefatos</li>
+                        <li data-value="techwear"><i class="fas fa-shield-alt"></i> Techwear Cibernético</li>
+                        <li data-value="tailoring"><i class="fas fa-cut"></i> Neo-Tailoring</li>
+                        <li data-value="avant"><i class="fas fa-mask"></i> Avant-Garde</li>
+                    </ul>
+                </div>
+
+                <div class="fem-filter-section">
+                    <h4>Status de Reserva</h4>
+                    <ul class="fem-filter-options" id="fem-filter-status">
+                        <li class="active" data-value="all">Todos os Itens</li>
+                        <li data-value="1">Disponível para Aluguel</li>
+                        <li data-value="0">Em Custódia (Alugado)</li>
+                    </ul>
+                </div>
+
+                <div class="fem-filter-section">
+                    <h4>Taxa de Custódia (Máx)</h4>
+                    <div class="fem-price-slider-wrap">
+                        <input type="range" id="fem-price-slider" min="0" max="5000" step="50" value="5000">
+                        <div class="fem-price-labels">
+                            <span>R$ 0</span>
+                            <span id="fem-price-display" class="fem-gold">R$ 5.000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fem-filter-section">
+                    <h4>Ordenação Tática</h4>
+                    <ul class="fem-filter-options" id="fem-filter-order">
+                        <li class="active" data-value="recentes">Mais Recentes</li>
+                        <li data-value="menor-preco">Menor Taxa de Custódia</li>
+                        <li data-value="maior-preco">Maior Taxa de Custódia</li>
+                    </ul>
+                </div>
+
+                <button id="fem-btn-clear" class="fem-btn-clear">
+                    <i class="fas fa-eraser"></i> Limpar Parâmetros
+                </button>
+            </aside>
+
+            <!-- CONTEÚDO PRINCIPAL -->
+            <section class="fem-main">
+
+                <div class="fem-header-bar">
+                    <div class="fem-title-area">
+                        <h2 id="fem-main-title">ARTEFATOS DESIGNADOS</h2>
+                        <p class="fem-subtitle">Peças exclusivas do acervo feminino sob custódia temporária.</p>
+                    </div>
+                    <span id="fem-counter" class="fem-counter">Carregando acervo...</span>
+                </div>
+
+                <!-- GRID DE PRODUTOS -->
+                <div class="fem-grid" id="fem-grid">
+                    <!-- Skeletons injetados via JS -->
+                    <div class="fem-skeleton-card"><div class="fem-skel-img"></div><div class="fem-skel-body"><div class="fem-skel-line short"></div><div class="fem-skel-line medium"></div></div></div>
+                    <div class="fem-skeleton-card"><div class="fem-skel-img"></div><div class="fem-skel-body"><div class="fem-skel-line short"></div><div class="fem-skel-line medium"></div></div></div>
+                    <div class="fem-skeleton-card"><div class="fem-skel-img"></div><div class="fem-skel-body"><div class="fem-skel-line short"></div><div class="fem-skel-line medium"></div></div></div>
+                    <div class="fem-skeleton-card"><div class="fem-skel-img"></div><div class="fem-skel-body"><div class="fem-skel-line short"></div><div class="fem-skel-line medium"></div></div></div>
+                </div>
+
+            </section>
+        </div>
+
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="index.js"></script>
+    <script src="scripts/feminino.js"></script>
+</body>
+</html>

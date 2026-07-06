@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARQON | The Vault - High Fidelity Streetwear</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Theme loader deve vir antes dos CSS para definir as variáveis -->
+    <script src="scripts/config.js"></script>
+    <script src="scripts/theme-loader.js"></script>
+
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/header.css">
+    <link rel="stylesheet" href="style/home-vault.css">
+    <link rel="stylesheet" href="style/botaocarrinho.css">
+    <link rel="stylesheet" href="style/footer.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="header"></div>
+
+    <div id="carrinho-container"></div>
+
+    <!-- =============================================
+         HOME PAGE — REDESIGN 2026 (VAULT)
+         ============================================= -->
+    <div class="vh-atmosphere">
+        <div class="vh-orb vh-orb--wine"></div>
+        <div class="vh-orb vh-orb--gold"></div>
+    </div>
+
+    <main class="vh-home">
+
+        <!-- 1. HERO -->
+        <section class="vh-hero">
+            <div class="vh-hero-sunburst"></div>
+            <div class="vh-hero-grid"></div>
+            <span class="vh-chrome tl"></span>
+            <span class="vh-chrome br"></span>
+            <span class="vh-hero-aside">Coleção Exclusiva</span>
+            <div class="vh-hero-content vh-reveal">
+                <span class="vh-hero-badge"><span class="dot"></span> VAULT ONLINE // SYNCED 2026</span>
+                <h1>STREETWEAR<br><span class="gold">FUTURISTA</span></h1>
+                <p class="vh-hero-sub">The New Paradigm of Luxury</p>
+                <p class="vh-hero-desc">Não compre. Guarde sob custódia. Acesse o acervo modular das silhuetas mais raras do luxo global através de contratos de locação temporária.</p>
+                <div class="vh-hero-cta">
+                    <a href="catalogo.html" class="vh-btn">Shop Now <i class="fa-solid fa-arrow-right-long"></i></a>
+                    <a href="login.html" class="vh-btn">Login</a>
+                    <a href="login.html" class="vh-btn vh-btn--ghost">Register Now</a>
+                </div>
+                <div class="vh-hero-stats">
+                    <div class="vh-stat"><div class="num" id="stat-total" data-target="0">0</div><div class="lbl">Artefatos no Cofre</div></div>
+                    <div class="vh-stat-divider"></div>
+                    <div class="vh-stat"><div class="num" id="stat-disponiveis" data-target="0">0</div><div class="lbl">Disponíveis Agora</div></div>
+                    <div class="vh-stat-divider"></div>
+                    <div class="vh-stat"><div class="num" id="stat-marcas" data-target="0">0</div><div class="lbl">Maisons Parceiras</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. MARQUEE DE MARCAS -->
+        <div class="vh-marquee">
+            <div class="vh-marquee-track" id="vh-marquee-track">
+                <span>ARQON</span><span>GUCCI</span><span>BALENCIAGA</span><span>OFF-WHITE</span><span>PRADA</span><span>VERSACE</span>
+            </div>
+        </div>
+
+        <!-- 3. NEW DROP -->
+        <section class="vh-section vh-newdrop">
+            <div class="vh-inner">
+                <div class="vh-watermark vh-reveal">New Drop</div>
+                <div class="vh-newdrop-head vh-reveal">
+                    <div>
+                        <span class="vh-eyebrow">// Últimos Artefatos</span>
+                        <h2 class="vh-title"><span class="gold">New</span> Drop</h2>
+                    </div>
+                    <div class="vh-slider-nav">
+                        <button id="drop-prev" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button id="drop-next" aria-label="Próximo"><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="vh-slider-viewport">
+                    <div class="vh-slider-track" id="vh-newdrop-track"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. COMO FUNCIONA -->
+        <section class="vh-section vh-steps">
+            <div class="vh-inner">
+                <div class="vh-section-head vh-reveal">
+                    <span class="vh-eyebrow">// Processo de Locação</span>
+                    <h2 class="vh-title">Como <span class="gold">Funciona</span></h2>
+                </div>
+                <div class="vh-steps-grid">
+                    <div class="vh-step vh-reveal">
+                        <span class="vh-step-num">01</span>
+                        <div class="vh-step-icon"><i class="fa-solid fa-gem"></i></div>
+                        <h3>Escolha</h3>
+                        <p>Explore o vault, selecione sua peça, escolha o tamanho e o período de locação ideal.</p>
+                    </div>
+                    <div class="vh-step vh-reveal">
+                        <span class="vh-step-num">02</span>
+                        <div class="vh-step-icon"><i class="fa-solid fa-bolt"></i></div>
+                        <h3>Viva a Experiência</h3>
+                        <p>Entrega expressa, peça higienizada e autenticada. Embalagem premium, cuidado absoluto.</p>
+                    </div>
+                    <div class="vh-step vh-reveal">
+                        <span class="vh-step-num">03</span>
+                        <div class="vh-step-icon"><i class="fa-solid fa-rotate-left"></i></div>
+                        <h3>Devolva</h3>
+                        <p>Etiqueta de retorno pré-paga inclusa. Sem preocupação, sem propriedade, só estilo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. CATEGORIAS DO COFRE (BENTO) -->
+        <section class="vh-section vh-bento">
+            <div class="vh-inner">
+                <div class="vh-section-head vh-reveal">
+                    <span class="vh-eyebrow">// Universos Curatoriais</span>
+                    <h2 class="vh-title">Categorias do <span class="gold">Cofre</span></h2>
+                </div>
+                <div class="vh-bento-grid" id="vh-bento-grid"></div>
+            </div>
+        </section>
+
+        <!-- 6. LIMITED COLLECTION -->
+        <section class="vh-section vh-limited">
+            <div class="vh-inner">
+                <div class="vh-section-head vh-reveal">
+                    <span class="vh-eyebrow">// Explore the Unknown</span>
+                    <h2 class="vh-title">Limited <span class="gold">Collection</span></h2>
+                    <p class="vh-lead">Crowning fashion legacy — peças raras de altíssima fidelidade, disponíveis por tempo limitado.</p>
+                </div>
+                <div class="vh-limited-grid" id="vh-limited-grid"></div>
+            </div>
+        </section>
+
+        <!-- 7. COLEÇÕES -->
+        <section class="vh-section vh-colecoes" id="vh-colecoes-section" style="display:none;">
+            <div class="vh-inner">
+                <div class="vh-section-head vh-reveal">
+                    <span class="vh-eyebrow">// Curadoria ARQON</span>
+                    <h2 class="vh-title">Coleções <span class="gold">Exclusivas</span></h2>
+                </div>
+                <div class="vh-colecoes-grid" id="vh-colecoes-grid"></div>
+            </div>
+        </section>
+
+        <!-- 8. HEX VAULT GALLERY -->
+        <section class="vh-section vh-hex">
+            <div class="vh-inner">
+                <div class="vh-section-head vh-reveal">
+                    <span class="vh-eyebrow">// Visão Panorâmica</span>
+                    <h2 class="vh-title">Hex <span class="gold">Vault</span></h2>
+                    <p class="vh-lead">A geometria do luxo — cada peça posicionada com precisão cirúrgica no cofre digital.</p>
+                </div>
+                <div class="vh-hex-grid" id="vh-hex-grid"></div>
+            </div>
+        </section>
+
+        <!-- 8. MODA CIRCULAR (SUSTENTABILIDADE) -->
+        <section class="vh-section vh-sustain">
+            <div class="vh-inner vh-sustain-grid">
+                <div class="vh-reveal">
+                    <span class="vh-eyebrow">// Nosso Compromisso</span>
+                    <h2 class="vh-title">Moda <span class="gold">Circular</span></h2>
+                    <p class="vh-lead">A indústria da moda é responsável por 10% das emissões globais de CO₂. A ARQON propõe o novo caminho: o mesmo luxo com 80% menos impacto.</p>
+                    <div class="vh-sustain-stats">
+                        <div class="vh-sustain-stat"><div class="num" data-target="80" data-suffix="%">0</div><div class="lbl">Menos CO₂</div></div>
+                        <div class="vh-sustain-stat"><div class="num" data-target="10" data-suffix="k+">0</div><div class="lbl">Litros de Água Salvos</div></div>
+                        <div class="vh-sustain-stat"><div class="num" data-target="100" data-suffix="%">0</div><div class="lbl">Embalagem Reciclável</div></div>
+                    </div>
+                </div>
+                <div class="vh-sustain-visual vh-reveal"><i class="fa-solid fa-leaf"></i></div>
+            </div>
+        </section>
+
+        <!-- 9. ABOUT US -->
+        <section class="vh-section vh-about">
+            <div class="vh-inner vh-about-grid">
+                <div class="vh-about-circle vh-reveal">
+                    <p>"Cada peça é um artefato. Cada locação, uma experiência de luxo consciente."</p>
+                </div>
+                <div class="vh-reveal">
+                    <span class="vh-eyebrow">// Sobre a ARQON</span>
+                    <h2 class="vh-title">O Cofre do <span class="gold">Luxo</span></h2>
+                    <p class="vh-lead" style="margin-bottom:30px;">Não somos um e-commerce. Somos uma curadoria obsessiva de moda de vanguarda, operando em um modelo circular, sustentável e tecnológico.</p>
+                    <div class="vh-features">
+                        <div class="vh-feature">
+                            <div class="vh-feature-icon"><i class="fa-solid fa-crown"></i></div>
+                            <div><h4>Curadoria Exclusiva</h4><p>Cada peça é selecionada à mão entre as silhuetas mais raras do mundo.</p></div>
+                        </div>
+                        <div class="vh-feature">
+                            <div class="vh-feature-icon"><i class="fa-solid fa-truck-fast"></i></div>
+                            <div><h4>Entrega Expressa</h4><p>Logística premium com rastreio em tempo real e embalagem de retorno.</p></div>
+                        </div>
+                        <div class="vh-feature">
+                            <div class="vh-feature-icon"><i class="fa-solid fa-spray-can-sparkles"></i></div>
+                            <div><h4>Higienização Premium</h4><p>Tratamento profissional incluso. Cada artefato chega impecável.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. FAQ -->
+        <section class="vh-section vh-faq">
+            <div class="vh-inner">
+                <div class="vh-section-head vh-reveal">
+                    <span class="vh-eyebrow">// Dúvidas Frequentes</span>
+                    <h2 class="vh-title">FAQ</h2>
+                </div>
+                <div class="vh-faq-list vh-reveal">
+                    <details class="vh-faq-item"><summary>Como funciona o período de aluguel?</summary><p>O aluguel padrão é de 4 dias corridos a partir da entrega. Você pode estender diretamente na plataforma antes do vencimento, com cobrança proporcional por dia extra.</p></details>
+                    <details class="vh-faq-item"><summary>Existe estoque limitado?</summary><p>Sim. Nosso vault opera com estoque real e controlado. Quando uma peça está "Em Custódia", significa que já foi reservada por outro membro.</p></details>
+                    <details class="vh-faq-item"><summary>E se eu danificar a peça?</summary><p>Pequenas manchas são cobertas pela taxa de higienização inclusa. Para danos maiores, há uma cobertura opcional selecionável no checkout.</p></details>
+                    <details class="vh-faq-item"><summary>Como funciona a devolução?</summary><p>A peça chega com embalagem de retorno e etiqueta pré-paga. Basta embalar e despachar em qualquer agência dos Correios ou solicitar coleta.</p></details>
+                    <details class="vh-faq-item"><summary>A caução é devolvida?</summary><p>Sim. A caução equivale a 2 diárias e é integralmente devolvida após o retorno da peça em bom estado.</p></details>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <div id="footer"></div>
+
+    <script src="scripts/auth-fetch.js"></script>
+    <script src="scripts/catalogo-universal.js"></script>
+    <script src="scripts/botaocarrinho.js"></script>
+    <script src="scripts/header.js"></script>
+    <script src="scripts/scroll-reveal.js"></script>
+    <script src="scripts/toast.js"></script>
+    <script src="index.js"></script>
+    <script src="scripts/home-engine.js"></script>
+
+</body>
+</html>

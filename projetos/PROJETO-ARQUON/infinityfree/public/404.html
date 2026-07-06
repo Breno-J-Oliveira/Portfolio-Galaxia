@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Artefato Não Encontrado | ARQON - THE VAULT</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Theme loader deve vir antes dos CSS para definir as variáveis -->
+    <script src="scripts/config.js"></script>
+    <script src="scripts/theme-loader.js"></script>
+
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/header.css">
+    <link rel="stylesheet" href="style/footer.css">
+    <link rel="stylesheet" href="style/mobile-optimizations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0a0107 0%, #1a0a1a 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .error-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .error-content {
+            max-width: 600px;
+        }
+
+        .error-code {
+            font-size: 120px;
+            font-weight: 700;
+            color: #E7B93F;
+            text-shadow: 0 0 30px rgba(231, 185, 63, 0.5);
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .error-title {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .error-message {
+            font-size: 18px;
+            color: #888;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .error-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #E7B93F 0%, #d4a52a 100%);
+            color: #0a0107;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(231, 185, 63, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(231, 185, 63, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #E7B93F;
+            padding: 14px 32px;
+            border: 2px solid #E7B93F;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(231, 185, 63, 0.1);
+        }
+
+        .error-icon {
+            font-size: 80px;
+            color: #E7B93F;
+            margin-bottom: 30px;
+            opacity: 0.8;
+        }
+
+        .vault-decoration {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(231, 185, 63, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .vault-decoration-1 {
+            top: -100px;
+            right: -100px;
+        }
+
+        .vault-decoration-2 {
+            bottom: -100px;
+            left: -100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="header"></div>
+
+    <div class="vault-decoration vault-decoration-1"></div>
+    <div class="vault-decoration vault-decoration-2"></div>
+
+    <div class="error-container">
+        <div class="error-content">
+            <div class="error-icon">
+                <i class="fas fa-vault"></i>
+            </div>
+            <div class="error-code">404</div>
+            <h1 class="error-title">ARTEFATO NÃO ENCONTRADO</h1>
+            <p class="error-message">
+                O artefato que você procura não está no cofre ou foi movido para outra localização segura.
+                Verifique o endereço ou retorne ao acervo principal.
+            </p>
+            <div class="error-actions">
+                <a href="catalogo.html" class="btn-primary">
+                    <i class="fas fa-search"></i> Explorar Acervo
+                </a>
+                <a href="index.html" class="btn-secondary">
+                    <i class="fas fa-home"></i> Página Inicial
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/header.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof iniciarHeader === 'function') {
+                iniciarHeader();
+            }
+        });
+    </script>
+</body>
+</html>

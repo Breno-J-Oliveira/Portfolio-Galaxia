@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARQON - Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Theme loader deve vir antes dos CSS para definir as variáveis -->
+    <script src="scripts/config.js"></script>
+    <script src="scripts/theme-loader.js"></script>
+
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/login.css">
+    <link rel="stylesheet" href="style/mobile-optimizations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+</head>
+<body>
+
+<section class="arqon-auth-section">
+    <a href="index.html" class="arqon-btn-back">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>VOLTAR AO SITE</span>
+    </a>
+
+    <div class="arqon-auth-layout">
+        
+        <div class="arqon-visual-pane">
+            <div class="arqon-visual-overlay"></div>
+            <div class="arqon-brand-content">
+                <h1 class="arqon-logo">ARQON</h1>
+                <p class="arqon-tagline">EXCLUSIVIDADE & ESTILO</p>
+            </div>
+        </div>
+
+        <div class="arqon-form-pane">
+            <div class="arqon-form-container">
+                <form id="arqon-auth-form" class="arqon-form" novalidate autocomplete="off">
+                    </form>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Modal Cropper -->
+<div class="modal-overlay" id="modal-cropper-login" style="display: none;">
+    <div class="modal-content modal-lg">
+        <div class="modal-head">
+            <h3><i class="fas fa-crop-alt" style="color: var(--arqon-gold);"></i> Ajustar Foto de Perfil</h3>
+            <button type="button" class="modal-close" onclick="fecharCropperLogin()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="cropper-container">
+                <img id="cropper-image-login" src="" alt="Imagem para recortar">
+            </div>
+        </div>
+        <div class="modal-actions">
+            <button type="button" class="btn-outline" onclick="cropperLogin.rotate(-90)"><i class="fas fa-undo"></i> -90°</button>
+            <button type="button" class="btn-outline" onclick="cropperLogin.rotate(90)"><i class="fas fa-redo"></i> +90°</button>
+            <button type="button" class="vault-action-submit-btn" onclick="aplicarCropperLogin()"><i class="fas fa-check"></i> Aplicar</button>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script src="scripts/scroll-reveal.js"></script>
+<script src="scripts/toast.js"></script>
+<script src="scripts/login.js"></script>
+</html>

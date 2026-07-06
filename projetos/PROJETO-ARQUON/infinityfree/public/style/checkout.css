@@ -1,0 +1,583 @@
+/* =========================================================
+   ARQON | Protocolo de Custódia (Checkout) Styles
+   ========================================================= */
+
+body.arqon-checkout-body {
+    background: #06040A;
+    background-image: radial-gradient(circle at 50% 0%, rgba(231, 185, 63, 0.05) 0%, transparent 50%);
+    color: #FFFFFF;
+    font-family: 'Inter', sans-serif;
+}
+
+.checkout-container {
+    max-width: 1280px;
+    margin: 120px auto 60px;
+    padding: 0 20px;
+}
+
+/* =========================================================
+   CABEÇALHO
+   ========================================================= */
+.checkout-page-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.tech-badge {
+    display: inline-block;
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.checkout-main-title {
+    font-family: 'Cinzel', serif;
+    font-size: 36px;
+    color: #FFFFFF;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+}
+
+.checkout-subtitle {
+    color: #A0A0A0;
+    font-size: 15px;
+}
+
+/* =========================================================
+   GRID E COLUNAS
+   ========================================================= */
+.checkout-grid {
+    display: grid;
+    grid-template-columns: 1fr 450px;
+    gap: 40px;
+    align-items: start;
+}
+
+/* =========================================================
+   COLUNA ESQUERDA: CARDS DOS PASSOS
+   ========================================================= */
+.checkout-step-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    margin-bottom: 25px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: border-color 0.3s;
+}
+
+.checkout-step-card.active {
+    border-color: rgba(231, 185, 63, 0.3);
+}
+
+.step-header {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.step-number {
+    color: #E7B93F;
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.step-title {
+    font-size: 16px;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+.step-content {
+    padding: 30px 25px;
+}
+
+/* =========================================================
+   FORMULÁRIOS E INPUTS
+   ========================================================= */
+.form-row {
+    margin-bottom: 20px;
+}
+
+.form-row.two-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-row.two-cols-uneven {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+.inner-cols {
+    margin-bottom: 0;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    font-size: 12px;
+    color: #A0A0A0;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.input-group input {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #FFF;
+    padding: 14px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: #E7B93F;
+    box-shadow: 0 0 10px rgba(231, 185, 63, 0.1);
+}
+
+/* Busca CEP */
+.cep-wrapper {
+    display: flex;
+    gap: 10px;
+}
+
+.cep-wrapper input {
+    flex: 1;
+}
+
+.btn-outline-gold {
+    background: transparent;
+    border: 1px solid #E7B93F;
+    color: #E7B93F;
+    padding: 0 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-outline-gold:hover {
+    background: rgba(231, 185, 63, 0.1);
+}
+
+/* =========================================================
+   OPÇÕES DE FRETE
+   ========================================================= */
+.shipping-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.shipping-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.shipping-card:has(input:checked) {
+    border-color: #E7B93F;
+    background: rgba(231, 185, 63, 0.05);
+}
+
+.shipping-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-left: 10px;
+    flex: 1;
+}
+
+.ship-name { font-weight: 600; font-size: 14px; }
+.ship-time { font-size: 12px; color: #A0A0A0; }
+.ship-price { font-weight: bold; color: #FFF; }
+
+/* =========================================================
+   ABAS DE PAGAMENTO
+   ========================================================= */
+.payment-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.pay-tab {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #FFF;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s;
+}
+
+.pay-tab.active {
+    background: #E7B93F;
+    color: #000;
+    border-color: #E7B93F;
+}
+
+.pix-info {
+    text-align: center;
+    padding: 30px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 8px;
+    border: 1px dashed rgba(255,255,255,0.2);
+}
+
+.pix-huge {
+    font-size: 40px;
+    color: #32bcad; /* Cor oficial PIX */
+    margin-bottom: 15px;
+}
+
+/* =========================================================
+   COLUNA DIREITA: RESUMO DO COFRE
+   ========================================================= */
+.checkout-summary-section {
+    position: sticky;
+    top: 100px;
+}
+
+.summary-glass-panel {
+    background: rgba(12, 7, 22, 0.8);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(231, 185, 63, 0.2);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.summary-title {
+    font-size: 20px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.arqon-divider {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 20px 0;
+}
+
+/* O item renderizado no JS terá essa cara */
+.checkout-item {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.checkout-item img {
+    width: 60px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    background: #111;
+}
+
+.checkout-item-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.chk-item-name { font-size: 14px; font-weight: 600; margin: 0; }
+.chk-item-meta { font-size: 12px; color: #A0A0A0; }
+.chk-item-price { font-size: 14px; color: #E7B93F; font-weight: bold; }
+
+.summary-calculations {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.calc-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #CCC;
+}
+
+.highlight-row {
+    color: #E7B93F;
+}
+
+.grand-total {
+    font-size: 18px;
+    font-weight: bold;
+    color: #FFF;
+}
+
+.gold-text {
+    color: #E7B93F;
+    font-size: 24px;
+}
+
+/* Tooltip nativa CSS */
+.tooltip-trigger { position: relative; cursor: help; }
+.tooltip-box {
+    visibility: hidden;
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    background: #111;
+    color: #FFF;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 11px;
+    width: 200px;
+    border: 1px solid #E7B93F;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    margin-bottom: 5px;
+    z-index: 10;
+}
+.tooltip-trigger:hover .tooltip-box {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Botão de Finalizar */
+.mt-20 { margin-top: 20px; }
+
+.btn-primary-glow {
+    width: 100%;
+    background: linear-gradient(135deg, #E7B93F, #FFDE4C);
+    color: #000;
+    border: none;
+    padding: 18px;
+    border-radius: 6px;
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s;
+    box-shadow: 0 0 15px rgba(231, 185, 63, 0.2);
+}
+
+.btn-primary-glow:hover {
+    box-shadow: 0 0 25px rgba(231, 185, 63, 0.5);
+    transform: translateY(-2px);
+}
+
+.secure-footer-text {
+    text-align: center;
+    font-size: 12px;
+    color: #A0A0A0;
+    margin-top: 15px;
+}
+
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
+@media (max-width: 992px) {
+    .checkout-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .checkout-summary-section {
+        position: relative;
+        top: 0;
+    }
+    
+    .form-row.two-cols,
+    .form-row.two-cols-uneven {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .checkout-wrapper { padding-top: 70px; padding-bottom: 50px; }
+    .checkout-grid { padding: 0 16px; gap: 24px; }
+    .checkout-section { padding: 20px; }
+    .section-title { font-size: 16px; }
+    .form-group label { font-size: 12px; }
+    .form-control { padding: 10px 12px; font-size: 13px; }
+    .btn-primary { padding: 12px 18px; font-size: 12px; }
+    .btn-secondary { padding: 10px 14px; font-size: 11px; }
+    .cart-item { padding: 14px; }
+    .cart-item-img { width: 55px; height: 75px; }
+    .cart-item-info { gap: 6px; }
+    .cart-item-name { font-size: 13px; }
+    .cart-item-price { font-size: 15px; }
+    .summary-row { padding: 10px 0; }
+    .summary-total { font-size: 18px; }
+    .success-card { padding: 24px 18px; }
+    .success-icon i { font-size: 45px; }
+    .summary-glass-panel { padding: 24px; }
+}
+
+@media (max-width: 480px) {
+    .checkout-wrapper { padding-top: 60px; padding-bottom: 40px; }
+    .checkout-section { padding: 16px; }
+    .section-title { font-size: 14px; }
+    .form-control { padding: 8px 10px; font-size: 12px; }
+    .btn-primary { padding: 10px 14px; font-size: 11px; }
+    .cart-item { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .cart-item-img { width: 100%; height: 180px; }
+    .cart-item-actions { width: 100%; }
+    .qty-selector { width: 100%; }
+    .summary-row { font-size: 12px; }
+    .summary-total { font-size: 16px; }
+    .success-card { padding: 20px 14px; }
+    .payment-tabs { grid-template-columns: 1fr; }
+    .pay-tab { padding: 10px; font-size: 12px; }
+    .shipping-card { padding: 10px; }
+    .shipping-details { margin-left: 6px; }
+    .ship-name { font-size: 12px; }
+    .summary-glass-panel { padding: 20px; }
+    .summary-title { font-size: 14px; }
+}
+
+@media (max-width: 360px) {
+    .checkout-wrapper { padding-top: 50px; padding-bottom: 30px; }
+    .checkout-section { padding: 14px; }
+    .section-title { font-size: 12px; }
+    .form-control { padding: 6px 8px; font-size: 11px; }
+    .btn-primary { padding: 8px 12px; font-size: 10px; }
+    .summary-glass-panel { padding: 16px; }
+    .summary-title { font-size: 12px; }
+    .summary-total { font-size: 14px; }
+    .cart-item-img { height: 160px; }
+    .pay-tab { padding: 8px; font-size: 11px; }
+}
+/* =========================================================
+   TELA DE SUCESSO (RECIBO DE CUSTÓDIA)
+   ========================================================= */
+.success-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(6, 4, 10, 0.90);
+    backdrop-filter: blur(15px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none; /* Impede cliques quando invisível */
+    transition: opacity 0.5s ease;
+}
+
+.success-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.success-card {
+    background: rgba(12, 7, 22, 0.9);
+    border: 1px solid rgba(16, 185, 129, 0.3); /* Borda verde Secure */
+    border-radius: 12px;
+    padding: 40px;
+    max-width: 480px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 40px rgba(16, 185, 129, 0.15);
+    transform: translateY(30px);
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.success-overlay.active .success-card {
+    transform: translateY(0);
+}
+
+.success-icon i {
+    font-size: 65px;
+    color: #10b981;
+    margin-bottom: 20px;
+    text-shadow: 0 0 25px rgba(16, 185, 129, 0.6);
+}
+
+.success-title {
+    font-family: 'Cinzel', serif;
+    font-size: 26px;
+    color: #FFF;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.success-subtitle {
+    color: #A0A0A0;
+    font-size: 14px;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.receipt-box {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 25px;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.receipt-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #A0A0A0;
+}
+
+.receipt-header strong { color: #E7B93F; }
+
+.receipt-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 160px;
+    overflow-y: auto;
+    padding-right: 5px; /* Espaço para a scrollbar */
+}
+
+/* Scrollbar do recibo */
+.receipt-items::-webkit-scrollbar { width: 4px; }
+.receipt-items::-webkit-scrollbar-thumb { background: #E7B93F; border-radius: 4px; }
+
+.receipt-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+
+.receipt-item-name { color: #CCC; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-right: 15px;}
+.receipt-item-price { color: #FFF; font-weight: 600; }

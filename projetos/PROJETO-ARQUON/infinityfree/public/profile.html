@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARQON | Central de Custódia</title>
+    
+    <!-- Theme loader deve vir antes dos CSS para definir as variáveis -->
+    <script src="scripts/config.js"></script>
+    <script src="scripts/theme-loader.js"></script>
+
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/header.css">
+    <link rel="stylesheet" href="style/profile.css">
+    <link rel="stylesheet" href="style/botaocarrinho.css">
+    <link rel="stylesheet" href="style/footer.css">
+    <link rel="stylesheet" href="style/mobile-optimizations.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+</head>
+<body class="arqon-profile-body">
+
+    <div id="header"></div>
+    <div id="carrinho-container"></div>
+
+    <main class="arqon-profile-stage" id="main">
+        <div class="profile-atmosphere">
+            <div class="profile-orb-1"></div>
+            <div class="profile-orb-2"></div>
+            <div class="scanlines"></div>
+        </div>
+
+        <div class="profile-mainframe-container">
+            
+            <aside class="vault-agent-sidebar">
+                <div class="agent-avatar-wrapper">
+                    <div class="avatar-glow-ring"></div>
+                    <div id="agent-display-avatar" style="width: 100%; height: 100%; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                        <img src="https://ui-avatars.com/api/?name=Agente&background=E7B93F&color=000" alt="Avatar do Agente" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    
+                    <label for="arqon-avatar-input" class="change-avatar-badge" id="btn-trigger-upload" title="Atualizar Foto de Identidade" style="cursor: pointer;">
+                        <i class="fas fa-camera"></i>
+                    </label>
+                    <input type="file" id="arqon-avatar-input" accept="image/*" style="display: none;">
+                </div>
+
+                <div class="agent-meta-identity">
+                    <div class="agent-rank-badge" id="agent-rank">VAULT AGENT</div>
+                    <h3 id="agent-display-name" class="glitch-hover" data-text="Autenticando...">Autenticando...</h3>
+                    <p id="agent-display-email" class="agent-uid privacy-blur">autenticando@arqon.com</p>
+                    
+                    <div class="agent-hash-box" id="btn-copy-hash" title="Clique para copiar Hash de Segurança">
+                        <span id="agent-display-hash">AQ-SECURITY-KEY</span>
+                        <i class="far fa-copy"></i>
+                    </div>
+                </div>
+
+                <nav class="vault-internal-nav">
+                    <button class="vault-tab-btn active" data-tab="dashboard"><i class="fas fa-satellite-dish"></i> <span>MAINFRAME</span></button>
+                    <button class="vault-tab-btn" data-tab="pedidos"><i class="fas fa-truck-fast"></i> <span>MEUS PEDIDOS</span></button>
+                    <button class="vault-tab-btn" data-tab="favoritos"><i class="fas fa-heart"></i> <span>WISHLIST</span></button>
+                    <button class="vault-tab-btn" data-tab="enderecos"><i class="fas fa-map-location-dot"></i> <span>ENDEREÇOS</span></button>
+                    <button class="vault-tab-btn" data-tab="configuracoes"><i class="fas fa-fingerprint"></i> <span>DADOS DE ACESSO</span></button>
+                    
+                    <hr class="nav-divider-line">
+                    
+                    <button class="vault-tab-btn security-toggle-btn" id="btn-privacy-mode"><i class="fas fa-eye-slash"></i> <span>MODO PRIVACIDADE</span></button>
+                    <button class="vault-tab-btn logout-action" id="btn-logout"><i class="fas fa-power-off"></i> <span>ENCERRAR SESSÃO</span></button>
+                </nav>
+            </aside>
+
+            <section class="vault-display-screen">
+                
+                <div class="vault-tab-content active-tab" id="tab-dashboard">
+                    <div class="screen-header">
+                        <span class="tech-indicator">// SECURE OVERVIEW</span>
+                        <h1 class="screen-title">STATUS DO COFRE</h1>
+                    </div>
+
+                    <div class="mainframe-stats-grid">
+                        <div class="stat-crypto-card glow-gold">
+                            <div class="card-icon-box"><i class="fas fa-box-tissue text-gold"></i></div>
+                            <div class="stat-data">
+                                <span class="stat-label">Custódias Ativas</span>
+                                <h2 class="stat-value" id="dash-custodias-ativas">0</h2>
+                            </div>
+                        </div>
+                        <div class="stat-crypto-card glow-emerald">
+                            <div class="card-icon-box"><i class="fas fa-shield-halved text-emerald"></i></div>
+                            <div class="stat-data">
+                                <span class="stat-label">Caução Retida</span>
+                                <h2 class="stat-value privacy-blur" id="dash-caucao-retida">R$ 0,00</h2>
+                            </div>
+                        </div>
+                        <div class="stat-crypto-card glow-blue">
+                            <div class="card-icon-box"><i class="fas fa-receipt text-blue"></i></div>
+                            <div class="stat-data">
+                                <span class="stat-label">Total Gasto (Histórico)</span>
+                                <h2 class="stat-value privacy-blur" id="dash-total-gasto">R$ 0,00</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-secondary-grid">
+                        <div class="terminal-logs-section">
+                            <h3 class="subsection-title"><i class="fas fa-terminal"></i> Terminal de Auditoria (Logs)</h3>
+                            <div class="terminal-body" id="terminal-logs-container">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vault-tab-content" id="tab-pedidos">
+                    <div class="screen-header">
+                        <span class="tech-indicator">// PROTOCOL TRACKING</span>
+                        <h1 class="screen-title">HISTÓRICO DE LOCAÇÕES</h1>
+                    </div>
+
+                    <div class="orders-pipeline-nav">
+                        <button class="pipeline-tab active" data-status="pendente">
+                            <span>Aguard. Pagamento</span><span class="pipeline-badge badge-red" id="badge-count-pendente">0</span>
+                        </button>
+                        <button class="pipeline-tab" data-status="pago">
+                            <span>Em Preparação</span><span class="pipeline-badge badge-gold" id="badge-count-pago">0</span>
+                        </button>
+                        <button class="pipeline-tab" data-status="enviado">
+                            <span>Em Trânsito/Uso</span><span class="pipeline-badge badge-blue" id="badge-count-enviado">0</span>
+                        </button>
+                        <button class="pipeline-tab" data-status="concluido">
+                            <span>Histórico Fechado</span><span class="pipeline-badge badge-green" id="badge-count-concluido">0</span>
+                        </button>
+                    </div>
+
+                    <div id="orders-display-list" class="orders-display-list">
+                        </div>
+                </div>
+
+                <div class="vault-tab-content" id="tab-favoritos">
+                    <div class="screen-header">
+                        <span class="tech-indicator">// SAVED ARTIFACTS</span>
+                        <h1 class="screen-title">WISHLIST</h1>
+                    </div>
+                    <div class="favorites-grid" id="favorites-display-grid">
+                        </div>
+                </div>
+
+                <div class="vault-tab-content" id="tab-enderecos">
+                    <div class="screen-header flex-between">
+                        <div>
+                            <span class="tech-indicator">// LOGISTICS VECTORS</span>
+                            <h1 class="screen-title">MEUS ENDEREÇOS</h1>
+                        </div>
+                        <button class="btn-primary-glow small-btn"><i class="fas fa-plus"></i> NOVO ENDEREÇO</button>
+                    </div>
+                    <div class="address-grid" id="address-display-grid">
+                        </div>
+                </div>
+
+                <div class="vault-tab-content" id="tab-configuracoes">
+                    <div class="screen-header">
+                        <span class="tech-indicator">// CORE CONFIGURATION</span>
+                        <h1 class="screen-title">DADOS CADASTRAIS</h1>
+                    </div>
+                    <div class="vault-form-block">
+                        <form id="form-update-profile" class="vault-premium-form">
+                            <div class="form-grid-2">
+                                <div class="vault-input-group">
+                                    <label>NOME COMPLETO</label>
+                                    <input type="text" id="reg-nome" required>
+                                </div>
+                                <div class="vault-input-group">
+                                    <label>CPF / PASSAPORTE</label>
+                                    <input type="text" id="reg-cpf" disabled title="Não pode ser alterado após verificação.">
+                                </div>
+                            </div>
+                            <div class="vault-input-group">
+                                <label>ENDEREÇO DE EMAIL (FIXO)</label>
+                                <input type="email" id="reg-email" disabled>
+                            </div>
+                            <button type="submit" class="vault-action-submit-btn">ATUALIZAR DADOS</button>
+                        </form>
+                    </div>
+
+                    <div class="screen-header mt-40">
+                        <h1 class="screen-title">SEGURANÇA (SENHA)</h1>
+                    </div>
+                    <div class="vault-form-block">
+                        <form id="form-change-password" class="vault-premium-form">
+                            <div class="vault-input-group max-w-sm">
+                                <label>SENHA ATUAL</label>
+                                <input type="password" id="pass-current" required>
+                            </div>
+                            <div class="form-grid-2">
+                                <div class="vault-input-group">
+                                    <label>NOVA SENHA MESTRE</label>
+                                    <input type="password" id="pass-new" required>
+                                </div>
+                                <div class="vault-input-group">
+                                    <label>CONFIRMAR NOVA SENHA</label>
+                                    <input type="password" id="pass-confirm" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="vault-action-submit-btn">GRAVAR NOVA CHAVE</button>
+                        </form>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+    <!-- Modal Cropper for Avatar -->
+    <div class="modal-overlay" id="modal-cropper" style="display: none;">
+        <div class="modal-content modal-lg">
+            <div class="modal-head">
+                <h3><i class="fas fa-crop-alt" style="color: var(--color-secondary);"></i> Recortar Avatar</h3>
+                <button type="button" class="modal-close" onclick="fecharModalCropper()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="cropper-container">
+                    <img id="cropper-image" src="" alt="Imagem para recortar">
+                </div>
+                <div class="cropper-controls">
+                    <button type="button" class="btn-outline" onclick="cropperInstance.rotate(-90)"><i class="fas fa-undo"></i> -90°</button>
+                    <button type="button" class="btn-outline" onclick="cropperInstance.rotate(90)"><i class="fas fa-redo"></i> +90°</button>
+                    <button type="button" class="btn-outline" onclick="cropperInstance.scaleX(-cropperInstance.getData().scaleX || -1)"><i class="fas fa-arrows-alt-h"></i> Flip H</button>
+                    <button type="button" class="btn-outline" onclick="cropperInstance.scaleY(-cropperInstance.getData().scaleY || -1)"><i class="fas fa-arrows-alt-v"></i> Flip V</button>
+                    <button type="button" class="btn-outline" onclick="cropperInstance.reset()"><i class="fas fa-sync"></i> Reset</button>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="vault-action-submit-btn" onclick="aplicarRecorte()"><i class="fas fa-check"></i> Aplicar Recorte</button>
+                <button type="button" class="btn-cancel" onclick="fecharModalCropper()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Novo Endereço -->
+    <div class="modal-overlay" id="modal-endereco" style="display: none;">
+        <div class="modal-content" style="max-width: 520px;">
+            <div class="modal-head">
+                <h3><i class="fas fa-map-marker-alt" style="color: var(--color-secondary);"></i> <span id="modal-endereco-titulo">Novo Endereço</span></h3>
+                <button type="button" class="modal-close" onclick="fecharModalEndereco()">&times;</button>
+            </div>
+            <form id="form-endereco" onsubmit="salvarEndereco(event)">
+                <div class="modal-body">
+                    <input type="hidden" id="endereco-id" value="">
+                    <div class="form-grid-2">
+                        <div class="vault-input-group">
+                            <label>TIPO</label>
+                            <select id="endereco-tipo" class="vault-form-select" required>
+                                <option value="casa">Casa</option>
+                                <option value="trabalho">Trabalho</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+                        <div class="vault-input-group">
+                            <label>CEP</label>
+                            <input type="text" id="endereco-cep" placeholder="00000-000" maxlength="9" required onblur="buscarCepEndereco(this.value)">
+                        </div>
+                    </div>
+                    <div class="vault-input-group">
+                        <label>LOGRADOURO</label>
+                        <input type="text" id="endereco-logradouro" required>
+                    </div>
+                    <div class="form-grid-2">
+                        <div class="vault-input-group">
+                            <label>NÚMERO</label>
+                            <input type="text" id="endereco-numero" required>
+                        </div>
+                        <div class="vault-input-group">
+                            <label>COMPLEMENTO</label>
+                            <input type="text" id="endereco-complemento" placeholder="Apto, bloco...">
+                        </div>
+                    </div>
+                    <div class="form-grid-2">
+                        <div class="vault-input-group">
+                            <label>BAIRRO</label>
+                            <input type="text" id="endereco-bairro" required>
+                        </div>
+                        <div class="vault-input-group">
+                            <label>CIDADE</label>
+                            <input type="text" id="endereco-cidade" required>
+                        </div>
+                    </div>
+                    <div class="form-grid-2">
+                        <div class="vault-input-group">
+                            <label>ESTADO</label>
+                            <input type="text" id="endereco-estado" maxlength="2" placeholder="SP" required>
+                        </div>
+                        <div class="vault-input-group" style="display:flex;align-items:center;gap:10px;padding-top:24px;">
+                            <input type="checkbox" id="endereco-padrao" style="width:18px;height:18px;accent-color:#E7B93F;">
+                            <label for="endereco-padrao" style="margin:0;font-size:.85rem;color:#A0A0A0;">Definir como padrão</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="vault-action-submit-btn"><i class="fas fa-check"></i> Salvar Endereço</button>
+                    <button type="button" class="btn-cancel" onclick="fecharModalEndereco()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script src="scripts/auth-fetch.js"></script>
+    <script src="scripts/profile.js"></script>
+    <script src="scripts/botaocarrinho.js"></script>
+    <script src="scripts/header.js"></script>
+    <script src="scripts/scroll-reveal.js"></script>
+    <script src="scripts/toast.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

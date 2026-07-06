@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARQON | Detalhes do Artefato</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Theme loader deve vir antes dos CSS para definir as variáveis -->
+    <script src="scripts/config.js"></script>
+    <script src="scripts/theme-loader.js"></script>
+
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/header.css">
+    <link rel="stylesheet" href="style/produto.css">
+    <link rel="stylesheet" href="style/produto-extended.css">
+    <link rel="stylesheet" href="style/botaocarrinho.css">
+    <link rel="stylesheet" href="style/footer.css">
+    <link rel="stylesheet" href="style/mobile-optimizations.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+</head>
+<body>
+
+    <div id="header"></div>
+
+    <div id="carrinho-container"></div>
+
+    <main class="arqon-pdp">
+        <div class="pdp-atmosphere">
+            <div class="pdp-orb-1"></div>
+            <div class="pdp-orb-2"></div>
+        </div>
+
+        <div class="pdp-container">
+            
+            <section class="pdp-visual-stage" id="visual-stage">
+                <div class="pdp-gallery-master">
+                    
+                    <div class="pdp-main-viewport">
+                        <img id="pdp-main-image" class="pdp-artifact-img active" src="" alt="Artefato ARQON">
+                        
+                        <model-viewer id="pdp-model-3d" class="pdp-artifact-3d" 
+                            camera-controls 
+                            touch-action="pan-y" 
+                            auto-rotate 
+                            shadow-intensity="1" 
+                            exposure="0.8">
+                        </model-viewer>
+
+                        <button class="btn-dimension-toggle hidden" id="btn-toggle-3d">
+                            <span class="dim-icon"><i class="fas fa-cube"></i></span>
+                            <span class="dim-text">INTERAGIR EM 3D</span>
+                        </button>
+                    </div>
+
+                    <div class="pdp-thumbnails-strip" id="pdp-thumbnails">
+                        <div class="skeleton-thumb"></div>
+                        <div class="skeleton-thumb"></div>
+                        <div class="skeleton-thumb"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="pdp-info-col" id="info-stage">
+                
+                <div class="pdp-brand-tag skeleton-text short" id="pdp-marca"></div>
+                <h1 class="pdp-title skeleton-text" id="pdp-nome"></h1>
+                
+                <div class="pdp-price-box">
+                    <span class="price-current skeleton-text short" id="pdp-preco"></span>
+                    <span class="price-label" id="pdp-preco-label"></span>
+                </div>
+
+                <div class="pdp-divider"></div>
+
+                <div class="pdp-control-group">
+                    <label class="control-label"><i class="fas fa-scissors"></i> DIMENSÃO DO ARTEFATO (TAMANHO)</label>
+                    <div class="arqon-size-selector" id="pdp-sizes">
+                        <div class="skeleton-chip"></div>
+                        <div class="skeleton-chip"></div>
+                        <div class="skeleton-chip"></div>
+                    </div>
+                </div>
+
+                <div class="pdp-control-group">
+                    <label class="control-label"><i class="fas fa-palette"></i> VARIAÇÃO CROMÁTICA (COR)</label>
+                    <div class="arqon-color-selector" id="pdp-colors">
+                        <div class="skeleton-chip"></div>
+                        <div class="skeleton-chip"></div>
+                        <div class="skeleton-chip"></div>
+                    </div>
+                </div>
+
+                <div class="pdp-control-group">
+                    <label class="control-label"><i class="fas fa-calendar-alt"></i> PERÍODO DE CUSTÓDIA (DIÁRIAS)</label>
+                    <div class="arqon-date-range-picker">
+                        <div class="date-input-wrapper">
+                            <span class="date-icon"><i class="fas fa-sign-in-alt"></i></span>
+                            <input type="date" id="custodia-data-inicio" class="arqon-date-field" min="2026-05-25" title="Data de Retirada" placeholder="Retirada">
+                            <small class="date-field-label">Retirada</small>
+                        </div>
+                        <div class="date-range-arrow"><i class="fas fa-arrow-right"></i></div>
+                        <div class="date-input-wrapper">
+                            <span class="date-icon"><i class="fas fa-sign-out-alt"></i></span>
+                            <input type="date" id="custodia-data-fim" class="arqon-date-field" min="2026-05-26" title="Data de Devolução" placeholder="Devolução">
+                            <small class="date-field-label">Devolução</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pdp-custody-invoice hidden" id="custody-invoice">
+                    <div class="invoice-row">
+                        <span>Custódia Estimada (<span id="invoice-days">0</span> dias)</span>
+                        <span id="invoice-subtotal">R$ 0,00</span>
+                    </div>
+                    <div class="invoice-row safety-deposit">
+                        <span>Retenção de Segurança (Caução Estornável) <i class="fas fa-info-circle" title="Este valor é retido temporariamente no seu limite e estornado integralmente após a devolução segura do artefato."></i></span>
+                        <span id="invoice-deposit">R$ 0,00</span>
+                    </div>
+                    <div class="invoice-divider"></div>
+                    <div class="invoice-row total-row">
+                        <span>Aporte Total Inicial</span>
+                        <span id="invoice-total">R$ 0,00</span>
+                    </div>
+                </div>
+
+                <button class="pdp-action-btn skeleton-btn" id="btn-alugar" disabled>
+                    <span class="btn-text">AUTENTICANDO ARTEFATO...</span>
+                </button>
+
+                <div class="pdp-avaliacoes-section" id="pdp-avaliacoes">
+                    <!-- Avaliações serão carregadas aqui -->
+                </div>
+
+                <div class="pdp-details-acc" id="pdp-accordions">
+                    <div class="skeleton-text skeleton-acc-item skeleton-acc-first"></div>
+                    <div class="skeleton-text skeleton-acc-item"></div>
+                </div>
+                
+            </section>
+        </div>
+
+        <!-- SEÇÃO DE PRODUTOS SEMELHANTES -->
+        <section class="pdp-similar-products" id="pdp-similar">
+            <div class="pdp-section-header">
+                <h2>ARTEFATOS RELACIONADOS</h2>
+                <p>Descubra peças complementares ao seu estilo</p>
+            </div>
+            <div class="pdp-similar-grid" id="pdp-similar-grid">
+                <div class="skeleton-card"><div class="skeleton-img-placeholder"></div><div class="skeleton-content"><div class="skeleton-line short"></div><div class="skeleton-line medium"></div></div></div>
+                <div class="skeleton-card"><div class="skeleton-img-placeholder"></div><div class="skeleton-content"><div class="skeleton-line short"></div><div class="skeleton-line medium"></div></div></div>
+                <div class="skeleton-card"><div class="skeleton-img-placeholder"></div><div class="skeleton-content"><div class="skeleton-line short"></div><div class="skeleton-line medium"></div></div></div>
+                <div class="skeleton-card"><div class="skeleton-img-placeholder"></div><div class="skeleton-content"><div class="skeleton-line short"></div><div class="skeleton-line medium"></div></div></div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO DE FAQ DO PRODUTO -->
+        <section class="pdp-faq-section" id="pdp-faq">
+            <div class="pdp-section-header">
+                <h2>PERGUNTAS FREQUENTES</h2>
+                <p>Tire suas dúvidas sobre a locação deste artefato</p>
+            </div>
+            <div class="pdp-faq-container" id="pdp-faq-container">
+                <!-- FAQ será carregado aqui -->
+            </div>
+        </section>
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="scripts/produto.js"></script>
+    <script src="scripts/botaocarrinho.js"></script>
+    <script src="scripts/header.js"></script>
+    <script src="scripts/scroll-reveal.js"></script>
+    <script src="scripts/toast.js"></script>
+    <script src="index.js"></script>
+    
+    <!-- Modal de Zoom de Imagem -->
+    <div id="zoom-modal" class="zoom-modal">
+        <button class="zoom-close" onclick="fecharZoomModal()">&times;</button>
+        <img id="zoom-image" src="" alt="Zoom">
+        <button class="zoom-prev" onclick="navegarZoom(-1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="zoom-next" onclick="navegarZoom(1)"><i class="fas fa-chevron-right"></i></button>
+    </div>
+</body>
+</html>

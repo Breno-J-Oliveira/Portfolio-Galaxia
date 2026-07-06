@@ -1,0 +1,529 @@
+/* ==================================================
+   ARQON | HEADER & NAVBAR (Final Version - Fluid)
+   ================================================== */
+
+:root {
+    --header-bg: rgba(12, 7, 22, 0.85); /* Fundo Dark com transparência */
+    --header-border: rgba(255, 255, 255, 0.1);
+}
+
+/* ==================================================
+   GARANTE QUE O HEADER FIQUE ESCURO
+   ================================================== */
+.arqon-header {
+    background-color: rgba(12, 7, 22, 0.95) !important;
+}
+
+.arqon-header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 998;
+    background-color: var(--header-bg);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--header-border);
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.arqon-header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+    padding: 0 4%;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* LOGO */
+.logo {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.logo .svg-placeholder {
+    font-family: var(--font-main);
+    letter-spacing: 5px;
+    color: var(--color-light);
+    font-size: var(--fs-h4);
+    font-weight: bold;
+}
+
+/* CONTROLE FORÇADO DO SVG */
+.svg-placeholder {
+    display: flex;
+    align-items: center;
+    width: 140px;
+    max-width: 100%;
+    flex-shrink: 0;
+}
+
+.svg-placeholder svg {
+    width: 100% !important; 
+    height: auto !important; 
+    max-width: 100%;
+    display: block;
+}
+
+.arqon-logo-svg {
+    font-family: serif;
+    letter-spacing: 5px;
+    color: var(--arqon-gold);
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+}
+
+/* NAVEGAÇÃO COM ANIMAÇÃO FLUIDA */
+.main-nav {
+    flex: 2;
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--color-light-dark);
+    font-family: var(--font-main);
+    font-size: var(--fs-small);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    position: relative;
+    padding: 10px 0;
+    transition: color 0.4s ease;
+}
+
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--color-secondary), transparent);
+    transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateX(-50%);
+}
+
+.main-nav a:hover {
+    color: var(--color-secondary);
+}
+
+.main-nav a:hover::after {
+    width: 100%;
+}
+
+/* BUSCA DINÂMICA */
+.actions-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 25px;
+}
+
+.search-wrapper { position: relative; }
+
+.search-form {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--header-border);
+    border-radius: 40px;
+    padding: 6px 16px;
+    width: 230px; 
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); 
+}
+
+.search-form:focus-within {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--color-secondary);
+    width: 250px; 
+    box-shadow: 0 0 15px rgba(231, 185, 63, 0.15); 
+}
+
+#arqon-search-input {
+    background: transparent;
+    border: none;
+    color: var(--color-light);
+    font-family: var(--font-main);
+    font-size: var(--fs-small);
+    outline: none;
+    width: 100%;
+    margin-left: 8px;
+}
+
+#clear-search {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease; 
+    background: none;
+    border: none;
+    color: var(--color-tertiary);
+    cursor: pointer;
+}
+
+#clear-search.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.search-form:focus-within input { width: 100%; }
+.search-icon { color: var(--color-secondary); font-size: 14px; }
+
+/* CORREÇÃO DO LOGIN */
+.user-context { display: flex; align-items: center; }
+
+.login-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-light) !important;
+    text-decoration: none;
+    font-size: var(--fs-small);
+    font-family: var(--font-main);
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 30px;
+    border: 1px solid var(--header-border);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.login-link i {
+    color: var(--color-secondary);
+    font-size: 16px;
+}
+
+.login-link:hover {
+    background: rgba(231, 185, 63, 0.1); /* Dourado da marca */
+    border-color: var(--color-secondary);
+    transform: translateY(-2px);
+}
+
+/* PILL DO USUÁRIO LOGADO */
+.user-profile-pill {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 5px 15px 5px 6px;
+    border-radius: 40px;
+    border: 1px solid var(--header-border);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.user-profile-pill:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: var(--color-secondary-dark);
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--color-secondary-dark);
+}
+
+.user-avatar-svg {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--color-secondary-dark);
+    background: rgba(255, 255, 255, 0.03); 
+    padding: 4px; 
+    transition: fill 0.3s ease, background 0.3s ease; 
+}
+
+.user-info-text { display: flex; flex-direction: column; font-family: var(--font-main); }
+.user-name { color: var(--color-light); font-size: var(--fs-small); font-weight: 600; }
+.user-status { color: var(--color-secondary); font-size: 10px; letter-spacing: 1px; }
+
+/* CARRINHO */
+.cart-context { position: relative; }
+.cart-btn { color: var(--color-light); font-size: 18px; transition: color 0.3s; }
+.cart-btn:hover { color: var(--color-secondary); }
+.cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background: var(--color-primary); /* Vinho da Marca */
+    color: var(--color-light);
+    font-size: 10px;
+    font-family: var(--font-main);
+    padding: 2px 6px;
+    border-radius: 10px;
+    border: 1px solid var(--color-secondary-dark);
+}
+
+/* MENU TOGGLE MOBILE */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--color-light);
+    font-size: 24px;
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.menu-toggle:active {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* MENU MOBILE OVERLAY */
+.nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 900;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.nav-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Botao de fechar do menu (so aparece no painel mobile) */
+.nav-close {
+    display: none;
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(231, 185, 63, 0.25);
+    color: var(--color-secondary);
+    font-size: 20px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    z-index: 11;
+    -webkit-tap-highlight-color: transparent;
+}
+.main-nav.nav-open .nav-close { display: flex; }
+
+/* MENU MOBILE CONTENT - painel solido deslizante da direita */
+.main-nav.nav-open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: auto;
+    width: min(82vw, 360px);
+    max-width: 360px;
+    height: 100%;
+    height: 100dvh;
+    background: #0a0612;
+    border-left: 1px solid rgba(231, 185, 63, 0.18);
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.6);
+    padding: 84px 0 32px;
+    gap: 0;
+    z-index: 9999;
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.main-nav.nav-open.nav-open-active {
+    transform: translateX(0);
+}
+
+.main-nav.nav-open a {
+    font-family: var(--font-main);
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #f4efe6;
+    padding: 18px 26px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    width: 100%;
+    text-align: left;
+    display: block;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+}
+
+.main-nav.nav-open a::after {
+    display: none;
+}
+
+.main-nav.nav-open a:hover {
+    color: var(--color-secondary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.main-nav.nav-open a:active {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* RESPONSIVO */
+/* Header columns base */
+.header-column { display: flex; align-items: center; }
+.header-column.col-left { flex: 0 0 auto; }
+.header-column.col-center { flex: 1; justify-content: center; }
+.header-column.col-right { flex: 0 0 auto; justify-content: flex-end; }
+
+/* Tablet e Desktop menores */
+@media (max-width: 950px) {
+    .main-nav { display: none; }
+    .menu-toggle { display: block; }
+    .search-wrapper { display: none !important; }
+    .arqon-header .container { height: 52px; padding: 0 10px; }
+    .login-link { padding: 5px 8px; font-size: 11px; }
+    .cart-btn { font-size: 14px; padding: 6px; min-width: 36px; min-height: 36px; display: flex; align-items: center; justify-content: center; }
+    .svg-placeholder { width: 85px; }
+    .actions-wrapper { gap: 8px; }
+}
+
+/* Tablets em modo retrato e celulares grandes */
+@media (max-width: 768px) {
+    .search-wrapper { display: none !important; }
+    .arqon-header .container { height: 50px; padding: 0 12px; }
+    .svg-placeholder { width: 75px; }
+    .actions-wrapper { gap: 6px; }
+    .login-link { padding: 6px; min-width: 36px; min-height: 36px; display: flex; align-items: center; justify-content: center; }
+    .login-text { display: none; }
+    .cart-btn { font-size: 14px; padding: 6px; min-width: 36px; min-height: 36px; }
+    .menu-toggle { font-size: 16px; padding: 6px; min-width: 36px; min-height: 36px; }
+
+    /* Remove transições pesadas em mobile */
+    .nav-overlay {
+        transition: none !important;
+    }
+    .main-nav.nav-open {
+        transition: none !important;
+    }
+}
+
+/* Celulares médios */
+@media (max-width: 600px) {
+    .arqon-header .container { padding: 0 8px; height: 48px; }
+    .search-wrapper { display: none !important; }
+    .actions-wrapper { gap: 4px; }
+    .login-link { padding: 5px; min-width: 34px; min-height: 34px; }
+    .login-text { display: none; }
+    .arqon-header-avatar-svg-wrapper, .arqon-header-avatar { width: 28px; height: 28px; }
+    .menu-toggle { font-size: 15px; padding: 5px; min-width: 34px; min-height: 34px; }
+    .cart-btn { font-size: 13px; padding: 5px; min-width: 34px; min-height: 34px; }
+    .svg-placeholder { width: 70px; }
+    .main-nav.nav-open { padding: 60px 16px 30px; }
+    .main-nav.nav-open a { font-size: 15px; padding: 12px 0; }
+
+    /* Remove todas as transições em mobile pequeno */
+    .nav-overlay,
+    .main-nav,
+    .main-nav.nav-open,
+    .main-nav.nav-open a {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* Celulares pequenos */
+@media (max-width: 480px) {
+    .arqon-header .container { height: 44px; padding: 0 6px; }
+    .search-wrapper { display: none !important; }
+    .svg-placeholder { width: 60px; }
+    .actions-wrapper { gap: 3px; }
+    .login-link { padding: 4px; min-width: 32px; min-height: 32px; }
+    .cart-btn { font-size: 12px; padding: 4px; min-width: 32px; min-height: 32px; }
+    .menu-toggle { font-size: 14px; padding: 4px; min-width: 32px; min-height: 32px; }
+    .arqon-header-avatar-svg-wrapper, .arqon-header-avatar { width: 26px; height: 26px; }
+    .main-nav.nav-open { padding: 55px 14px 25px; }
+    .main-nav.nav-open a { font-size: 14px; padding: 10px 0; }
+}
+
+/* Celulares muito pequenos */
+@media (max-width: 360px) {
+    .arqon-header .container { padding: 0 4px; height: 40px; }
+    .search-wrapper { display: none !important; }
+    .svg-placeholder { width: 55px; }
+    .actions-wrapper { gap: 2px; }
+    .login-link { padding: 4px; min-width: 30px; min-height: 30px; }
+    .cart-btn { font-size: 11px; padding: 4px; min-width: 30px; min-height: 30px; }
+    .menu-toggle { font-size: 13px; padding: 4px; min-width: 30px; min-height: 30px; }
+    .arqon-header-avatar-svg-wrapper, .arqon-header-avatar { width: 24px; height: 24px; }
+    .main-nav.nav-open { padding: 50px 12px 20px; }
+    .main-nav.nav-open a { font-size: 13px; padding: 8px 0; }
+}
+
+/* ============================================================
+   ESTILOS DO AVATAR SVG DYNAMIC - ARQON HEADER
+   ============================================================ */
+
+/* Base do contêiner circular para o SVG */
+.arqon-header-avatar-svg-wrapper {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, border-color 0.3s ease, filter 0.3s ease;
+}
+
+/* Tamanho fixo do vetor SVG interno */
+.arqon-avatar-svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* --- ESTADO 1: Quando o usuário NÃO está logado --- */
+.login-link.deslogado .arqon-header-avatar-svg-wrapper {
+    border: 1px solid #666; /* Borda cinza discreta */
+    background-color: rgba(255, 255, 255, 0.03);
+    color: #888; /* Cor do ícone cinza */
+}
+
+/* Hover suave no estado deslogado */
+.login-link.deslogado:hover .arqon-header-avatar-svg-wrapper {
+    border-color: #aaa;
+    color: #fff;
+}
+
+/* --- ESTADO 2: Quando o usuário ESTÁ logado (Sem Foto Customizada) --- */
+.arqon-header-avatar-svg-wrapper.logado {
+    border: 1px solid #E7B93F; /* Borda dourada icônica */
+    background-color: rgba(231, 185, 63, 0.05);
+    color: #E7B93F; /* Cor do ícone dourado */
+    filter: drop-shadow(0 0 5px rgba(231, 185, 63, 0.4)); /* Efeito neon de escudo ativo */
+}
+
+/* --- ESTADO 3: Quando o usuário ESTÁ logado (Com Foto Customizada Real) --- */
+.arqon-header-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #E7B93F;
+    filter: drop-shadow(0 0 5px rgba(231, 185, 63, 0.4));
+    transition: transform 0.3s ease;
+}
+
+/* Animação de zoom elegante ao passar o mouse sobre o perfil logado */
+.login-link.authenticated:hover .arqon-header-avatar,
+.login-link.authenticated:hover .arqon-header-avatar-svg-wrapper.logado {
+    transform: scale(1.08);
+}

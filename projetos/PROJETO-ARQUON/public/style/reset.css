@@ -1,0 +1,137 @@
+/* ==================================================
+   ARQON | RESET & DESIGN SYSTEM (Brandbook Atualizado)
+   ================================================== */
+
+/* 1. IMPORTAÇÃO DA FONTE BE VIETNAM */
+@font-face {
+    font-family: 'Be Vietnam';
+    src: url('../assets/fonts/BeVietnam.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+  /* CORES PRIMÁRIAS (Vinho) */
+  --color-primary-dark: #50132D;
+  --color-primary: #641838;
+  --color-primary-light: #781D43;
+
+  /* CORES SECUNDÁRIAS (Mostarda/Ouro) */
+  --color-secondary-dark: #B99432;
+  --color-secondary: #E7B93F;
+  --color-secondary-light: #FFDE4C;
+
+  /* CORES TERCIÁRIAS (Cinza) */
+  --color-tertiary-dark: #808080;
+  --color-tertiary: #A0A0A0;
+  --color-tertiary-light: #C0C0C0;
+
+  /* CORES DARK */
+  --color-dark-dark: #0A0612;
+  --color-dark: #0C0716;
+  --color-dark-light: #0E081A;
+
+  /* CORES LIGHT */
+  --color-light-dark: #DCDCDC;
+  --color-light: #FFFFFF;
+
+  /* STATUS */
+  --color-success-dark: #2E7D32;
+  --color-success: #4CAF50;
+  --color-success-light: #81C784;
+  --color-danger-dark: #C62828;
+  --color-danger: #F44336;
+  --color-danger-light: #FF7961;
+
+  /* TIPOGRAFIA GLOBAL */
+  --font-main: 'Be Vietnam', sans-serif;
+
+  /* ESCALA DE FONTE (FONT SCALE) */
+  --fs-small: 14px;
+  --fs-p: 16px;
+  --fs-h5: 18px;
+  --fs-h4: 24px;
+  --fs-h3: 28px;
+  --fs-h2: 34px;
+  --fs-h1: 40px;
+
+  /* UTILITÁRIOS (Glassmorphism & Borders) */
+  --arqon-bg-panel: rgba(12, 7, 22, 0.85); 
+  --arqon-border: rgba(255, 255, 255, 0.1);
+}
+
+* , *::before, *::after{
+    box-sizing: border-box;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    font-family: var(--font-main);
+    font-size: var(--fs-p);
+    overflow-x: hidden;
+    min-height: 100vh;
+    line-height: 1.5;
+    text-rendering: optimizeLegibility;
+}
+
+h1 { font-size: var(--fs-h1); font-weight: 700; }
+h2 { font-size: var(--fs-h2); font-weight: 700; }
+h3 { font-size: var(--fs-h3); font-weight: 600; }
+h4 { font-size: var(--fs-h4); font-weight: 600; }
+h5 { font-size: var(--fs-h5); font-weight: 500; }
+p  { font-size: var(--fs-p); }
+small { font-size: var(--fs-small); }
+
+img, picture, video, canvas, svg{
+    display: block;
+    max-width: 100%;
+}
+
+input, button, textarea, select{
+    font: inherit;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+ul, ol{
+    list-style: none;
+}
+
+table{
+    border-collapse: collapse;
+    border-spacing: 0 ;
+}
+
+.container-3d {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto; 
+    display: flex;
+    background-color: rgba(100, 24, 56, 0.1); 
+    justify-content: center;
+}
+
+model-viewer {
+    width: 100%;
+    height: 500px; 
+    background-color: transparent; 
+    outline: none; 
+}

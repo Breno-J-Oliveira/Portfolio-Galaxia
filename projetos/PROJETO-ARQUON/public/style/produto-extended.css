@@ -1,0 +1,442 @@
+/**
+ * ARQON - THE VAULT | Produto Page Extended Styles
+ * Estilos adicionais para Wishlist, Avaliações e Compartilhamento
+ */
+
+.pdp-action-buttons {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.btn-action-wishlist,
+.btn-action-share {
+    flex: 1;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-action-wishlist:hover,
+.btn-action-share:hover {
+    background: rgba(231, 185, 63, 0.1);
+    border-color: rgba(231, 185, 63, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-action-wishlist:disabled,
+.btn-action-share:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Avaliações */
+.avaliacao-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 12px;
+}
+
+.avaliacao-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.avaliacao-usuario {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avaliacao-usuario img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(231, 185, 63, 0.3);
+}
+
+.avaliacao-usuario span {
+    font-size: 14px;
+    color: #fff;
+}
+
+.avaliacao-nota {
+    color: #E7B93F;
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+.avaliacao-comentario {
+    color: #DCDCDC;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+.avaliacao-data {
+    color: #A0A0A0;
+    font-size: 12px;
+}
+
+.btn-avaliar {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #E7B93F, #FFDE4C);
+    border: none;
+    border-radius: 8px;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 16px;
+    transition: all 0.3s ease;
+}
+
+.btn-avaliar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(231, 185, 63, 0.3);
+}
+
+/* Seletor de Cores */
+.arqon-color-selector {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.color-chip {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.color-chip:hover {
+    transform: scale(1.1);
+    border-color: rgba(231, 185, 63, 0.5);
+}
+
+.color-chip.active {
+    border-color: #E7B93F;
+    box-shadow: 0 0 0 3px rgba(231, 185, 63, 0.2);
+}
+
+.color-chip.active::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Produtos Semelhantes */
+.pdp-similar-products {
+    max-width: 1400px;
+    margin: 0 auto 80px;
+    padding: 0 5%;
+}
+
+.pdp-section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.pdp-section-header h2 {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    color: #fff;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.pdp-section-header p {
+    font-size: 14px;
+    color: #A0A0A0;
+    font-weight: 300;
+}
+
+.pdp-similar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+.pdp-similar-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pdp-similar-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(231, 185, 63, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.pdp-similar-card .card-img {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background: #060309;
+    overflow: hidden;
+}
+
+.pdp-similar-card .card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+    transition: all 0.5s ease;
+}
+
+.pdp-similar-card:hover .card-img img {
+    opacity: 1;
+    transform: scale(1.06);
+}
+
+.pdp-similar-card .card-info {
+    padding: 18px;
+}
+
+.pdp-similar-card .card-brand {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #E7B93F;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.pdp-similar-card .card-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: #fff;
+    line-height: 1.4;
+    margin-bottom: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pdp-similar-card .card-price {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.pdp-similar-card .card-price small {
+    font-size: 12px;
+    font-weight: 400;
+    opacity: 0.5;
+}
+
+/* FAQ Section */
+.pdp-faq-section {
+    max-width: 1000px;
+    margin: 0 auto 80px;
+    padding: 0 5%;
+}
+
+.pdp-faq-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.faq-item {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.faq-header {
+    padding: 20px 24px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s ease;
+}
+
+.faq-header:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.faq-header h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+}
+
+.faq-icon {
+    color: #E7B93F;
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(180deg);
+}
+
+.faq-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.faq-content-inner {
+    padding: 0 24px 24px;
+    color: #DCDCDC;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.faq-item.active .faq-content {
+    max-height: 500px;
+}
+
+/* Modal de Zoom */
+.zoom-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.zoom-modal.active {
+    display: flex;
+}
+
+.zoom-modal img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 0 50px rgba(231, 185, 63, 0.2);
+}
+
+.zoom-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.zoom-close:hover {
+    background: rgba(231, 185, 63, 0.3);
+    transform: rotate(90deg);
+}
+
+.zoom-prev,
+.zoom-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.zoom-prev {
+    left: 20px;
+}
+
+.zoom-next {
+    right: 20px;
+}
+
+.zoom-prev:hover,
+.zoom-next:hover {
+    background: rgba(231, 185, 63, 0.3);
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* Informações Detalhadas de Locação */
+.pdp-rental-info {
+    background: rgba(231, 185, 63, 0.05);
+    border: 1px solid rgba(231, 185, 63, 0.2);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 24px 0;
+}
+
+.pdp-rental-info h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #E7B93F;
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.pdp-rental-info ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pdp-rental-info li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: #DCDCDC;
+    font-size: 14px;
+}
+
+.pdp-rental-info li:last-child {
+    border-bottom: none;
+}
+
+.pdp-rental-info li i {
+    color: #E7B93F;
+    margin-top: 2px;
+}

@@ -1,0 +1,81 @@
+/* ==================================================
+   ARQON | FOOTER SYSTEM (Updated)
+   ================================================== */
+footer {
+    width: 100%;
+    background: linear-gradient(to top, var(--color-dark-dark), transparent);
+    border-top: 2px solid var(--color-primary);
+    padding-top: 60px;
+    font-family: var(--font-main);
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 0 5%;
+    gap: 3%;
+    flex-wrap: wrap; 
+}
+
+.footer-logo {
+    flex: 2;
+    min-width: 250px; 
+}
+
+.footer-logo img {
+    height: 80px;
+    width: auto;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+.footer-logo p {
+    color: var(--color-tertiary-light);
+    font-size: var(--fs-small);
+    line-height: 1.6;
+    max-width: 90%;
+}
+
+.footer-links, .footer-social {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-width: 150px;
+}
+
+footer h3 {
+    color: var(--color-light);
+    font-size: var(--fs-h5);
+    font-weight: 600;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+footer a {
+    text-decoration: none;
+    color: var(--color-tertiary);
+    font-size: var(--fs-p);
+    transition: 0.3s ease;
+}
+
+footer a:hover {
+    color: var(--color-secondary);
+    padding-left: 5px;
+}
+
+.copyright {
+    width: 100%;
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 50px;
+    border-top: 1px solid var(--arqon-border);
+}
+
+.copyright p {
+    font-size: 12px;
+    color: var(--color-tertiary-dark);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}

@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARQON Vault Control | Painel Administrativo</title>
+
+    <!-- Theme loader deve vir antes dos CSS para definir as variáveis -->
+    <script src="scripts/config.js"></script>
+    <script src="scripts/theme-loader.js"></script>
+
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/admin.css">
+    <link rel="stylesheet" href="style/mobile-optimizations.css">
+    <link rel="stylesheet" href="style/theme-editor.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Playfair+Display:wght@400;500;600;700&family=DM+Serif+Display:wght@400;500;600&family=Josefin+Sans:wght@300;400;600&family=Raleway:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+</head>
+<body>
+    <div id="arqon-toast-container"></div>
+
+    <div class="admin-wrapper">
+        <aside class="admin-sidebar">
+            <div class="admin-brand">
+                <span class="brand-mark">A</span>
+                <div>
+                    <strong>ARQON</strong>
+                    <small>VAULT CONTROL</small>
+                </div>
+            </div>
+            <nav class="admin-nav" id="admin-nav">
+                <a href="#" class="nav-link active" data-tab="dashboard"><i class="fas fa-chart-pie"></i> Dashboard</a>
+                <a href="#" class="nav-link" data-tab="inventario"><i class="fas fa-gem"></i> Inventário</a>
+                <a href="#" class="nav-link" data-tab="estoque"><i class="fas fa-barcode"></i> Estoque SKU</a>
+                <a href="#" class="nav-link" data-tab="locacoes"><i class="fas fa-calendar-check"></i> Locações</a>
+                <a href="#" class="nav-link" data-tab="usuarios"><i class="fas fa-users"></i> Usuários</a>
+                <a href="#" class="nav-link" data-tab="fornecedores"><i class="fas fa-building"></i> Fornecedores</a>
+                <a href="#" class="nav-link" data-tab="logistica"><i class="fas fa-truck"></i> Logística</a>
+                <a href="#" class="nav-link" data-tab="financeiro"><i class="fas fa-coins"></i> Financeiro</a>
+                <a href="#" class="nav-link" data-tab="config"><i class="fas fa-sliders-h"></i> Configurações</a>
+                <a href="#" class="nav-link" data-tab="tema"><i class="fas fa-palette"></i> Tema</a>
+                <a href="#" class="nav-link" data-tab="terminal"><i class="fas fa-terminal"></i> Terminal</a>
+                <a href="#" class="nav-link" data-tab="logs"><i class="fas fa-shield-alt"></i> Auditoria</a>
+            </nav>
+            <div class="admin-sidebar-footer">
+                <a href="catalogo.html" class="nav-link subtle" target="_blank"><i class="fas fa-store"></i> Ver Loja</a>
+                <a href="#" class="nav-link logout-btn" id="btn-logout"><i class="fas fa-sign-out-alt"></i> Sair</a>
+            </div>
+        </aside>
+
+        <main class="admin-main">
+            <header class="admin-topbar">
+                <div>
+                    <h1 class="admin-page-title" id="page-title">Dashboard</h1>
+                    <p class="admin-page-subtitle" id="page-subtitle">Visão operacional do cofre de luxo</p>
+                </div>
+                <div class="topbar-actions">
+                    <span class="admin-user-chip" id="admin-user-chip">Admin</span>
+                    <button type="button" class="btn-ghost" id="btn-refresh" title="Atualizar"><i class="fas fa-sync-alt"></i></button>
+                </div>
+            </header>
+
+            <div class="admin-content">
+                <!-- DASHBOARD -->
+                <section id="tab-dashboard" class="tab-content active">
+                    <div class="metrics-grid" id="metrics-grid"></div>
+                    <div class="panel-row">
+                        <div class="panel-card">
+                            <h3><i class="fas fa-chart-line"></i> Receita Mensal</h3>
+                            <div class="chart-container">
+                                <canvas id="chart-receita"></canvas>
+                            </div>
+                        </div>
+                        <div class="panel-card">
+                            <h3><i class="fas fa-chart-pie"></i> Distribuição por Categoria</h3>
+                            <div class="chart-container">
+                                <canvas id="chart-categorias"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-row">
+                        <div class="panel-card">
+                            <h3><i class="fas fa-exchange-alt"></i> Últimas locações</h3>
+                            <div class="table-scroll">
+                                <table class="data-table" id="table-transacoes">
+                                    <thead><tr><th>#</th><th>Cliente</th><th>Período</th><th>Valor</th><th>Status</th></tr></thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="panel-card">
+                            <h3><i class="fas fa-bolt"></i> Ações rápidas</h3>
+                            <div class="quick-actions">
+                                <button type="button" class="qa-btn" data-goto="inventario" data-action="novo-produto"><i class="fas fa-plus"></i> Novo artefato</button>
+                                <button type="button" class="qa-btn" data-goto="locacoes"><i class="fas fa-list"></i> Ver locações</button>
+                                <button type="button" class="qa-btn" data-goto="estoque"><i class="fas fa-boxes"></i> Estoque físico</button>
+                                <button type="button" class="qa-btn" onclick="exportarDados('produtos')"><i class="fas fa-file-csv"></i> Exportar inventário</button>
+                                <button type="button" class="qa-btn" onclick="exportarPDF('dashboard')"><i class="fas fa-file-pdf"></i> Exportar PDF</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- INVENTÁRIO (PRODUTOS) -->
+                <section id="tab-inventario" class="tab-content">
+                    <div class="toolbar">
+                        <div class="toolbar-left">
+                            <input type="search" id="input-busca-inventario" class="search-input" placeholder="Buscar por nome, SKU, marca...">
+                            <select id="filtro-status-inventario" class="filter-select">
+                                <option value="todos">Todos status</option>
+                                <option value="disponivel">Disponível</option>
+                                <option value="indisponivel">Indisponível</option>
+                            </select>
+                            <select id="filtro-genero-inventario" class="filter-select">
+                                <option value="todos">Todos gêneros</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Feminino">Feminino</option>
+                                <option value="Unissex">Unissex</option>
+                            </select>
+                        </div>
+                        <div class="toolbar-right">
+                            <button type="button" class="btn-outline" onclick="exportarDados('produtos')"><i class="fas fa-download"></i> CSV</button>
+                            <button type="button" class="btn-gold" id="btn-novo-produto"><i class="fas fa-plus"></i> Novo artefato</button>
+                        </div>
+                    </div>
+                    <div class="stats-inline" id="inventario-stats"></div>
+                    <div class="table-container">
+                        <table class="data-table inventory-table">
+                            <thead>
+                                <tr>
+                                    <th onclick="ordenarInventario('id')">ID</th>
+                                    <th>Artefato</th>
+                                    <th>Marca</th>
+                                    <th>Categoria</th>
+                                    <th>Diária</th>
+                                    <th>Estoque</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-inventario"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- ESTOQUE SKU -->
+                <section id="tab-estoque" class="tab-content">
+                    <div class="toolbar">
+                        <input type="search" id="input-busca-estoque" class="search-input" placeholder="RFID, produto, tamanho...">
+                        <select id="filtro-status-estoque" class="filter-select">
+                            <option value="todos">Todos</option>
+                            <option value="Disponível">Disponível</option>
+                            <option value="Alugado">Alugado</option>
+                            <option value="Manutenção">Manutenção</option>
+                            <option value="Higienização">Higienização</option>
+                            <option value="Transporte">Transporte</option>
+                        </select>
+                        <button type="button" class="btn-outline" id="btn-sync-estoque"><i class="fas fa-sync"></i> Gerar SKUs faltantes</button>
+                        <button type="button" class="btn-gold" id="btn-novo-sku"><i class="fas fa-barcode"></i> Novo SKU</button>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr><th>ID</th><th>Produto</th><th>RFID/NFC</th><th>Tam.</th><th>Cor</th><th>Aluguéis</th><th>Status</th><th>Ações</th></tr>
+                            </thead>
+                            <tbody id="tbody-estoque"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- LOCAÇÕES -->
+                <section id="tab-locacoes" class="tab-content">
+                    <div class="toolbar">
+                        <input type="search" id="input-busca-locacoes" class="search-input" placeholder="Cliente, produto, ID...">
+                        <select id="filtro-status-locacao" class="filter-select">
+                            <option value="todos">Todos status</option>
+                            <option value="pendente">Pendente</option>
+                            <option value="pago">Pago</option>
+                            <option value="enviado">Enviado</option>
+                            <option value="entregue">Entregue</option>
+                            <option value="devolvido">Devolvido</option>
+                            <option value="concluido">Concluído</option>
+                            <option value="cancelado">Cancelado</option>
+                        </select>
+                        <button type="button" class="btn-outline" onclick="exportarDados('locacoes')"><i class="fas fa-download"></i> Exportar</button>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr><th>#</th><th>Cliente</th><th>Produto</th><th>Período</th><th>Valor</th><th>Caução</th><th>Status</th><th>Rastreio</th><th>Ações</th></tr>
+                            </thead>
+                            <tbody id="tbody-locacoes"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- USUÁRIOS -->
+                <section id="tab-usuarios" class="tab-content">
+                    <div class="toolbar">
+                        <input type="search" id="input-busca-usuarios" class="search-input" placeholder="Nome, e-mail, ID...">
+                        <select id="filtro-status-usuario" class="filter-select">
+                            <option value="todos">Todos</option>
+                            <option value="ativo">Ativo</option>
+                            <option value="inativo">Inativo</option>
+                            <option value="bloqueado">Bloqueado</option>
+                        </select>
+                        <button type="button" class="btn-outline" onclick="exportarDados('usuarios')"><i class="fas fa-download"></i> CSV</button>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr><th>ID</th><th>Nome</th><th>E-mail</th><th>Nível</th><th>Cadastro</th><th>Status</th><th>Ações</th></tr>
+                            </thead>
+                            <tbody id="tbody-usuarios"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- LOGÍSTICA -->
+                <section id="tab-logistica" class="tab-content">
+                    <div class="info-grid">
+                        <div class="info-card"><i class="fas fa-map-marker-alt"></i><h4>Grande São Paulo</h4><p>Área de cobertura inicial — frete incluso</p></div>
+                        <div class="info-card"><i class="fas fa-undo"></i><h4>Devolução D+0</h4><p>Fluxo: entregue → devolvido → higienização → disponível</p></div>
+                        <div class="info-card"><i class="fas fa-qrcode"></i><h4>RFID por peça</h4><p>Cada SKU físico possui tag única no estoque</p></div>
+                    </div>
+                    <p class="hint-text">Gerencie rastreios e status na aba <strong>Locações</strong>. Itens em transporte aparecem no estoque SKU.</p>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead><tr><th>Locação</th><th>Cliente</th><th>Produto</th><th>Rastreio</th><th>Status pedido</th></tr></thead>
+                            <tbody id="tbody-logistica"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- FINANCEIRO -->
+                <section id="tab-financeiro" class="tab-content">
+                    <div class="metrics-grid compact" id="financeiro-metrics"></div>
+                    <div class="split-panel">
+                        <div class="panel-card">
+                            <h3>Composição do aluguel</h3>
+                            <ul class="finance-list">
+                                <li><span>Valor total</span><em>Diária × dias + caução</em></li>
+                                <li><span>Caução padrão</span><em>2× valor da diária (devolvida)</em></li>
+                                <li><span>Split ARQON</span><em>60% plataforma</em></li>
+                                <li><span>Marca parceira</span><em>25%</em></li>
+                                <li><span>Taxa ecológica</span><em>2%</em></li>
+                            </ul>
+                        </div>
+                        <div class="panel-card">
+                            <h3>Locações recentes (receita)</h3>
+                            <div class="table-scroll">
+                                <table class="data-table"><thead><tr><th>#</th><th>Valor</th><th>Status</th></tr></thead><tbody id="tbody-financeiro"></tbody></table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-row">
+                        <div class="panel-card">
+                            <h3><i class="fas fa-chart-bar"></i> Receita Mensal</h3>
+                            <div class="chart-container"><canvas id="chart-finance-receita"></canvas></div>
+                        </div>
+                        <div class="panel-card">
+                            <h3><i class="fas fa-chart-pie"></i> Status de Pagamento</h3>
+                            <div class="chart-container"><canvas id="chart-finance-status"></canvas></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CONFIG -->
+                <section id="tab-config" class="tab-content">
+                    <form id="form-config" class="config-form">
+                        <div class="form-grid">
+                            <div class="form-group"><label>Período mínimo (dias)</label><input type="number" name="periodo_minimo" value="4" min="1" class="form-control"></div>
+                            <div class="form-group"><label>Período máximo (dias)</label><input type="number" name="periodo_maximo" value="15" min="1" class="form-control"></div>
+                            <div class="form-group"><label>Taxa plataforma (%)</label><input type="number" name="taxa_plataforma" value="15" step="0.1" class="form-control"></div>
+                            <div class="form-group"><label>Taxa ecológica (%)</label><input type="number" name="taxa_ecologica" value="2" step="0.1" class="form-control"></div>
+                            <div class="form-group"><label>E-mail suporte</label><input type="email" name="email_suporte" value="contato@arqon.com" class="form-control"></div>
+                            <div class="form-group"><label>Modo manutenção</label><select name="modo_manutencao" class="form-control"><option value="0">Desligado</option><option value="1">Ativo</option></select></div>
+                        </div>
+                        <button type="submit" class="btn-gold">Salvar configurações</button>
+                    </form>
+                </section>
+
+                <!-- TEMA / IDENTIDADE VISUAL -->
+                <section id="tab-tema" class="tab-content">
+                    <div class="page-header">
+                        <div class="page-title-group">
+                            <div class="page-eyebrow">Sistema</div>
+                            <h1 class="page-title">Identidade Visual</h1>
+                        </div>
+                        <div class="page-actions">
+                            <button class="btn btn-outline btn-sm" onclick="resetAllColors()"><i class="fa-solid fa-rotate-left"></i> Resetar Tudo</button>
+                            <button class="btn btn-gold btn-sm" onclick="applyAndSaveColors()"><i class="fa-solid fa-floppy-disk"></i> Aplicar ao Site</button>
+                        </div>
+                    </div>
+
+                    <!-- PRESETS -->
+                    <div class="card" style="margin-bottom:20px">
+                        <div class="card-header"><span class="card-title">Temas Predefinidos</span></div>
+                        <div class="card-body">
+                            <div class="preset-bar">
+                                <button class="preset-chip active" id="preset-original" onclick="applyPreset('original', this)">ARQON Original</button>
+                                <button class="preset-chip" id="preset-midnight" onclick="applyPreset('midnight', this)">Midnight Blue</button>
+                                <button class="preset-chip" id="preset-emerald" onclick="applyPreset('emerald', this)">Emerald Dark</button>
+                                <button class="preset-chip" id="preset-rose" onclick="applyPreset('rose', this)">Rose Noir</button>
+                                <button class="preset-chip" id="preset-chrome" onclick="applyPreset('chrome', this)">Chrome Pure</button>
+                                <button class="preset-chip" id="preset-royal" onclick="applyPreset('royal', this)">Royal Purple</button>
+                                <button class="preset-chip" id="preset-sunset" onclick="applyPreset('sunset', this)">Sunset Gold</button>
+                                <button class="preset-chip" id="preset-forest" onclick="applyPreset('forest', this)">Forest Green</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- COLOR SWATCHES -->
+                    <div class="card" style="margin-bottom:20px">
+                        <div class="card-header"><span class="card-title">Paleta de Cores</span></div>
+                        <div class="card-body">
+                            <div class="color-editor-grid" id="colorEditorGrid"></div>
+                        </div>
+                    </div>
+
+                    <!-- TYPOGRAPHY -->
+                    <div class="card" style="margin-bottom:20px">
+                        <div class="card-header"><span class="card-title">Tipografia</span></div>
+                        <div class="card-body">
+                            <div class="form-row cols-2">
+                                <div class="form-group">
+                                    <label class="form-label">Fonte de Display (Títulos)</label>
+                                    <select class="form-select" id="fontDisplay" onchange="previewTypography()">
+                                        <option value="'Cinzel', serif" selected>Cinzel (Padrão ARQON)</option>
+                                        <option value="'Cormorant Garamond', serif">Cormorant Garamond</option>
+                                        <option value="'Playfair Display', serif">Playfair Display</option>
+                                        <option value="'DM Serif Display', serif">DM Serif Display</option>
+                                        <option value="'Georgia', serif">Georgia</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Fonte de Texto (Corpo)</label>
+                                    <select class="form-select" id="fontBody" onchange="previewTypography()">
+                                        <option value="'Inter', sans-serif" selected>Inter (Padrão ARQON)</option>
+                                        <option value="'Josefin Sans', sans-serif">Josefin Sans</option>
+                                        <option value="'Raleway', sans-serif">Raleway</option>
+                                        <option value="'Montserrat', sans-serif">Montserrat</option>
+                                        <option value="'Lato', sans-serif">Lato</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div style="padding:20px;background:rgba(0,0,0,0.2);border-radius:8px;border:1px solid var(--clr-border);margin-top:8px" id="typographyPreview">
+                                <div style="font-family:var(--preview-display,'Cormorant Garamond',serif);font-size:2rem;color:var(--clr-gold);letter-spacing:2px">ARQON Premium</div>
+                                <div style="font-family:var(--preview-body,'Josefin Sans',sans-serif);font-size:0.8rem;color:var(--clr-muted);letter-spacing:2px;margin-top:6px;text-transform:uppercase">Moda circular de alto padrão — acesso exclusivo</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BORDER RADIUS -->
+                    <div class="card">
+                        <div class="card-header"><span class="card-title">Elementos de Interface</span></div>
+                        <div class="card-body">
+                            <div class="form-row cols-2">
+                                <div class="form-group">
+                                    <label class="form-label">Border Radius — <span id="radiusVal">10</span>px</label>
+                                    <input type="range" min="0" max="24" value="10" id="radiusSlider" oninput="updateRadius(this.value)">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Intensidade do Glow</label>
+                                    <input type="range" min="0" max="100" value="40" id="glowSlider" oninput="updateGlow(this.value)">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- FORNECEDORES -->
+                <section id="tab-fornecedores" class="tab-content">
+                    <div class="toolbar">
+                        <div class="toolbar-left">
+                            <input type="search" id="input-busca-fornecedores" class="search-input" placeholder="Buscar fornecedor...">
+                            <select id="filtro-status-fornecedor" class="form-control">
+                                <option value="">Todos os status</option>
+                                <option value="ativo">Ativo</option>
+                                <option value="inativo">Inativo</option>
+                            </select>
+                        </div>
+                        <div class="toolbar-right">
+                            <button type="button" class="btn-gold" onclick="abrirModalFornecedor()"><i class="fas fa-plus"></i> Novo Fornecedor</button>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead><tr><th>ID</th><th>Nome</th><th>CNPJ</th><th>Email</th><th>Telefone</th><th>Cidade/UF</th><th>Status</th><th>Ações</th></tr></thead>
+                            <tbody id="tbody-fornecedores"></tbody>
+                        </table>
+                    </div>
+                    <div id="mapa-fornecedores" style="margin-top: 24px; position: relative; z-index: 1;"></div>
+                </section>
+
+                <!-- TERMINAL -->
+                <section id="tab-terminal" class="tab-content">
+                    <div class="panel-card" style="height: 70vh; display: flex; flex-direction: column;">
+                        <h3><i class="fas fa-terminal"></i> ARQON System Health Terminal</h3>
+                        <div id="terminal-output" style="flex: 1; background: #0a0812; border: 1px solid rgba(231,185,63,.15); border-radius: 8px; padding: 16px; font-family: 'Courier New', monospace; font-size: .82rem; color: #c8c8c8; overflow-y: auto; white-space: pre-wrap; margin: 12px 0;">
+                            <span style="color:#E7B93F;">ARQON Vault Control v4.0</span> — Digite <span style="color:#E7B93F;">help</span> para listar comandos.
+                        </div>
+                        <div style="display: flex; gap: 8px;">
+                            <span style="color:#E7B93F; font-family:'Courier New',monospace; font-size:.9rem; line-height:36px;">&gt;</span>
+                            <input type="text" id="terminal-input" style="flex:1; background:#0a0812; border:1px solid rgba(231,185,63,.25); border-radius:6px; padding:8px 12px; color:#fff; font-family:'Courier New',monospace; font-size:.85rem;" placeholder="help" autocomplete="off">
+                            <button type="button" class="btn-gold" onclick="executarTerminal()" style="padding: 8px 20px;"><i class="fas fa-play"></i></button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- LOGS -->
+                <section id="tab-logs" class="tab-content">
+                    <div class="toolbar">
+                        <div class="log-filters">
+                            <button type="button" class="btn-filter active" data-dias="1">Hoje</button>
+                            <button type="button" class="btn-filter" data-dias="7">7 dias</button>
+                            <button type="button" class="btn-filter" data-dias="30">30 dias</button>
+                        </div>
+                        <button type="button" class="btn-outline" onclick="exportarLogsCSV()"><i class="fas fa-download"></i> Exportar logs</button>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead><tr><th>Data/Hora</th><th>Usuário</th><th>Ação</th><th>Tabela</th></tr></thead>
+                            <tbody id="tbody-logs"></tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal Produto -->
+    <div class="modal-overlay" id="modal-produto">
+        <div class="modal-content modal-xl premium-box">
+            <div class="modal-head">
+                <h3 id="modal-produto-titulo"><i class="fas fa-tshirt" style="color: var(--gold);"></i> Artefato de moda</h3>
+                <button type="button" class="modal-close" onclick="fecharModalProduto()">&times;</button>
+            </div>
+            <form id="form-produto" enctype="multipart/form-data">
+                <input type="hidden" name="id" id="produto-id">
+                
+                <div class="modal-tabs">
+                    <button type="button" class="tab-btn active" onclick="switchModalTab('tab-dados', this)">1. Informações Básicas</button>
+                    <button type="button" class="tab-btn" onclick="switchModalTab('tab-midias', this)">2. Mídias (Fotos e 3D)</button>
+                </div>
+
+                <div class="modal-body">
+                    
+                    <div id="tab-dados" class="modal-tab-content active">
+                        <div class="form-grid-2">
+                            <div class="form-group"><label>Nome *</label><input type="text" name="nome" class="form-control" required></div>
+                            <div class="form-group"><label>SKU</label><input type="text" name="sku" class="form-control" placeholder="Auto se vazio"></div>
+                            <div class="form-group"><label>Marca *</label><select name="id_marca" id="select-marca" class="form-control" required></select></div>
+                            <div class="form-group"><label>Categoria *</label><select name="id_categoria" id="select-categoria" class="form-control" required></select></div>
+                            <div class="form-group"><label>Estilo</label><select name="id_estilo" id="select-estilo" class="form-control"></select></div>
+                            <div class="form-group"><label>Gênero</label><select name="genero" class="form-control"><option>Masculino</option><option>Feminino</option><option selected>Unissex</option></select></div>
+                            <div class="form-group"><label>Cor principal</label><input type="text" name="cor_principal" class="form-control" placeholder="Preto, Vinho..."></div>
+                            <div class="form-group"><label>Condição</label><select name="condicao" class="form-control"><option>Excelente</option><option>Muito Bom</option><option>Bom (Marcas de Uso)</option><option>Mint (Nunca Usado)</option></select></div>
+                            <div class="form-group"><label>Valor diária (R$) *</label><input type="number" name="valor_diaria" id="input-diaria" class="form-control" step="0.01" min="0" required></div>
+                            <div class="form-group"><label>Valor mercado (R$)</label><input type="number" name="valor_mercado" class="form-control" step="0.01" min="0"></div>
+                            <div class="form-group"><label>Caução (R$)</label><input type="number" name="valor_caucao" id="input-caucao" class="form-control" step="0.01" min="0" placeholder="Auto: 2× diária"></div>
+                            <div class="form-group"><label>Qtd. unidades físicas</label><input type="number" name="qtd_estoque" value="1" min="1" max="20" class="form-control"></div>
+                            <div class="form-group"><label>Tamanhos (vírgula)</label><input type="text" name="tamanhos" value="P,M,G" class="form-control" placeholder="P,M,G,GG"></div>
+                            <div class="form-group"><label>Status catálogo</label><select name="status_venda" class="form-control"><option value="1">Disponível no catálogo</option><option value="0">Oculto</option></select></div>
+                        </div>
+                        
+                        <div class="form-group" style="margin-top: 15px;"><label>Descrição curta</label><textarea name="descricao" class="form-control" rows="2"></textarea></div>
+                        <div class="form-group"><label>Descrição editorial</label><textarea name="descricao_rica" class="form-control" rows="3"></textarea></div>
+                        <div class="form-group"><label>Composição</label><input type="text" name="composicao" class="form-control" placeholder="80% viscose, 20% seda"></div>
+                    </div>
+
+                    <div id="tab-midias" class="modal-tab-content">
+                        <div class="form-grid-2">
+                            
+                            <div class="upload-zone" style="grid-column: 1 / -1;">
+                                <label style="color: var(--gold); display: block; margin-bottom: 5px;">Foto Principal (Capa) *</label>
+                                <div class="file-drop-area">
+                                    <i class="fas fa-camera"></i>
+                                    <span>Arraste ou clique para enviar a capa</span>
+                                    <input type="file" name="foto" id="input-foto" accept="image/*">
+                                </div>
+                                <img id="preview-foto" alt="" class="preview-img">
+                            </div>
+
+                            <div class="upload-zone">
+                                <label style="color: var(--gold); display: block; margin-bottom: 5px;">Galeria (Até 4 fotos)</label>
+                                <div class="file-drop-area">
+                                    <i class="fas fa-images"></i>
+                                    <span>Adicionar fotos extras</span>
+                                    <input type="file" name="fotos_extras[]" multiple accept="image/*">
+                                </div>
+                            </div>
+
+                            <div class="upload-zone">
+                                <label style="color: var(--gold); display: block; margin-bottom: 5px;">Modelo 3D (.glb / .gltf)</label>
+                                <div class="file-drop-area area-3d">
+                                    <i class="fas fa-cube"></i>
+                                    <span>Adicionar Modelo 3D</span>
+                                    <input type="file" name="modelo_3d" accept=".glb,.gltf">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-actions" style="margin-top: 25px;">
+                    <button type="submit" class="btn-gold btn-submit">Salvar artefato</button>
+                    <button type="button" class="btn-cancel" onclick="fecharModalProduto()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal SKU -->
+    <div class="modal-overlay" id="modal-sku">
+        <div class="modal-content">
+            <h3><i class="fas fa-barcode"></i> Novo SKU físico</h3>
+            <form id="form-sku">
+                <div class="form-group"><label>Produto</label><select name="id_produto" id="select-produto-sku" class="form-control" required></select></div>
+                <div class="form-group"><label>Tamanho</label><input type="text" name="tamanho" value="M" class="form-control" required></div>
+                <div class="form-group"><label>Cor</label><input type="text" name="cor" value="Preto" class="form-control"></div>
+                <div class="form-group"><label>RFID (opcional)</label><input type="text" name="rfid_nfc_tag" class="form-control" placeholder="Gerado automaticamente"></div>
+                <div class="form-group"><label>Status</label><select name="status_atual" class="form-control"><option>Disponível</option><option>No Vault</option><option>Manutenção</option></select></div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn-gold">Criar SKU</button>
+                    <button type="button" class="btn-cancel" onclick="fecharModalSku()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Cropper -->
+    <div class="modal-overlay" id="modal-cropper">
+        <div class="modal-content modal-lg">
+            <div class="modal-head">
+                <h3><i class="fas fa-crop-alt" style="color: var(--gold);"></i> Recortar Imagem</h3>
+                <button type="button" class="modal-close" onclick="fecharModalCropper()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="cropper-container">
+                    <img id="cropper-image" src="" alt="Imagem para recortar">
+                </div>
+                <div class="cropper-controls">
+                    <button type="button" class="btn-outline" onclick="cropper.rotate(-90)"><i class="fas fa-undo"></i> -90°</button>
+                    <button type="button" class="btn-outline" onclick="cropper.rotate(90)"><i class="fas fa-redo"></i> +90°</button>
+                    <button type="button" class="btn-outline" onclick="cropper.flip('horizontal')"><i class="fas fa-arrows-alt-h"></i> Flip H</button>
+                    <button type="button" class="btn-outline" onclick="cropper.flip('vertical')"><i class="fas fa-arrows-alt-v"></i> Flip V</button>
+                    <button type="button" class="btn-outline" onclick="cropper.reset()"><i class="fas fa-sync"></i> Reset</button>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn-gold" onclick="aplicarRecorte()"><i class="fas fa-check"></i> Aplicar Recorte</button>
+                <button type="button" class="btn-cancel" onclick="fecharModalCropper()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Fornecedor -->
+    <div class="modal-overlay" id="modal-fornecedor">
+        <div class="modal-content">
+            <div class="modal-head">
+                <h3 id="modal-fornecedor-titulo"><i class="fas fa-building" style="color: var(--gold);"></i> Fornecedor</h3>
+                <button type="button" class="modal-close" onclick="fecharModalFornecedor()">&times;</button>
+            </div>
+            <form id="form-fornecedor">
+                <input type="hidden" name="id" id="fornecedor-id">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Vincular Usuário Existente</label>
+                        <select name="id_usuario" id="fornecedor-id-usuario" class="form-control">
+                            <option value="">— Criar fornecedor sem vincular usuário —</option>
+                        </select>
+                        <small style="color: var(--text-gray); display: block; margin-top: 4px;">Selecione um usuário para torná-lo fornecedor automaticamente.</small>
+                    </div>
+                    <div class="form-group"><label>Nome *</label><input type="text" name="nome" id="fornecedor-nome" class="form-control" required></div>
+                    <div class="form-group"><label>CNPJ</label><input type="text" name="cnpj" id="fornecedor-cnpj" class="form-control" placeholder="00.000.000/0000-00"></div>
+                    <div class="form-group"><label>Email</label><input type="email" name="email" id="fornecedor-email" class="form-control"></div>
+                    <div class="form-group"><label>Telefone</label><input type="text" name="telefone" id="fornecedor-telefone" class="form-control" placeholder="(00) 00000-0000"></div>
+                    <div class="form-group"><label>Endereço</label><input type="text" name="endereco" id="fornecedor-endereco" class="form-control"></div>
+                    <div class="form-grid-2">
+                        <div class="form-group"><label>Cidade</label><input type="text" name="cidade" id="fornecedor-cidade" class="form-control"></div>
+                        <div class="form-group"><label>Estado</label><input type="text" name="estado" id="fornecedor-estado" class="form-control" maxlength="2" placeholder="UF"></div>
+                    </div>
+                    <div class="form-group"><label>CEP</label><input type="text" name="cep" id="fornecedor-cep" class="form-control" placeholder="00000-000"></div>
+                    <div class="form-group"><label>Contato Principal</label><input type="text" name="contato_principal" id="fornecedor-contato" class="form-control"></div>
+                    <div class="form-group"><label>Status</label><select name="status" id="fornecedor-status" class="form-control"><option value="ativo">Ativo</option><option value="inativo">Inativo</option></select></div>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn-gold">Salvar</button>
+                    <button type="button" class="btn-cancel" onclick="fecharModalFornecedor()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="scripts/toast.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="scripts/admin.js"></script>
+    <script src="scripts/scroll-reveal.js"></script>
+</body>
+</html>

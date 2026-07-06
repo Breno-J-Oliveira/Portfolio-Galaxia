@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARQON | The Vault Catalogue</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Theme loader deve vir antes dos CSS para definir as variáveis -->
+    <script src="scripts/config.js"></script>
+    <script src="scripts/theme-loader.js"></script>
+
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/header.css">
+    <link rel="stylesheet" href="style/catalogo.css">
+    <link rel="stylesheet" href="style/botaocarrinho.css">
+    <link rel="stylesheet" href="style/footer.css">
+    <link rel="stylesheet" href="style/mobile-optimizations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="header"></div>
+
+    <div id="carrinho-container"></div>
+
+    <main class="arqon-catalog-wrapper">
+        <div class="catalog-atmosphere">
+            <div class="cat-orb-primary"></div>
+            <div class="cat-orb-secondary"></div>
+        </div>
+
+        <div class="catalog-layout">
+            <aside class="catalog-sidebar">
+                <div class="sidebar-title">
+                    <i class="fas fa-sliders-h"></i> FILTRAR ACERVO
+                </div>
+                
+                <div class="filter-section">
+                    <h4>Categorias</h4>
+                    <ul class="filter-options" id="filter-category">
+                        <li class="active" data-value="all">Todos os Artefatos</li>
+                        </ul>
+                </div>
+
+                <div class="filter-section">
+                    <h4>Marcas Intermediárias</h4>
+                    <ul class="filter-options" id="filter-brand">
+                        <li class="active" data-value="all">Todas as Marcas</li>
+                        </ul>
+                </div>
+
+                <div class="filter-section">
+                    <h4>Estilos de Arquivo</h4>
+                    <ul class="filter-options" id="filter-style">
+                        <li class="active" data-value="all">Todos os Estilos</li>
+                        </ul>
+                </div>
+
+                <div class="filter-section">
+                    <h4>Status de Reserva</h4>
+                    <ul class="filter-options" id="filter-status">
+                        <li class="active" data-value="all">Todos os Itens</li>
+                        <li data-value="1">Disponível para Aluguel</li>
+                        <li data-value="0">Em Custódia (Alugado)</li>
+                    </ul>
+                </div>
+
+                <div class="filter-section">
+                    <h4>Gênero</h4>
+                    <ul class="filter-options" id="filter-gender">
+                        <li class="active" data-value="all">Todos os Gêneros</li>
+                        <li data-value="Masculino">Masculino</li>
+                        <li data-value="Feminino">Feminino</li>
+                        <li data-value="Unissex">Unissex</li>
+                    </ul>
+                </div>
+
+                <div class="filter-section">
+                    <h4>Tamanho</h4>
+                    <ul class="filter-options" id="filter-size">
+                        <li class="active" data-value="all">Todos os Tamanhos</li>
+                        <li data-value="PP">PP</li>
+                        <li data-value="P">P</li>
+                        <li data-value="M">M</li>
+                        <li data-value="G">G</li>
+                        <li data-value="GG">GG</li>
+                    </ul>
+                </div>
+
+                <div class="filter-section">
+                    <h4>Valor da Diária (Máx)</h4>
+                    <div class="price-slider-container">
+                        <input type="range" id="price-slider" min="0" max="5000" step="50" value="5000">
+                        <div class="price-range-labels">
+                            <span>R$ 0</span>
+                            <span id="price-max-display" class="gold-text">R$ 5.000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="btn-clear-filters" class="arqon-btn-secondary">
+                    <i class="fas fa-eraser"></i> Limpar Parâmetros
+                </button>
+            </aside>
+
+            <section class="catalog-main-content">
+                <div class="catalog-header-bar">
+                    <div class="title-area">
+                        <h1 id="catalog-main-title">THE VAULT</h1>
+                        <p class="subtitle">Indexador de peças exclusivas sob custódia temporária.</p>
+                    </div>
+                    <div class="search-area">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="local-search-input" placeholder="Buscar artefato...">
+                        </div>
+                        <span id="catalog-counter" class="item-counter">Carregando acervo...</span>
+                    </div>
+                </div>
+
+                <div class="catalog-grid" id="catalog-grid">
+                    <div class="arq-card skeleton-box"><div class="skel-img"></div><div class="skel-text"></div></div>
+                    <div class="arq-card skeleton-box"><div class="skel-img"></div><div class="skel-text"></div></div>
+                    <div class="arq-card skeleton-box"><div class="skel-img"></div><div class="skel-text"></div></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div id="footer"></div>
+
+
+    <script src="scripts/catalogo-universal.js"></script>
+    <script src="scripts/botaocarrinho.js"></script>
+    <script src="scripts/header.js"></script>
+    <script src="scripts/scroll-reveal.js"></script>
+    <script src="scripts/toast.js"></script>
+    <script src="index.js"></script>
+
+    <script>
+        // Inicializa o catálogo com suporte a query de busca
+        document.addEventListener('DOMContentLoaded', () => {
+            window.arqonCatalog = new ArqonCatalogEngine({
+                containerId: 'catalog-grid',
+                mode: 'catalog',
+                skeletonCount: 8
+            });
+            window.arqonCatalog.init();
+        });
+    </script>
+
+</body>
+</html>

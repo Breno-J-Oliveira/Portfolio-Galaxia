@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARQON | Masculine Vault — Acervo Masculino</title>
+
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/header.css">
+    <link rel="stylesheet" href="style/botao_carrinho.css">
+    <link rel="stylesheet" href="style/footer.css">
+    <link rel="stylesheet" href="style/masculino.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="header"></div>
+
+    <main class="masc-wrapper">
+
+        <!-- ATMOSFERA DE FUNDO -->
+        <div class="masc-atmosphere">
+            <div class="masc-orb-primary"></div>
+            <div class="masc-orb-secondary"></div>
+            <div class="masc-grid-overlay"></div>
+        </div>
+
+        <!-- HERO EDITORIAL -->
+        <div class="masc-hero">
+            <div class="masc-hero-inner">
+                <div class="masc-hero-text">
+                    <span class="masc-hero-label">// ARQON INDUSTRIAL LABS — ACERVO MASCULINO</span>
+                    <h1 class="masc-hero-title">ÁREA<br><span class="masc-hero-title--stroke">MASCULINA</span></h1>
+                    <p class="masc-hero-sub">Alta costura utilitária e alfaiataria disruptiva para custódia imediata.</p>
+                </div>
+                <div class="masc-hero-tags">
+                    <span class="masc-tag active" data-filter="all">Acervo Completo</span>
+                    <span class="masc-tag" data-filter="techwear">Techwear</span>
+                    <span class="masc-tag" data-filter="tailoring">Neo-Tailoring</span>
+                    <span class="masc-tag" data-filter="avant">Avant-Garde</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- LAYOUT PRINCIPAL (Sidebar + Grid) -->
+        <div class="masc-layout">
+
+            <!-- SIDEBAR -->
+            <aside class="masc-sidebar">
+                <div class="masc-sidebar-header">
+                    <i class="fas fa-sliders-h"></i> FILTRAR ACERVO
+                </div>
+
+                <div class="masc-filter-section">
+                    <h4>Diretriz de Design</h4>
+                    <ul class="masc-filter-options" id="masc-filter-category">
+                        <li class="active" data-value="all">Todos os Artefatos</li>
+                        <li data-value="techwear"><i class="fas fa-shield-alt"></i> Techwear Cibernético</li>
+                        <li data-value="tailoring"><i class="fas fa-cut"></i> Neo-Tailoring</li>
+                        <li data-value="avant"><i class="fas fa-mask"></i> Avant-Garde</li>
+                    </ul>
+                </div>
+
+                <div class="masc-filter-section">
+                    <h4>Status de Reserva</h4>
+                    <ul class="masc-filter-options" id="masc-filter-status">
+                        <li class="active" data-value="all">Todos os Itens</li>
+                        <li data-value="1">Disponível para Aluguel</li>
+                        <li data-value="0">Em Custódia (Alugado)</li>
+                    </ul>
+                </div>
+
+                <div class="masc-filter-section">
+                    <h4>Taxa de Custódia (Máx)</h4>
+                    <div class="masc-price-slider-wrap">
+                        <input type="range" id="masc-price-slider" min="0" max="5000" step="50" value="5000">
+                        <div class="masc-price-labels">
+                            <span>R$ 0</span>
+                            <span id="masc-price-display" class="masc-gold">R$ 5.000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="masc-filter-section">
+                    <h4>Ordenação Tática</h4>
+                    <ul class="masc-filter-options" id="masc-filter-order">
+                        <li class="active" data-value="recentes">Mais Recentes</li>
+                        <li data-value="menor-preco">Menor Taxa de Custódia</li>
+                        <li data-value="maior-preco">Maior Taxa de Custódia</li>
+                    </ul>
+                </div>
+
+                <button id="masc-btn-clear" class="masc-btn-clear">
+                    <i class="fas fa-eraser"></i> Limpar Parâmetros
+                </button>
+            </aside>
+
+            <!-- CONTEÚDO PRINCIPAL -->
+            <section class="masc-main">
+
+                <div class="masc-header-bar">
+                    <div class="masc-title-area">
+                        <h2 id="masc-main-title">ARTEFATOS DESIGNADOS</h2>
+                        <p class="masc-subtitle">Peças exclusivas do acervo masculino sob custódia temporária.</p>
+                    </div>
+                    <span id="masc-counter" class="masc-counter">Carregando acervo...</span>
+                </div>
+
+                <!-- GRID DE PRODUTOS -->
+                <div class="masc-grid" id="masc-grid">
+                    <!-- Skeletons injetados via JS -->
+                    <div class="masc-skeleton-card"><div class="masc-skel-img"></div><div class="masc-skel-body"><div class="masc-skel-line short"></div><div class="masc-skel-line medium"></div></div></div>
+                    <div class="masc-skeleton-card"><div class="masc-skel-img"></div><div class="masc-skel-body"><div class="masc-skel-line short"></div><div class="masc-skel-line medium"></div></div></div>
+                    <div class="masc-skeleton-card"><div class="masc-skel-img"></div><div class="masc-skel-body"><div class="masc-skel-line short"></div><div class="masc-skel-line medium"></div></div></div>
+                    <div class="masc-skeleton-card"><div class="masc-skel-img"></div><div class="masc-skel-body"><div class="masc-skel-line short"></div><div class="masc-skel-line medium"></div></div></div>
+                </div>
+
+            </section>
+        </div>
+
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="index.js"></script>
+    <script src="scripts/masculino.js"></script>
+</body>
+</html>

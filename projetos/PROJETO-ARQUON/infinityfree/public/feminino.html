@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARQON | Feminine Vault — Acervo Feminino</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Theme loader deve vir antes dos CSS para definir as variáveis -->
+    <script src="scripts/config.js"></script>
+    <script src="scripts/theme-loader.js"></script>
+
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/header.css">
+    <link rel="stylesheet" href="style/botaocarrinho.css">
+    <link rel="stylesheet" href="style/footer.css">
+    <link rel="stylesheet" href="style/feminino.css">
+    <link rel="stylesheet" href="style/gender-enhanced.css">
+    <link rel="stylesheet" href="style/mobile-optimizations.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="header"></div>
+
+    <div id="carrinho-container"></div>
+
+    <main class="fem-wrapper">
+
+        <!-- ATMOSFERA DE FUNDO -->
+        <div class="fem-atmosphere">
+            <div class="fem-orb-primary"></div>
+            <div class="fem-orb-secondary"></div>
+            <div class="fem-grid-overlay"></div>
+        </div>
+
+        <!-- HERO EDITORIAL -->
+        <div class="fem-hero">
+            <div class="fem-hero-inner">
+                <div class="fem-hero-text">
+                    <span class="fem-hero-label">// ARQON INDUSTRIAL LABS — ACERVO FEMININO</span>
+                    <h1 class="fem-hero-title">ÁREA<br><span class="fem-hero-title--stroke">FEMININA</span></h1>
+                    <p class="fem-hero-sub">Alta costura utilitária e alfaiataria disruptiva para custódia imediata.</p>
+                </div>
+                <div class="fem-hero-tags">
+                    <span class="fem-tag active" data-filter="all">Acervo Completo</span>
+                    <span class="fem-tag" data-filter="techwear">Techwear</span>
+                    <span class="fem-tag" data-filter="tailoring">Neo-Tailoring</span>
+                    <span class="fem-tag" data-filter="avant">Avant-Garde</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- LAYOUT PRINCIPAL (Sidebar + Grid) -->
+        <div class="fem-layout">
+
+            <!-- SIDEBAR -->
+            <aside class="fem-sidebar">
+                <div class="fem-sidebar-header">
+                    <i class="fas fa-sliders-h"></i> FILTRAR ACERVO
+                </div>
+
+                <div class="fem-filter-section">
+                    <h4>Categoria</h4>
+                    <ul class="fem-filter-options" id="fem-filter-category">
+                        <li class="active" data-value="all">Todas</li>
+                        <li data-value="acessorios"><i class="fas fa-gem"></i> Acessórios</li>
+                        <li data-value="casual chic"><i class="fas fa-tshirt"></i> Casual Chic</li>
+                        <li data-value="gala"><i class="fas fa-crown"></i> Gala & Black Tie</li>
+                        <li data-value="streetwear"><i class="fas fa-fire"></i> Streetwear</li>
+                    </ul>
+                </div>
+
+                <div class="fem-filter-section">
+                    <h4>Estilo</h4>
+                    <ul class="fem-filter-options" id="fem-filter-estilo">
+                        <li class="active" data-value="all">Todos</li>
+                        <li data-value="casual chic">Casual Chic</li>
+                        <li data-value="futurista">Futurista</li>
+                        <li data-value="gala">Gala</li>
+                        <li data-value="streetwear">Streetwear</li>
+                    </ul>
+                </div>
+
+                <div class="fem-filter-section">
+                    <h4>Marca</h4>
+                    <ul class="fem-filter-options" id="fem-filter-marca">
+                        <li class="active" data-value="all">Todas</li>
+                        <li data-value="balenciaga">Balenciaga</li>
+                        <li data-value="gucci">Gucci</li>
+                        <li data-value="off-white">Off-White</li>
+                        <li data-value="prada">Prada</li>
+                        <li data-value="versace">Versace</li>
+                    </ul>
+                </div>
+
+                <div class="fem-filter-section">
+                    <h4>Status</h4>
+                    <ul class="fem-filter-options" id="fem-filter-status">
+                        <li class="active" data-value="all">Todos</li>
+                        <li data-value="1">Disponível</li>
+                        <li data-value="0">Indisponível</li>
+                    </ul>
+                </div>
+
+                <div class="fem-filter-section">
+                    <h4>Preço Máximo (Diária)</h4>
+                    <div class="fem-price-slider-wrap">
+                        <input type="range" id="fem-price-slider" min="0" max="5000" step="50" value="5000">
+                        <div class="fem-price-labels">
+                            <span>R$ 0</span>
+                            <span id="fem-price-display" class="fem-gold">R$ 5.000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fem-filter-section">
+                    <h4>Ordenar Por</h4>
+                    <ul class="fem-filter-options" id="fem-filter-order">
+                        <li class="active" data-value="recentes">Mais Recentes</li>
+                        <li data-value="menor-preco">Menor Preço</li>
+                        <li data-value="maior-preco">Maior Preço</li>
+                    </ul>
+                </div>
+
+                <button id="fem-btn-clear" class="fem-btn-clear">
+                    <i class="fas fa-eraser"></i> Limpar Parâmetros
+                </button>
+            </aside>
+
+            <!-- CONTEÚDO PRINCIPAL -->
+            <section class="fem-main">
+
+                <div class="fem-header-bar">
+                    <div class="fem-title-area">
+                        <h2 id="fem-main-title">ARTEFATOS DESIGNADOS</h2>
+                        <p class="fem-subtitle">Peças exclusivas do acervo feminino sob custódia temporária.</p>
+                    </div>
+                    <span id="fem-counter" class="fem-counter">Carregando acervo...</span>
+                </div>
+
+                <!-- GRID DE PRODUTOS -->
+                <div class="fem-grid" id="fem-grid">
+                    <!-- Skeletons injetados via JS -->
+                    <div class="fem-skeleton-card"><div class="fem-skel-img"></div><div class="fem-skel-body"><div class="fem-skel-line short"></div><div class="fem-skel-line medium"></div></div></div>
+                    <div class="fem-skeleton-card"><div class="fem-skel-img"></div><div class="fem-skel-body"><div class="fem-skel-line short"></div><div class="fem-skel-line medium"></div></div></div>
+                    <div class="fem-skeleton-card"><div class="fem-skel-img"></div><div class="fem-skel-body"><div class="fem-skel-line short"></div><div class="fem-skel-line medium"></div></div></div>
+                    <div class="fem-skeleton-card"><div class="fem-skel-img"></div><div class="fem-skel-body"><div class="fem-skel-line short"></div><div class="fem-skel-line medium"></div></div></div>
+                </div>
+
+            </section>
+        </div>
+
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="scripts/botaocarrinho.js"></script>
+    <script src="scripts/header.js"></script>
+    <script src="scripts/scroll-reveal.js"></script>
+    <script src="scripts/toast.js"></script>
+    <script src="scripts/feminino.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

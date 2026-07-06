@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARQON Admin | Dashboard</title>
+    
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="admin-wrapper">
+        
+        <aside class="admin-sidebar">
+            <div class="admin-sidebar-header">
+                <h2 class="admin-sidebar-title"><i class="fas fa-chart-line"></i> PAINEL</h2>
+            </div>
+            
+            <nav class="admin-nav">
+                <a href="#" class="nav-link active" onclick="abrirAba('dashboard')">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+                <a href="#" class="nav-link" onclick="abrirAba('inventario')">
+                    <i class="fas fa-box"></i> Inventário
+                </a>
+                <a href="#" class="nav-link" onclick="abrirAba('usuarios')">
+                    <i class="fas fa-users"></i> Usuários
+                </a>
+                <a href="#" class="nav-link" onclick="abrirAba('logs')">
+                    <i class="fas fa-history"></i> Logs de Auditoria
+                </a>
+            </nav>
+
+            <div class="admin-sidebar-footer">
+                <a href="#" class="nav-link logout-btn" onclick="executarLogout()">
+                    <i class="fas fa-sign-out-alt"></i> Sair
+                </a>
+            </div>
+        </aside>
+
+        <main class="admin-main">
+            
+            <header class="admin-header">
+                <div>
+                    <h1 class="admin-page-title">Sistema de Controle Mestre</h1>
+                    <p class="admin-page-subtitle">Gerenciamento operacional e segurança do acervo.</p>
+                </div>
+            </header>
+
+            <div class="admin-content">
+
+                <section id="tab-dashboard" class="tab-content active">
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-header">
+                                <span class="metric-title">Artefatos Totais</span>
+                                <i class="fas fa-box metric-icon"></i>
+                            </div>
+                            <div class="metric-value" id="metric-total-produtos">0</div>
+                        </div>
+
+                        <div class="metric-card">
+                            <div class="metric-header">
+                                <span class="metric-title">Alugáveis Disponíveis</span>
+                                <i class="fas fa-check-circle metric-icon"></i>
+                            </div>
+                            <div class="metric-value" id="metric-alugaveis">0</div>
+                        </div>
+
+                        <div class="metric-card">
+                            <div class="metric-header">
+                                <span class="metric-title">Membros no Cofre</span>
+                                <i class="fas fa-users metric-icon"></i>
+                            </div>
+                            <div class="metric-value" id="metric-usuarios">0</div>
+                        </div>
+
+                        <div class="metric-card">
+                            <div class="metric-header">
+                                <span class="metric-title">Taxa de Ocupação</span>
+                                <i class="fas fa-percentage metric-icon"></i>
+                            </div>
+                            <div class="metric-value" id="metric-taxa-ocupacao">0%</div>
+                        </div>
+
+                        <div class="metric-card highlight">
+                            <div class="metric-header">
+                                <span class="metric-title">Faturamento (Mês)</span>
+                                <i class="fas fa-wallet metric-icon"></i>
+                            </div>
+                            <div class="metric-value" id="metric-receita-mes">R$ 0,00</div>
+                        </div>
+
+                        <div class="metric-card highlight">
+                            <div class="metric-header">
+                                <span class="metric-title">Contratos Pendentes</span>
+                                <i class="fas fa-clock metric-icon"></i>
+                            </div>
+                            <div class="metric-value" id="metric-receita-pendente">R$ 0,00</div>
+                        </div>
+
+                        <div class="metric-card highlight">
+                            <div class="metric-header">
+                                <span class="metric-title">Patrimônio Líquido</span>
+                                <i class="fas fa-shield-alt metric-icon"></i>
+                            </div>
+                            <div class="metric-value" id="metric-valor-inventario">R$ 0,00</div>
+                        </div>
+                    </div>
+
+                    <div class="recent-transactions">
+                        <h3 class="section-title"><i class="fas fa-exchange-alt"></i> Últimas Movimentações do Acervo</h3>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID Contrato</th>
+                                        <th>Membro / Cliente</th>
+                                        <th>Data da Transação</th>
+                                        <th>Valor Operacional</th>
+                                        <th>Status do Cofre</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="tab-inventario" class="tab-content">
+                    <div class="inventory-controls">
+                        <h3 class="section-title"><i class="fas fa-boxes"></i> Gerenciamento de Artefatos</h3>
+                        <button class="btn-add-item" onclick="abrirModalProduto()">
+                            <i class="fas fa-plus"></i> Integrar Novo Artefato
+                        </button>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="inventory-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Artefato</th>
+                                    <th>Categoria</th>
+                                    <th>Preço/Diária</th>
+                                    <th>Status de Alocação</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="tab-usuarios" class="tab-content">
+                    <h3 class="section-title"><i class="fas fa-user-shield"></i> Controle de Credenciais</h3>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nome Completo</th>
+                                    <th>E-mail Corporativo</th>
+                                    <th>Nível de Acesso</th>
+                                    <th>Status Operacional</th>
+                                    <th>Modificar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="tab-logs" class="tab-content">
+                    <div class="inventory-controls">
+                        <h3 class="section-title"><i class="fas fa-history"></i> Ledger e Histórico de Logs</h3>
+                        <div class="log-filters">
+                            <button class="btn-filter" onclick="carregarLogsSistema(1)">Hoje</button>
+                            <button class="btn-filter" onclick="carregarLogsSistema(7)">7 dias</button>
+                            <button class="btn-filter" onclick="carregarLogsSistema(30)">30 dias</button>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th class="log-timestamp-col">Timestamp</th>
+                                    <th class="log-action-col">Ação Executada</th>
+                                    <th>Descrição Técnica</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <div class="modal-overlay" id="modal-produto">
+        <div class="modal-content">
+            <h3 class="modal-title"><i class="fas fa-cube"></i> Registrar Novo Artefato</h3>
+            <form id="form-produto" onsubmit="submeterFormProduto(event)">
+                <div class="form-group">
+                    <label class="form-label">Nome do Artefato</label>
+                    <input type="text" name="nome" class="form-control" required placeholder="Ex: Patek Philippe">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Categoria</label>
+                    <input type="text" name="categoria" class="form-control" required placeholder="Ex: Relógios">
+                </div>
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <label class="form-label">Diária (R$)</label>
+                        <input type="number" name="valor_diaria" class="form-control" required min="0" step="0.01" placeholder="Ex: 150.00">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Valor total (R$)</label>
+                        <input type="number" name="valor_mercado" class="form-control" required min="0" step="0.01" placeholder="Ex: 5000.00">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Foto do Produto</label>
+                    <input type="file" name="foto" class="form-control" accept="image/png,image/jpeg" required id="input-foto" placeholder="Selecione uma imagem">
+                    <img id="preview-foto" alt="Prévia da foto do produto">
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn-submit">Salvar Artefato</button>
+                    <button type="button" class="btn-cancel" onclick="fecharModalProduto()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="scripts/admin.js"></script>
+</body>
+</html>

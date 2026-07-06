@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARQON | Protocolo de Custódia (Checkout)</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Theme loader deve vir antes dos CSS para definir as variáveis -->
+    <script src="scripts/config.js"></script>
+    <script src="scripts/theme-loader.js"></script>
+
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/header.css">
+    <link rel="stylesheet" href="style/footer.css">
+    <link rel="stylesheet" href="style/botaocarrinho.css">
+    <link rel="stylesheet" href="style/checkout.css">
+    <link rel="stylesheet" href="style/mobile-optimizations.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="arqon-checkout-body">
+
+    <div id="header"></div>
+
+    <div id="carrinho-container"></div>
+
+    <main class="checkout-container">
+        <header class="checkout-page-header">
+            <div class="tech-badge"><i class="fas fa-lock"></i> AES-256 SECURE CONNECTION</div>
+            <h1 class="checkout-main-title">PROTOCOLO DE CUSTÓDIA</h1>
+            <p class="checkout-subtitle">Finalize a sua alocação de artefatos com segurança criptográfica.</p>
+        </header>
+
+        <div class="checkout-grid">
+            
+            <section class="checkout-form-section">
+                
+                <div class="checkout-step-card active">
+                    <div class="step-header">
+                        <span class="step-number">01</span>
+                        <h2 class="step-title">IDENTIDADE REQUERENTE</h2>
+                    </div>
+                    <div class="step-content">
+                        <div class="form-row two-cols">
+                            <div class="input-group">
+                                <label for="chk-nome">Nome Completo</label>
+                                <input type="text" id="chk-nome" placeholder="Seu nome registrado">
+                            </div>
+                            <div class="input-group">
+                                <label for="chk-cpf">CPF / Passaporte</label>
+                                <input type="text" id="chk-cpf" placeholder="000.000.000-00">
+                            </div>
+                        </div>
+                        <div class="form-row two-cols">
+                            <div class="input-group">
+                                <label for="chk-email">E-mail de Acesso</label>
+                                <input type="email" id="chk-email" placeholder="contato@exemplo.com">
+                            </div>
+                            <div class="input-group">
+                                <label for="chk-telefone">Telefone / WhatsApp</label>
+                                <input type="tel" id="chk-telefone" placeholder="(00) 00000-0000">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkout-step-card">
+                    <div class="step-header">
+                        <span class="step-number">02</span>
+                        <h2 class="step-title">VETOR DE LOGÍSTICA (ENTREGA)</h2>
+                    </div>
+                    <div class="step-content">
+                        <div class="saved-addresses" id="saved-addresses">
+                            <!-- Endereços salvos serão carregados aqui -->
+                        </div>
+                        <div class="form-row">
+                            <div class="input-group cep-group">
+                                <label for="chk-cep">CEP</label>
+                                <div class="cep-wrapper">
+                                    <input type="text" id="chk-cep" placeholder="00000-000">
+                                    <button type="button" id="btn-buscar-cep" class="btn-outline-gold">BUSCAR</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row two-cols-uneven">
+                            <div class="input-group">
+                                <label for="chk-rua">Logradouro</label>
+                                <input type="text" id="chk-rua" placeholder="Avenida / Rua">
+                            </div>
+                            <div class="input-group">
+                                <label for="chk-numero">Número</label>
+                                <input type="text" id="chk-numero" placeholder="Nº">
+                            </div>
+                        </div>
+                        <div class="form-row two-cols">
+                            <div class="input-group">
+                                <label for="chk-complemento">Complemento</label>
+                                <input type="text" id="chk-complemento" placeholder="Apto, Bloco (Opcional)">
+                            </div>
+                            <div class="input-group">
+                                <label for="chk-bairro">Bairro</label>
+                                <input type="text" id="chk-bairro" placeholder="Seu Bairro">
+                            </div>
+                        </div>
+                        <div class="form-row two-cols">
+                            <div class="input-group">
+                                <label for="chk-cidade">Cidade</label>
+                                <input type="text" id="chk-cidade" placeholder="Cidade">
+                            </div>
+                            <div class="input-group">
+                                <label for="chk-estado">Estado</label>
+                                <input type="text" id="chk-estado" placeholder="UF" maxlength="2">
+                            </div>
+                        </div>
+                        
+                        <h3 class="sub-label">Modalidade de Transporte</h3>
+                        <div class="shipping-options">
+                            <label class="shipping-card">
+                                <input type="radio" name="shipping" value="standard" checked>
+                                <div class="shipping-details">
+                                    <span class="ship-name">ARQON Standard</span>
+                                    <span class="ship-time">3 a 5 dias úteis</span>
+                                </div>
+                                <span class="ship-price">R$ 35,00</span>
+                            </label>
+                            <label class="shipping-card">
+                                <input type="radio" name="shipping" value="express">
+                                <div class="shipping-details">
+                                    <span class="ship-name" style="color: #E7B93F;">ARQON Prime Priority</span>
+                                    <span class="ship-time">1 a 2 dias úteis</span>
+                                </div>
+                                <span class="ship-price">R$ 75,00</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkout-step-card">
+                    <div class="step-header">
+                        <span class="step-number">03</span>
+                        <h2 class="step-title">APORTE FINANCEIRO</h2>
+                    </div>
+                    <div class="step-content">
+                        <div class="payment-tabs">
+                            <button class="pay-tab active" data-method="pix"><i class="fa-brands fa-pix"></i> PIX</button>
+                            <button class="pay-tab" data-method="card"><i class="fa-regular fa-credit-card"></i> CARTÃO</button>
+                        </div>
+
+                        <div class="payment-panel active" id="panel-pix">
+                            <div class="pix-info">
+                                <i class="fa-brands fa-pix pix-huge"></i>
+                                <p>Aprovação instantânea. O código QR será gerado na próxima etapa para garantir sua reserva.</p>
+                            </div>
+                        </div>
+
+                        <div class="payment-panel" id="panel-card" style="display: none;">
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <label for="chk-card-num">Número do Cartão</label>
+                                    <input type="text" id="chk-card-num" placeholder="0000 0000 0000 0000">
+                                </div>
+                            </div>
+                            <div class="form-row two-cols">
+                                <div class="input-group">
+                                    <label for="chk-card-name">Nome no Cartão</label>
+                                    <input type="text" id="chk-card-name" placeholder="Como impresso no cartão">
+                                </div>
+                                <div class="form-row two-cols inner-cols">
+                                    <div class="input-group">
+                                        <label for="chk-card-val">Validade</label>
+                                        <input type="text" id="chk-card-val" placeholder="MM/AA">
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="chk-card-cvv">CVV</label>
+                                        <input type="text" id="chk-card-cvv" placeholder="123">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <aside class="checkout-summary-section">
+                <div class="summary-glass-panel">
+                    <h2 class="summary-title">SEU COFRE</h2>
+                    <hr class="arqon-divider">
+                    
+                    <div class="checkout-items-list" id="checkout-items-list">
+                        <div style="color: #666; font-size: 13px; text-align: center; padding: 20px;">
+                            Sincronizando artefatos...
+                        </div>
+                    </div>
+
+                    <hr class="arqon-divider">
+
+                    <div class="summary-calculations">
+                        <div class="calc-row">
+                            <span>Subtotal Custódia</span>
+                            <span id="chk-subtotal">R$ 0,00</span>
+                        </div>
+                        <div class="calc-row">
+                            <span>Taxa de Higienização</span>
+                            <span id="chk-limpeza">R$ 35,00</span>
+                        </div>
+                        <div class="calc-row">
+                            <span>Transporte Logístico</span>
+                            <span id="chk-frete">R$ 35,00</span>
+                        </div>
+                        <div class="calc-row highlight-row tooltip-trigger">
+                            <span>Retenção de Segurança (Caução) <i class="fas fa-info-circle"></i></span>
+                            <span id="chk-caucao">R$ 0,00</span>
+                            <div class="tooltip-box">Estornado em até 48h após a devolução.</div>
+                        </div>
+                        <div class="calc-row" id="cupom-row" style="display: none;">
+                            <span>Desconto (Cupom)</span>
+                            <span id="chk-desconto" class="text-green">-R$ 0,00</span>
+                        </div>
+                    </div>
+
+                    <hr class="arqon-divider">
+
+                    <div class="coupon-section">
+                        <div class="coupon-input-wrapper">
+                            <input type="text" id="chk-cupom" placeholder="Código do cupom">
+                            <button type="button" id="btn-aplicar-cupom" class="btn-outline-gold small">APLICAR</button>
+                        </div>
+                    </div>
+
+                    <div class="calc-row grand-total">
+                        <span>APORTE TOTAL</span>
+                        <span id="chk-total-final" class="gold-text">R$ 0,00</span>
+                    </div>
+
+                    <button id="btn-finalizar-protocolo" class="btn-primary-glow mt-20">
+                        <span class="btn-text">AUTORIZAR TRANSAÇÃO</span>
+                        <i class="fas fa-fingerprint"></i>
+                    </button>
+                    
+                    <p class="secure-footer-text">
+                        <i class="fas fa-shield-halved"></i> Transação protegida e auditada.
+                    </p>
+                </div>
+            </aside>
+
+            <div id="success-overlay" class="success-overlay">
+            <div class="success-card">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2 class="success-title">CUSTÓDIA CONFIRMADA</h2>
+                <p class="success-subtitle">O seu protocolo foi autenticado. Os artefatos estão a ser preparados para expedição.</p>
+
+                <div class="receipt-box">
+                    <div class="receipt-header">
+                        <span>Protocolo: <strong id="receipt-id">#ARQ-0000</strong></span>
+                        <span id="receipt-date">Data</span>
+                    </div>
+                    
+                    <hr class="arqon-divider">
+                    
+                    <div id="receipt-items" class="receipt-items">
+                        </div>
+                    
+                    <hr class="arqon-divider">
+                    
+                    <div class="receipt-totals">
+                        <div class="calc-row">
+                            <span>Aporte Total Autorizado</span>
+                            <span id="receipt-total" class="gold-text">R$ 0,00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="btn-voltar-catalogo" class="btn-primary-glow mt-20">
+                    <span class="btn-text">RETORNAR AO ACERVO</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="scripts/auth-fetch.js"></script>
+    <script src="scripts/header.js"></script>
+    <script src="scripts/botaocarrinho.js"></script>
+    <script src="scripts/scroll-reveal.js"></script>
+    <script src="scripts/toast.js"></script>
+    <script src="index.js"></script>
+    <script src="scripts/checkout.js"></script>
+</body>
+</html>

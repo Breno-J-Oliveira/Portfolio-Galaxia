@@ -1,0 +1,12 @@
+{
+  "name": "Portfólio Breno Oliveira",
+  "short_name": "Breno.dev",
+  "description": "Backend Developer & Systems Engineer",
+  "start_url": "./",
+  "display": "standalone",
+  "theme_color": "#00ffff",
+  "background_color": "#0a0a1a",
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

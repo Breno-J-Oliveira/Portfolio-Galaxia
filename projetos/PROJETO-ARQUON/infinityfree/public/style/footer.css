@@ -1,0 +1,277 @@
+/* ==================================================
+   ARQON | FOOTER SYSTEM (Fiel à Versão Visual Original)
+   ================================================== */
+footer {
+    width: 100%;
+    background: linear-gradient(to top, var(--color-dark-dark), transparent);
+    border-top: 2px solid var(--color-primary);
+    padding-top: 60px;
+    font-family: var(--font-main);
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+footer * {
+    box-sizing: border-box;
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 0 5%;
+    gap: 3%;
+    flex-wrap: wrap; 
+}
+
+.footer-logo {
+    flex: 2;
+    min-width: 250px; 
+}
+
+/* 📐 CONTROLE DE TAMANHO DA LOGO EM SVG */
+.arqon-logo-wrapper {
+    max-width: 180px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    display: block;
+    overflow: hidden;
+}
+
+.arqon-footer-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-width: 100%;
+}
+
+footer .container {
+    overflow-x: hidden;
+}
+
+.footer-logo p {
+    color: var(--color-tertiary-light);
+    font-size: var(--fs-small);
+    line-height: 1.6;
+    max-width: 90%;
+}
+
+.footer-links, .footer-social {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-width: 150px;
+}
+
+footer h3 {
+    color: var(--color-light);
+    font-size: var(--fs-p);
+    font-weight: 600;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+footer a {
+    color: var(--color-tertiary-light);
+    text-decoration: none;
+    font-size: var(--fs-small);
+    transition: all 0.3s ease;
+    width: fit-content;
+}
+
+footer a:hover {
+    color: var(--color-primary);
+    transform: translateX(5px);
+}
+
+.footer-social a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-social i {
+    font-size: 16px;
+}
+
+.copyright {
+    margin-top: 50px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 20px 0;
+    text-align: center;
+}
+
+.copyright p {
+    color: var(--color-tertiary-light);
+    font-size: var(--fs-small);
+    margin: 0;
+}
+
+/* Responsividade Mobile Premium */
+@media (max-width: 768px) {
+    footer {
+        padding-top: 30px;
+        padding-bottom: 20px;
+    }
+    
+    footer .container {
+        flex-direction: column;
+        gap: 24px;
+        padding: 0 20px;
+        text-align: center;
+    }
+    
+    .footer-logo {
+        max-width: 100%;
+        min-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .arqon-logo-wrapper {
+        max-width: 140px;
+        margin-bottom: 12px;
+    }
+    
+    .footer-logo p {
+        font-size: 13px;
+        line-height: 1.6;
+        max-width: 100%;
+        text-align: center;
+    }
+    
+    .footer-links, .footer-social {
+        width: 100%;
+        align-items: center;
+        gap: 12px;
+    }
+    
+    footer h3 {
+        font-size: 14px;
+        margin-bottom: 12px;
+        letter-spacing: 0.5px;
+    }
+    
+    footer a {
+        font-size: 13px;
+        padding: 6px 0;
+        width: 100%;
+        text-align: center;
+    }
+    
+    footer a:hover {
+        transform: translateY(-2px);
+    }
+    
+    .footer-social a {
+        justify-content: center;
+        padding: 8px 0;
+    }
+    
+    .footer-social i {
+        font-size: 18px;
+    }
+    
+    .copyright {
+        margin-top: 24px;
+        padding: 16px 0;
+    }
+    
+    .copyright p {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    footer {
+        padding-top: 24px;
+        padding-bottom: 16px;
+    }
+    
+    footer .container {
+        padding: 0 16px;
+        gap: 20px;
+    }
+    
+    .arqon-logo-wrapper {
+        max-width: 120px;
+        margin-bottom: 10px;
+    }
+    
+    .footer-logo p {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+    
+    footer h3 {
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+    
+    footer a {
+        font-size: 12px;
+        padding: 5px 0;
+    }
+    
+    .footer-social i {
+        font-size: 16px;
+    }
+    
+    .copyright {
+        margin-top: 20px;
+        padding: 12px 0;
+    }
+    
+    .copyright p {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 360px) {
+    footer {
+        padding-top: 20px;
+        padding-bottom: 14px;
+    }
+    
+    footer .container {
+        padding: 0 12px;
+        gap: 18px;
+    }
+    
+    .arqon-logo-wrapper {
+        max-width: 100px;
+        margin-bottom: 8px;
+    }
+    
+    .footer-logo p {
+        font-size: 11px;
+        line-height: 1.4;
+    }
+    
+    footer h3 {
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+    
+    footer a {
+        font-size: 11px;
+        padding: 4px 0;
+    }
+    
+    .footer-social i {
+        font-size: 14px;
+    }
+    
+    .copyright {
+        margin-top: 16px;
+        padding: 10px 0;
+    }
+    
+    .copyright p {
+        font-size: 10px;
+    }
+}

@@ -1,0 +1,219 @@
+/* ==================================================
+   ARQON | AUTHENTICATION UI - DIRECT & PREMIUM
+   ================================================== */
+:root {
+  --arqon-bg-dark: #050505;
+  --arqon-gold: #D4AF37;
+  --arqon-gold-dim: rgba(212, 175, 55, 0.4);
+  --arqon-gold-glow: rgba(212, 175, 55, 0.15);
+  --arqon-wine: #2a0818;
+  --arqon-border: rgba(255, 255, 255, 0.08);
+  --arqon-glass: rgba(10, 10, 12, 0.65);
+  --arqon-error: #ff4d4d;
+  --font-display: 'Cinzel', serif;
+  --font-sans: 'Inter', sans-serif;
+}
+
+body, html {
+  margin: 0; padding: 0;
+  background-color: var(--arqon-bg-dark);
+  font-family: var(--font-sans);
+  color: #fff;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* CONTAINER PRINCIPAL */
+.arqon-auth-section {
+  width: 100vw; height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(circle at 70% 50%, var(--arqon-wine) 0%, var(--arqon-bg-dark) 80%);
+}
+
+.arqon-auth-layout {
+  display: grid; grid-template-columns: 1.2fr 1fr;
+  width: 100%; height: 100%;
+}
+
+/* PAINEL VISUAL */
+.arqon-visual-pane {
+  position: relative;
+  background: url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+  display: flex; align-items: center; justify-content: center;
+  border-right: 1px solid var(--arqon-border);
+}
+
+.arqon-visual-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(5,5,5,0.95) 0%, rgba(42, 8, 24, 0.4) 100%);
+}
+
+.arqon-brand-content { position: relative; z-index: 10; text-align: center; }
+.arqon-logo { font-family: var(--font-display); font-size: 4.5rem; letter-spacing: 15px; color: var(--arqon-gold); margin: 0; }
+.arqon-tagline { font-family: var(--font-sans); font-size: 0.8rem; letter-spacing: 8px; color: rgba(255,255,255,0.5); margin-top: -5px; }
+
+/* PAINEL FORMULÁRIO */
+.arqon-form-pane {
+  display: flex; align-items: center; justify-content: center;
+  padding: 40px; position: relative; overflow-y: auto;
+}
+
+.arqon-form-pane::-webkit-scrollbar { width: 4px; }
+.arqon-form-pane::-webkit-scrollbar-thumb { background: var(--arqon-gold-dim); border-radius: 4px; }
+
+.arqon-form-container {
+  width: 100%; max-width: 420px;
+  padding: 50px 45px;
+  background: var(--arqon-glass);
+  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(30px);
+  border: 1px solid var(--arqon-border); border-radius: 8px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+  transition: all 0.4s ease;
+}
+
+/* TIPOGRAFIA */
+.arqon-form-header { text-align: center; margin-bottom: 35px; }
+.arqon-form-header h2 { font-family: var(--font-display); font-size: 1.6rem; letter-spacing: 3px; color: #fff; margin-bottom: 8px; }
+.arqon-form-header p { font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.5; font-weight: 300;}
+
+/* INPUTS */
+.arqon-row { display: flex; gap: 15px; }
+.arqon-input-group { position: relative; margin-bottom: 28px; width: 100%; }
+.arqon-input-group input {
+  width: 100%; padding: 12px 0 8px 0;
+  background: transparent; border: none; border-bottom: 1px solid var(--arqon-border);
+  color: #fff; font-size: 0.95rem; font-family: var(--font-sans);
+  transition: all 0.3s ease; border-radius: 0; outline: none;
+}
+.arqon-input-group label {
+  position: absolute; left: 0; top: 12px;
+  color: rgba(255,255,255,0.4); font-size: 0.8rem; letter-spacing: 1px;
+  pointer-events: none; transition: all 0.3s ease;
+}
+
+.arqon-input-group input:focus, .arqon-input-group input:not(:placeholder-shown) { border-bottom-color: var(--arqon-gold); }
+.arqon-input-group input:focus ~ label, .arqon-input-group input:not(:placeholder-shown) ~ label {
+  top: -14px; font-size: 0.65rem; color: var(--arqon-gold); text-transform: uppercase; letter-spacing: 1.5px;
+}
+
+.arqon-error-msg {
+  display: block; color: var(--arqon-error); font-size: 0.65rem;
+  margin-top: 6px; position: absolute; bottom: -18px; left: 0; font-weight: 500;
+}
+
+/* UPLOAD DE AVATAR (ISOLADO PARA ETAPA 2) */
+.arqon-avatar-step { display: flex; flex-direction: column; align-items: center; margin-bottom: 30px; }
+.avatar-preview-box {
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  border: 1px dashed var(--arqon-gold-dim);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  cursor: pointer; background-color: rgba(0,0,0,0.3);
+  background-size: cover; background-position: center;
+  transition: all 0.3s ease; color: var(--arqon-gold-dim);
+  margin-bottom: 15px;
+}
+.avatar-preview-box:hover { border-color: var(--arqon-gold); color: var(--arqon-gold); background-color: var(--arqon-gold-glow); }
+.avatar-preview-box i { font-size: 1.8rem; margin-bottom: 8px; }
+.avatar-preview-box span { font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase; }
+.avatar-preview-box.has-image i, .avatar-preview-box.has-image span { display: none; }
+.avatar-preview-box.has-image { border: 2px solid var(--arqon-gold); }
+
+/* BOTÕES */
+.arqon-btn-submit {
+  width: 100%; padding: 15px; margin-top: 10px;
+  background: var(--arqon-gold); border: 1px solid var(--arqon-gold);
+  color: #000; font-family: var(--font-sans); font-weight: 600;
+  font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase;
+  cursor: pointer; position: relative; transition: all 0.3s ease;
+  display: flex; justify-content: center; align-items: center; border-radius: 2px;
+}
+.arqon-btn-submit:hover:not(:disabled) { box-shadow: 0 0 20px var(--arqon-gold-glow); background: #fff; border-color: #fff; }
+.arqon-btn-submit:disabled { opacity: 0.7; cursor: not-allowed; }
+
+.arqon-btn-secondary {
+  width: 100%; padding: 15px; margin-top: 15px;
+  background: transparent; border: 1px solid var(--arqon-border);
+  color: rgba(255,255,255,0.7); font-family: var(--font-sans); font-weight: 500;
+  font-size: 0.85rem; cursor: pointer; transition: all 0.3s ease;
+  display: flex; justify-content: center; align-items: center; border-radius: 2px;
+}
+.arqon-btn-secondary:hover { border-color: #fff; color: #fff; }
+
+/* SPINNER */
+.spinner {
+  width: 18px; height: 18px; border: 2px solid transparent; border-top-color: currentColor;
+  border-radius: 50%; animation: spin 0.8s linear infinite; display: none; margin-right: 10px;
+}
+.loading .spinner { display: block; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* LINKS E FOOTER */
+.arqon-form-footer { margin-top: 35px; text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.5); }
+.arqon-link { color: var(--arqon-gold); text-decoration: none; font-weight: 500; margin-left: 5px; transition: color 0.3s; }
+.arqon-link:hover { color: #fff; }
+
+/* VOLTAR */
+.arqon-btn-back {
+  position: absolute; top: 35px; left: 40px; z-index: 100;
+  color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.75rem;
+  letter-spacing: 1px; display: flex; align-items: center; gap: 10px; transition: all 0.3s;
+}
+.arqon-btn-back:hover { color: var(--arqon-gold); transform: translateX(-5px); }
+
+/* FADE ANIMATION */
+.fade-enter { animation: fadeIn 0.4s ease forwards; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+/* RESPONSIVO */
+@media (max-width: 960px) {
+  .arqon-visual-pane { display: none; }
+  .arqon-auth-layout { grid-template-columns: 1fr; }
+  .arqon-form-pane { background: radial-gradient(circle at top, var(--arqon-wine), var(--arqon-bg-dark)); }
+}
+
+/* =========================================
+   V8 AUTHENTICATION FEEDBACK & ANIMATIONS
+   ========================================= */
+
+/* Suaviza a transição entre Cadastro e Login */
+.arqon-form.fade-in {
+    animation: formFadeIn 0.4s ease forwards;
+}
+
+@keyframes formFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Estado de Carregamento do Botão */
+.arqon-btn-submit.loading {
+    opacity: 0.6;
+    pointer-events: none;
+    position: relative;
+    color: transparent !important; /* Esconde o texto original para por o spinner */
+}
+
+.arqon-btn-submit.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: var(--arqon-gold);
+    border-radius: 50%;
+    animation: arqonSpin 0.8s linear infinite;
+}
+
+@keyframes arqonSpin {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Transição suave do botão de erro para sucesso */
+.arqon-btn-submit {
+    transition: all 0.3s ease;
+}

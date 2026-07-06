@@ -1,0 +1,517 @@
+/**
+ * ARQON - THE VAULT | Mobile Performance Optimizations v2
+ * Remove apenas animacoes decorativas pesadas em mobile.
+ * PRESERVA transicoes/transforms de UI critica: menu, carrinho, modais, scroll-reveal.
+ */
+
+@media (max-width: 768px) {
+    /* 0. GUARDA GLOBAL ANTI-OVERFLOW HORIZONTAL (causa #1 de "tudo bugado") */
+    html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* Containers comuns: largura fluida (sem quebrar max-widths intencionais) */
+    main, section,
+    .container, .vh-inner, .vh-section,
+    .arqon-catalog-wrapper, .arqon-pdp, .checkout-container,
+    .arqon-profile-stage, .masc-wrapper, .fem-wrapper,
+    .catalog-layout, .catalog-main-content {
+        max-width: 100vw;
+    }
+
+    /* Imagens/midia sempre responsivas (baixa especificidade, nao quebra logos) */
+    img, video, model-viewer, iframe, canvas {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Tabelas largas rolam internamente em vez de quebrar a pagina */
+    table {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* 1. Otimiza scroll nativo */
+    html, body {
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: auto;
+    }
+
+    /* 2. Remove parallax (pesado em mobile) */
+    .parallax-bg {
+        background-attachment: scroll !important;
+    }
+
+    /* 3. Remove backdrop-filter pesado em paineis genericos (mantem em header/menu) */
+    .glass-panel,
+    .dropdown-menu {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+
+    /* 4. Desabilita animacoes decorativas pesadas (NAO afeta UI funcional) */
+    .pulse, .glow, .shimmer, .avatar-glow-ring {
+        animation: none !important;
+    }
+
+    /* 4a. Desabilita animacoes pesadas da home vault */
+    .vh-hero-sunburst {
+        animation: none !important;
+    }
+    .vh-chrome {
+        animation: none !important;
+    }
+    .vh-orb {
+        opacity: 0.2 !important;
+    }
+    .vh-sustain-visual::before {
+        animation: none !important;
+    }
+
+    /* 5. Simplifica hovers decorativos em cards (mantem transicao basica) */
+    .product-card:hover,
+    .collection-card:hover,
+    .fav-item-card:hover,
+    .address-card:hover {
+        transform: translateY(-2px) !important;
+    }
+
+    /* 6. Otimiza renderizacao de imagens */
+    img {
+        image-rendering: -webkit-optimize-contrast;
+    }
+
+    /* 7. Garante que scroll-reveal funcione (NAO sobrescreve com opacity 1) */
+    .scroll-reveal,
+    .vh-reveal {
+        transition: opacity .6s ease, transform .6s ease !important;
+    }
+
+    /* 8. Forca transicoes funcionais do carrinho lateral */
+    .arqon-cart-overlay,
+    .cart-drawer {
+        transition: opacity 0.3s ease, transform 0.3s ease !important;
+    }
+
+    /* 9. Menu mobile - garante transicao de abertura */
+    .main-nav.nav-open {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+
+    /* 10. Aumenta touch targets e visibilidade em mobile (sem hover) */
+    .btn-wishlist,
+    .btn-add-cart,
+    .btn-card-action {
+        min-width: 44px;
+        min-height: 44px;
+    }
+    .btn-add-cart {
+        background: rgba(231, 185, 63, 0.2) !important;
+        border-color: var(--color-secondary, #E7B93F) !important;
+        color: var(--color-secondary, #E7B93F) !important;
+    }
+    .card-hover-actions {
+        display: block !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    /* 11. Remove text-shadow excessivo em titulos */
+    .hero-title,
+    .section-title {
+        text-shadow: none !important;
+    }
+}
+
+/* ============================================
+   AJUSTES ESPECIFICOS PARA TELAS PEQUENAS
+   ============================================ */
+@media (max-width: 480px) {
+    /* Hero sphere muito grande em telas pequenas */
+    .vh-hero-sphere {
+        display: none !important;
+    }
+
+    /* Ajusta fonte base para leitura confortavel */
+    body {
+        font-size: 14px;
+    }
+
+    /* Inputs nunca menores que 16px para evitar zoom em iOS */
+    input, textarea, select {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 360px) {
+    body {
+        font-size: 13px;
+    }
+}
+
+/* ============================================
+   MELHORIAS DE RESPONSIVIDADE GLOBAL
+   ============================================ */
+
+/* === TABLETS (768px - 1024px) === */
+@media (min-width: 768px) and (max-width: 1024px) {
+    /* Ajusta containers para tablets */
+    .container, .vh-inner, .catalog-layout {
+        padding: 0 4%;
+    }
+    
+    /* Grid de produtos em 3 colunas para tablets */
+    .catalog-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+    
+    /* Hero ajustado para tablets */
+    .vh-hero {
+        min-height: 85vh;
+        padding: 100px 4% 60px;
+    }
+    
+    .vh-hero h1 {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+    }
+    
+    .vh-hero-sphere {
+        width: 280px;
+        right: 2%;
+        opacity: 0.7;
+    }
+    
+    /* Checkout em coluna única em tablets */
+    .checkout-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Profile ajustado */
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* === CELULARES GRANDES (480px - 768px) === */
+@media (min-width: 480px) and (max-width: 768px) {
+    /* Grid de produtos em 2 colunas */
+    .catalog-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    
+    /* Hero compacto */
+    .vh-hero {
+        min-height: 75vh;
+        padding: 80px 5% 50px;
+        text-align: center;
+    }
+    
+    .vh-hero h1 {
+        font-size: clamp(2rem, 9vw, 3rem);
+    }
+    
+    .vh-hero-desc {
+        font-size: 0.95rem;
+    }
+    
+    /* Stats em 2 colunas */
+    .vh-hero-stats {
+        gap: 20px;
+    }
+    
+    .vh-stat .num {
+        font-size: 1.8rem;
+    }
+    
+    /* Botões empilhados */
+    .vh-hero-cta {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .vh-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* === CELULARES PEQUENOS (< 480px) === */
+@media (max-width: 480px) {
+    /* Grid de produtos em 1 coluna */
+    .catalog-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    /* Cards ocupam largura total */
+    .arq-card {
+        max-width: 100%;
+    }
+    
+    /* Hero super compacto */
+    .vh-hero {
+        min-height: 70vh;
+        padding: 70px 4% 40px;
+    }
+    
+    .vh-hero h1 {
+        font-size: clamp(1.8rem, 10vw, 2.5rem);
+        line-height: 1;
+    }
+    
+    .vh-hero-badge {
+        font-size: 0.6rem;
+        padding: 6px 12px;
+    }
+    
+    .vh-hero-sub {
+        font-size: 0.75rem;
+        letter-spacing: 0.2em;
+    }
+    
+    .vh-hero-desc {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+    
+    /* Stats em coluna */
+    .vh-hero-stats {
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+    }
+    
+    .vh-stat-divider {
+        display: none;
+    }
+    
+    /* Seções com menos padding */
+    .vh-section {
+        padding: clamp(40px, 8vw, 80px) 4%;
+    }
+    
+    /* Títulos menores */
+    .vh-title {
+        font-size: clamp(1.8rem, 8vw, 3rem);
+    }
+    
+    /* Botões full width */
+    .vh-btn {
+        width: 100%;
+        padding: 14px 24px;
+        font-size: 0.72rem;
+    }
+    
+    /* Checkout compacto */
+    .checkout-container {
+        margin: 80px auto 40px;
+        padding: 0 12px;
+    }
+    
+    .checkout-main-title {
+        font-size: 24px;
+        letter-spacing: 2px;
+    }
+    
+    .step-content {
+        padding: 20px 16px;
+    }
+    
+    /* Login compacto */
+    .login-container {
+        padding: 20px 16px;
+    }
+    
+    .login-title {
+        font-size: 24px;
+    }
+}
+
+/* === TELAS MUITO PEQUENAS (< 360px) === */
+@media (max-width: 360px) {
+    /* Ajustes extremos para telas muito pequenas */
+    .vh-hero h1 {
+        font-size: 1.6rem;
+    }
+    
+    .vh-hero-badge {
+        font-size: 0.55rem;
+    }
+    
+    .vh-btn {
+        padding: 12px 20px;
+        font-size: 0.68rem;
+    }
+    
+    .catalog-grid {
+        gap: 14px;
+    }
+    
+    .card-info {
+        padding: 10px;
+    }
+    
+    .card-name {
+        font-size: 11px;
+    }
+    
+    .card-price {
+        font-size: 13px;
+    }
+}
+
+/* === TELAS GRANDES (> 1440px) === */
+@media (min-width: 1440px) {
+    /* Containers maiores para telas grandes */
+    .container, .vh-inner {
+        max-width: 1400px;
+    }
+    
+    .catalog-layout {
+        max-width: 1600px;
+    }
+    
+    /* Grid de produtos em 4+ colunas */
+    .catalog-grid {
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 30px;
+    }
+    
+    /* Hero mais impactante */
+    .vh-hero h1 {
+        font-size: 6rem;
+    }
+    
+    .vh-hero-sphere {
+        width: 500px;
+    }
+}
+
+/* === TELAS ULTRA LARGAS (> 1920px) === */
+@media (min-width: 1920px) {
+    .container, .vh-inner {
+        max-width: 1600px;
+    }
+    
+    .catalog-layout {
+        max-width: 1800px;
+    }
+    
+    .catalog-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    
+    .vh-hero h1 {
+        font-size: 7rem;
+    }
+}
+
+/* ============================================
+   MELHORIAS DE TOUCH E ACESSIBILIDADE
+   ============================================ */
+@media (hover: none) and (pointer: coarse) {
+    /* Dispositivos touch - aumenta áreas clicáveis */
+    .btn-wishlist,
+    .btn-add-cart,
+    .btn-card-action,
+    .nav-link,
+    .filter-options li {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Remove hover effects em touch */
+    .arq-card:hover {
+        transform: none;
+    }
+    
+    .arq-card:active {
+        transform: scale(0.98);
+    }
+    
+    /* Mostra ações sempre em touch */
+    .card-hover-actions {
+        opacity: 1;
+        transform: none;
+    }
+    
+    /* Feedback visual em touch */
+    .vh-btn:active {
+        transform: scale(0.96);
+    }
+}
+
+/* ============================================
+   MODO PAISAGEM EM CELULARES
+   ============================================ */
+@media (max-height: 500px) and (orientation: landscape) {
+    .vh-hero {
+        min-height: auto;
+        padding: 60px 5% 40px;
+    }
+    
+    .vh-hero-sphere {
+        display: none;
+    }
+    
+    .vh-hero-stats {
+        margin-top: 30px;
+    }
+    
+    .arqon-header .container {
+        height: 50px;
+    }
+}
+
+/* ============================================
+   SAFE AREAS (iPhone X+, notch devices)
+   ============================================ */
+@supports (padding: max(0px)) {
+    .arqon-header {
+        padding-left: max(12px, env(safe-area-inset-left));
+        padding-right: max(12px, env(safe-area-inset-right));
+    }
+    
+    footer {
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+    }
+    
+    .main-nav.nav-open {
+        padding-bottom: max(32px, env(safe-area-inset-bottom));
+    }
+}
+
+/* ============================================
+   DARK MODE SYSTEM PREFERENCE
+   ============================================ */
+@media (prefers-color-scheme: dark) {
+    /* O site já é dark, mas garante consistência */
+    :root {
+        color-scheme: dark;
+    }
+}
+
+/* ============================================
+   REDUCED MOTION (Acessibilidade)
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .vh-hero-sunburst,
+    .vh-chrome,
+    .vh-orb {
+        animation: none !important;
+    }
+}

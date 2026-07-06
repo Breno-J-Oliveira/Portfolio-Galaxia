@@ -1,0 +1,329 @@
+/* ============================================================
+   CORE.CSS — Base compartilhada do portfólio
+   Tokens de design, reset, cursor, scanlines, scrollbar,
+   decorações de canto e utilitários comuns a TODAS as páginas.
+   Autor: Breno J. Oliveira
+============================================================ */
+
+/* ── DESIGN TOKENS (unificados) ────────────────────────────
+   Paleta canônica em --c1..--c6.
+   Aliases --aurora-* mantidos para compatibilidade com a
+   engine da galáxia (index). --ease e --transition apontam
+   para a mesma curva. ─────────────────────────────────────── */
+:root {
+  /* Neutros / fundos */
+  --black:    #000000;
+  --void:     #020408;
+  --deep:     #050b14;
+  --surface:  #0a1628;
+  --panel:    #0d1f3a;
+  --white:    #ffffff;
+  --dim:      #8899aa;
+  --muted:    rgba(255,255,255,0.35);
+  --ghost:    rgba(255,255,255,0.05);
+
+  /* Paleta de destaque canônica */
+  --c1: #00ffff;  /* ciano   */
+  --c2: #ff00ff;  /* magenta */
+  --c3: #ffdd00;  /* dourado */
+  --c4: #00ff88;  /* verde   */
+  --c5: #ff4444;  /* vermelho*/
+  --c6: #4466ff;  /* azul    */
+
+  /* Accent principal em RGB (para glows rgba() inline) */
+  --c1-rgb: 0, 255, 255;
+
+  /* Aliases para a engine da galáxia (index) */
+  --aurora-1: var(--c1);
+  --aurora-2: var(--c2);
+  --aurora-3: var(--c3);
+  --aurora-4: var(--c4);
+  --aurora-5: var(--c5);
+  --aurora-6: var(--c6);
+
+  /* Glows */
+  --glow-cyan:   0 0 20px rgba(var(--c1-rgb),0.6), 0 0 60px rgba(var(--c1-rgb),0.3);
+  --glow-mag:    0 0 20px rgba(255,0,255,0.6), 0 0 60px rgba(255,0,255,0.3);
+  --glow-yellow: 0 0 20px rgba(255,221,0,0.6), 0 0 60px rgba(255,221,0,0.3);
+
+  /* Tipografia */
+  --font-display: 'Orbitron', monospace;
+  --font-mono:    'Space Mono', monospace;
+  --font-body:    'Rajdhani', sans-serif;
+
+  /* Easing (alias duplo) */
+  --ease:       cubic-bezier(0.23, 1, 0.32, 1);
+  --transition: var(--ease);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+}
+
+/* ── TEMAS POR PÁGINA ──────────────────────────────────────────
+   Cada página define uma classe no <body> que sobrescreve o accent
+   principal (--c1 / --c1-rgb). A home fica sem classe = ciano padrão.
+   Vibe espacial: violeta, azul, verde-aurora, âmbar. ──────────── */
+body.theme-about    { --c1: #b44fff; --c1-rgb: 180, 79, 255; }
+body.theme-projects { --c1: #3b82f6; --c1-rgb: 59, 130, 246; }
+body.theme-services { --c1: #00e0a0; --c1-rgb: 0, 224, 160; }
+body.theme-contact  { --c1: #ff8c42; --c1-rgb: 255, 140, 66; }
+
+/* ── RESET ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-body);
+  cursor: none;
+  user-select: none;
+}
+
+::selection { background: var(--c1); color: var(--black); }
+
+/* ── CUSTOM CURSOR ─────────────────────────────────────────── */
+#cursor-ring {
+  position: fixed;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255,255,255,0.55);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s var(--ease),
+              height 0.3s var(--ease),
+              border-color 0.3s,
+              opacity 0.3s;
+  mix-blend-mode: difference;
+}
+#cursor-dot {
+  position: fixed;
+  width: 5px;
+  height: 5px;
+  background: #fff;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: transform 0.05s;
+}
+/* Estados de hover do cursor (galáxia e links) */
+body.star-hover #cursor-ring,
+body.link-hover #cursor-ring {
+  width: 68px;
+  height: 68px;
+  border-color: var(--c1);
+  box-shadow: 0 0 20px rgba(0,255,255,0.4);
+}
+
+/* ── SCANLINES ─────────────────────────────────────────────── */
+#scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.04) 2px,
+    rgba(0,0,0,0.04) 4px
+  );
+}
+
+/* ── BACKGROUND CANVAS (subpáginas) ────────────────────────── */
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── SCROLLBAR ─────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--c1); }
+
+/* ── CORNER DECORATIONS ────────────────────────────────────── */
+.corner-deco {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  pointer-events: none;
+  z-index: 80;
+  opacity: 0.25;
+}
+.corner-deco.tl { top: 12px; left: 12px;  border-top: 1px solid #fff; border-left: 1px solid #fff; }
+.corner-deco.tr { top: 12px; right: 12px; border-top: 1px solid #fff; border-right: 1px solid #fff; }
+.corner-deco.bl { bottom: 12px; left: 12px;  border-bottom: 1px solid #fff; border-left: 1px solid #fff; }
+.corner-deco.br { bottom: 12px; right: 12px; border-bottom: 1px solid #fff; border-right: 1px solid #fff; }
+
+/* ── READING PROGRESS BAR (subpáginas) ─────────────────────── */
+#read-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--c1), var(--c2));
+  z-index: 101;
+  box-shadow: 0 0 10px rgba(0,255,255,0.5);
+  transition: width 0.1s linear;
+}
+
+/* ── PAGE ENTRY ANIMATION ──────────────────────────────────── */
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: page-in 0.8s var(--ease) forwards;
+}
+@keyframes page-in {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── ACESSIBILIDADE: reduzir movimento ─────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── CURSOR NATIVO EM TOQUE ─────────────────────────────────── */
+@media (pointer: coarse) {
+  body { cursor: auto; }
+  #cursor-ring, #cursor-dot { display: none; }
+}
+
+/* ── GRAIN TEXTURE ─────────────────────────────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 200px;
+  animation: grain 0.5s steps(1) infinite;
+}
+@keyframes grain {
+  0%, 100% { transform: translate(0,0); }
+  25%       { transform: translate(-1%,-1%); }
+  50%       { transform: translate(1%,0); }
+  75%       { transform: translate(0,1%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  body::after { animation: none; }
+}
+
+/* ── FOCUS VISIBLE ─────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--c1);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── SKIP LINK ─────────────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--c1);
+  color: #000;
+  font-weight: 700;
+  border-radius: 0 0 8px 8px;
+  z-index: 99999;
+  transition: top 0.2s;
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+.skip-link:focus { top: 0; }
+
+/* ── BACK TO TOP ───────────────────────────────────────────── */
+#back-to-top {
+  position: fixed;
+  bottom: 5rem; right: 1.5rem;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--c1);
+  color: #000;
+  border: none;
+  font-size: 1.4rem;
+  cursor: none;
+  z-index: 900;
+  opacity: 0;
+  transform: translateY(20px) rotate(0deg);
+  transition: opacity 0.3s, transform 0.3s var(--ease-bounce);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0) rotate(-45deg);
+  pointer-events: auto;
+}
+#back-to-top:hover {
+  transform: translateY(-4px) rotate(-45deg);
+}
+@media (pointer: coarse) {
+  #back-to-top { cursor: pointer; }
+}
+
+/* ── MICROINTERAÇÕES — BOTÕES ──────────────────────────────── */
+.btn-primary, .cta-btn, .nav-link {
+  transition: transform var(--duration-normal) var(--ease),
+              box-shadow var(--duration-normal) var(--ease),
+              opacity var(--duration-fast) var(--ease);
+}
+.btn-primary:hover, .cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 255, 255, 0.3);
+}
+.btn-primary:active, .cta-btn:active {
+  transform: translateY(0);
+}
+
+/* ── PAGE TRANSITION WARP ──────────────────────────────────── */
+#page-transition {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, var(--c1) 0%, transparent 70%),
+              var(--black);
+  z-index: 10000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+#page-transition.entering {
+  opacity: 1;
+  pointer-events: auto;
+  animation: warp-in 0.6s ease forwards;
+}
+#page-transition.leaving {
+  opacity: 0;
+  animation: warp-out 0.4s ease forwards;
+}
+@keyframes warp-in {
+  0%   { transform: scale(0.8); opacity: 0; filter: blur(20px); }
+  100% { transform: scale(1);   opacity: 1; filter: blur(0); }
+}
+@keyframes warp-out {
+  0%   { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.2); opacity: 0; filter: blur(10px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  #page-transition { display: none; }
+}

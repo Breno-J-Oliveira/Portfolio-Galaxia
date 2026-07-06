@@ -1,0 +1,38 @@
+DirectoryIndex public/index.html
+
+RewriteEngine On
+RewriteBase /
+
+# Passa o header Authorization para o PHP (JWT)
+RewriteCond %{HTTP:Authorization} .
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+# Raiz do site: entrega a home diretamente (nao deixa cair no index.php da API)
+RewriteRule ^$ public/index.html [L]
+
+# Rota da API
+RewriteRule ^api/(.*)$ index.php [L,QSA]
+
+# index.php direto
+RewriteRule ^index\.php$ - [L]
+
+# Arquivos dentro de public/ servidos diretamente
+RewriteRule ^public/ - [L]
+
+# Se for um arquivo real (nao diretorio) na raiz, serve
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# Procura o arquivo dentro de public/
+RewriteCond %{DOCUMENT_ROOT}/public/$1 -f
+RewriteRule ^(.*)$ public/$1 [L]
+
+# Fallback: entrega a home
+RewriteRule ^ public/index.html [L]
+
+# Bloqueia arquivos sensiveis
+<FilesMatch "\.(env|log|md)$">
+    Require all denied
+</FilesMatch>
+
+ErrorDocument 404 /public/404.html

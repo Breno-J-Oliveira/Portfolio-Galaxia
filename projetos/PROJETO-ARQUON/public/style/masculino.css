@@ -1,0 +1,997 @@
+/* ==========================================================================
+   ARQON — THE VAULT | MASCULINE COFRE v2.0
+   Arquitetura idêntica ao catálogo universal. Estética tática/industrial.
+   ========================================================================== */
+
+/* ─── CONTAINER MASTER ─── */
+.masc-wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 130px;
+    padding-bottom: 100px;
+    background: linear-gradient(180deg, var(--color-dark, #060207) 0%, #0b0410 40%, var(--color-dark, #060207) 100%);
+    font-family: var(--font-main, 'Be Vietnam Pro', sans-serif);
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* ─── ATMOSFERA DE FUNDO ─── */
+.masc-atmosphere {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.masc-orb-primary {
+    position: absolute;
+    top: -5%;
+    left: -10%;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(231, 185, 63, 0.06) 0%, transparent 60%);
+    filter: blur(80px);
+}
+
+.masc-orb-secondary {
+    position: absolute;
+    bottom: 10%;
+    right: -5%;
+    width: 45vw;
+    height: 45vw;
+    background: radial-gradient(circle, rgba(100, 24, 56, 0.08) 0%, transparent 60%);
+    filter: blur(80px);
+}
+
+.masc-grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
+}
+
+/* ─── HERO EDITORIAL ─── */
+.masc-hero {
+    max-width: 1600px;
+    margin: 0 auto 50px;
+    padding: 0 5%;
+}
+
+.masc-hero-inner {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 30px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    flex-wrap: wrap;
+}
+
+.masc-hero-label {
+    display: block;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 9px;
+    color: var(--color-secondary, #E7B93F);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+
+.masc-hero-title {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 800;
+    color: var(--color-light, #fff);
+    line-height: 0.88;
+    letter-spacing: -2px;
+    margin: 0;
+}
+
+.masc-hero-title--stroke {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.25);
+}
+
+.masc-hero-sub {
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--color-tertiary, #A0A0A0);
+    font-weight: 300;
+    max-width: 380px;
+}
+
+/* Tags de filtro rápido no hero */
+.masc-hero-tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.masc-tag {
+    padding: 8px 18px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    color: var(--color-tertiary, #A0A0A0);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.masc-tag:hover {
+    border-color: rgba(231, 185, 63, 0.4);
+    color: var(--color-light, #fff);
+}
+
+.masc-tag.active {
+    background: rgba(231, 185, 63, 0.1);
+    border-color: var(--color-secondary, #E7B93F);
+    color: var(--color-secondary, #E7B93F);
+}
+
+/* ─── LAYOUT SPLIT (espelho do catálogo) ─── */
+.masc-layout {
+    display: flex;
+    gap: 40px;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 5%;
+    align-items: flex-start;
+}
+
+/* ─── SIDEBAR ─── */
+.masc-sidebar {
+    width: 280px;
+    min-width: 280px;
+    background: rgba(10, 6, 18, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 30px;
+    position: sticky;
+    top: 110px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+
+.masc-sidebar-header {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--color-light, #fff);
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 15px;
+}
+
+.masc-sidebar-header i {
+    color: var(--color-secondary, #E7B93F);
+}
+
+.masc-filter-section {
+    margin-bottom: 30px;
+}
+
+.masc-filter-section h4 {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    color: var(--color-tertiary, #A0A0A0);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+}
+
+.masc-filter-options {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.masc-filter-options li {
+    font-size: 13px;
+    color: var(--color-tertiary-light, #C0C0C0);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.masc-filter-options li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: transparent;
+    transition: 0.3s ease;
+    border: 1px solid var(--color-tertiary, #A0A0A0);
+    flex-shrink: 0;
+}
+
+.masc-filter-options li:hover {
+    color: var(--color-light, #fff);
+    transform: translateX(5px);
+}
+
+.masc-filter-options li.active {
+    color: var(--color-secondary, #E7B93F);
+    font-weight: 600;
+}
+
+.masc-filter-options li.active::before {
+    background: var(--color-secondary, #E7B93F);
+    border-color: var(--color-secondary, #E7B93F);
+    box-shadow: 0 0 10px rgba(231, 185, 63, 0.5);
+}
+
+/* Slider de preço */
+.masc-price-slider-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+#masc-price-slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    outline: none;
+}
+
+#masc-price-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--color-secondary, #E7B93F);
+    cursor: pointer;
+    border: 2px solid #060207;
+    transition: 0.2s;
+    box-shadow: 0 0 10px rgba(231, 185, 63, 0.5);
+}
+
+#masc-price-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.3);
+}
+
+.masc-price-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--color-tertiary, #A0A0A0);
+}
+
+.masc-gold {
+    color: var(--color-secondary, #E7B93F);
+    font-weight: 700;
+}
+
+/* Botão limpar */
+.masc-btn-clear {
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: var(--color-tertiary, #A0A0A0);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s ease;
+    margin-top: 10px;
+}
+
+.masc-btn-clear:hover {
+    border-color: var(--color-secondary, #E7B93F);
+    color: var(--color-secondary, #E7B93F);
+    background: rgba(231, 185, 63, 0.05);
+}
+
+/* ─── CONTEÚDO PRINCIPAL ─── */
+.masc-main {
+    flex: 1;
+    width: 100%;
+}
+
+.masc-header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.masc-title-area h2 {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    color: var(--color-light, #fff);
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.masc-subtitle {
+    font-size: 13px;
+    color: var(--color-tertiary, #A0A0A0);
+    margin-top: 8px;
+    font-weight: 300;
+}
+
+.masc-counter {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--color-tertiary, #A0A0A0);
+    text-transform: uppercase;
+    padding-bottom: 5px;
+    white-space: nowrap;
+}
+
+/* ─── GRID DE ARTEFATOS ─── */
+.masc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 25px;
+    align-items: start;
+    width: 100%;
+}
+
+/* ─── CARD DO ARTEFATO ─── */
+.masc-card {
+    max-width: 260px;
+    width: 100%;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.4s ease;
+}
+
+.masc-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(231, 185, 63, 0.3);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* Imagem */
+.masc-card-img {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background: #060309;
+    overflow: hidden;
+}
+
+.masc-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+}
+
+.masc-card:hover .masc-card-img img {
+    transform: scale(1.06);
+    opacity: 1;
+}
+
+/* Badge de status */
+.masc-badge-status {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 6px 12px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 5;
+    backdrop-filter: blur(10px);
+}
+
+.masc-status-disponivel {
+    background: rgba(10, 6, 18, 0.85);
+    color: var(--color-secondary, #E7B93F);
+    border: 1px solid rgba(231, 185, 63, 0.3);
+}
+
+.masc-status-indisponivel {
+    background: rgba(10, 6, 18, 0.85);
+    color: var(--color-tertiary, #A0A0A0);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Badge de raridade (canto superior direito) */
+.masc-badge-rarity {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 8px;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 2px;
+    z-index: 5;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.masc-rarity-s {
+    background: rgba(231, 185, 63, 0.15);
+    color: var(--color-secondary, #E7B93F);
+    border: 1px solid var(--color-secondary, #E7B93F);
+}
+
+.masc-rarity-a {
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.masc-rarity-excl {
+    background: rgba(100, 24, 56, 0.3);
+    color: #ff6b9d;
+    border: 1px solid #ff6b9d;
+}
+
+/* Dot de status */
+.masc-pulse-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--color-secondary, #E7B93F);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--color-secondary, #E7B93F);
+    animation: mascPulseGlow 2s infinite;
+    flex-shrink: 0;
+}
+
+.masc-solid-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--color-tertiary, #A0A0A0);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+@keyframes mascPulseGlow {
+    0%   { box-shadow: 0 0 0 0 rgba(231, 185, 63, 0.6); }
+    70%  { box-shadow: 0 0 0 6px rgba(231, 185, 63, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(231, 185, 63, 0); }
+}
+
+/* Botão wishlist */
+.masc-btn-wishlist {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(10, 6, 18, 0.6);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    z-index: 10;
+    backdrop-filter: blur(5px);
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+}
+
+.masc-btn-wishlist:hover,
+.masc-btn-wishlist.active {
+    background: var(--color-primary, #641838);
+    color: var(--color-secondary, #E7B93F);
+    border-color: var(--color-secondary, #E7B93F);
+}
+
+/* Serial ID no hover da imagem */
+.masc-serial-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 8px 12px;
+    background: linear-gradient(transparent, rgba(6, 2, 7, 0.9));
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 9px;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 1px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.masc-card:hover .masc-serial-overlay {
+    opacity: 1;
+}
+
+/* Info do card */
+.masc-card-info {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex-grow: 1;
+}
+
+.masc-card-brand {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--color-secondary, #E7B93F);
+    text-transform: uppercase;
+}
+
+.masc-card-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-light, #fff);
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Linha de preço */
+.masc-card-price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 18px;
+}
+
+.masc-price-label {
+    display: block;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-tertiary, #A0A0A0);
+    margin-bottom: 3px;
+}
+
+.masc-card-price {
+    font-weight: 700;
+    color: var(--color-light, #fff);
+    font-size: 17px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.masc-card-price small {
+    font-size: 11px;
+    font-weight: 400;
+    opacity: 0.5;
+    font-family: var(--font-main, 'Be Vietnam Pro', sans-serif);
+}
+
+/* Botão de adicionar */
+.masc-btn-add {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color-light, #fff);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    font-size: 13px;
+    flex-shrink: 0;
+}
+
+.masc-card:hover .masc-btn-add {
+    background: var(--color-secondary, #E7B93F);
+    color: #060207;
+    border-color: var(--color-secondary, #E7B93F);
+    box-shadow: 0 4px 15px rgba(231, 185, 63, 0.4);
+    transform: scale(1.1);
+}
+
+/* ─── ESTADOS: VAZIO / ERRO ─── */
+.masc-empty-state,
+.masc-error-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 120px 20px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px dashed rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+}
+
+.masc-empty-state i {
+    font-size: 50px;
+    color: var(--color-secondary, #E7B93F);
+    opacity: 0.4;
+    margin-bottom: 25px;
+    display: block;
+}
+
+.masc-error-state i {
+    font-size: 50px;
+    color: var(--color-primary-light, #781D43);
+    opacity: 0.6;
+    margin-bottom: 25px;
+    display: block;
+}
+
+.masc-empty-state h3,
+.masc-error-state h3 {
+    font-size: 18px;
+    letter-spacing: 3px;
+    color: var(--color-light, #fff);
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.masc-empty-state p,
+.masc-error-state p {
+    font-size: 14px;
+    color: var(--color-tertiary, #A0A0A0);
+    font-weight: 300;
+}
+
+/* ─── SKELETON LOADING ─── */
+.masc-skeleton-card {
+    background: rgba(10, 6, 18, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 260px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.masc-skel-img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background: linear-gradient(90deg, #0e081a 25%, #1a1026 50%, #0e081a 75%);
+    background-size: 200% 100%;
+    animation: mascShimmer 1.8s infinite linear;
+}
+
+.masc-skel-body {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.masc-skel-line {
+    height: 11px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 2px;
+    background: linear-gradient(90deg, #0e081a 25%, #1a1026 50%, #0e081a 75%);
+    background-size: 200% 100%;
+    animation: mascShimmer 1.8s infinite linear;
+}
+
+.masc-skel-line.short  { width: 40%; }
+.masc-skel-line.medium { width: 75%; }
+
+@keyframes mascShimmer {
+    0%   { background-position: -200% 0; }
+    100% { background-position:  200% 0; }
+}
+
+/* ─── BOTÃO CARREGAR MAIS ─── */
+.masc-load-more-wrap {
+    text-align: center;
+    padding: 40px 0;
+    width: 100%;
+}
+
+.masc-btn-load-more {
+    background: transparent;
+    border: 1px solid var(--color-secondary, #E7B93F);
+    color: var(--color-secondary, #E7B93F);
+    padding: 12px 36px;
+    font-family: var(--font-main, 'Be Vietnam Pro', sans-serif);
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.masc-btn-load-more:hover {
+    background: rgba(231, 185, 63, 0.1);
+    box-shadow: 0 0 15px rgba(231, 185, 63, 0.2);
+}
+
+/* ─── RESPONSIVIDADE ─── */
+@media (max-width: 1024px) {
+    .masc-layout {
+        flex-direction: column;
+    }
+
+    .masc-sidebar {
+        width: 100%;
+        min-width: 100%;
+        position: relative;
+        top: 0;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .masc-wrapper {
+        padding-top: 100px;
+    }
+
+    .masc-hero-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .masc-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    }
+
+    .masc-card, .masc-skeleton-card {
+        max-width: 100%;
+    }
+
+    .masc-title-area h2 {
+        font-size: 22px;
+    }
+
+    .masc-header-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .masc-filter-options {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .masc-filter-options li {
+        white-space: nowrap;
+        padding: 6px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 2px;
+        transform: none !important;
+    }
+
+    .masc-filter-options li::before {
+        display: none;
+    }
+
+    .masc-filter-options li.active {
+        background: rgba(231, 185, 63, 0.08);
+        border-color: var(--color-secondary, #E7B93F);
+    }
+}
+
+@media (max-width: 400px) {
+    .masc-layout {
+        padding: 0 4%;
+    }
+
+    .masc-hero {
+        padding: 0 4%;
+    }
+
+    .masc-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+}
+
+/* ==========================================================================
+   ARQON — THE VAULT | GRID DE PRODUTOS & CARDS (Padrão Catálogo)
+   ========================================================================== */
+
+/* ─── 1. A GRID INTELIGENTE (Idêntica à catalog-grid) ─── */
+.masc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    width: 100%;
+}
+
+/* ─── 2. O CARD PREMIUM (ARTEFATO) ─── */
+.arq-card {
+    background: rgba(10, 6, 18, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Efeito Hover Masculino (Ouro Cibernético) */
+.arq-card:hover {
+    border-color: rgba(231, 185, 63, 0.4); /* Ouro ARQON */
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 15px rgba(231, 185, 63, 0.1);
+}
+
+/* Container da Imagem com Aspect Ratio Perfeito */
+.card-image-box {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background: #0A0612;
+}
+
+.card-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0.9;
+}
+
+/* Zoom suave na imagem ao passar o rato */
+.arq-card:hover .card-image-box img {
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+/* Etiquetas de Raridade */
+.card-badges {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    display: flex;
+    gap: 8px;
+    z-index: 2;
+}
+
+.badge-status {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #FFF;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 6px 10px;
+    border-radius: 2px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* ─── 3. CORPO DE INFORMAÇÕES DO CARD ─── */
+.card-info {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+/* Número de Série / ID do Produto */
+.card-brand {
+    font-family: var(--font-mono, 'Courier New', monospace);
+    font-size: 10px;
+    color: var(--color-secondary, #E7B93F); /* Ouro ARQON */
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+/* Título do Produto */
+.card-title {
+    font-size: 16px;
+    color: #FFF;
+    font-weight: 500;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+/* ─── 4. PAINEL FINANCEIRO (Custódia e Caução) ─── */
+.card-price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px dashed rgba(255, 255, 255, 0.08);
+    padding-top: 16px;
+    margin-top: auto;
+}
+
+.price-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.price-label {
+    font-size: 10px;
+    color: var(--color-tertiary, #A0A0A0);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.price-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: #FFF;
+}
+
+/* Destaque para a Custódia Diária */
+.price-value.highlight {
+    color: var(--color-secondary, #E7B93F); /* Ouro ARQON */
+    font-size: 16px;
+    text-shadow: 0 0 10px rgba(231, 185, 63, 0.2);
+}
+
+/* ─── 5. BOTÃO DE AÇÃO TÁTICO (REQUISITAR) ─── */
+.card-hover-actions {
+    padding: 0 24px 24px 24px;
+    margin-top: -10px;
+}
+
+.action-btn {
+    width: 100%;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #FFF;
+    padding: 14px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* Hover de ativação (Fica Ouro Escuro igual ao Catálogo) */
+.action-btn:hover {
+    background: var(--color-secondary, #E7B93F); 
+    border-color: var(--color-secondary, #E7B93F);
+    color: #0A0612; 
+    box-shadow: 0 0 15px rgba(231, 185, 63, 0.3);
+}

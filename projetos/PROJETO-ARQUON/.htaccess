@@ -1,0 +1,28 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /PROJETO-ARQUON/
+
+    # 🌟 CORREÇÃO CRÍTICA: Força o Apache a passar o Cabeçalho Authorization para o PHP
+    CGIPassAuth On
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # 1. BLINDAGEM DO MAESTRO: Se já é o index.php, para aqui.
+    RewriteRule ^index\.php$ - [L]
+
+    # 2. ROTA DA API: Tudo de api/ vai direto para o index.php da raiz
+    # [QSA] garante que parâmetros de busca como ?dias=7 cheguem ao PHP
+    RewriteRule ^api/(.*)$ index.php [L,QSA]
+
+    # 3. SE O ARQUIVO OU DIRETÓRIO EXISTIR REALMENTE, SIRVA-O DIRECTAMENTE
+    # (Evita que o Apache intercepte arquivos CSS, JS, imagens reais)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # 4. ROTAS DO FRONTEND: Se não existe na raiz, procura dentro da pasta /public
+    RewriteCond %{DOCUMENT_ROOT}/PROJETO-ARQUON/public/$1 -f
+    RewriteRule ^(.*)$ public/$1 [L]
+
+    # 5. FALLBACK DA SPA: Se a rota não é um arquivo real, entrega o index.html do front
+    RewriteRule ^ public/index.html [L]
+</IfModule>

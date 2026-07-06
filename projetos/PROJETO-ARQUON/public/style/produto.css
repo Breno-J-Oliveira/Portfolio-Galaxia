@@ -1,0 +1,548 @@
+/* ============================================================
+   ARQON - THE VAULT | Estética Avançada da PDP v3.0 (Alta Costura)
+   ============================================================ */
+
+.arqon-pdp {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #060207; /* Tom obsidiana ultra profundo */
+    padding-top: 130px; 
+    padding-bottom: 80px;
+    z-index: 1;
+    font-family: var(--font-main);
+    overflow: hidden;
+}
+
+/* --- ATMOSFERA CINEMATOGRÁFICA DE FUNDO --- */
+.pdp-atmosphere {
+    position: absolute; 
+    inset: 0; 
+    pointer-events: none; 
+    z-index: -1;
+}
+.pdp-orb-1 {
+    position: absolute;
+    top: -10%; left: -15%; width: 50vw; height: 50vw;
+    background: radial-gradient(circle, rgba(100, 24, 56, 0.08) 0%, transparent 70%);
+    filter: blur(100px);
+}
+.pdp-orb-2 {
+    position: absolute;
+    bottom: 5%; right: -10%; width: 45vw; height: 45vw;
+    background: radial-gradient(circle, rgba(231, 185, 63, 0.02) 0%, transparent 70%);
+    filter: blur(100px);
+}
+
+/* --- CONTEINER E ESTRUTURA GRID (PROPORÇÕES REFINADAS) --- */
+.pdp-container {
+    display: grid;
+    grid-template-columns: 1fr 420px; /* Fixa a coluna de dados em um tamanho compacto e nobre */
+    gap: 50px;
+    max-width: 1340px; /* Reduzido de 1500px para evitar dispersão visual em telas grandes */
+    margin: 0 auto;
+    padding: 0 4%;
+    align-items: start;
+}
+
+/* ==========================================
+   COLUNA ESQUERDA: SISTEMA DE GALERIA & 3D
+   ========================================== */
+.pdp-visual-stage {
+    width: 100%;
+}
+.pdp-gallery-master {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.pdp-main-viewport {
+    position: relative;
+    width: 100%;
+    height: 580px; /* Reduzido o impacto massivo para caber melhor na dobra da tela */
+    background: #0b060d;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.5); /* Sombra interna para destacar a silhueta */
+}
+
+/* Elementos de Mídia Intercambiáveis */
+.pdp-artifact-img, .pdp-artifact-3d {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ajustado para contain para nunca distorcer ou cortar a peça de roupa */
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+}
+.pdp-artifact-img.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.pdp-artifact-3d.active {
+    opacity: 1;
+    pointer-events: auto;
+    background: #0b060d;
+}
+
+/* Botão Flutuante de Dimensão 3D */
+.btn-dimension-toggle {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(6, 2, 7, 0.85);
+    border: 1px solid var(--color-secondary);
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+    z-index: 10;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-dimension-toggle:hover {
+    background: var(--color-secondary);
+    box-shadow: 0 0 25px rgba(231, 185, 63, 0.25);
+}
+.btn-dimension-toggle .dim-icon {
+    color: var(--color-secondary);
+    font-size: 13px;
+    transition: color 0.3s ease;
+}
+.btn-dimension-toggle .dim-text {
+    color: #fff;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+.btn-dimension-toggle:hover .dim-icon,
+.btn-dimension-toggle:hover .dim-text {
+    color: var(--color-dark);
+}
+
+/* Fita de Miniaturas (Thumbnails Strip) */
+.pdp-thumbnails-strip {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+}
+.pdp-thumbnails-strip::-webkit-scrollbar {
+    height: 3px;
+}
+.pdp-thumbnails-strip::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 2px;
+}
+.thumb-item {
+    width: 75px; /* Miniaturas mais delicadas */
+    height: 75px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    background: rgba(11, 6, 13, 0.4);
+    cursor: pointer;
+    overflow: hidden;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+    opacity: 0.4;
+}
+.thumb-item:hover, .thumb-item.active {
+    opacity: 1;
+    border-color: var(--color-secondary);
+}
+.thumb-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ==========================================
+   COLUNA DIREITA: PAINEL FLUTUANTE DE DADOS
+   ========================================== */
+.pdp-info-col {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 30px; /* Reduzido o padding interno para ficar mais compacto */
+    border-radius: 8px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+/* Elementos Textuais Base (Tipografia Premium) */
+.pdp-brand-tag {
+    font-size: 10px; /* Menor e mais espaçado para design minimalista */
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--color-primary-light);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+.pdp-title {
+    font-size: 24px; /* Diminuído para evitar gritar na tela */
+    font-weight: 400;
+    color: var(--color-text-light);
+    line-height: 1.2;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+}
+.pdp-price-box {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+.price-current {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+}
+.price-label {
+    font-size: 12px;
+    color: var(--color-tertiary);
+}
+.pdp-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+    margin-bottom: 20px;
+}
+
+/* Grupos de Controle */
+.pdp-control-group {
+    margin-bottom: 22px;
+}
+.control-label {
+    display: block;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--color-tertiary);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+.control-label i {
+    margin-right: 4px;
+    color: rgba(255, 255, 255, 0.2);
+}
+
+/* SELETOR DE TAMANHOS LUXO */
+.arqon-size-selector {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.size-chip {
+    width: 44px; /* Tamanho exato e padronizado para formato quadrado minimalista */
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: var(--color-tertiary-light);
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.size-chip:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+.size-chip.active {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: var(--color-primary-light);
+    color: var(--color-primary-light);
+}
+.size-chip.disabled {
+    opacity: 0.15;
+    cursor: not-allowed;
+    border-color: rgba(255, 255, 255, 0.01);
+    text-decoration: line-through;
+}
+
+/* ============================================================
+   CALENDÁRIO PREMIUM (RECONSTRUÍDO ULTRA PREMIUM)
+   ============================================================ */
+.arqon-date-range-picker {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    padding: 10px 14px;
+    gap: 12px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efeito sutil ao clicar nos campos de data */
+.arqon-date-range-picker:focus-within {
+    border-color: var(--color-primary-light, rgba(184, 137, 214, 0.3));
+    box-shadow: 0 0 15px rgba(184, 137, 214, 0.05);
+}
+
+.date-input-wrapper {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.arqon-date-field {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-family: var(--font-main), sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    outline: none;
+    width: 100%;
+    padding: 4px 0;
+    cursor: pointer;
+    
+    /* Força o pop-up nativo do calendário a abrir em DARK MODE legítimo */
+    color-scheme: dark; 
+}
+
+/* Oculta o ícone padrão feio de calendário do navegador, mas mantém o clique funcional na caixa toda */
+.arqon-date-field::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+/* Customização dos caracteres de texto internos do input (ex: dd/mm/aaaa) */
+.arqon-date-field::-webkit-datetime-edit {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Deixa as barras separadoras '/' ou '-' discretas e elegantes */
+.arqon-date-field::-webkit-datetime-edit-text {
+    color: rgba(255, 255, 255, 0.2);
+    padding: 0 2px;
+}
+
+/* Estilo para os blocos numéricos enquanto não preenchidos */
+.arqon-date-field::-webkit-datetime-edit-month-field,
+.arqon-date-field::-webkit-datetime-edit-day-field,
+.arqon-date-field::-webkit-datetime-edit-year-field {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Posiciona o ícone do FontAwesome por baixo do clique invisível do input */
+.date-icon {
+    position: absolute;
+    right: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-primary-light, #b889d6);
+    font-size: 11px;
+    pointer-events: none;
+    opacity: 0.5;
+    z-index: 1;
+    transition: opacity 0.3s ease;
+}
+
+.arqon-date-range-picker:hover .date-icon {
+    opacity: 1;
+}
+
+.date-field-label {
+    font-size: 8px;
+    color: var(--color-tertiary, #8a848c);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 3px;
+    font-weight: 600;
+}
+
+.date-range-arrow {
+    color: rgba(255, 255, 255, 0.15);
+    font-size: 11px;
+    user-select: none;
+}
+
+/* FATURA/COMPOSIÇÃO DE PREÇOS (GLASSMORPHISM DE LUXO) */
+.pdp-custody-invoice {
+    background: rgba(255, 255, 255, 0.01); 
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    padding: 18px;
+    border-radius: 5px;
+    margin-top: 20px;
+    animation: fadeInInvoice 0.4s ease forwards;
+}
+@keyframes fadeInInvoice { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+.invoice-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--color-tertiary);
+    margin-bottom: 8px;
+}
+.invoice-row.safety-deposit {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 11px;
+}
+.invoice-row i {
+    cursor: help;
+    font-size: 10px;
+    margin-left: 3px;
+}
+.invoice-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.04);
+    margin: 10px 0;
+}
+.invoice-row.total-row {
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 0;
+}
+.invoice-row.total-row span:last-child {
+    color: var(--color-primary-light);
+    font-weight: 600;
+}
+
+/* --- BOTÃO CENTRAL DE ADIÇÃO AO COFRE --- */
+.pdp-action-btn {
+    width: 100%;
+    height: 52px; /* Botão mais magro e preciso */
+    background: var(--color-primary);
+    border: none;
+    border-radius: 4px;
+    color: var(--color-dark);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pdp-action-btn:hover:not(:disabled) {
+    background: var(--color-primary-light);
+    box-shadow: 0 10px 25px rgba(184, 137, 214, 0.2);
+}
+.pdp-action-btn:disabled {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    color: rgba(255, 255, 255, 0.15);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* --- ACCORDIONS DESIGN DE LUXO --- */
+.pdp-details-acc {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.acc-item {
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+}
+.acc-item.active {
+    border-color: rgba(255, 255, 255, 0.05);
+}
+.acc-header {
+    width: 100%;
+    padding: 15px 18px;
+    background: transparent;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    text-align: left;
+}
+.acc-header span {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+}
+.acc-icon {
+    font-size: 10px;
+    color: var(--color-tertiary);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.acc-item.active .acc-icon {
+    transform: rotate(180deg);
+    color: var(--color-primary-light);
+}
+.acc-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.acc-item.active .acc-content {
+    max-height: 1000px; /* Garante expansão controlada no estado ativo */
+}
+.acc-inner {
+    padding: 0 18px 18px 18px;
+    color: var(--color-tertiary-light);
+    font-size: 12px;
+    line-height: 1.7;
+}
+.acc-inner ul { list-style: none; padding: 0; }
+.acc-inner li { margin-bottom: 6px; border-bottom: 1px dashed rgba(255,255,255,0.02); padding-bottom: 5px; }
+.acc-inner li strong { color: var(--color-primary-light); margin-right: 6px; font-weight: 500; }
+
+/* ==========================================
+   SKELETON LOADING ANIMADO EM GRADIENTE
+   ========================================== */
+.skeleton-img-full { height: 100%; width: 100%; position: absolute; }
+.skeleton-thumb { width: 75px; height: 75px; border-radius: 4px; background: rgba(255,255,255,0.01); }
+.skeleton-chip { width: 44px; height: 44px; border-radius: 4px; background: rgba(255,255,255,0.01); }
+.skeleton-acc-item { height: 46px; width: 100%; margin-bottom: 0; background: rgba(255,255,255,0.01); border-radius: 4px; }
+.skeleton-acc-first { margin-bottom: 10px; }
+
+.skeleton-text, .skeleton-btn, .skeleton-thumb, .skeleton-chip, .skeleton-acc-item {
+    background: linear-gradient(90deg, rgba(255,255,255,0.01) 25%, rgba(255,255,255,0.04) 50%, rgba(255,255,255,0.01) 75%);
+    background-size: 200% 100%;
+    animation: arqonPulseSkeleton 1.6s infinite ease-in-out;
+}
+@keyframes arqonPulseSkeleton { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+/* ==========================================
+   SISTEMA DE MEDIA RESPONSIVA DELTA
+   ========================================== */
+@media (max-width: 1100px) {
+    .pdp-container { grid-template-columns: 1fr; gap: 35px; max-width: 700px; }
+    .pdp-main-viewport { height: 480px; }
+}
+@media (max-width: 600px) {
+    .arqon-pdp { padding-top: 100px; }
+    .pdp-main-viewport { height: 350px; }
+    .pdp-info-col { padding: 20px; }
+    .pdp-title { font-size: 20px; }
+}

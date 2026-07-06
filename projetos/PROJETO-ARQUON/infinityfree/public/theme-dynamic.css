@@ -1,0 +1,72 @@
+/**
+ * ARQON - THE VAULT | Dynamic Theme CSS
+ * Este arquivo é gerado dinamicamente pelo sistema de temas
+ * As variáveis CSS são carregadas da API e aplicadas ao site
+ */
+
+:root {
+    --color-primary: #E7B93F;
+    --color-primary-light: #FFDE4C;
+    --color-secondary: #1A1A2E;
+    --color-tertiary: #A0A0A0;
+    --color-accent: #10b981;
+    --color-error: #ff5268;
+    
+    --font-primary: 'Cinzel', serif;
+    --font-secondary: 'Inter', sans-serif;
+    --font-code: 'Fira Code', monospace;
+    
+    --border-radius: 8px;
+    --border-radius-large: 16px;
+    --spacing-unit: 8px;
+    --transition-speed: 0.3s;
+}
+
+/* Classes utilitárias baseadas nas variáveis de tema */
+.text-primary {
+    color: var(--color-primary);
+}
+
+.text-secondary {
+    color: var(--color-secondary);
+}
+
+.text-tertiary {
+    color: var(--color-tertiary);
+}
+
+.bg-primary {
+    background-color: var(--color-primary);
+}
+
+.bg-secondary {
+    background-color: var(--color-secondary);
+}
+
+.border-radius {
+    border-radius: var(--border-radius);
+}
+
+.border-radius-large {
+    border-radius: var(--border-radius-large);
+}
+
+/* Aplicação dinâmica em elementos específicos */
+body {
+    font-family: var(--font-secondary);
+    background-color: var(--color-secondary);
+    color: var(--color-tertiary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-primary);
+}
+
+button, .btn {
+    border-radius: var(--border-radius);
+    transition: all var(--transition-speed) ease;
+}
+
+.card, .panel-card {
+    border-radius: var(--border-radius-large);
+}

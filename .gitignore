@@ -1,0 +1,32 @@
+# Ambiente / segredos
+.env
+.env.*
+**/.env
+**/.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+**/keys/
+
+# Arquivos internos (não publicar)
+.devin/
+planejamento.md
+claude.md
+
+# Projeto com repo próprio / dados sensíveis (não publicar aqui)
+projetos/NexusAuth/
+
+# Backups / temporários
+*.v1
+BACKUP/
+prototipo.html
+.DS_Store
+Thumbs.db
+*.log
+
+# Dependências / builds dos projetos
+**/node_modules/
+**/vendor/
+**/dist/
+**/build/

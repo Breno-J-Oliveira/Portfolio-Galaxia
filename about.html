@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre — BRENO J. OLIVEIRA</title>
+  <meta name="description" content="Conheça Breno J. Oliveira, Desenvolvedor Full-Stack — do front-end ao back-end, com projetos em web, APIs, automação e IoT.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <meta name="theme-color" content="#b44fff">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Breno J. Oliveira — Sobre mim">
+  <meta property="og:description" content="Desenvolvedor Full-Stack formado pelo SENAI, do front-end ao back-end, com foco em código limpo e arquitetura que escala.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Breno J. Oliveira — Sobre">
+  <meta name="twitter:description" content="Desenvolvedor Full-Stack — do front-end ao back-end, web, APIs, automação e IoT.">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="src/app/styles/globals.css" />
+  <link rel="stylesheet" href="src/widgets/hud/hud.css" />
+  <link rel="stylesheet" href="src/pages/about/styles/about.css" />
+</head>
+<body class="theme-about">
+  <a href="#hero" class="skip-link">Pular para o conteúdo</a>
+  <div id="page-transition" aria-hidden="true"></div>
+
+  <!-- BG CANVAS -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- READING PROGRESS -->
+  <div id="read-progress"></div>
+
+  <!-- SCANLINES -->
+  <div id="scanlines"></div>
+
+  <!-- CURSOR -->
+  <div id="cursor-ring"></div>
+  <div id="cursor-dot"></div>
+
+  <!-- CORNER DECO -->
+  <div class="corner-deco tl"></div>
+  <div class="corner-deco tr"></div>
+  <div class="corner-deco bl"></div>
+  <div class="corner-deco br"></div>
+
+  <!-- HUD TOP NAV (injetado via fetch) -->
+  <div id="hud-container"></div>
+  <script>
+    window.HUD_ACTIVE = 'about';
+    fetch('src/widgets/hud/hud.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('hud-container').innerHTML = html;
+        const s = document.createElement('script');
+        s.src = 'src/widgets/hud/hud.js';
+        document.body.appendChild(s);
+      })
+      .catch(err => console.error('HUD fetch failed:', err));
+  </script>
+
+  <!-- PAGE WRAPPER -->
+  <div class="page-wrapper page-enter">
+
+    <nav id="section-dots" aria-label="Navegação por seções"></nav>
+
+    <!-- ============================================================
+         HERO
+    ============================================================ -->
+    <section id="hero">
+
+      <div class="hero-left">
+        <div class="hero-eyebrow reveal">SOBRE MIM</div>
+        <h1 class="hero-name reveal reveal-delay-1">
+          <span class="line-1">BRENO J. OLIVEIRA</span>
+          <span class="line-2">DESENVOLVEDOR FULL-STACK</span>
+        </h1>
+        <p class="hero-bio reveal reveal-delay-2">
+          Desenvolvedor <strong>full-stack</strong> que constrói aplicações completas
+          — do <strong>front-end</strong> ao <strong>back-end</strong>. Apaixonado por
+          interfaces bem feitas, APIs bem estruturadas e código que
+          <strong>resiste ao tempo e ao crescimento</strong>. Formado pelo SENAI.
+        </p>
+        <div class="hero-actions reveal reveal-delay-4">
+          <a class="btn-primary" href="contact.html">
+            <span>ENTRAR EM CONTATO</span>
+            <span>→</span>
+          </a>
+          <a class="btn-secondary" href="assets/curriculo.pdf" download>
+            <span>DOWNLOAD CV</span>
+            <span>↓</span>
+          </a>
+        </div>
+        <div class="hero-line-h"></div>
+      </div>
+
+      <div class="hero-right">
+        <div class="avatar-wrap">
+          <div class="avatar-orbit-2">
+            <div class="orbit-dot orbit-dot-3"></div>
+          </div>
+          <div class="avatar-orbit">
+            <div class="orbit-dot orbit-dot-1"></div>
+            <div class="orbit-dot orbit-dot-2" style="top:auto;bottom:-3px;"></div>
+          </div>
+          <div class="avatar-img">
+            <div class="avatar-placeholder">BJO</div>
+            <div class="avatar-glow"></div>
+          </div>
+          <div class="avatar-tags left">
+            <span class="atag">FRONT-END</span>
+            <span class="atag">BACK-END</span>
+            <span class="atag">FULL-STACK</span>
+          </div>
+          <div class="avatar-tags right">
+            <span class="atag">REACT</span>
+            <span class="atag">NODE.JS</span>
+            <span class="atag">PYTHON</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         STATS
+    ============================================================ -->
+    <div id="stats-bar">
+      <div class="stat-item reveal">
+        <div class="stat-num" data-target="10" data-suffix="+">0</div>
+        <div class="stat-label">Projetos</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-1">
+        <div class="stat-num" data-target="16" data-suffix="+">0</div>
+        <div class="stat-label">Tecnologias</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-2">
+        <div class="stat-num" data-target="3" data-suffix="+">0</div>
+        <div class="stat-label">Anos programando</div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         SKILLS
+    ============================================================ -->
+    <section id="skills" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-num">01 — COMPETÊNCIAS</div>
+          <h2 class="section-title">Stack &<br/>Habilidades</h2>
+        </div>
+        <div class="section-subtitle">O QUE EU FAÇO BEM</div>
+      </div>
+
+      <div class="skills-grid" id="skills-grid"></div>
+    </section>
+
+    <!-- ============================================================
+         TIMELINE
+    ============================================================ -->
+    <section id="timeline" class="section section-alt">
+      <div class="section-header">
+        <div>
+          <div class="section-num">02 — TRAJETÓRIA</div>
+          <h2 class="section-title">Minha<br/>Jornada</h2>
+        </div>
+        <div class="section-subtitle">DE ONDE VIM</div>
+      </div>
+
+      <div class="timeline" id="timeline-list"></div>
+    </section>
+
+    <!-- ============================================================
+         EDUCAÇÃO & CERTIFICAÇÕES
+    ============================================================ -->
+    <section id="education" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-num">03 — FORMAÇÃO</div>
+          <h2 class="section-title">Educação &<br/>Certificações</h2>
+        </div>
+        <div class="section-subtitle">ONDE APRENDI</div>
+      </div>
+
+      <div class="edu-list" id="education-list"></div>
+    </section>
+
+    <!-- ============================================================
+         TOOLS
+    ============================================================ -->
+    <section id="tools" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-num">04 — FERRAMENTAS</div>
+          <h2 class="section-title">Meu<br/>Arsenal</h2>
+        </div>
+        <div class="section-subtitle">O QUE USO TODO DIA</div>
+      </div>
+
+      <div class="tools-cloud reveal">
+        <span class="tool-pill t1"><span>⬡ Node.js</span></span>
+        <span class="tool-pill t2"><span>⬡ Python</span></span>
+        <span class="tool-pill t3"><span>⬡ C/C++</span></span>
+        <span class="tool-pill t4"><span>⬡ Arduino</span></span>
+        <span class="tool-pill t5"><span>⬡ ESP32</span></span>
+        <span class="tool-pill t6"><span>⬡ Raspberry Pi</span></span>
+        <span class="tool-pill t1"><span>⬡ PostgreSQL</span></span>
+        <span class="tool-pill t2"><span>⬡ MongoDB</span></span>
+        <span class="tool-pill t3"><span>⬡ Redis</span></span>
+        <span class="tool-pill t4"><span>⬡ Docker</span></span>
+        <span class="tool-pill t5"><span>⬡ Git</span></span>
+        <span class="tool-pill t6"><span>⬡ Linux</span></span>
+        <span class="tool-pill t1"><span>⬡ VS Code</span></span>
+        <span class="tool-pill t2"><span>⬡ MQTT</span></span>
+        <span class="tool-pill t3"><span>⬡ REST API</span></span>
+        <span class="tool-pill t4"><span>⬡ WebSocket</span></span>
+        <span class="tool-pill t5"><span>⬡ Express.js</span></span>
+        <span class="tool-pill t6"><span>⬡ Shell Script</span></span>
+        <span class="tool-pill t1"><span>⬡ Postman</span></span>
+        <span class="tool-pill t2"><span>⬡ Nginx</span></span>
+        <span class="tool-pill t3"><span>⬡ MySQL</span></span>
+        <span class="tool-pill t4"><span>⬡ GraphQL</span></span>
+        <span class="tool-pill t5"><span>⬡ Prisma</span></span>
+        <span class="tool-pill t6"><span>⬡ CI/CD</span></span>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         VALUES
+    ============================================================ -->
+    <section class="section section-alt">
+      <div class="section-header">
+        <div>
+          <div class="section-num">05 — PRINCÍPIOS</div>
+          <h2 class="section-title">O Que<br/>Me Move</h2>
+        </div>
+        <div class="section-subtitle">VALORES & FILOSOFIA</div>
+      </div>
+
+      <div class="values-grid">
+        <div class="value-card reveal">
+          <div class="value-num">01</div>
+          <div class="value-title">PERFORMANCE É UMA FEATURE</div>
+          <p class="value-text">
+            Latência de API, tempo de resposta, uso de memória — não são detalhes,
+            são requisitos. Código que funciona mas é lento é código incompleto.
+            Performance é parte do produto, não bônus.
+          </p>
+        </div>
+        <div class="value-card reveal reveal-delay-1">
+          <div class="value-num">02</div>
+          <div class="value-title">CÓDIGO LEGÍVEL É DOCUMENTAÇÃO</div>
+          <p class="value-text">
+            Código que precisa de comentário para ser entendido é código mal escrito.
+            Nomes claros, funções pequenas, responsabilidades separadas — isso é
+            respeito pelo próximo desenvolvedor (e pelo futuro eu).
+          </p>
+        </div>
+        <div class="value-card reveal reveal-delay-2">
+          <div class="value-num">03</div>
+          <div class="value-title">AUTOMAÇÃO PARA TUDO QUE REPETE</div>
+          <p class="value-text">
+            Se você faz a mesma coisa mais de duas vezes, é hora de automatizar.
+            Pipelines, scripts, bots — liberar tempo humano para trabalho que
+            realmente exige criatividade e raciocínio.
+          </p>
+        </div>
+        <div class="value-card reveal">
+          <div class="value-num">04</div>
+          <div class="value-title">SISTEMAS QUE ESCALAM</div>
+          <p class="value-text">
+            Arquitetura pensada antes de uma linha escrita. A escolha do banco
+            de dados, do protocolo, da estrutura de dados — essas decisões
+            definem se o sistema aguenta 10 ou 10 mil usuários.
+          </p>
+        </div>
+        <div class="value-card reveal reveal-delay-1">
+          <div class="value-num">05</div>
+          <div class="value-title">DO HARDWARE AO SERVIDOR</div>
+          <p class="value-text">
+            Pensar na stack completa — do firmware rodando no microcontrolador
+            até a API recebendo os dados na nuvem. Soluções IoT reais precisam
+            de visão de ponta a ponta, não de silos.
+          </p>
+        </div>
+        <div class="value-card reveal reveal-delay-2">
+          <div class="value-num">06</div>
+          <div class="value-title">APRENDIZADO CONTÍNUO</div>
+          <p class="value-text">
+            A tecnologia não para. Embedded systems, cloud, protocolos novos —
+            ficar parado é regredir. Cada projeto é uma oportunidade de aprender
+            algo que ainda não sei, e isso nunca vai mudar.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         POLIGLOTA
+    ============================================================ -->
+    <section id="polyglot" class="section section-alt">
+      <div class="section-header">
+        <div>
+          <div class="section-num">06 — IDIOMAS</div>
+          <h2 class="section-title">Poliglota<br/>em Formação</h2>
+        </div>
+        <div class="section-subtitle">FALO COM O MUNDO</div>
+      </div>
+
+      <div class="polyglot-grid" id="polyglot-grid"></div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT
+    ============================================================ -->
+    <section id="contact">
+      <div class="contact-bg"></div>
+      <div class="contact-label reveal">VAMOS TRABALHAR JUNTOS</div>
+      <h2 class="contact-title reveal">
+        <span>PRONTO PARA</span><br/>
+        <span class="hollow">DECOLAR?</span>
+      </h2>
+      <p class="contact-sub reveal">
+        Tenho disponibilidade para projetos freelance, contratos e posições full-time.
+        Manda uma mensagem — eu respondo o mais rápido possível.
+      </p>
+      <a class="contact-email reveal" href="mailto:[SEU@EMAIL.COM]">
+        [SEU@EMAIL.COM]
+      </a>
+      <div class="contact-socials reveal">
+        <a class="social-link" href="#" onclick="return false;">LinkedIn</a>
+        <a class="social-link" href="https://github.com/Breno-J-Oliveira" target="_blank" rel="noopener">GitHub</a>
+        <a class="social-link" href="#" onclick="return false;">Instagram</a>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         FOOTER
+    ============================================================ -->
+    <footer>
+      <span class="footer-copy">© 2025 BRENO J. OLIVEIRA — TODOS OS DIREITOS RESERVADOS</span>
+      <button class="footer-back-top" id="back-to-top-footer" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        ↑ VOLTAR AO TOPO
+      </button>
+    </footer>
+
+  </div><!-- /page-wrapper -->
+
+  <!-- AVAILABILITY BADGE -->
+  <div id="availability-badge" aria-label="Status: disponível para projetos">
+    <span class="badge-dot"></span>
+    <span class="badge-text">Disponível para projetos</span>
+  </div>
+
+  <!-- BACK TO TOP -->
+  <button id="back-to-top" aria-label="Voltar ao topo" title="Voltar ao topo">🚀</button>
+
+  <script src="src/app/data/index.js"></script>
+  <script src="src/shared/lib/utils.js"></script>
+  <script src="src/pages/about/model/about.js"></script>
+  <script src="src/features/shortcuts/shortcuts.js"></script>
+  <script src="src/features/transitions/transitions.js"></script>
+</body>
+</html>

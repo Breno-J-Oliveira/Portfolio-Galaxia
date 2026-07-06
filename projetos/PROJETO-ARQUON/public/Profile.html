@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARQON | My Vault</title>
+    
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/header.css">
+    <link rel="stylesheet" href="style/profile.css">
+    <link rel="stylesheet" href="style/footer.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="header"></div>
+
+    <main class="arqon-profile-stage">
+        <div class="profile-atmosphere">
+            <div class="profile-orb-1"></div>
+            <div class="profile-orb-2"></div>
+        </div>
+
+        <div class="profile-mainframe-container">
+            
+            <aside class="vault-nav-card">
+                <div class="vault-user-meta">
+                    <div class="vault-avatar-container">
+                        <img id="user-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=256" alt="Vault Keeper">
+                        <div class="vault-avatar-glow"></div>
+                    </div>
+                    <h2 id="user-display-name" class="vault-user-title">Carregando...</h2>
+                    <span id="user-display-role" class="vault-badge-elite">MEMBRO COFRE</span>
+                </div>
+
+                <nav class="vault-tabs-menu">
+                    <button class="vault-tab-btn active" data-tab="visao-geral">
+                        <i class="fa-solid fa-chart-pie"></i> Visão Geral
+                    </button>
+                    <button class="vault-tab-btn" data-tab="meus-alugueis">
+                        <i class="fa-solid fa-boxes-packing"></i> Meus Artefatos
+                    </button>
+                    <button class="vault-tab-btn" data-tab="seguranca">
+                        <i class="fa-solid fa-shield-halved"></i> Chaves & Segurança
+                    </button>
+                    <button id="btn-logout" class="vault-tab-btn logout-action">
+                        <i class="fa-solid fa-power-off"></i> Trancar Cofre
+                    </button>
+                </nav>
+            </aside>
+
+            <section class="vault-display-panel">
+                
+                <div id="tab-visao-geral" class="vault-tab-content active-tab">
+                    <header class="panel-header">
+                        <span class="panel-tagline">CONTA VERIFICADA</span>
+                        <h1 class="panel-title">Saudações, <span id="welcome-name">...</span></h1>
+                        <p class="panel-subtitle">Monitore sua conta e modifique suas credenciais de acesso criptográfico.</p>
+                    </header>
+
+                    <div class="profile-metrics-row">
+                        <div class="p-metric-card">
+                            <span class="m-label">STATUS DA SESSÃO</span>
+                            <span class="m-value status-active-text"><i class="fa-solid fa-circle-check"></i> Seguro & Conectado</span>
+                        </div>
+                        <div class="p-metric-card">
+                            <span class="m-label">ARTEFATOS ATIVOS</span>
+                            <span id="metric-artifacts-count" class="m-value">0 Sob Custódia</span>
+                        </div>
+                    </div>
+
+                    <div class="vault-form-block">
+                        <h3 class="block-inner-title">Sincronização de Identidade</h3>
+                        <form id="form-update-profile" class="vault-premium-form">
+                            <div class="form-grid-2">
+                                <div class="vault-input-group">
+                                    <label for="prof-nome">NOME COMPLETO</label>
+                                    <input type="text" id="prof-nome" required>
+                                </div>
+                                <div class="vault-input-group">
+                                    <label for="prof-email">ENDEREÇO DE E-MAIL</label>
+                                    <input type="email" id="prof-email" disabled title="Bloqueado para segurança do hash">
+                                </div>
+                            </div>
+                            <div class="form-grid-2">
+                                <div class="vault-input-group">
+                                    <label for="prof-cpf">CPF / IDENTIFICAÇÃO</label>
+                                    <input type="text" id="prof-cpf" placeholder="000.000.000-00">
+                                </div>
+                                <div class="vault-input-group">
+                                    <label for="prof-foto">URL DA FOTO DE PERFIL</label>
+                                    <input type="url" id="prof-foto" placeholder="https://...">
+                                </div>
+                            </div>
+                            <button type="submit" class="vault-action-submit-btn">SALVAR CREDENCIAIS</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="tab-meus-alugueis" class="vault-tab-content">
+                    <header class="panel-header">
+                        <span class="panel-tagline">HISTÓRICO DE CUSTÓDIA</span>
+                        <h1 class="panel-title">Artefatos Alugados</h1>
+                        <p class="panel-subtitle">Acompanhe os prazos de devolução, controle logístico e histórico das suas coleções.</p>
+                    </header>
+
+                    <div class="vault-table-wrapper">
+                        <table class="vault-records-table">
+                            <thead>
+                                <tr>
+                                    <th>ARTEFATO / CÓDIGO</th>
+                                    <th>DATA RETIRADA</th>
+                                    <th>DEVOLUÇÃO</th>
+                                    <th>STATUS</th>
+                                    <th>DETALHES</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lista-alugueis-vazio">
+                                <tr>
+                                    <td colspan="5" class="table-empty-notice">
+                                        <i class="fa-solid fa-box-open"></i>
+                                        <p>Nenhum artefato sob sua custódia no momento.</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="tab-seguranca" class="vault-tab-content">
+                    <header class="panel-header">
+                        <span class="panel-tagline">CRIPTOGRAFIA DE ACESSO</span>
+                        <h1 class="panel-title">Mudar Senha Mestre</h1>
+                        <p class="panel-subtitle">Mantenha sua assinatura digital segura reconfigurando suas chaves periódicas.</p>
+                    </header>
+
+                    <div class="vault-form-block">
+                        <form id="form-change-password" class="vault-premium-form">
+                            <div class="vault-input-group max-w-sm">
+                                <label for="pass-current">SENHA ATUAL</label>
+                                <input type="password" id="pass-current" required>
+                            </div>
+                            <div class="form-grid-2">
+                                <div class="vault-input-group">
+                                    <label for="pass-new">NOVA SENHA MESTRE</label>
+                                    <input type="password" id="pass-new" required>
+                                </div>
+                                <div class="vault-input-group">
+                                    <label for="pass-confirm">CONFIRMAR NOVA SENHA</label>
+                                    <input type="password" id="pass-confirm" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="vault-action-submit-btn">GRAVAR NOVA CHAVE</button>
+                        </form>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="scripts/profile.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

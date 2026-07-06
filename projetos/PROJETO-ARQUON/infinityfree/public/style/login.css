@@ -1,0 +1,434 @@
+/* ==================================================
+   ARQON | AUTHENTICATION UI - DIRECT & PREMIUM
+   ================================================== */
+:root {
+  --arqon-bg-dark: #050505;
+  --arqon-gold: #D4AF37;
+  --arqon-gold-dim: rgba(212, 175, 55, 0.4);
+  --arqon-gold-glow: rgba(212, 175, 55, 0.15);
+  --arqon-wine: #2a0818;
+  --arqon-border: rgba(255, 255, 255, 0.08);
+  --arqon-glass: rgba(10, 10, 12, 0.65);
+  --arqon-error: #ff4d4d;
+  --font-display: 'Cinzel', serif;
+  --font-sans: 'Inter', sans-serif;
+}
+
+body, html {
+  margin: 0; padding: 0;
+  background-color: var(--arqon-bg-dark);
+  font-family: var(--font-sans);
+  color: #fff;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* CONTAINER PRINCIPAL */
+.arqon-auth-section {
+  width: 100vw; height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(circle at 70% 50%, var(--arqon-wine) 0%, var(--arqon-bg-dark) 80%);
+}
+
+.arqon-auth-layout {
+  display: grid; grid-template-columns: 1.2fr 1fr;
+  width: 100%; height: 100%;
+}
+
+/* PAINEL VISUAL */
+.arqon-visual-pane {
+  position: relative;
+  background: url('https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
+  display: flex; align-items: center; justify-content: center;
+  border-right: 1px solid var(--arqon-border);
+}
+
+.arqon-visual-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(5,5,5,0.95) 0%, rgba(42, 8, 24, 0.4) 100%);
+}
+
+.arqon-brand-content { position: relative; z-index: 10; text-align: center; }
+.arqon-logo { font-family: var(--font-display); font-size: 4.5rem; letter-spacing: 15px; color: var(--arqon-gold); margin: 0; }
+.arqon-tagline { font-family: var(--font-sans); font-size: 0.8rem; letter-spacing: 8px; color: rgba(255,255,255,0.5); margin-top: -5px; }
+
+/* PAINEL FORMULÁRIO */
+.arqon-form-pane {
+  display: flex; align-items: center; justify-content: center;
+  padding: 40px; position: relative; overflow-y: auto;
+}
+
+.arqon-form-pane::-webkit-scrollbar { width: 4px; }
+.arqon-form-pane::-webkit-scrollbar-thumb { background: var(--arqon-gold-dim); border-radius: 4px; }
+
+.arqon-form-container {
+  width: 100%; max-width: 440px;
+  padding: 55px 48px;
+  background: rgba(10, 10, 14, 0.72);
+  -webkit-backdrop-filter: blur(40px);
+  backdrop-filter: blur(40px);
+  border: 1px solid rgba(231, 185, 63, 0.18);
+  border-radius: 16px;
+  box-shadow: 0 0 0 1px rgba(231, 185, 63, 0.06), 0 40px 80px rgba(0,0,0,0.7), 0 0 60px rgba(231, 185, 63, 0.04);
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.arqon-form-container::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 17px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(231, 185, 63, 0.35) 0%, rgba(231, 185, 63, 0) 40%, rgba(231, 185, 63, 0) 60%, rgba(231, 185, 63, 0.25) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.arqon-form-container:hover {
+  border-color: rgba(231, 185, 63, 0.3);
+  box-shadow: 0 0 0 1px rgba(231, 185, 63, 0.1), 0 45px 90px rgba(0,0,0,0.75), 0 0 80px rgba(231, 185, 63, 0.08);
+}
+
+/* TIPOGRAFIA */
+.arqon-form-header { text-align: center; margin-bottom: 40px; position: relative; }
+.arqon-form-header::after {
+  content: '';
+  display: block;
+  width: 40px; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--arqon-gold), transparent);
+  margin: 16px auto 0;
+}
+.arqon-form-header h2 { font-family: var(--font-display); font-size: 1.8rem; letter-spacing: 4px; color: #fff; margin-bottom: 6px; text-shadow: 0 0 20px rgba(231, 185, 63, 0.15); }
+.arqon-form-header p { font-size: 0.82rem; color: rgba(255,255,255,0.55); line-height: 1.5; font-weight: 300; letter-spacing: 0.5px;}
+
+/* INPUTS */
+.arqon-row { display: flex; gap: 15px; }
+.arqon-input-group { position: relative; margin-bottom: 32px; width: 100%; }
+.arqon-input-group input {
+  width: 100%; padding: 14px 0 10px 0;
+  background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.12);
+  color: #fff; font-size: 0.95rem; font-family: var(--font-sans);
+  transition: all 0.3s ease; border-radius: 0; outline: none;
+}
+.arqon-input-group label {
+  position: absolute; left: 0; top: 14px;
+  color: rgba(255,255,255,0.35); font-size: 0.78rem; letter-spacing: 1.5px;
+  pointer-events: none; transition: all 0.3s ease;
+}
+
+.arqon-input-group input:focus { border-bottom-color: var(--arqon-gold); box-shadow: 0 1px 0 0 var(--arqon-gold-dim); }
+.arqon-input-group input:focus ~ label, .arqon-input-group input:not(:placeholder-shown) ~ label {
+  top: -16px; font-size: 0.62rem; color: var(--arqon-gold); text-transform: uppercase; letter-spacing: 2px;
+}
+
+.arqon-error-msg {
+  display: block; color: var(--arqon-error); font-size: 0.65rem;
+  margin-top: 6px; position: absolute; bottom: -18px; left: 0; font-weight: 500;
+}
+
+/* UPLOAD DE AVATAR (ISOLADO PARA ETAPA 2) */
+.arqon-avatar-step { display: flex; flex-direction: column; align-items: center; margin-bottom: 30px; }
+.avatar-preview-box {
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  border: 1px dashed var(--arqon-gold-dim);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  cursor: pointer; background-color: rgba(0,0,0,0.3);
+  background-size: cover; background-position: center;
+  transition: all 0.3s ease; color: var(--arqon-gold-dim);
+  margin-bottom: 15px;
+}
+.avatar-preview-box:hover { border-color: var(--arqon-gold); color: var(--arqon-gold); background-color: var(--arqon-gold-glow); }
+.avatar-preview-box i { font-size: 1.8rem; margin-bottom: 8px; }
+.avatar-preview-box span { font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase; }
+.avatar-preview-box.has-image i, .avatar-preview-box.has-image span { display: none; }
+.avatar-preview-box.has-image { border: 2px solid var(--arqon-gold); }
+
+/* BOTÕES */
+.arqon-btn-submit {
+  width: 100%; padding: 15px; margin-top: 10px;
+  background: var(--arqon-gold); border: 1px solid var(--arqon-gold);
+  color: #000; font-family: var(--font-sans); font-weight: 600;
+  font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase;
+  cursor: pointer; position: relative; transition: all 0.3s ease;
+  display: flex; justify-content: center; align-items: center; border-radius: 2px;
+}
+.arqon-btn-submit:hover:not(:disabled) { box-shadow: 0 0 20px var(--arqon-gold-glow); background: #fff; border-color: #fff; }
+.arqon-btn-submit:disabled { opacity: 0.7; cursor: not-allowed; }
+
+.arqon-btn-secondary {
+  width: 100%; padding: 15px; margin-top: 15px;
+  background: transparent; border: 1px solid var(--arqon-border);
+  color: rgba(255,255,255,0.7); font-family: var(--font-sans); font-weight: 500;
+  font-size: 0.85rem; cursor: pointer; transition: all 0.3s ease;
+  display: flex; justify-content: center; align-items: center; border-radius: 2px;
+}
+.arqon-btn-secondary:hover { border-color: #fff; color: #fff; }
+
+/* SPINNER */
+.spinner {
+  width: 18px; height: 18px; border: 2px solid transparent; border-top-color: currentColor;
+  border-radius: 50%; animation: spin 0.8s linear infinite; display: none; margin-right: 10px;
+}
+.loading .spinner { display: block; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* LINKS E FOOTER */
+.arqon-form-footer { margin-top: 35px; text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.5); }
+.arqon-link { color: var(--arqon-gold); text-decoration: none; font-weight: 500; margin-left: 5px; transition: color 0.3s; }
+.arqon-link:hover { color: #fff; }
+
+/* VOLTAR */
+.arqon-btn-back {
+  position: absolute; top: 35px; left: 40px; z-index: 100;
+  color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.75rem;
+  letter-spacing: 1px; display: flex; align-items: center; gap: 10px; transition: all 0.3s;
+}
+.arqon-btn-back:hover { color: var(--arqon-gold); transform: translateX(-5px); }
+
+/* FADE ANIMATION */
+.fade-enter { animation: fadeIn 0.4s ease forwards; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+/* RESPONSIVO */
+@media (max-width: 960px) {
+  .arqon-visual-pane { display: none; }
+  .arqon-auth-layout { grid-template-columns: 1fr; }
+  .arqon-form-pane { background: radial-gradient(circle at top, var(--arqon-wine), var(--arqon-bg-dark)); }
+}
+
+@media (max-width: 768px) {
+  .arqon-form-container { padding: 32px 28px; max-width: 100%; margin: 0 16px; }
+  .arqon-form-header h2 { font-size: 1.3rem; letter-spacing: 2px; }
+  .arqon-form-header p { font-size: 0.75rem; }
+  .arqon-input-group { margin-bottom: 24px; }
+  .arqon-input-group input { font-size: 0.85rem; padding: 10px 0 6px 0; }
+  .arqon-input-group label { font-size: 0.65rem; }
+  .arqon-input-group input:focus ~ label, .arqon-input-group input:not(:placeholder-shown) ~ label { top: -12px; font-size: 0.55rem; }
+  .arqon-btn-submit { padding: 12px; font-size: 0.8rem; }
+  .arqon-btn-secondary { padding: 12px; font-size: 0.75rem; }
+  .arqon-form-footer { font-size: 0.7rem; margin-top: 24px; }
+  .arqon-btn-back { top: 16px; left: 16px; font-size: 0.65rem; }
+  .avatar-preview-box { width: 90px; height: 90px; }
+  .avatar-preview-box i { font-size: 1.3rem; }
+  #modal-cropper-login .cropper-container { height: 260px; }
+  #modal-cropper-login .modal-content { max-width: 95%; }
+}
+
+@media (max-width: 480px) {
+  .arqon-form-container { padding: 24px 20px; margin: 0 12px; border-radius: 10px; }
+  .arqon-form-container::before { border-radius: 11px; }
+  .arqon-form-header { margin-bottom: 24px; }
+  .arqon-form-header h2 { font-size: 1.1rem; letter-spacing: 1.5px; }
+  .arqon-form-header p { font-size: 0.7rem; }
+  .arqon-input-group { margin-bottom: 20px; }
+  .arqon-input-group input { font-size: 0.8rem; padding: 8px 0 6px 0; }
+  .arqon-input-group label { font-size: 0.6rem; top: 8px; }
+  .arqon-input-group input:focus ~ label, .arqon-input-group input:not(:placeholder-shown) ~ label { top: -10px; font-size: 0.5rem; }
+  .arqon-row { flex-direction: column; gap: 0; }
+  .arqon-btn-submit { padding: 10px; font-size: 0.75rem; letter-spacing: 0.5px; }
+  .arqon-btn-secondary { padding: 10px; font-size: 0.7rem; }
+  .arqon-form-footer { font-size: 0.65rem; margin-top: 20px; }
+  .arqon-btn-back { top: 12px; left: 12px; font-size: 0.6rem; }
+  .avatar-preview-box { width: 80px; height: 80px; margin-bottom: 10px; }
+  #modal-cropper-login .cropper-container { height: 220px; }
+  #modal-cropper-login .modal-actions { padding: 10px 12px; }
+  #modal-cropper-login .btn-outline, #modal-cropper-login .vault-action-submit-btn { padding: 6px 12px; font-size: 0.7rem; }
+  #avatar-preview { width: 50px; height: 50px; }
+  #avatar-preview-wrap .btn-outline { padding: 5px 10px; font-size: 0.65rem; }
+}
+
+@media (max-width: 360px) {
+  .arqon-form-container { padding: 20px 16px; margin: 0 10px; }
+  .arqon-form-header h2 { font-size: 1rem; letter-spacing: 1px; }
+  .arqon-form-header p { font-size: 0.65rem; }
+  .arqon-input-group input { font-size: 0.75rem; padding: 6px 0 4px 0; }
+  .arqon-btn-submit { padding: 8px; font-size: 0.7rem; }
+  .arqon-btn-secondary { padding: 8px; font-size: 0.65rem; }
+  .avatar-preview-box { width: 70px; height: 70px; }
+  #modal-cropper-login .cropper-container { height: 200px; }
+}
+
+/* =========================================
+   V8 AUTHENTICATION FEEDBACK & ANIMATIONS
+   ========================================= */
+
+/* Suaviza a transição entre Cadastro e Login */
+.arqon-form.fade-in {
+    animation: formFadeIn 0.4s ease forwards;
+}
+
+@keyframes formFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Estado de Carregamento do Botão */
+.arqon-btn-submit.loading {
+    opacity: 0.6;
+    pointer-events: none;
+    position: relative;
+    color: transparent !important; /* Esconde o texto original para por o spinner */
+}
+
+.arqon-btn-submit.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: var(--arqon-gold);
+    border-radius: 50%;
+    animation: arqonSpin 0.8s linear infinite;
+}
+
+@keyframes arqonSpin {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Transição suave do botão de erro para sucesso */
+.arqon-btn-submit {
+    transition: all 0.3s ease;
+}
+
+/* ========== MODAL CROPPER LOGIN ========== */
+#modal-cropper-login {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 5, 5, 0.9);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+#modal-cropper-login .modal-content {
+    background: #0a0a0c;
+    border: 1px solid rgba(231, 185, 63, 0.15);
+    border-radius: 12px;
+    max-width: 520px;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.1);
+}
+#modal-cropper-login .modal-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--arqon-border);
+}
+#modal-cropper-login .modal-head h3 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--arqon-gold);
+    margin: 0;
+    letter-spacing: 0.1em;
+}
+#modal-cropper-login .modal-close {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+#modal-cropper-login .modal-close:hover { opacity: 1; }
+#modal-cropper-login .modal-body {
+    padding: 0;
+    background: #050505;
+}
+#modal-cropper-login .cropper-container {
+    height: 320px;
+    overflow: hidden;
+}
+#modal-cropper-login .cropper-container img {
+    max-width: 100%;
+    display: block;
+}
+#modal-cropper-login .modal-actions {
+    display: flex;
+    gap: 10px;
+    padding: 16px 20px;
+    border-top: 1px solid var(--arqon-border);
+    justify-content: flex-end;
+}
+#modal-cropper-login .btn-outline {
+    background: transparent;
+    border: 1px solid var(--arqon-gold);
+    color: var(--arqon-gold);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: var(--font-sans);
+}
+#modal-cropper-login .btn-outline:hover {
+    background: var(--arqon-gold);
+    color: #0a0a0c;
+}
+#modal-cropper-login .vault-action-submit-btn {
+    background: var(--arqon-gold);
+    color: #0a0a0c;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: var(--font-sans);
+    transition: all 0.2s;
+}
+#modal-cropper-login .vault-action-submit-btn:hover {
+    box-shadow: 0 0 12px var(--arqon-gold-dim);
+}
+
+/* ========== AVATAR PREVIEW LOGIN ========== */
+#avatar-preview-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 10px;
+}
+#avatar-preview {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--arqon-gold);
+    background: #0a0612;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+#avatar-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+#avatar-preview-wrap .btn-outline {
+    background: transparent;
+    border: 1px solid var(--arqon-gold);
+    color: var(--arqon-gold);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: var(--font-sans);
+}
+#avatar-preview-wrap .btn-outline:hover {
+    background: var(--arqon-gold);
+    color: #0a0a0c;
+}

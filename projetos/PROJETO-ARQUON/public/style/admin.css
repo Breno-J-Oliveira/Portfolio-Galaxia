@@ -1,0 +1,347 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   ARQON | COFRE ADMINISTRATIVO - CORE CSS V3.0
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+    --sidebar-width: 260px;
+    --bg-main: #0C0716;
+    --bg-card: rgba(255, 255, 255, 0.02);
+    --border-lux: rgba(255, 255, 255, 0.08);
+    
+    --gold: #E7B93F;
+    --gold-hover: #FFDE4C;
+    --vinho: #541232;
+    --text-white: #FFFFFF;
+    --text-gray: #A0A0A0;
+}
+
+/* ESTRUTURA GERAL SPA */
+body {
+    background-color: var(--bg-main);
+    color: var(--text-white);
+    font-family: 'Be Vietnam', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.admin-wrapper {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* SIDEBAR FIXA ESQUERDA */
+.admin-sidebar {
+    width: var(--sidebar-width);
+    background: #090510;
+    border-right: 1px solid var(--border-lux);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.admin-sidebar-header {
+    padding: 30px 24px;
+    border-bottom: 1px solid var(--border-lux);
+}
+
+.admin-sidebar-title {
+    color: var(--gold);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-nav {
+    flex: 1;
+    padding: 25px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    color: var(--text-gray);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--text-white);
+    background: rgba(84, 18, 50, 0.3);
+    border-left: 3px solid var(--gold);
+}
+
+.admin-sidebar-footer {
+    padding: 20px 16px;
+    border-top: 1px solid var(--border-lux);
+}
+
+.logout-btn {
+    color: #F44336 !important;
+}
+.logout-btn:hover {
+    background: rgba(244, 67, 54, 0.1) !important;
+}
+
+/* BLOCO PRINCIPAL DA DIREITA (CONTEÚDO) */
+.admin-main {
+    margin-left: var(--sidebar-width);
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-header {
+    padding: 30px 40px;
+    border-bottom: 1px solid var(--border-lux);
+    background: rgba(12, 7, 22, 0.5);    -webkit-backdrop-filter: blur(5px);    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.admin-page-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-white);
+    margin-bottom: 6px;
+}
+
+.admin-page-subtitle {
+    font-size: 13px;
+    color: var(--text-gray);
+}
+
+.admin-content {
+    padding: 40px;
+    flex: 1;
+}
+
+/* CONTROLADOR DE ABAS */
+.tab-content {
+    display: none;
+}
+.tab-content.active {
+    display: block;
+    animation: fadeInAdmin 0.3s ease-in-out;
+}
+
+/* CARDS DE MÉTRICAS */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.metric-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-lux);
+    padding: 24px;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+}
+
+.metric-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(231, 185, 63, 0.3);
+}
+
+.metric-card.highlight {
+    background: linear-gradient(145deg, rgba(84, 18, 50, 0.2), rgba(12, 7, 22, 0.9));
+    border: 1px solid rgba(84, 18, 50, 0.5);
+}
+
+.metric-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.metric-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--text-gray);
+    letter-spacing: 0.5px;
+}
+
+.metric-icon {
+    color: var(--gold);
+    font-size: 16px;
+}
+
+.metric-value {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text-white);
+}
+
+/* SEÇÕES E CONTROLES */
+.section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-white);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.inventory-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+/* ESTRUTURA DE TABELAS SUPREMAS */
+.table-container {
+    background: var(--bg-card);
+    border: 1px solid var(--border-lux);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.data-table, .inventory-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 14px;
+}
+
+.data-table th, .inventory-table th {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 16px 20px;
+    color: var(--text-gray);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border-lux);
+}
+
+.data-table td, .inventory-table td {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-lux);
+    color: #E0E0E0;
+}
+
+.data-table tr:last-child td, .inventory-table tr:last-child td {
+    border-bottom: none;
+}
+
+.data-table tr:hover, .inventory-table tr:hover {
+    background: rgba(255, 255, 255, 0.01);
+}
+
+.log-timestamp-col { width: 200px; }
+.log-action-col { width: 250px; }
+
+/* BADGES DE STATUS */
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    display: inline-block;
+}
+.status-badge.ativo { background: rgba(76, 175, 80, 0.12); color: #4CAF50; border: 1px solid rgba(76, 175, 80, 0.2); }
+.status-badge.inativo { background: rgba(244, 67, 54, 0.12); color: #F44336; border: 1px solid rgba(244, 67, 54, 0.2); }
+
+.role-badge {
+    background: rgba(231, 185, 63, 0.1);
+    color: var(--gold);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+/* BOTÕES */
+.btn-add-item, .btn-submit {
+    background: var(--gold);
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.btn-add-item:hover, .btn-submit:hover { background: var(--gold-hover); }
+
+.btn-cancel {
+    background: transparent;
+    border: 1px solid var(--border-lux);
+    color: var(--text-white);
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.btn-cancel:hover { background: rgba(255,255,255,0.05); }
+
+.action-btn {
+    background: transparent;
+    border: 1px solid var(--border-lux);
+    color: var(--text-gray);
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.action-btn:hover { color: #F44336; border-color: #F44336; }
+
+/* MODAL OVERLAY CORRETO */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+.modal-overlay.active { opacity: 1; pointer-events: auto; }
+
+.modal-content {
+    background: #110B1E;
+    border: 1px solid var(--border-lux);
+    width: 100%;
+    max-width: 500px;
+    padding: 35px;
+    border-radius: 12px;
+}
+
+.form-group { margin-bottom: 20px; }
+.form-group-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.form-label { display: block; font-size: 12px; color: var(--text-gray); margin-bottom: 8px; text-transform: uppercase; }
+.form-control { width: 100%; background: rgba(0,0,0,0.2); border: 1px solid var(--border-lux); padding: 12px; color: #fff; border-radius: 6px; }
+.form-control:focus { border-color: var(--gold); outline: none; }
+
+#preview-foto { margin-top: 10px; max-width: 100%; max-height: 120px; border-radius: 4px; display: none; }
+
+/* FILTROS LOG */
+.log-filters { display: flex; gap: 8px; }
+.btn-filter { background: rgba(255,255,255,0.03); border: 1px solid var(--border-lux); color: #fff; padding: 6px 12px; border-radius: 4px; cursor: pointer; }
+.btn-filter:hover { border-color: var(--gold); }
+
+@keyframes fadeInAdmin {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}

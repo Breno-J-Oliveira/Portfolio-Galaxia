@@ -1,0 +1,318 @@
+/* ==================================================
+   ARQON | RESET & DESIGN SYSTEM (Brandbook Atualizado)
+   ================================================== */
+
+/* 1. IMPORTAÇÃO DA FONTE BE VIETNAM */
+@font-face {
+    font-family: 'Be Vietnam';
+    src: url('../assets/fonts/BeVietnam.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+  /* CORES PRIMÁRIAS (serão sobrescritas pelo theme-loader.js) */
+  --color-primary-dark: #50132D;
+  --color-primary: #641838;
+  --color-primary-light: #781D43;
+
+  /* CORES SECUNDÁRIAS (serão sobrescritas pelo theme-loader.js) */
+  --color-secondary-dark: #B99432;
+  --color-secondary: #E7B93F;
+  --color-secondary-light: #FFDE4C;
+
+  /* CORES TERCIÁRIAS (serão sobrescritas pelo theme-loader.js) */
+  --color-tertiary-dark: #808080;
+  --color-tertiary: #A0A0A0;
+  --color-tertiary-light: #C0C0C0;
+
+  /* CORES DARK (serão sobrescritas pelo theme-loader.js) */
+  --color-dark-dark: #0A0612;
+  --color-dark: #0C0716;
+  --color-dark-light: #0E081A;
+
+  /* CORES LIGHT (serão sobrescritas pelo theme-loader.js) */
+  --color-light-dark: #DCDCDC;
+  --color-light: #FFFFFF;
+
+  /* STATUS */
+  --color-success-dark: #2E7D32;
+  --color-success: #4CAF50;
+  --color-success-light: #81C784;
+  --color-danger-dark: #C62828;
+  --color-danger: #F44336;
+  --color-danger-light: #FF7961;
+
+  /* TIPOGRAFIA GLOBAL (será sobrescrita pelo theme-loader.js) */
+  --font-main: 'Be Vietnam', sans-serif;
+
+  /* ESCALA DE FONTE (FONT SCALE) */
+  --fs-small: 14px;
+  --fs-p: 16px;
+  --fs-h5: 18px;
+  --fs-h4: 24px;
+  --fs-h3: 28px;
+  --fs-h2: 34px;
+  --fs-h1: 40px;
+
+  /* UTILITÁRIOS (Glassmorphism & Borders) */
+  --arqon-bg-panel: rgba(12, 7, 22, 0.85);
+  --arqon-border: rgba(255, 255, 255, 0.1);
+
+  /* Glassmorphism Tokens */
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-bg-strong: rgba(255, 255, 255, 0.1);
+  --glass-blur: blur(20px);
+  --glass-border: rgba(255, 255, 255, 0.15);
+
+  /* Shadow Tokens */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
+  --shadow-gold: 0 4px 20px rgba(231, 185, 63, 0.3);
+
+  /* Radius Tokens */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* Gradient Tokens */
+  --gradient-primary: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+  --gradient-secondary: linear-gradient(135deg, var(--color-secondary-dark), var(--color-secondary));
+  --gradient-dark: linear-gradient(180deg, var(--color-dark-dark), var(--color-dark));
+  --gradient-dark-reverse: linear-gradient(0deg, var(--color-dark-dark), var(--color-dark));
+  --gradient-gold: linear-gradient(135deg, var(--color-secondary-dark), var(--color-secondary), var(--color-secondary-light));
+  --gradient-radial: radial-gradient(ellipse at center, var(--color-primary-light) 0%, var(--color-dark-dark) 70%);
+  --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+
+  /* Novos tokens de animação */
+  --transition-bounce: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-smooth: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-snap: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Tokens de escassez / urgência */
+  --color-scarcity-high: #FF5252;
+  --color-scarcity-mid: #FFA726;
+  --color-scarcity-ok: #66BB6A;
+  --color-scarcity-none: #616161;
+
+  /* Gradientes Arquon */
+  --gradient-gold-full: linear-gradient(135deg, #B99432 0%, #E7B93F 50%, #FFDE4C 100%);
+  --gradient-wine-dark: linear-gradient(135deg, #0C0716 0%, #50132D 100%);
+  --gradient-editorial: linear-gradient(180deg, rgba(12,7,22,0) 0%, rgba(12,7,22,0.95) 100%);
+  --gradient-hero-overlay: radial-gradient(ellipse at center, transparent 20%, #0C0716 80%);
+
+  /* Novas sombras */
+  --shadow-wine: 0 8px 32px rgba(80,19,45,0.4);
+  --shadow-gold-strong: 0 0 40px rgba(231,185,63,0.4);
+
+  /* Z-index ladder */
+  --z-base: 1;
+  --z-card: 10;
+  --z-dropdown: 100;
+  --z-header: 500;
+  --z-modal: 1000;
+  --z-toast: 9999;
+}
+
+* , *::before, *::after{
+    box-sizing: border-box;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    font-family: var(--font-main);
+    font-size: var(--fs-p);
+    overflow-x: hidden;
+    min-height: 100vh;
+    line-height: 1.5;
+    text-rendering: optimizeLegibility;
+}
+
+h1 { font-size: var(--fs-h1); font-weight: 700; }
+h2 { font-size: var(--fs-h2); font-weight: 700; }
+h3 { font-size: var(--fs-h3); font-weight: 600; }
+h4 { font-size: var(--fs-h4); font-weight: 600; }
+h5 { font-size: var(--fs-h5); font-weight: 500; }
+p  { font-size: var(--fs-p); }
+small { font-size: var(--fs-small); }
+
+img, picture, video, canvas, svg{
+    display: block;
+    max-width: 100%;
+}
+
+input, button, textarea, select{
+    font: inherit;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+ul, ol{
+    list-style: none;
+}
+
+table{
+    border-collapse: collapse;
+    border-spacing: 0 ;
+}
+
+.container-3d {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto; 
+    display: flex;
+    background-color: rgba(100, 24, 56, 0.1); 
+    justify-content: center;
+}
+
+model-viewer {
+    width: 100%;
+    height: 500px; 
+    background-color: transparent; 
+    outline: none; 
+}
+
+/* Custom Scrollbar - Dourado */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-dark-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-secondary);
+    border-radius: var(--radius-md);
+    border: 2px solid var(--color-dark-dark);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-secondary-light);
+}
+
+/* Firefox Scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-secondary) var(--color-dark-dark);
+}
+
+/* Mobile Scrollbar - mais fino */
+@media (max-width: 768px) {
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+    
+    * {
+        scrollbar-width: none;
+    }
+}
+
+/* Global Animation Classes */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.fade-in {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+}
+
+.slide-in-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.slide-in-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.slide-in-right {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.slide-in-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Glassmorphism Utility Classes */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+}
+
+.glass-panel-strong {
+    background: var(--glass-bg-strong);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+}
+
+.glass-modal {
+    background: rgba(12, 7, 22, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(231, 185, 63, 0.2);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg), var(--shadow-gold);
+}
+
+.glass-overlay {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}

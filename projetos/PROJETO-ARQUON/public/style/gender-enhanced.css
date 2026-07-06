@@ -1,0 +1,14 @@
+/* ARQON Gender Pages — Enhanced Sections (shared by masculino.css & feminino.css) */
+
+/* ===== SECTIONS COMMON ===== */
+.masc-section-inner,
+.fem-section-inner { max-width: 1200px; margin: 0 auto; padding: 60px 24px; }
+
+.masc-section-title,
+.fem-section-title {
+  font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600;
+  font-size: clamp(1.8rem, 4vw, 2.8rem); color: #fff; margin: 0 0 32px;
+  letter-spacing: -.02em;
+}
+.masc-section-title span,
+.fem-section-title span { color: #E7B93F; }
