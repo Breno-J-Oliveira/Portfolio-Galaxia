@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
-import { Orbitron, Space_Mono, Rajdhani } from 'next/font/google'
+import { Orbitron, Space_Mono, Rajdhani, Geist } from 'next/font/google'
 import './globals.css'
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const orbitron = Orbitron({ 
   subsets: ['latin'],
@@ -32,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="pt-BR" data-theme="red">
+    <html lang="pt-BR" data-theme="red" className={cn("font-sans", geist.variable)}>
       <body className={`${orbitron.variable} ${spaceMono.variable} ${rajdhani.variable}`}>
         {children}
       </body>
