@@ -62,17 +62,19 @@
     const list = document.getElementById('education-list');
     if (!list || !D.education) return;
     const typeLabel = { graduation: 'Formação', course: 'Curso', certification: 'Certificação' };
-    list.innerHTML = D.education.map(e => {
+    list.innerHTML = D.education.map((e, i) => {
       const photos = (e.photos || []).map(p => `<img class="edu-photo" src="${p}" alt="${e.title}" loading="lazy">`).join('');
+      const num = String(i + 1).padStart(2, '0');
       return `
-        <div class="edu-item reveal">
+        <div class="edu-item reveal${i % 2 ? ' reveal-delay-1' : ''}">
           <button class="edu-head" aria-expanded="false">
+            <span class="edu-num">${num}</span>
             <div class="edu-head-main">
               <span class="edu-type">${typeLabel[e.type] || 'Formação'}</span>
               <span class="edu-title">${e.title}</span>
               <span class="edu-school">${e.school} · ${e.year}</span>
             </div>
-            <span class="edu-icon" aria-hidden="true">+</span>
+            <span class="edu-icon" aria-hidden="true"></span>
           </button>
           <div class="edu-body">
             <div class="edu-body-inner">
@@ -88,22 +90,84 @@
         const item = head.closest('.edu-item');
         const open = item.classList.toggle('open');
         head.setAttribute('aria-expanded', open ? 'true' : 'false');
-        head.querySelector('.edu-icon').textContent = open ? '−' : '+';
       });
     });
   }
 
-  /* ── RENDER: POLIGLOTA ────────────────────────────────── */
+  /* ── RENDER: POLIGLOTA (player custom + equalizer) ────── */
   function renderPolyglot() {
     const grid = document.getElementById('polyglot-grid');
     if (!grid || !D.polyglot) return;
+    const bars = Array.from({ length: 28 }, (_, b) =>
+      `<span style="--b:${b}"></span>`).join('');
     grid.innerHTML = D.polyglot.languages.map((l, i) => `
         <div class="lang-card reveal${i ? ' reveal-delay-' + Math.min(i, 3) : ''}">
-          <div class="lang-flag">${l.flag || '🎧'}</div>
-          <div class="lang-name">${l.name}</div>
-          <div class="lang-level">${l.level}</div>
-          <audio class="lang-audio" controls preload="none" src="${l.audio}"></audio>
+          <div class="lang-head">
+            <span class="lang-flag">${l.flag || '🎧'}</span>
+            <div class="lang-meta">
+              <div class="lang-name">${l.name}</div>
+              <div class="lang-level">${l.level}</div>
+            </div>
+          </div>
+          <div class="lang-player" data-src="${l.audio}">
+            <button class="lang-play" type="button" aria-label="Ouvir ${l.name}">
+              <span class="ico-play"></span>
+            </button>
+            <div class="lang-wave" aria-hidden="true">${bars}</div>
+            <span class="lang-time">0:00</span>
+            <audio preload="none" src="${l.audio}"></audio>
+          </div>
         </div>`).join('');
+    initPolyglotPlayers(grid);
+  }
+
+  /* ── POLIGLOTA: lógica dos players ────────────────────── */
+  function initPolyglotPlayers(grid) {
+    const players = grid.querySelectorAll('.lang-player');
+    const fmt = s => {
+      if (!isFinite(s)) return '0:00';
+      const m = Math.floor(s / 60), sec = Math.floor(s % 60);
+      return m + ':' + String(sec).padStart(2, '0');
+    };
+    players.forEach(p => {
+      const audio = p.querySelector('audio');
+      const btn = p.querySelector('.lang-play');
+      const time = p.querySelector('.lang-time');
+      let demo = null; // fallback quando o áudio ainda não existe
+
+      const stopAll = () => {
+        players.forEach(o => {
+          o.classList.remove('playing');
+          const a = o.querySelector('audio');
+          if (a && !a.paused) { a.pause(); }
+          if (o._demo) { clearInterval(o._demo); o._demo = null; }
+        });
+      };
+
+      btn.addEventListener('click', () => {
+        const isPlaying = p.classList.contains('playing');
+        stopAll();
+        if (isPlaying) return;
+        p.classList.add('playing');
+        const playPromise = audio.play();
+        if (playPromise && playPromise.catch) {
+          playPromise.catch(() => {
+            // Áudio ainda não disponível: roda um preview de 6s só com a onda
+            let t = 0;
+            time.textContent = '0:00';
+            demo = setInterval(() => {
+              t += 0.1;
+              time.textContent = fmt(t);
+              if (t >= 6) { clearInterval(demo); demo = null; p._demo = null; p.classList.remove('playing'); time.textContent = '0:00'; }
+            }, 100);
+            p._demo = demo;
+          });
+        }
+      });
+
+      audio.addEventListener('timeupdate', () => { time.textContent = fmt(audio.currentTime); });
+      audio.addEventListener('ended', () => { p.classList.remove('playing'); time.textContent = '0:00'; });
+    });
   }
 
   /* Renderiza antes dos observers, para as animações capturarem os novos nós */
@@ -129,6 +193,12 @@
     };
     img.src = photo;
   })();
+
+  /* Stagger de entrada dos pills do arsenal */
+  document.querySelectorAll('.tool-pill').forEach((pill, i) => {
+    pill.classList.add('reveal');
+    pill.style.transitionDelay = (i * 0.04) + 's';
+  });
 
   Utils.initPage({ revealSelector: '.reveal, .timeline-item' });
 
@@ -194,14 +264,21 @@
     });
   });
 
-  /* ── PARALLAX ON HERO AVATAR ───────────────────────────── */
+  /* ── PARALLAX ON HERO AVATAR (lerp suave) ───────────────── */
   var avatarWrap = document.querySelector('.avatar-wrap');
   if (avatarWrap) {
+    var ax = 0, ay = 0, tx = 0, ty = 0;
     window.addEventListener('mousemove', function(e) {
-      var dx = (e.clientX / window.innerWidth - 0.5) * 20;
-      var dy = (e.clientY / window.innerHeight - 0.5) * 12;
-      avatarWrap.style.transform = 'translate(' + (dx * 0.5) + 'px, ' + (dy * 0.5) + 'px)';
+      tx = (e.clientX / window.innerWidth - 0.5) * 18;
+      ty = (e.clientY / window.innerHeight - 0.5) * 10;
     });
+    function tick() {
+      ax += (tx - ax) * 0.08;
+      ay += (ty - ay) * 0.08;
+      avatarWrap.style.transform = 'translate(' + ax + 'px, ' + ay + 'px)';
+      requestAnimationFrame(tick);
+    }
+    tick();
   }
 
   /* ── TOOL PILL HOVER ───────────────────────────────────── */
