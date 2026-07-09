@@ -1,6 +1,32 @@
-@import '@zenith/shared/theme/tokens.css';
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
+:root {
+  /* Paleta primária (tema padrão "red") */
+  --color-primary: #FF2B51;
+  --color-primary-alt: #F5002C;
+  --color-primary-light: #FF5C79;
+
+  /* Paleta alternativa "violet" */
+  --color-violet: #6C4CFF;
+  --color-violet-dark: #3B28B3;
+  --color-violet-light: #987BFF;
+
+  /* Paleta alternativa "green" */
+  --color-green: #00CC44;
+  --color-green-dark: #005F22;
+
+  /* Superfícies escuras */
+  --color-bg: #030303;
+  --color-surface-1: #0B0B0D;
+  --color-surface-2: #282C33;
+  --color-surface-3: #011928;
+
+  /* Semânticas */
+  --color-success: #2FC63E;
+  --color-danger: #D11D00;
+
+  /* Texto */
+  --color-text: #FFFFFF;
+  --color-text-dim: #8899AA;
+}
 
 @tailwind base;
 @tailwind components;
@@ -10,6 +36,7 @@
   --font-orbitron: var(--font-orbitron);
   --font-space-mono: var(--font-space-mono);
   --font-rajdhani: var(--font-rajdhani);
+  --font-sans: var(--font-rajdhani);
 }
 
 body {
@@ -95,9 +122,10 @@ body {
     --sidebar-ring: var(--color-primary);
   }
   * {
-    @apply border-border outline-ring/50;
+    border-color: var(--color-surface-2);
+    outline-color: var(--color-primary);
   }
   html {
-    @apply font-sans;
+    font-family: var(--font-rajdhani), sans-serif;
   }
 }
