@@ -1,30 +1,17 @@
-# SVG Optimization Process
+# Sistema de SVG Temável
 
-## Large Illustrations (Halftone Style)
+## Logo
 
-The following SVGs are too large for browser rendering and must be converted to WebP:
+A logo foi extraída de `assets/svg/logo 5x5.svg` e consolidada em um único componente React:
+`packages/shared/src/components/Logo.tsx`
 
-- `assets/svg/2.svg` (~4.7MB) - skull illustration
-- `assets/svg/7.svg` (~2.5MB) - illustration
-- `assets/svg/8.svg` (~5MB) - illustration
+O componente usa `fill="currentColor"` e `style={{ color: 'var(--color-primary)' }}`, herdando a cor do tema automaticamente. Os arquivos SVG originais da logo não são importados pelo app.
 
-### Conversion Process
+## Ilustrações grandes (Halftone)
 
-1. Convert SVG to high-resolution PNG:
-   ```bash
-   rsvg-convert -w 1920 -h 1080 -f png assets/svg/2.svg -o assets/svg/2.png
-   ```
+Os arquivos `caveira 16x9.svg` (~4.7MB), `caveira .svg` (~2.5MB) e `efeito 5.svg` (~5MB) são ilustrações estilo halftone com milhares de elementos.
 
-2. Convert PNG to optimized WebP:
-   ```bash
-   cwebp -q 80 assets/svg/2.png -o apps/web/public/illustrations/skull.webp
-   ```
-
-3. Delete intermediate PNG files
-
-### Usage in App
-
-Use CSS mask to apply theme color to the illustration:
+**Decisão do projeto:** Os SVGs serão mantidos como estão, sem compressão. Quando forem usados no app, devem ser aplicados como máscara CSS para preservar o efeito de troca de cor com o tema:
 
 ```css
 .hero-illustration {
@@ -38,39 +25,18 @@ Use CSS mask to apply theme color to the illustration:
 }
 ```
 
-This allows the illustration to change color with the theme without the overhead of a massive SVG.
+Se no futuro for necessário otimizar o carregamento, converter para WebP:
+```bash
+rsvg-convert -w 1920 -h 1080 -f png assets/svg/caveira\ 16x9.svg -o assets/svg/caveira.png
+cwebp -q 80 assets/svg/caveira.png -o apps/web/public/illustrations/skull.webp
+```
 
-## Small SVGs (Line/Blob Shapes)
+## SVGs leves (efeitos)
 
-The following SVGs are small enough to stay as SVG but should be optimized:
+Os arquivos `efeito 1.svg` (~71KB), `efeito 2.svg` (~15KB), `efeito 3.svg` (~207KB) e `efeito 4.svg` (~94KB) são formas leves e podem ser usados diretamente como SVG.
 
-- `assets/svg/10.svg` (~207KB) - blob shape
-- `assets/svg/12.svg` (~71KB) - line shape
+Ao usar no app, garantir que usam `stroke="currentColor"` ou `fill="currentColor"` em vez de hex fixo, para herdar a cor do tema.
 
-### Optimization Steps
+## Regra geral
 
-1. Run through SVGO:
-   ```bash
-   npx svgo assets/svg/10.svg -o apps/web/public/shapes/blob.svg
-   ```
-
-2. Replace fixed colors with `currentColor`:
-   - Change `fill="#FF2B51"` to `fill="currentColor"`
-   - Change `stroke="#FF2B51"` to `stroke="currentColor"`
-
-3. Apply theme color via CSS:
-   ```css
-   .blob-shape {
-     color: var(--color-primary);
-   }
-   ```
-
-## Logo SVGs
-
-The following logo SVGs have been consolidated into a single React component:
-- `assets/svg/1.svg`
-- `assets/svg/6.svg`
-- `assets/svg/9.svg`
-- `assets/svg/11.svg`
-
-These are no longer needed in the app. Use `@zenith/shared/Logo` component instead.
+Todo componente visual deve consumir as variáveis CSS (`var(--color-primary)` etc), nunca hex fixo no código.
