@@ -13,13 +13,13 @@ const PORTFOLIO_DATA = {
   owner: {
     name:        "Breno J. Oliveira",
     nameShort:   "B.J.O",
-    role:        "Desenvolvedor Full-Stack",
-    tagline:     "Transformando lógica em experiências que escalam",
-    bio:         "Desenvolvedor de sistemas apaixonado por arquitetura de software limpa, performance e sistemas embarcados. Estudante no SENAI, construindo soluções backend robustas com foco em código que resiste ao tempo e ao crescimento. Acredito que a melhor interface é aquela que desaparece — e o melhor código é aquele que você não precisa reescrever.",
-    bioLong:     "Atualmente cursando Desenvolvimento de Sistemas no SENAI, venho me especializando em arquitetura de sistemas escaláveis, APIs bem estruturadas e a elegância da programação de baixo nível. Minha jornada começa na intersecção entre hardware e software — desenvolvendo sistemas embarcados com Arduino e C/C++ enquanto construo serviços backend modernos com Node.js e Python. Acredito que entender como as coisas funcionam 'por baixo' me torna um programador melhor em qualquer nível da stack.",
-    location:    "[CIDADE, ESTADO]",
-    email:       "[SEU@EMAIL.COM]",
-    instagram:   "[@SEU_INSTAGRAM]",
+    role:        "Software Engineer — Full Stack",
+    tagline:     "Do silício ao container Docker — construo sistemas que escalam",
+    bio:         "Estudante de Desenvolvimento de Sistemas no SENAI com base sólida em Computação Avançada e experiência prática em sistemas backend, automação e arquitetura embarcada. Construo software estruturado, escalável e orientado a performance.",
+    bioLong:     "Resolvo problemas reais com pensamento de engenharia — projetando APIs RESTful, automatizando CI/CD, integrando hardware com software e estruturando sistemas prontos para produção. Do silício ao container Docker. Fullstack de verdade: do PHP puro ao NestJS, do vanilla JS ao Next.js + TypeScript. Backend, frontend, mobile e desktop — mesma qualidade em todas as camadas.",
+    location:    "São Paulo, Brasil",
+    email:       "breno.emailsenai@gmail.com",
+    instagram:   "@brenoov",
     github:      "https://github.com/Breno-J-Oliveira",
     availability: true,
     availableMsg: "Disponível para projetos",
@@ -31,9 +31,10 @@ const PORTFOLIO_DATA = {
      REDES SOCIAIS
   ────────────────────────────────────────── */
   social: [
-    { name: "GitHub",    url: "https://github.com/Breno-J-Oliveira", icon: "github",    color: "#ffffff" },
-    { name: "LinkedIn",  url: "#",                                   icon: "linkedin",  color: "#0077b5" },
-    { name: "Instagram", url: "#",                                   icon: "instagram", color: "#e1306c" },
+    { name: "GitHub",    url: "https://github.com/Breno-J-Oliveira",             icon: "github",    color: "#ffffff" },
+    { name: "LinkedIn",  url: "https://www.linkedin.com/in/brenojoliveira/",     icon: "linkedin",  color: "#0077b5" },
+    { name: "Instagram", url: "https://www.instagram.com/brenoov",               icon: "instagram", color: "#e1306c" },
+    { name: "X/Twitter", url: "https://x.com/BrenoJOliveira_",                  icon: "twitter",   color: "#a0a0b0" },
   ],
 
   /* ──────────────────────────────────────────
@@ -106,6 +107,7 @@ const PORTFOLIO_DATA = {
   ────────────────────────────────────────── */
   contact: {
     formspreeId: "SEU_ID_AQUI",
+    emailDirect: "breno.emailsenai@gmail.com",
   },
 
   /* ──────────────────────────────────────────
