@@ -98,3 +98,12 @@ footer { padding: 32px 80px; border-top: 1px solid rgba(255,255,255,.04); displa
   footer { flex-direction: column; gap: 16px; padding: 24px 32px; text-align: center; }
   .services-grid { grid-template-columns: 1fr; }
 }
+
+.service-includes li { font-size: .8rem; line-height: 1.7; color: #b3c6be; }
+.service-card .info-link { display: inline-flex; align-items: center; min-height: 44px; font-family: var(--font-mono); font-size: .7rem; }
+@media (max-width: 600px) {
+  #hero { padding-top: 140px; }
+  .services-grid { grid-template-columns: minmax(0, 1fr); }
+  .service-card { padding: 32px 24px; }
+  .process-step { grid-template-columns: 40px minmax(0, 1fr); gap: 16px; }
+}

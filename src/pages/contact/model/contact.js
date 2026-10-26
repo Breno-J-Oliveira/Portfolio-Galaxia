@@ -1,103 +1,115 @@
-/* ============================================================
-   CONTACT.JS — Lógica da página de contato
-   Usa Utils compartilhados + validação/envio do formulário.
-============================================================ */
+/* Contato: rascunho por e-mail sem simular o envio de mensagens. */
 (function () {
   'use strict';
-
   Utils.initPage();
-
-  /* ── FORM VALIDATION & SUBMIT ──────────────────────────── */
-  const form        = document.getElementById('contact-form');
-  const submitBtn   = document.getElementById('submit-btn');
-  const submitLabel = document.getElementById('submit-label');
-  const formSuccess = document.getElementById('form-success');
-
+  const form = document.getElementById('contact-form');
   if (!form) return;
-
-  function validateField(input) {
-    const id    = input.id;
-    const error = document.getElementById(id + '-error');
-    let valid   = true;
-
-    if (input.required && !input.value.trim()) {
-      valid = false;
-    } else if (input.type === 'email' && input.value.trim()) {
-      valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim());
-    } else if (id === 'message' && input.value.trim().length < 20) {
-      valid = false;
-    }
-
-    input.classList.toggle('error', !valid);
-    if (error) error.classList.toggle('visible', !valid);
+  const data = window.PORTFOLIO_DATA.contact;
+  const configured = !!data.formspreeId && data.formspreeId !== 'SEU_ID_AQUI';
+  const button = document.getElementById('submit-btn');
+  const label = document.getElementById('submit-label');
+  const status = document.getElementById('form-status');
+  const draft = document.getElementById('email-draft');
+  const fields = ['name', 'email', 'message'].map(id => document.getElementById(id));
+  const idleLabel = configured ? 'ENVIAR MENSAGEM' : 'PREPARAR E-MAIL';
+  label.textContent = idleLabel;
+  if (configured) document.getElementById('contact-mode').textContent = 'Envie uma mensagem pelo formulário ou use o e-mail direto.';
+  function validate(field) {
+    let valid = !!field.value.trim();
+    if (field.type === 'email') valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value.trim());
+    if (field.id === 'message') valid = field.value.trim().length >= 20;
+    field.classList.toggle('error', !valid);
+    field.setAttribute('aria-invalid', String(!valid));
+    field.setAttribute('aria-describedby', field.id + '-error');
+    const error=document.getElementById(field.id + '-error');
+    error.classList.toggle('visible', !valid);
+    if(field.id==='message')error.textContent=field.value.trim()?'Escreva pelo menos 20 caracteres para explicar o contato.':'Escreva uma mensagem para continuar.';
     return valid;
   }
-
-  /* Validação em tempo real */
-  ['name','email','message'].forEach(id => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.addEventListener('blur', () => validateField(el));
-    el.addEventListener('input', () => { if (el.classList.contains('error')) validateField(el); });
+  fields.forEach(field => {
+    field.addEventListener('blur', () => validate(field));
+    field.addEventListener('input', () => {
+      if (field.getAttribute('aria-invalid') === 'true') validate(field);
+    });
   });
+  form.addEventListener('input', () => {
+    draft.hidden = true;
+    draft.removeAttribute('href');
+    status.textContent = '';
+  });
+  const UI=PortfolioUI;
+  const optIn=document.getElementById('save-draft');
+  const draftStatus=document.getElementById('draft-status');
+  const purpose=document.getElementById('project-type');
+  const budget=document.getElementById('budget');
+  const undo=document.getElementById('undo-draft');
+  let cleared=null;
+  optIn.checked=UI.storage.get('contact-save-enabled',false)===true;
+  function draftData(){return {name:fields[0].value,email:fields[1].value,message:fields[2].value,purpose:purpose.value,budget:budget.value};}
+  function restore(value){
+    if(!value||typeof value!=='object')return;
+    for(const [i,key,max] of [[0,'name',100],[1,'email',254],[2,'message',5000]])fields[i].value=String(value[key]||'').slice(0,max);
+    purpose.value=[...purpose.options].some(o=>o.value===value.purpose)?value.purpose:'';
+    budget.value=[...budget.options].some(o=>o.value===value.budget)?value.budget:'';
+  }
+  if(optIn.checked){const saved=UI.storage.get('contact-draft');if(saved){restore(saved);draftStatus.textContent='Rascunho recuperado deste navegador.';}}
+  const intent=new URLSearchParams(location.search).get('intent');
+  if(intent==='opportunity')purpose.value='opportunity';
+  if(intent==='freelance')purpose.value='freelance';
+  try{const brief=sessionStorage.getItem('portfolio:brief');if(brief){fields[2].value=(fields[2].value ? fields[2].value+'\n\n'+brief : brief).slice(0,5000);sessionStorage.removeItem('portfolio:brief');draftStatus.textContent='Briefing recebido. Você pode revisar e complementar antes de preparar o e-mail.';}}catch(_){}
+  function refreshContact(){
+    const hiring=purpose.value==='opportunity';budget.disabled=hiring;budget.closest('.form-group').hidden=hiring;
+    document.getElementById('message-count').textContent=fields[2].value.length.toLocaleString('pt-BR')+' / 5.000 caracteres';
+    if(optIn.checked){const saved=UI.storage.set('contact-draft',draftData());if(!saved)draftStatus.textContent='O navegador não permitiu salvar. Seus dados continuam no formulário.';}
+  }
+  form.addEventListener('input',refreshContact);purpose.addEventListener('change',refreshContact);
+  optIn.addEventListener('change',()=>{UI.storage.set('contact-save-enabled',optIn.checked);if(!optIn.checked){UI.storage.remove('contact-draft');draftStatus.textContent='Salvamento desativado e cópia local apagada.';}else{refreshContact();draftStatus.textContent='Salvamento de rascunho ativado neste navegador.';}});
+  document.getElementById('clear-draft').addEventListener('click',()=>{
+    cleared=draftData();fields.forEach(field=>{field.value='';field.classList.remove('error');field.removeAttribute('aria-invalid');document.getElementById(field.id+'-error').classList.remove('visible');});purpose.value='';budget.value='';
+    UI.storage.remove('contact-draft');draft.hidden=true;draft.removeAttribute('href');status.textContent='';undo.hidden=false;
+    refreshContact();UI.storage.remove('contact-draft');draftStatus.textContent='Rascunho limpo. Você pode desfazer enquanto permanecer nesta página.';
+  });
+  undo.addEventListener('click',()=>{if(cleared){restore(cleared);refreshContact();draftStatus.textContent='Rascunho restaurado.';undo.hidden=true;cleared=null;}});
+  document.getElementById('copy-email').addEventListener('click',async()=>{document.getElementById('copy-email-status').textContent=await UI.copy(data.emailDirect)?'E-mail copiado.':'Não foi possível copiar. Selecione o endereço acima.';});
+  refreshContact();
 
-  var submitting = false;
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (submitting) return;
-
-    /* Honeypot */
-    const honeypot = form.querySelector('[name="_honeypot"]');
-    if (honeypot && honeypot.value.trim()) { showSuccess(); return; }
-
-    /* Valida campos obrigatórios */
-    const nameOk  = validateField(document.getElementById('name'));
-    const emailOk = validateField(document.getElementById('email'));
-    const msgOk   = validateField(document.getElementById('message'));
-    if (!nameOk || !emailOk || !msgOk) return;
-
-    /* Loading */
-    submitting = true;
-    submitBtn.disabled = true;
-    submitLabel.textContent = 'ENVIANDO...';
-
+  form.addEventListener('submit', async event => {
+    event.preventDefault();
+    if (button.disabled || form.querySelector('[name="_honeypot"]').value.trim()) return;
+    const valid = fields.map(validate).every(Boolean);
+    if (!valid) { fields.find(field => field.getAttribute('aria-invalid') === 'true').focus(); return; }
+    if (!configured) {
+      const subjectSelect = document.getElementById('project-type');
+      const subject = subjectSelect.value ? subjectSelect.selectedOptions[0].text : 'Contato pelo portfólio';
+      const budget = document.getElementById('budget');
+      const body = 'Nome: ' + fields[0].value.trim() + '\nE-mail: ' + fields[1].value.trim() +
+        (!budget.disabled && budget.value ? '\nOrçamento: ' + budget.selectedOptions[0].text : '') + '\n\n' + fields[2].value.trim();
+      draft.href = 'mailto:' + data.emailDirect + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      draft.hidden = false;
+      status.textContent = 'Rascunho preparado. Abra seu aplicativo de e-mail para revisar e enviar. Nenhuma mensagem foi enviada pelo site.';
+      draft.focus();
+      return;
+    }
+    button.disabled = true;
+    label.textContent = 'ENVIANDO…';
+    status.textContent = '';
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
     try {
-      const formspreeId = (window.PORTFOLIO_DATA && PORTFOLIO_DATA.contact && PORTFOLIO_DATA.contact.formspreeId)
-        || 'SEU_ID_AQUI';
-      if (formspreeId === 'SEU_ID_AQUI') {
-        await simulateSend();
-      } else {
-        const response = await fetch('https://formspree.io/f/' + formspreeId, {
-          method: 'POST',
-          headers: { 'Accept': 'application/json' },
-          body: new FormData(form),
-        });
-        if (!response.ok) throw new Error('Send failed');
-      }
-      showSuccess();
-    } catch (err) {
-      submitting = false;
-      submitBtn.disabled = false;
-      submitLabel.textContent = 'ENVIAR MENSAGEM';
-      console.error('Erro no envio:', err);
+      const response = await fetch('https://formspree.io/f/' + encodeURIComponent(data.formspreeId), {
+        method: 'POST', headers: {Accept: 'application/json'}, body: new FormData(form), signal: controller.signal
+      });
+      if (!response.ok) throw new Error('send-failed');
+      status.textContent = 'Mensagem enviada. Obrigado pelo contato!';
+      form.reset();
+      PortfolioUI.storage.remove('contact-draft');
+      refreshContact();
+    } catch (error) {
+      status.textContent = 'Não foi possível enviar. Tente novamente ou use o e-mail direto. Seus campos foram preservados.';
+    } finally {
+      clearTimeout(timeout);
+      button.disabled = false;
+      label.textContent = idleLabel;
     }
   });
-
-  function simulateSend() {
-    return new Promise(resolve => setTimeout(resolve, 1800));
-  }
-
-  function showSuccess() {
-    form.style.transition = 'opacity .4s';
-    form.style.opacity = '0';
-    setTimeout(() => {
-      form.style.display = 'none';
-      if (formSuccess) {
-        formSuccess.classList.add('visible');
-        formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    }, 400);
-  }
-
 })();

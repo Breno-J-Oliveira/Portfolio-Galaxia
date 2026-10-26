@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: /sitemap.xml
+Sitemap: https://breno-j-oliveira.github.io/Portfolio-Galaxia/sitemap.xml

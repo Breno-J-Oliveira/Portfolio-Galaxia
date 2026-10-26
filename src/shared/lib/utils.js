@@ -22,7 +22,9 @@
       cursorDot.style.left = cx + 'px';
       cursorDot.style.top  = cy + 'px';
     });
+    document.addEventListener('portfolio:motion',()=>{if(!PortfolioUI.paused())animRing();});
     function animRing() {
+      if(PortfolioUI.paused())return;
       rx += (cx - rx) * 0.12;
       ry += (cy - ry) * 0.12;
       cursorRing.style.left = rx + 'px';
@@ -75,7 +77,7 @@
 
     var rafId;
     function renderBg(ts) {
-      rafId = requestAnimationFrame(renderBg);
+      if (!PortfolioUI.paused()) rafId = requestAnimationFrame(renderBg);
       bgCtx.clearRect(0, 0, bgCvs.width, bgCvs.height);
       const grad = bgCtx.createRadialGradient(
         bgCvs.width / 2, bgCvs.height / 2, 0,
@@ -100,13 +102,14 @@
       }
       bgCtx.globalAlpha = 1;
     }
-    rafId = requestAnimationFrame(renderBg);
+    renderBg(performance.now());
 
+    document.addEventListener('portfolio:motion', function() { cancelAnimationFrame(rafId); renderBg(performance.now()); });
     document.addEventListener('visibilitychange', function() {
       if (document.hidden) {
         cancelAnimationFrame(rafId);
       } else {
-        rafId = requestAnimationFrame(renderBg);
+        if (!PortfolioUI.paused()) rafId = requestAnimationFrame(renderBg);
       }
     });
   };
@@ -154,7 +157,7 @@
 
   Utils.registerSW = function () {
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js');
+      navigator.serviceWorker.register('sw.js').catch(error => console.error('Service worker:', error));
     }
   };
 
@@ -188,6 +191,7 @@
       'z-index:9999', 'pointer-events:none',
       'opacity:0.7', 'text-transform:uppercase'
     ].join(';');
+    currentLabel.hidden = true;
     document.body.appendChild(currentLabel);
 
     function updateSection() {

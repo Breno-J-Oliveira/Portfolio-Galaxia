@@ -1,4 +1,4 @@
-const CACHE = 'portfolio-v12';
+const CACHE = 'portfolio-v21';
 const ASSETS = [
   './',
   './index.html',
@@ -32,29 +32,43 @@ const ASSETS = [
   './src/features/transitions/transitions.js',
   './favicon.svg',
   './manifest.webmanifest',
+  './resume.html',
+  './src/pages/resume/styles/resume.css',
+  './src/pages/resume/model/resume.js',
+  './src/shared/lib/ui.js',
+  './src/app/styles/experience.css',
+  './src/features/accessibility/accessibility.js',
+  './assets/fotos/breno.png',
+  './assets/projetos/nexusauth.png',
+  './assets/projetos/zenith.svg',
+  './assets/projetos/arqon/catalogo.png',
+  './assets/projetos/arqon/home.png',
+  './assets/projetos/arqon/produto.png',
+  './assets/projetos/nexly/agenda-demo.webp',
+  './assets/projetos/nexly/dashboard-demo.webp',
+  './assets/projetos/nexly/estoque-demo.webp',
+  './assets/projetos/nexly/pdv-demo.webp',
+
 ];
 
-self.addEventListener('install', e => {
-  self.skipWaiting();
-  e.waitUntil(
-    caches.open(CACHE).then(c => c.addAll(ASSETS)).catch(() => {})
-  );
+self.addEventListener('install', event => {
+  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS.map(url => new Request(url, {cache: 'reload'})))).then(() => self.skipWaiting()));
 });
 
-self.addEventListener('fetch', e => {
-  e.respondWith(
-    caches.match(e.request).then(cached =>
-      cached || fetch(e.request).catch(function() {
-        return caches.match('./404.html');
-      })
-    )
-  );
+self.addEventListener('fetch', event => {
+  // Formulários e serviços externos precisam da resposta real da rede.
+  if (event.request.method !== 'GET' || new URL(event.request.url).origin !== self.location.origin) return;
+  event.respondWith(caches.match(event.request).then(cached => cached || fetch(event.request).catch(async () => {
+    if (event.request.mode === 'navigate') {
+      const fallback = await caches.match(new URL('404.html', self.registration.scope).href);
+      if (fallback) return fallback;
+    }
+    return Response.error();
+  })));
 });
 
-self.addEventListener('activate', e => {
-  e.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
-    ).then(() => self.clients.claim())
-  );
+self.addEventListener('activate', event => {
+  event.waitUntil(caches.keys().then(keys => Promise.all(
+    keys.filter(key => key.startsWith('portfolio-') && key !== CACHE).map(key => caches.delete(key))
+  )).then(() => self.clients.claim()));
 });

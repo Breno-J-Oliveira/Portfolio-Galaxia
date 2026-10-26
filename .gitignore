@@ -1,6 +1,6 @@
 # ============================================
 #  .gitignore — Portfólio Breno J. Oliveira
-#  Última atualização: Julho 2025
+#  Última atualização: Outubro 2026
 # ============================================
 
 # ── Ambiente / segredos ──────────────────────
@@ -20,7 +20,7 @@ planejamento.md
 claude.md
 
 # ── Pasta de projetos separados (repos próprios) ──
-projetos/
+/projetos/
 
 # ── Backups / temporários ───────────────────
 *.v1
@@ -53,3 +53,11 @@ ehthumbs_vista.db
 assets/fotos/
 assets/audio/
 assets/curriculo.pdf
+# Foto escolhida para o portfólio público
+!assets/fotos/
+assets/fotos/*
+!assets/fotos/breno.png
+
+# Evidências locais de verificação
+output/
+.playwright-cli/

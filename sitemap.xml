@@ -1,28 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://breno-j-oliveira.github.io/</loc>
+    <loc>https://breno-j-oliveira.github.io/Portfolio-Galaxia/</loc>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://breno-j-oliveira.github.io/about.html</loc>
+    <loc>https://breno-j-oliveira.github.io/Portfolio-Galaxia/about.html</loc>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://breno-j-oliveira.github.io/projects.html</loc>
+    <loc>https://breno-j-oliveira.github.io/Portfolio-Galaxia/projects.html</loc>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://breno-j-oliveira.github.io/services.html</loc>
+    <loc>https://breno-j-oliveira.github.io/Portfolio-Galaxia/services.html</loc>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://breno-j-oliveira.github.io/contact.html</loc>
+    <loc>https://breno-j-oliveira.github.io/Portfolio-Galaxia/contact.html</loc>
+    <lastmod>2026-10-26</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url><loc>https://breno-j-oliveira.github.io/Portfolio-Galaxia/resume.html</loc><lastmod>2026-10-26</lastmod><priority>0.7</priority></url>
 </urlset>

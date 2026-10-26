@@ -4,25 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BRENO J. OLIVEIRA — Portfolio</title>
-  <meta name="description" content="Portfólio de Breno J. Oliveira, Desenvolvedor Full-Stack. Projetos em web, backend, Node.js, Python, C/C++, IoT e sistemas embarcados.">
+  <meta name="description" content="Breno J. Oliveira, desenvolvedor Full Stack em Santo André. React, Next.js, NestJS e TypeScript. Conheça Nexly, ARQON, ZENITH e NexusAuth.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="favicon.svg">
   <meta name="theme-color" content="#00ffff">
   <link rel="manifest" href="manifest.webmanifest">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Breno J. Oliveira — Desenvolvedor Full-Stack">
-  <meta property="og:description" content="Portfólio com projetos em Node.js, Python, C/C++, IoT e sistemas embarcados.">
+  <meta property="og:description" content="Breno J. Oliveira, desenvolvedor Full Stack em Santo André. React, Next.js, NestJS e TypeScript. Conheça Nexly, ARQON, ZENITH e NexusAuth.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Breno J. Oliveira — Desenvolvedor Full-Stack">
-  <meta name="twitter:description" content="Portfólio com projetos em Node.js, Python, C/C++, IoT e sistemas embarcados.">
+  <meta name="twitter:description" content="Breno J. Oliveira, desenvolvedor Full Stack em Santo André. React, Next.js, NestJS e TypeScript. Conheça Nexly, ARQON, ZENITH e NexusAuth.">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Breno J. Oliveira",
     "jobTitle": "Desenvolvedor Full-Stack",
-    "knowsAbout": ["Node.js", "Python", "C/C++", "JavaScript", "MySQL", "IoT", "Arduino", "ESP32"],
-    "sameAs": ["https://github.com/Breno-J-Oliveira"]
+    "knowsAbout": ["React", "Next.js", "TypeScript", "Node.js", "NestJS", "PostgreSQL", "PHP"],
+    "sameAs": ["https://github.com/Breno-J-Oliveira", "https://www.linkedin.com/in/brenojoliveira/"],
+    "homeLocation": {"@type": "Place", "name": "Santo André, SP"}
   }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -32,8 +33,11 @@
   <link rel="stylesheet" href="src/widgets/hud/hud.css" />
   <link rel="stylesheet" href="src/widgets/loader/loader.css" />
   <link rel="stylesheet" href="src/pages/galaxy/styles/galaxy.css" />
+  <link rel="stylesheet" href="src/app/styles/experience.css">
+  <script src="src/shared/lib/ui.js"></script>
 </head>
 <body>
+  <h1 class="sr-only">Breno J. Oliveira — Desenvolvedor Full Stack</h1>
   <a href="#galaxy-canvas" class="skip-link">Pular para o conteúdo</a>
   <div id="page-transition" aria-hidden="true"></div>
 
@@ -90,7 +94,7 @@
   <!-- HUD LEFT -->
   <div id="hud-left">
     <div class="hud-vert-line"></div>
-    <div class="hud-vert-text">LATITUDE 41.2°N</div>
+    <div class="hud-vert-text">SANTO ANDRÉ · SP</div>
     <div class="hud-vert-line"></div>
   </div>
 
@@ -130,6 +134,11 @@
     </div>
   </div>
 
+  <nav class="galaxy-access" aria-label="Explorar o portfólio">
+    <a href="about.html">Sobre mim</a><a href="projects.html">Projetos</a>
+    <a href="services.html">Freelance</a><a href="contact.html">Contato</a>
+  </nav>
+
   <!-- AUDIO TOGGLE -->
   <button id="audio-btn" onclick="toggleAudio()">◎ SOM</button>
 
@@ -145,5 +154,6 @@
     Utils.registerSW();
     Utils.initBackToTop();
   </script>
+  <script src="src/features/accessibility/accessibility.js"></script>
 </body>
 </html>

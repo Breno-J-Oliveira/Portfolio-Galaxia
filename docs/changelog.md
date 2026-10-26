@@ -4,6 +4,30 @@ Todos os registros de mudanças importantes neste projeto.
 
 ---
 
+## 26/10/2026 — Segunda rodada: experiência e recursos
+
+- 39 melhorias detalhadas em [melhorias-2026-10-26.md](melhorias-2026-10-26.md).
+- Resumo profissional imprimível, filtros de habilidades e trajetória.
+- Explorador com favoritos, ordenação, filtros na URL e links diretos.
+- Controles de galeria, ampliação acessível e navegação entre projetos.
+- Montador de briefing integrado ao formulário; salvamento opcional de rascunho.
+- Preferências de movimento e atalhos, compartilhamento e aviso offline.
+- Cache `portfolio-v21` com 48 recursos e recarga explícita dos assets no pré-cache.
+
+## 26/10/2026 — Atualização de carreira e projetos
+
+- Perfil Full Stack, formação em andamento e experiência na Axtron.IO.
+- Nexly, ARQON, ZENITH e NexusAuth com links próprios, contexto, status e imagens públicas.
+- Model central compartilhado entre Sobre, Projetos e Serviços.
+- Removidos depoimentos/credenciais fictícios e percentuais de proficiência.
+- Contato com validação e rascunho de e-mail explícito, sem simulação de envio.
+- Solicitação de currículo enquanto o PDF não é fornecido; idiomas sem áudio fictício.
+- Navegação mobile, modais por teclado, estado vazio da busca e legibilidade.
+- Cache `portfolio-v17`, sem interceptar POSTs ou respostas externas.
+- Estado atual em [status.md](status.md). Entradas abaixo são históricas.
+
+---
+
 ## [1.0.0] — 2025 — Versão inicial completa
 
 ### Adicionado

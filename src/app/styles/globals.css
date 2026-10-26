@@ -19,7 +19,7 @@
   --panel:    #0d1f3a;
   --white:    #ffffff;
   --dim:      #8899aa;
-  --muted:    rgba(255,255,255,0.35);
+  --muted:    #acb3c5;
   --ghost:    rgba(255,255,255,0.05);
 
   /* Paleta de destaque canônica */
@@ -79,7 +79,7 @@ body {
   color: var(--white);
   font-family: var(--font-body);
   cursor: none;
-  user-select: none;
+  user-select: text;
 }
 
 ::selection { background: var(--c1); color: var(--black); }
@@ -327,3 +327,33 @@ body::after {
 @media (prefers-reduced-motion: reduce) {
   #page-transition { display: none; }
 }
+
+/* Conteúdo atualizado: legibilidade, teclado e estados reais. */
+[hidden] { display: none !important; }
+html { color-scheme: dark; }
+a, button, input, select, textarea { touch-action: manipulation; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--c1); outline-offset: 5px;
+}
+section[id] { scroll-margin-top: 110px; }
+.content-note { font-family: var(--font-body); font-size: 1rem; color: var(--muted); line-height: 1.7; margin: 16px 0; overflow-wrap: anywhere; }
+.content-note a, .info-link { color: var(--c1); text-underline-offset: 4px; }
+.footer-copy { color: #a5a8b7; }
+@media (max-width: 600px) {
+  .section-header { align-items: flex-start; flex-direction: column; gap: 20px; }
+  .hero-name, .hero-title, .section-title, .cta-title { overflow-wrap: anywhere; }
+  .hero-name .line-1 { font-size: clamp(1.4rem, 6vw, 2.5rem); }
+  .hero-name .line-2 { font-size: clamp(.9rem, 4vw, 1.4rem); }
+  .contact-email, .info-value { overflow-wrap: anywhere; }
+}
+@media (pointer: coarse) {
+  *, *::before, *::after { cursor: auto !important; }
+  #cursor-ring, #cursor-dot { display: none !important; }
+  button, a { min-height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-delay: 0ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+}
+
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }

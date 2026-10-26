@@ -1,3 +1,15 @@
+# Publicação — estado atual
+
+A atualização de 26/10/2026 foi implementada localmente. Não foi publicada.
+
+Confirme repositório e domínio antes de publicar. Sitemap e robots usam a estrutura `https://breno-j-oliveira.github.io/Portfolio-Galaxia/`; isso não confirma GitHub Pages ativo. Os caminhos dos assets são relativos para funcionar em subpastas.
+
+Inclua os assets públicos em `assets/projetos/` e a foto escolhida. Não publique os repositórios em `projetos/`, variáveis de ambiente ou evidências em `output/`. O formulário prepara um rascunho; envio pelo site depende de endpoint real.
+
+Consulte [status.md](status.md) e [portfolio-info.md](portfolio-info.md). As instruções abaixo são históricas e precisam ser adaptadas; não reinicialize o Git nem troque o remote sem verificar a configuração atual.
+
+---
+
 # Guia de Deploy — Portfólio Galaxy
 
 Instruções para publicar o portfólio em produção.

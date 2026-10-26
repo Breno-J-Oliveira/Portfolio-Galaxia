@@ -112,3 +112,12 @@ footer { padding: 32px 80px; border-top: 1px solid rgba(255,255,255,.04); displa
   footer { flex-direction: column; gap: 16px; padding: 24px 32px; text-align: center; }
   .form-row { grid-template-columns: 1fr; }
 }
+
+#email-draft { display: inline-flex; align-items: center; min-height: 44px; font-family: var(--font-mono); font-size: .75rem; line-height: 1.8; }
+.contact-grid > *, .form-group { min-width: 0; }
+.form-input, .form-textarea, .form-select { box-sizing: border-box; }
+@media (max-width: 600px) {
+  #hero { padding-top: 140px; }
+  .form-input, .form-textarea, .form-select { font-size: 16px; }
+  .info-value { font-size: 1rem; }
+}

@@ -15,18 +15,11 @@
     const labels = D.skillCategories || {};
     const order = ['frontend', 'backend', 'database', 'devops', 'security', 'languages'];
     grid.innerHTML = order.filter(k => D.skills[k]).map((key, i) => {
-      const rows = D.skills[key].map(s => `
-            <div class="skill-row">
-              <div class="skill-row-head">
-                <span class="skill-row-name">${s.name}</span>
-                <span class="skill-row-pct">${s.level}%</span>
-              </div>
-              <div class="skill-bar-wrap"><div class="skill-bar" data-width="${s.level}"></div></div>
-            </div>`).join('');
+      const rows = D.skills[key].map(s => `<span class="skill-tag" data-skill="${s}">${s}</span>`).join('');
       return `
-        <div class="skill-card reveal${i ? ' reveal-delay-' + Math.min(i, 3) : ''}">
+        <div data-skill-category="${key}" class="skill-card reveal${i ? ' reveal-delay-' + Math.min(i, 3) : ''}">
           <div class="skill-cat">${labels[key] || key}</div>
-          <div class="skill-rows">${rows}</div>
+          <div class="skill-items">${rows}</div>
         </div>`;
     }).join('');
   }
@@ -39,7 +32,7 @@
       const ach = (t.achievements || []).map(a => `<div class="timeline-achievement">${a}</div>`).join('');
       const stack = (t.stack || []).map(s => `<span class="timeline-skill">${s}</span>`).join('');
       return `
-        <div class="timeline-item tl-c${t.tone || 1}">
+        <div data-timeline-kind="${t.company.includes('Axtron') ? 'professional' : 'academic'}" class="timeline-item tl-c${t.tone || 1}">
           <div class="timeline-node"><div class="timeline-dot"></div></div>
           <div class="timeline-header">
             <div>
@@ -67,7 +60,7 @@
       const num = String(i + 1).padStart(2, '0');
       return `
         <div class="edu-item reveal${i % 2 ? ' reveal-delay-1' : ''}">
-          <button class="edu-head" aria-expanded="false">
+          <button class="edu-head" type="button" aria-expanded="false" aria-controls="education-detail-${i}">
             <span class="edu-num">${num}</span>
             <div class="edu-head-main">
               <span class="edu-type">${typeLabel[e.type] || 'Formação'}</span>
@@ -76,10 +69,10 @@
             </div>
             <span class="edu-icon" aria-hidden="true"></span>
           </button>
-          <div class="edu-body">
+          <div class="edu-body" id="education-detail-${i}" hidden>
             <div class="edu-body-inner">
               ${e.description ? `<p class="edu-desc">${e.description}</p>` : ''}
-              ${photos ? `<div class="edu-photos">${photos}</div>` : '<p class="edu-empty">Fotos e detalhes em breve.</p>'}
+              ${photos ? `<div class="edu-photos">${photos}</div>` : ''}
               ${e.link && e.link !== '#' ? `<a class="edu-link" href="${e.link}" target="_blank" rel="noopener">Ver credencial →</a>` : ''}
             </div>
           </div>
@@ -90,84 +83,34 @@
         const item = head.closest('.edu-item');
         const open = item.classList.toggle('open');
         head.setAttribute('aria-expanded', open ? 'true' : 'false');
+        document.getElementById(head.getAttribute('aria-controls')).hidden = !open;
       });
     });
   }
 
-  /* ── RENDER: POLIGLOTA (player custom + equalizer) ────── */
+  /* Idiomas: só oferece reprodução quando uma gravação está cadastrada. */
   function renderPolyglot() {
     const grid = document.getElementById('polyglot-grid');
     if (!grid || !D.polyglot) return;
-    const bars = Array.from({ length: 28 }, (_, b) =>
-      `<span style="--b:${b}"></span>`).join('');
-    grid.innerHTML = D.polyglot.languages.map((l, i) => `
-        <div class="lang-card reveal${i ? ' reveal-delay-' + Math.min(i, 3) : ''}">
-          <div class="lang-head">
-            <span class="lang-flag">${l.flag || '🎧'}</span>
-            <div class="lang-meta">
-              <div class="lang-name">${l.name}</div>
-              <div class="lang-level">${l.level}</div>
-            </div>
-          </div>
-          <div class="lang-player" data-src="${l.audio}">
-            <button class="lang-play" type="button" aria-label="Ouvir ${l.name}">
-              <span class="ico-play"></span>
-            </button>
-            <div class="lang-wave" aria-hidden="true">${bars}</div>
-            <span class="lang-time">0:00</span>
-            <audio preload="none" src="${l.audio}"></audio>
-          </div>
-        </div>`).join('');
-    initPolyglotPlayers(grid);
+    grid.innerHTML = D.polyglot.languages.map(l => `
+      <div class="lang-card reveal">
+        <div class="lang-head"><span class="lang-flag" aria-hidden="true">${l.flag}</span>
+          <div class="lang-meta"><div class="lang-name">${l.name}</div><div class="lang-level">${l.level}</div></div>
+        </div>
+        ${l.audio ? `<audio controls preload="none" src="${l.audio}" aria-label="Apresentação em ${l.name}"></audio>` : ''}
+      </div>`).join('');
   }
 
-  /* ── POLIGLOTA: lógica dos players ────────────────────── */
-  function initPolyglotPlayers(grid) {
-    const players = grid.querySelectorAll('.lang-player');
-    const fmt = s => {
-      if (!isFinite(s)) return '0:00';
-      const m = Math.floor(s / 60), sec = Math.floor(s % 60);
-      return m + ':' + String(sec).padStart(2, '0');
-    };
-    players.forEach(p => {
-      const audio = p.querySelector('audio');
-      const btn = p.querySelector('.lang-play');
-      const time = p.querySelector('.lang-time');
-      let demo = null; // fallback quando o áudio ainda não existe
-
-      const stopAll = () => {
-        players.forEach(o => {
-          o.classList.remove('playing');
-          const a = o.querySelector('audio');
-          if (a && !a.paused) { a.pause(); }
-          if (o._demo) { clearInterval(o._demo); o._demo = null; }
-        });
-      };
-
-      btn.addEventListener('click', () => {
-        const isPlaying = p.classList.contains('playing');
-        stopAll();
-        if (isPlaying) return;
-        p.classList.add('playing');
-        const playPromise = audio.play();
-        if (playPromise && playPromise.catch) {
-          playPromise.catch(() => {
-            // Áudio ainda não disponível: roda um preview de 6s só com a onda
-            let t = 0;
-            time.textContent = '0:00';
-            demo = setInterval(() => {
-              t += 0.1;
-              time.textContent = fmt(t);
-              if (t >= 6) { clearInterval(demo); demo = null; p._demo = null; p.classList.remove('playing'); time.textContent = '0:00'; }
-            }, 100);
-            p._demo = demo;
-          });
-        }
-      });
-
-      audio.addEventListener('timeupdate', () => { time.textContent = fmt(audio.currentTime); });
-      audio.addEventListener('ended', () => { p.classList.remove('playing'); time.textContent = '0:00'; });
-    });
+  document.querySelectorAll('[data-profile]').forEach(el => {
+    el.textContent = D.owner[el.dataset.profile] || '';
+  });
+  const tools = document.getElementById('tools-cloud');
+  if (tools) tools.innerHTML = D.tools.map((name, i) => `<span class="tool-pill t${i % 6 + 1}"><span>${name}</span></span>`).join('');
+  const cv = document.querySelector('[data-cv]');
+  if (cv && D.owner.cvAvailable && D.owner.cv) {
+    cv.href = D.owner.cv;
+    cv.setAttribute('download', '');
+    cv.querySelector('span').textContent = 'BAIXAR CURRÍCULO';
   }
 
   /* Renderiza antes dos observers, para as animações capturarem os novos nós */
@@ -175,6 +118,26 @@
   renderTimeline();
   renderEducation();
   renderPolyglot();
+  const categoryControls = document.getElementById('skill-categories');
+  let selectedCategory = 'all';
+  categoryControls.innerHTML = [['all','Todas'], ...Object.entries(D.skillCategories)].map(([key,label]) => `<button class="ui-button" type="button" data-category="${key}" aria-pressed="${key==='all'}">${label}</button>`).join('');
+  function filterSkills() {
+    const query=PortfolioUI.normalize(document.getElementById('skill-search').value.trim());let total=0;
+    document.querySelectorAll('[data-skill-category]').forEach(card=>{
+      let count=0;card.querySelectorAll('[data-skill]').forEach(item=>{item.hidden=!PortfolioUI.normalize(item.dataset.skill).includes(query);if(!item.hidden)count++;});
+      card.hidden=!count || (selectedCategory!=='all' && selectedCategory!==card.dataset.skillCategory);
+      if(!card.hidden)total+=count;
+    });
+    document.getElementById('skill-results').textContent=total ? `${total} tecnologias e práticas encontradas.` : 'Nenhum resultado. Tente outra tecnologia ou categoria.';
+    categoryControls.querySelectorAll('button').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.category===selectedCategory)));
+  }
+  categoryControls.addEventListener('click',event=>{const button=event.target.closest('[data-category]');if(button){selectedCategory=button.dataset.category;filterSkills();}});
+  document.getElementById('skill-search').addEventListener('input',filterSkills);filterSkills();
+  document.getElementById('timeline-filters').addEventListener('click',event=>{
+    const button=event.target.closest('[data-kind]');if(!button)return;
+    document.querySelectorAll('[data-timeline-kind]').forEach(item=>{item.hidden=button.dataset.kind!=='all' && item.dataset.timelineKind!==button.dataset.kind;});
+    document.querySelectorAll('#timeline-filters button').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
+  });
 
   /* ── AVATAR: foto real com fallback ───────────────────── */
   (function setAvatar() {
@@ -210,6 +173,7 @@
       if (stats[i]) {
         el.dataset.target = stats[i].value;
         el.dataset.suffix = stats[i].suffix || '';
+        el.parentElement.querySelector('.stat-label').textContent = stats[i].label;
       }
     });
   }
@@ -236,7 +200,10 @@
       }
     }
   }, { threshold: 0.5 });
-  statNums.forEach(el => statObs.observe(el));
+  statNums.forEach(el => {
+    if (Number(el.dataset.target) > 1000) el.textContent = el.dataset.target;
+    else statObs.observe(el);
+  });
 
   /* ── SKILL BAR ANIMATION ───────────────────────────────── */
   const skillBars = document.querySelectorAll('.skill-bar[data-width]');
@@ -272,12 +239,15 @@
       tx = (e.clientX / window.innerWidth - 0.5) * 18;
       ty = (e.clientY / window.innerHeight - 0.5) * 10;
     });
+    let avatarFrame;
     function tick() {
       ax += (tx - ax) * 0.08;
       ay += (ty - ay) * 0.08;
+      if (PortfolioUI.paused()) { avatarWrap.style.transform = ''; return; }
       avatarWrap.style.transform = 'translate(' + ax + 'px, ' + ay + 'px)';
-      requestAnimationFrame(tick);
+      avatarFrame = requestAnimationFrame(tick);
     }
+    document.addEventListener('portfolio:motion',()=>{cancelAnimationFrame(avatarFrame);tick();});
     tick();
   }
 

@@ -4,17 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projetos — BRENO J. OLIVEIRA</title>
-  <meta name="description" content="Projetos de Breno J. Oliveira: ARQON ERP, API de autenticação, sistema IoT, dashboard financeiro e mais.">
+  <meta name="description" content="Nexly, ARQON, ZENITH e NexusAuth: projetos Full Stack com código, documentação, contexto e tecnologias. Conheça também meus estudos em Python.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="favicon.svg">
   <meta name="theme-color" content="#3b82f6">
   <link rel="manifest" href="manifest.webmanifest">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Breno J. Oliveira — Projetos">
-  <meta property="og:description" content="ARQON ERP, API de autenticação, sistema IoT, dashboard financeiro e mais.">
+  <meta property="og:description" content="Nexly, ARQON, ZENITH e NexusAuth: projetos Full Stack com código, documentação, contexto e tecnologias. Conheça também meus estudos em Python.">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Breno J. Oliveira — Projetos">
-  <meta name="twitter:description" content="Projetos backend, IoT, automação e web full-stack.">
+  <meta name="twitter:description" content="Nexly, ARQON, ZENITH e NexusAuth: projetos Full Stack com código, documentação, contexto e tecnologias. Conheça também meus estudos em Python.">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
@@ -22,6 +22,8 @@
   <link rel="stylesheet" href="src/widgets/hud/hud.css" />
   <link rel="stylesheet" href="src/widgets/modal/modal.css" />
   <link rel="stylesheet" href="src/pages/projects/styles/projects.css" />
+  <link rel="stylesheet" href="src/app/styles/experience.css">
+  <script src="src/shared/lib/ui.js"></script>
 </head>
 <body class="theme-projects">
   <a href="#hero" class="skip-link">Pular para o conteúdo</a>
@@ -58,13 +60,9 @@
     <section id="hero">
       <div class="hero-eyebrow reveal">PORTFÓLIO</div>
       <h1 class="hero-title reveal">
-        PROJETOS QUE<br/><span class="hollow">FUNCIONAM</span>
+        IDEIAS EM<br/><span class="hollow">CONSTRUÇÃO</span>
       </h1>
-      <p class="hero-desc reveal">
-        Código real, problemas reais, soluções reais.
-        Cada projeto aqui tem uma história de engenharia por trás
-        — do firmware ao servidor.
-      </p>
+      <p class="hero-desc reveal">Aplicações, APIs e os aprendizados por trás de cada entrega. Nexly, ARQON, ZENITH e NexusAuth conectam minha formação à prática. Última revisão: outubro de 2026.</p>
     </section>
 
     <!-- FILTER BAR -->
@@ -74,53 +72,47 @@
       <button class="filter-btn" data-filter="fullstack">FULLSTACK</button>
       <button class="filter-btn" data-filter="backend">BACKEND</button>
       <button class="filter-btn" data-filter="frontend">FRONTEND</button>
+      <button class="filter-btn" data-filter="studies">ESTUDOS & EXTRAS</button>
+      <button class="filter-btn" data-filter="favorites">SALVOS</button>
+      <div class="explorer-options">
+        <label for="project-sort">Ordenar <select id="project-sort"><option value="featured">Destaques primeiro</option><option value="name">Nome A–Z</option></select></label>
+        <label><input type="checkbox" id="featured-only"> Apenas destaques</label>
+        <button class="ui-button" type="button" id="clear-projects">Limpar filtros</button>
+      </div>
+      <p id="project-results" class="content-note" role="status" aria-live="polite"></p>
     </div>
 
     <!-- STATS -->
     <div id="stats-bar">
-      <div class="stat-item reveal">
-        <div class="stat-num" data-target="10" data-suffix="+">0</div>
-        <div class="stat-label">Projetos</div>
-      </div>
-      <div class="stat-item reveal reveal-delay-1">
-        <div class="stat-num" data-target="3">0</div>
-        <div class="stat-label">Áreas de Atuação</div>
-      </div>
-      <div class="stat-item reveal reveal-delay-2">
-        <div class="stat-num" data-target="2" data-suffix="+">0</div>
-        <div class="stat-label">Anos de Projetos</div>
-      </div>
-      <div class="stat-item reveal reveal-delay-3">
-        <div class="stat-num" data-target="100">0</div>
-        <div class="stat-label">% Código Próprio</div>
-      </div>
+      <div class="stat-item reveal"><div class="stat-num" data-target="4">0</div><div class="stat-label">Projetos em destaque</div></div>
+      <div class="stat-item reveal"><div class="stat-num" data-target="2">0</div><div class="stat-label">Estudos & extras</div></div>
+      <div class="stat-item reveal"><div class="stat-num" data-target="1">0</div><div class="stat-label">TCC em equipe</div></div>
+      <div class="stat-item reveal"><div class="stat-num" data-target="2026">0</div><div class="stat-label">Em evolução</div></div>
     </div>
-
     <!-- PROJETOS -->
     <section id="projects" class="section">
       <div class="section-header">
         <div>
-          <div class="section-num">01 — BACKEND & APIs</div>
-          <h2 class="section-title">Servidores &<br/>Interfaces</h2>
+          <div class="section-num">01 — PROJETOS SELECIONADOS</div>
+          <h2 class="section-title">Da Interface<br/>ao Banco de Dados</h2>
         </div>
-        <div class="section-subtitle">CÓDIGO QUE ESCALA</div>
+        <div class="section-subtitle">CONTEXTO, CÓDIGO & APRENDIZADOS</div>
       </div>
 
-      <div class="projects-grid" id="projects-grid"><!-- Cards renderizados via JS a partir do array PROJECTS --></div>
+      <div class="projects-grid" id="projects-grid"><!-- Projetos do model central --></div>
+      <p id="projects-empty" class="content-note" role="status" hidden>Nenhum projeto encontrado. Tente outra tecnologia ou categoria.</p>
+      <a class="btn-primary" href="https://github.com/Breno-J-Oliveira?tab=repositories" target="_blank" rel="noopener noreferrer">TODOS OS REPOSITÓRIOS ↗</a>
     </section>
 
     <!-- CONTACT CTA -->
     <section id="contact-cta">
       <div class="cta-bg"></div>
-      <div class="cta-label reveal">TEM UM PROJETO?</div>
+      <div class="cta-label reveal">VAMOS CONVERSAR?</div>
       <h2 class="cta-title reveal">
         <span>VAMOS</span><br/>
         <span class="hollow">CONSTRUIR</span>
       </h2>
-      <p class="cta-sub reveal">
-        Tem uma ideia que precisa sair do papel?
-        API, sistema embarcado, automação — manda a mensagem.
-      </p>
+      <p class="cta-sub reveal">Uma oportunidade no seu time ou uma ideia para desenvolver juntos? Conheça o código e entre em contato.</p>
       <a class="btn-primary reveal" href="contact.html">
         <span>ENTRAR EM CONTATO</span>
         <span>→</span>
@@ -128,16 +120,10 @@
     </section>
 
     <footer>
-      <span class="footer-copy">© 2025 BRENO J. OLIVEIRA — TODOS OS DIREITOS RESERVADOS</span>
+      <span class="footer-copy">© 2026 BRENO J. OLIVEIRA — TODOS OS DIREITOS RESERVADOS</span>
       <button class="footer-back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ VOLTAR AO TOPO</button>
     </footer>
 
-  </div>
-
-  <!-- AVAILABILITY BADGE -->
-  <div id="availability-badge" aria-label="Status: disponível para projetos">
-    <span class="badge-dot"></span>
-    <span class="badge-text">Disponível para projetos</span>
   </div>
 
   <!-- BACK TO TOP -->
@@ -161,5 +147,6 @@
   <script src="src/pages/projects/model/projects.js"></script>
   <script src="src/features/shortcuts/shortcuts.js"></script>
   <script src="src/features/transitions/transitions.js"></script>
+  <script src="src/features/accessibility/accessibility.js"></script>
 </body>
 </html>

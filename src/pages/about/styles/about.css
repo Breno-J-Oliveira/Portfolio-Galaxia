@@ -326,3 +326,29 @@ footer { padding: 32px 80px; border-top: 1px solid rgba(255,255,255,0.04); displ
   #contact { padding: 80px 32px; }
   footer { flex-direction: column; gap: 16px; padding: 24px 32px; text-align: center; }
 }
+
+.skill-items { gap: 10px; margin-top: 24px; }
+.skill-items .skill-tag { font-size: .8rem; line-height: 1.5; padding: 6px 10px; color: #d3c9e3; border-color: rgba(180,79,255,.3); }
+.hero-bio + .hero-bio { margin-top: 16px; }
+.lang-level { line-height: 1.6; }
+@media (max-width: 600px) {
+  #hero { padding-top: 145px; }
+  .polyglot-grid { grid-template-columns: 1fr; }
+  #stats-bar { padding: 12px; }
+  .stat-item { padding: 12px 4px; min-width: 0; }
+  .stat-num { font-size: 1.7rem; }
+  .stat-label { font-size: .55rem; line-height: 1.8; letter-spacing: .03em; }
+  .hero-actions { flex-wrap: wrap; }
+  .timeline-header { flex-wrap: wrap; gap: 12px; }
+}
+
+/* O cargo complementa o nome sem invadir a coluna do retrato. */
+.hero-left { min-width: 0; }
+.hero-name .line-1 { font-size: clamp(1.7rem, 3.6vw, 3.6rem); }
+.hero-name .line-2 { font-size: clamp(1rem, 1.8vw, 1.8rem); line-height: 1.5; margin-top: 12px; }
+.hero-bio { margin-bottom: 24px; }
+.hero-bio + .hero-bio { margin-bottom: 32px; }
+
+@media (max-width: 600px) { #section-dots { display: none; } }
+
+@media (max-width: 600px) { .avatar-orbit { inset: -20px; } .avatar-orbit-2 { inset: -35px; } }

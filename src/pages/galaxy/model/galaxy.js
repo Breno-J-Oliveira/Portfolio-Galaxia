@@ -23,8 +23,8 @@
     {
       id: 'projetos',
       name: 'Projetos',
-      desc: 'Trabalhos que construí — do front ao hardware.',
-      tags: ['Web', 'Backend', 'IoT'],
+      desc: 'Nexly, ARQON, ZENITH e NexusAuth: aplicações e APIs.',
+      tags: ['Full Stack', 'TypeScript', 'Projetos'],
       color: '#3b82f6',
       url: 'projects.html',
       angle: 135,
@@ -343,7 +343,7 @@
   }
 
   setInterval(() => {
-    if (state.loaded && !document.hidden && Math.random() < 0.6) spawnShootingStar();
+    if (state.loaded && !document.hidden && !PortfolioUI.paused() && Math.random() < 0.6) spawnShootingStar();
   }, 2200);
 
   /* ============================================================
@@ -417,7 +417,7 @@
 
   var galaxyRafId;
   function render(ts) {
-    galaxyRafId = requestAnimationFrame(render);
+    if (!PortfolioUI.paused()) galaxyRafId = requestAnimationFrame(render);
     if (!state.loaded || !animating) return;
 
     const dt = Math.min((ts - lastTime) / 16.67, 3);
@@ -661,18 +661,7 @@
   const cursorRing = document.getElementById('cursor-ring');
   const cursorDot = document.getElementById('cursor-dot');
 
-  let ringX = 0, ringY = 0;
-
-  if (cursorRing && cursorDot) {
-    function updateCursorRing() {
-      ringX += (state.mouseX - ringX) * 0.12;
-      ringY += (state.mouseY - ringY) * 0.12;
-      cursorRing.style.left = ringX + 'px';
-      cursorRing.style.top = ringY + 'px';
-      requestAnimationFrame(updateCursorRing);
-    }
-    updateCursorRing();
-  }
+  // O cursor usa apenas o loop compartilhado de Utils, que respeita a pausa.
 
   document.addEventListener('mousemove', e => {
     state.mouseX = e.clientX;
@@ -916,11 +905,12 @@
     }
     requestAnimationFrame(render);
 
+    document.addEventListener('portfolio:motion', function() { cancelAnimationFrame(galaxyRafId); render(performance.now()); });
     document.addEventListener('visibilitychange', function() {
       if (document.hidden) {
         cancelAnimationFrame(galaxyRafId);
       } else {
-        galaxyRafId = requestAnimationFrame(render);
+        if (!PortfolioUI.paused()) galaxyRafId = requestAnimationFrame(render);
       }
     });
   }

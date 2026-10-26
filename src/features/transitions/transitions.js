@@ -17,9 +17,9 @@
   // Interceptar cliques em links internos
   var transitioning = false;
   document.addEventListener('click', function(e) {
-    if (transitioning) return;
+    if (transitioning || e.defaultPrevented || e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
     const link = e.target.closest('a[href]');
-    if (!link) return;
+    if (!link || link.hasAttribute('download') || link.target === '_blank') return;
     const href = link.getAttribute('href');
     if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('//') || href.startsWith('mailto') || href.startsWith('tel') || href.startsWith('data:')) return;
     e.preventDefault();
