@@ -17,12 +17,12 @@
   <meta name="twitter:description" content="Desenvolvedor Full Stack e estudante do SENAI, com conclusão prevista em dezembro de 2026. Conheça minha trajetória, projetos e experiência na Axtron.IO.">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="src/app/styles/globals.css" />
-  <link rel="stylesheet" href="src/widgets/hud/hud.css" />
-  <link rel="stylesheet" href="src/pages/about/styles/about.css" />
-  <link rel="stylesheet" href="src/app/styles/experience.css">
-  <script src="src/shared/lib/ui.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="src/app/styles/globals.css?v=20261026.2" />
+  <link rel="stylesheet" href="src/widgets/hud/hud.css?v=20261026.2" />
+  <link rel="stylesheet" href="src/pages/about/styles/about.css?v=20261026.2" />
+  <link rel="stylesheet" href="src/app/styles/experience.css?v=20261026.2">
+  <script src="src/shared/lib/ui.js?v=20261026.2"></script>
 </head>
 <body class="theme-about">
   <a href="#hero" class="skip-link">Pular para o conteúdo</a>
@@ -51,7 +51,7 @@
   <div id="hud-container"></div>
   <script>
     window.HUD_ACTIVE = 'about';
-    fetch('src/widgets/hud/hud.html')
+    fetch('src/widgets/hud/hud.html?v=20261026.2')
       .then(r => r.text())
       .then(html => {
         document.getElementById('hud-container').innerHTML = html;
@@ -73,24 +73,15 @@
     <section id="hero">
 
       <div class="hero-left">
-        <div class="hero-eyebrow reveal">SOBRE MIM</div>
+
         <h1 class="hero-name reveal reveal-delay-1">
-          <span class="line-1">BRENO J. OLIVEIRA</span>
-          <span class="line-2">DESENVOLVEDOR FULL-STACK</span>
+          <span class="line-1">Breno J. Oliveira</span>
+          <span class="line-2">Desenvolvedor Full Stack</span>
         </h1>
-        <p class="hero-bio reveal reveal-delay-2" data-profile="bio">Sou desenvolvedor Full Stack e estudante de Desenvolvimento de Sistemas no SENAI, em Santo André. Construo aplicações web com React, Next.js, NestJS, TypeScript e bancos SQL.</p>
-        <p class="hero-bio reveal reveal-delay-3" data-profile="bioLong">Meu principal projeto atual é o Nexly, TCC com a NexusTech. Busco minha primeira oportunidade profissional em desenvolvimento para aprender e contribuir em equipe.</p>
-        <div class="hero-actions reveal reveal-delay-4">
-          <a class="btn-primary" href="contact.html">
-            <span>ENTRAR EM CONTATO</span>
-            <span>→</span>
-          </a>
-          <a class="btn-secondary" data-cv href="mailto:breno.emailsenai@gmail.com?subject=Solicita%C3%A7%C3%A3o%20de%20curr%C3%ADculo">
-            <span>SOLICITAR CURRÍCULO</span>
-            <span>↗</span>
-          </a>
-        </div>
-        <div class="profile-shortcuts"><a class="ui-button" href="resume.html">Ver resumo profissional</a><a class="ui-button" href="contact.html?intent=opportunity">Conversar sobre uma vaga</a></div>
+        <p class="hero-bio" data-profile="bio">Sou de Santo André e estudo Desenvolvimento de Sistemas no SENAI. Nos meus projetos, uso React, Next.js, NestJS e TypeScript.</p>
+        <p class="hero-bio" data-profile="bioLong">Hoje desenvolvo o Nexly com a NexusTech para o TCC. Também mantenho projetos pessoais de produtividade e autenticação. Busco minha primeira vaga em desenvolvimento; na Axtron.IO, minha experiência é com gestão de equipe.</p>
+        <div class="hero-actions"><a class="btn-primary" href="projects.html">Ver projetos</a><a class="btn-secondary" href="contact.html">Entrar em contato</a></div>
+        <div class="profile-shortcuts"><a href="resume.html">Resumo profissional</a><a data-cv href="mailto:breno.emailsenai@gmail.com?subject=Curr%C3%ADculo">Solicitar currículo</a></div>
         <div class="hero-line-h"></div>
       </div>
 
@@ -121,25 +112,12 @@
       </div>
     </section>
 
-    <aside class="career-snapshot" aria-label="Meu momento atual"><div><span>Agora</span><strong>Nexly · TCC / NexusTech</strong><p>Desenvolvimento Full Stack e organização das prioridades do produto.</p></div><div><span>Próximo passo</span><strong>Primeira oportunidade em desenvolvimento</strong><p>React, Next.js, NestJS e TypeScript. Santo André, SP.</p></div><a class="ui-button" href="projects.html?project=nexly">Conhecer o Nexly</a></aside>
+
 
     <!-- ============================================================
          STATS
     ============================================================ -->
-    <div id="stats-bar">
-      <div class="stat-item reveal">
-        <div class="stat-num" data-target="4">0</div>
-        <div class="stat-label">Projetos em destaque</div>
-      </div>
-      <div class="stat-item reveal reveal-delay-1">
-        <div class="stat-num" data-target="2026">0</div>
-        <div class="stat-label">Conclusão prevista · SENAI</div>
-      </div>
-      <div class="stat-item reveal reveal-delay-2">
-        <div class="stat-num" data-target="1">0</div>
-        <div class="stat-label">TCC em equipe</div>
-      </div>
-    </div>
+
 
     <!-- ============================================================
          SKILLS
@@ -147,13 +125,11 @@
     <section id="skills" class="section">
       <div class="section-header">
         <div>
-          <div class="section-num">01 — COMPETÊNCIAS</div>
-          <h2 class="section-title">Stack &<br/>Habilidades</h2>
+          <h2 class="section-title">Tecnologias que uso</h2>
         </div>
-        <div class="section-subtitle">TECNOLOGIAS QUE APLICO</div>
       </div>
 
-      <div class="skills-controls"><label for="skill-search">Buscar uma tecnologia <input type="search" id="skill-search" placeholder="Ex.: TypeScript"></label><div id="skill-categories" class="filter-pills" role="group" aria-label="Categorias de habilidades"></div><p id="skill-results" class="content-note" role="status"></p></div>
+      <details class="skills-controls"><summary>Filtrar tecnologias</summary><label for="skill-search">Buscar uma tecnologia <input type="search" id="skill-search" placeholder="Ex.: TypeScript"></label><div id="skill-categories" class="filter-pills" role="group" aria-label="Categorias de habilidades"></div><p id="skill-results" class="content-note" role="status"></p></details>
       <div class="skills-grid" id="skills-grid"></div>
     </section>
 
@@ -163,10 +139,8 @@
     <section id="timeline" class="section section-alt">
       <div class="section-header">
         <div>
-          <div class="section-num">02 — TRAJETÓRIA</div>
-          <h2 class="section-title">Minha<br/>Jornada</h2>
+          <h2 class="section-title">Experiência e projetos em equipe</h2>
         </div>
-        <div class="section-subtitle">DE ONDE VIM</div>
       </div>
 
       <div class="filter-pills" id="timeline-filters" role="group" aria-label="Filtrar trajetória"><button class="ui-button" type="button" data-kind="all" aria-pressed="true">Toda a trajetória</button><button class="ui-button" type="button" data-kind="professional" aria-pressed="false">Profissional</button><button class="ui-button" type="button" data-kind="academic" aria-pressed="false">Acadêmica</button></div>
@@ -179,10 +153,8 @@
     <section id="education" class="section">
       <div class="section-header">
         <div>
-          <div class="section-num">03 — FORMAÇÃO</div>
-          <h2 class="section-title">Formação &<br/>Aprendizado</h2>
+          <h2 class="section-title">Formação</h2>
         </div>
-        <div class="section-subtitle">ONDE APRENDI</div>
       </div>
 
       <div class="edu-list" id="education-list"></div>
@@ -191,63 +163,12 @@
     <!-- ============================================================
          TOOLS
     ============================================================ -->
-    <section id="tools" class="section">
-      <div class="section-header">
-        <div>
-          <div class="section-num">04 — FERRAMENTAS</div>
-          <h2 class="section-title">Meu<br/>Arsenal</h2>
-        </div>
-        <div class="section-subtitle">FERRAMENTAS DOS MEUS PROJETOS</div>
-      </div>
 
-      <div class="tools-cloud reveal" id="tools-cloud"></div>
-    </section>
 
     <!-- ============================================================
          VALUES
     ============================================================ -->
-    <section class="section section-alt">
-      <div class="section-header">
-        <div>
-          <div class="section-num">05 — PRINCÍPIOS</div>
-          <h2 class="section-title">O Que<br/>Me Move</h2>
-        </div>
-        <div class="section-subtitle">VALORES & FILOSOFIA</div>
-      </div>
 
-      <div class="values-grid">
-        <div class="value-card reveal">
-          <div class="value-num">01</div>
-          <div class="value-title">APRENDER CONSTRUINDO</div>
-          <p class="value-text">Aplico o que estudo em projetos como Nexly, ARQON e ZENITH. Cada entrega é uma oportunidade de entender melhor as decisões de produto e de código.</p>
-        </div>
-        <div class="value-card reveal reveal-delay-1">
-          <div class="value-num">02</div>
-          <div class="value-title">CLAREZA NO CÓDIGO</div>
-          <p class="value-text">Busco nomes claros, funções com responsabilidades definidas e documentação que explique as decisões. Facilitar a manutenção também faz parte da entrega.</p>
-        </div>
-        <div class="value-card reveal reveal-delay-2">
-          <div class="value-num">03</div>
-          <div class="value-title">COLABORAÇÃO</div>
-          <p class="value-text">Trabalhar com a NexusTech e gerenciar uma equipe na Axtron.IO me ensina a ouvir, organizar prioridades e acompanhar o trabalho em conjunto.</p>
-        </div>
-        <div class="value-card reveal">
-          <div class="value-num">04</div>
-          <div class="value-title">SEGURANÇA DESDE O INÍCIO</div>
-          <p class="value-text">Autenticação, autorização e isolamento de dados fazem parte dos meus estudos e projetos. O NexusAuth concentra minha prática nesses temas.</p>
-        </div>
-        <div class="value-card reveal reveal-delay-1">
-          <div class="value-num">05</div>
-          <div class="value-title">VISÃO DE PONTA A PONTA</div>
-          <p class="value-text">Gosto de acompanhar o caminho inteiro: necessidade do usuário, interface, API, banco de dados e testes. Entender as conexões ajuda a tomar decisões melhores.</p>
-        </div>
-        <div class="value-card reveal reveal-delay-2">
-          <div class="value-num">06</div>
-          <div class="value-title">EVOLUÇÃO CONTÍNUA</div>
-          <p class="value-text">Estudo algoritmos em Python, testes automatizados e boas práticas. Quero evoluir ao lado de pessoas com experiências diferentes da minha.</p>
-        </div>
-      </div>
-    </section>
 
     <!-- ============================================================
          POLIGLOTA
@@ -255,10 +176,8 @@
     <section id="polyglot" class="section section-alt">
       <div class="section-header">
         <div>
-          <div class="section-num">06 — IDIOMAS</div>
-          <h2 class="section-title">Idiomas &<br/>Comunicação</h2>
+          <h2 class="section-title">Idiomas</h2>
         </div>
-        <div class="section-subtitle">APRENDIZADO CONTÍNUO</div>
       </div>
 
       <div class="polyglot-grid" id="polyglot-grid"></div>
@@ -269,12 +188,9 @@
     ============================================================ -->
     <section id="contact">
       <div class="contact-bg"></div>
-      <div class="contact-label reveal">VAMOS TRABALHAR JUNTOS</div>
-      <h2 class="contact-title reveal">
-        <span>PRONTO PARA</span><br/>
-        <span class="hollow">DECOLAR?</span>
-      </h2>
-      <p class="contact-sub reveal">Quero contribuir em um time de desenvolvimento e continuar aprendendo. Também avalio projetos freelance com escopo definido.</p>
+
+      <h2 class="contact-title">Quer conversar?</h2>
+      <p class="contact-sub">Você pode me encontrar por e-mail ou pelo LinkedIn.</p>
       <a class="contact-email reveal" href="mailto:breno.emailsenai@gmail.com">
         breno.emailsenai@gmail.com
       </a>
@@ -289,9 +205,9 @@
          FOOTER
     ============================================================ -->
     <footer>
-      <span class="footer-copy">© 2026 BRENO J. OLIVEIRA — TODOS OS DIREITOS RESERVADOS</span>
+      <span class="footer-copy">© 2026 Breno J. Oliveira</span>
       <button class="footer-back-top" id="back-to-top-footer" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-        ↑ VOLTAR AO TOPO
+        Voltar ao início
       </button>
     </footer>
 
@@ -300,11 +216,11 @@
   <!-- BACK TO TOP -->
   <button id="back-to-top" aria-label="Voltar ao topo" title="Voltar ao topo">🚀</button>
 
-  <script src="src/app/data/index.js"></script>
-  <script src="src/shared/lib/utils.js"></script>
-  <script src="src/pages/about/model/about.js"></script>
-  <script src="src/features/shortcuts/shortcuts.js"></script>
-  <script src="src/features/transitions/transitions.js"></script>
-  <script src="src/features/accessibility/accessibility.js"></script>
+  <script src="src/app/data/index.js?v=20261026.2"></script>
+  <script src="src/shared/lib/utils.js?v=20261026.2"></script>
+  <script src="src/pages/about/model/about.js?v=20261026.2"></script>
+  <script src="src/features/shortcuts/shortcuts.js?v=20261026.2"></script>
+  <script src="src/features/transitions/transitions.js?v=20261026.2"></script>
+  <script src="src/features/accessibility/accessibility.js?v=20261026.2"></script>
 </body>
 </html>

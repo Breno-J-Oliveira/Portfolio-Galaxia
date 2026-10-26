@@ -17,13 +17,13 @@
   <meta name="twitter:description" content="Nexly, ARQON, ZENITH e NexusAuth: projetos Full Stack com código, documentação, contexto e tecnologias. Conheça também meus estudos em Python.">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="src/app/styles/globals.css" />
-  <link rel="stylesheet" href="src/widgets/hud/hud.css" />
-  <link rel="stylesheet" href="src/widgets/modal/modal.css" />
-  <link rel="stylesheet" href="src/pages/projects/styles/projects.css" />
-  <link rel="stylesheet" href="src/app/styles/experience.css">
-  <script src="src/shared/lib/ui.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="src/app/styles/globals.css?v=20261026.2" />
+  <link rel="stylesheet" href="src/widgets/hud/hud.css?v=20261026.2" />
+  <link rel="stylesheet" href="src/widgets/modal/modal.css?v=20261026.2" />
+  <link rel="stylesheet" href="src/pages/projects/styles/projects.css?v=20261026.2" />
+  <link rel="stylesheet" href="src/app/styles/experience.css?v=20261026.2">
+  <script src="src/shared/lib/ui.js?v=20261026.2"></script>
 </head>
 <body class="theme-projects">
   <a href="#hero" class="skip-link">Pular para o conteúdo</a>
@@ -43,7 +43,7 @@
   <div id="hud-container"></div>
   <script>
     window.HUD_ACTIVE = 'projects';
-    fetch('src/widgets/hud/hud.html')
+    fetch('src/widgets/hud/hud.html?v=20261026.2')
       .then(r => r.text())
       .then(html => {
         document.getElementById('hud-container').innerHTML = html;
@@ -58,70 +58,56 @@
 
     <!-- HERO -->
     <section id="hero">
-      <div class="hero-eyebrow reveal">PORTFÓLIO</div>
-      <h1 class="hero-title reveal">
-        IDEIAS EM<br/><span class="hollow">CONSTRUÇÃO</span>
-      </h1>
-      <p class="hero-desc reveal">Aplicações, APIs e os aprendizados por trás de cada entrega. Nexly, ARQON, ZENITH e NexusAuth conectam minha formação à prática. Última revisão: outubro de 2026.</p>
+
+      <h1 class="hero-title">Projetos selecionados.</h1>
+      <p class="hero-desc">Alguns trabalhos da minha formação e dos meus estudos. Cada projeto tem código, documentação e uma descrição do que fiz.</p>
     </section>
 
     <!-- FILTER BAR -->
     <div id="filter-bar">
-      <input type="search" id="search-projects" placeholder="Buscar por tecnologia (PHP, React, Node...)" aria-label="Buscar projetos por tecnologia">
-      <button class="filter-btn active" data-filter="all">TODOS</button>
-      <button class="filter-btn" data-filter="fullstack">FULLSTACK</button>
-      <button class="filter-btn" data-filter="backend">BACKEND</button>
-      <button class="filter-btn" data-filter="frontend">FRONTEND</button>
-      <button class="filter-btn" data-filter="studies">ESTUDOS & EXTRAS</button>
-      <button class="filter-btn" data-filter="favorites">SALVOS</button>
+      <input type="search" id="search-projects" placeholder="Buscar projeto ou tecnologia" aria-label="Buscar projetos por tecnologia">
+      <details class="project-filters"><summary>Filtros e projetos salvos</summary>
+      <button class="filter-btn active" data-filter="all">Todos</button>
+      <button class="filter-btn" data-filter="fullstack">Full Stack</button>
+      <button class="filter-btn" data-filter="backend">Backend</button>
+      <button class="filter-btn" data-filter="frontend">Frontend</button>
+      <button class="filter-btn" data-filter="studies">Estudos e extras</button>
+      <button class="filter-btn" data-filter="favorites">Salvos</button>
       <div class="explorer-options">
         <label for="project-sort">Ordenar <select id="project-sort"><option value="featured">Destaques primeiro</option><option value="name">Nome A–Z</option></select></label>
         <label><input type="checkbox" id="featured-only"> Apenas destaques</label>
         <button class="ui-button" type="button" id="clear-projects">Limpar filtros</button>
       </div>
+      </details>
       <p id="project-results" class="content-note" role="status" aria-live="polite"></p>
     </div>
 
     <!-- STATS -->
-    <div id="stats-bar">
-      <div class="stat-item reveal"><div class="stat-num" data-target="4">0</div><div class="stat-label">Projetos em destaque</div></div>
-      <div class="stat-item reveal"><div class="stat-num" data-target="2">0</div><div class="stat-label">Estudos & extras</div></div>
-      <div class="stat-item reveal"><div class="stat-num" data-target="1">0</div><div class="stat-label">TCC em equipe</div></div>
-      <div class="stat-item reveal"><div class="stat-num" data-target="2026">0</div><div class="stat-label">Em evolução</div></div>
-    </div>
+
     <!-- PROJETOS -->
     <section id="projects" class="section">
-      <div class="section-header">
-        <div>
-          <div class="section-num">01 — PROJETOS SELECIONADOS</div>
-          <h2 class="section-title">Da Interface<br/>ao Banco de Dados</h2>
-        </div>
-        <div class="section-subtitle">CONTEXTO, CÓDIGO & APRENDIZADOS</div>
-      </div>
+
 
       <div class="projects-grid" id="projects-grid"><!-- Projetos do model central --></div>
       <p id="projects-empty" class="content-note" role="status" hidden>Nenhum projeto encontrado. Tente outra tecnologia ou categoria.</p>
-      <a class="btn-primary" href="https://github.com/Breno-J-Oliveira?tab=repositories" target="_blank" rel="noopener noreferrer">TODOS OS REPOSITÓRIOS ↗</a>
+      <a class="btn-primary" href="https://github.com/Breno-J-Oliveira?tab=repositories" target="_blank" rel="noopener noreferrer">Todos os repositórios</a>
     </section>
 
     <!-- CONTACT CTA -->
     <section id="contact-cta">
       <div class="cta-bg"></div>
-      <div class="cta-label reveal">VAMOS CONVERSAR?</div>
-      <h2 class="cta-title reveal">
-        <span>VAMOS</span><br/>
-        <span class="hollow">CONSTRUIR</span>
-      </h2>
-      <p class="cta-sub reveal">Uma oportunidade no seu time ou uma ideia para desenvolver juntos? Conheça o código e entre em contato.</p>
+
+      <h2 class="cta-title">Vamos conversar?</h2>
+      <p class="cta-sub">Se algum projeto tem relação com o que seu time está construindo, me escreva.</p>
       <a class="btn-primary reveal" href="contact.html">
-        <span>ENTRAR EM CONTATO</span>
+        <span>Entrar em contato</span>
         <span>→</span>
       </a>
     </section>
 
     <footer>
-      <span class="footer-copy">© 2026 BRENO J. OLIVEIRA — TODOS OS DIREITOS RESERVADOS</span>
-      <button class="footer-back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ VOLTAR AO TOPO</button>
+      <span class="footer-copy">© 2026 Breno J. Oliveira</span>
+      <button class="footer-back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Voltar ao início</button>
     </footer>
 
   </div>
@@ -134,7 +120,7 @@
   ============================================================ -->
   <div id="modal-container"></div>
   <script>
-    fetch('src/widgets/modal/modal.html')
+    fetch('src/widgets/modal/modal.html?v=20261026.2')
       .then(r => r.text())
       .then(html => {
         document.getElementById('modal-container').innerHTML = html;
@@ -142,11 +128,11 @@
       .catch(err => console.error('Modal fetch failed:', err));
   </script>
 
-  <script src="src/app/data/index.js"></script>
-  <script src="src/shared/lib/utils.js"></script>
-  <script src="src/pages/projects/model/projects.js"></script>
-  <script src="src/features/shortcuts/shortcuts.js"></script>
-  <script src="src/features/transitions/transitions.js"></script>
-  <script src="src/features/accessibility/accessibility.js"></script>
+  <script src="src/app/data/index.js?v=20261026.2"></script>
+  <script src="src/shared/lib/utils.js?v=20261026.2"></script>
+  <script src="src/pages/projects/model/projects.js?v=20261026.2"></script>
+  <script src="src/features/shortcuts/shortcuts.js?v=20261026.2"></script>
+  <script src="src/features/transitions/transitions.js?v=20261026.2"></script>
+  <script src="src/features/accessibility/accessibility.js?v=20261026.2"></script>
 </body>
 </html>

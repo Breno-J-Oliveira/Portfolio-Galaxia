@@ -28,29 +28,17 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="src/app/styles/globals.css" />
-  <link rel="stylesheet" href="src/widgets/hud/hud.css" />
-  <link rel="stylesheet" href="src/widgets/loader/loader.css" />
-  <link rel="stylesheet" href="src/pages/galaxy/styles/galaxy.css" />
-  <link rel="stylesheet" href="src/app/styles/experience.css">
-  <script src="src/shared/lib/ui.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="src/app/styles/globals.css?v=20261026.2" />
+  <link rel="stylesheet" href="src/widgets/hud/hud.css?v=20261026.2" />
+  <link rel="stylesheet" href="src/pages/galaxy/styles/galaxy.css?v=20261026.2" />
+  <link rel="stylesheet" href="src/app/styles/experience.css?v=20261026.2">
+  <script src="src/shared/lib/ui.js?v=20261026.2"></script>
 </head>
 <body>
   <h1 class="sr-only">Breno J. Oliveira — Desenvolvedor Full Stack</h1>
   <a href="#galaxy-canvas" class="skip-link">Pular para o conteúdo</a>
   <div id="page-transition" aria-hidden="true"></div>
-
-  <!-- LOADING SCREEN (injetado via fetch) -->
-  <div id="loader-container"></div>
-  <script>
-    fetch('src/widgets/loader/loader.html')
-      .then(r => r.text())
-      .then(html => {
-        document.getElementById('loader-container').innerHTML = html;
-      })
-      .catch(err => console.error('Loader fetch failed:', err));
-  </script>
 
   <!-- SCANLINES -->
   <div id="scanlines"></div>
@@ -71,16 +59,12 @@
   <!-- CONSTELLATION OVERLAY -->
   <canvas id="constellation-canvas"></canvas>
 
-  <!-- WARP TRANSITION -->
-  <div id="warp-overlay">
-    <canvas class="warp-canvas" id="warp-canvas"></canvas>
-    <div class="warp-text" id="warp-text">WARPING TO DESTINATION</div>
-  </div>
+
 
   <!-- HUD TOP (injetado via fetch) -->
   <div id="hud-container"></div>
   <script>
-    fetch('src/widgets/hud/hud.html')
+    fetch('src/widgets/hud/hud.html?v=20261026.2')
       .then(r => r.text())
       .then(html => {
         document.getElementById('hud-container').innerHTML = html;
@@ -109,14 +93,14 @@
   <!-- HUD BOTTOM -->
   <div id="hud-bottom">
     <div class="hud-coords" id="hud-coords">X: 0 / Y: 0</div>
-    <div class="hud-hint">NAVEGUE PELA GALÁXIA — CLIQUE NAS ESTRELAS BRILHANTES</div>
+    <div class="hud-hint">Escolha uma estrela ou use o menu</div>
     <div class="hud-scale" id="hud-scale">RA: 0h 0m / DEC: 0°</div>
   </div>
 
   <!-- SCROLL HINT -->
   <div id="scroll-hint">
     <div class="scroll-wheel"><div class="scroll-dot"></div></div>
-    <div class="scroll-text">Scroll para zoom</div>
+    <div class="scroll-text">Role para aproximar</div>
   </div>
 
   <!-- TOOLTIP -->
@@ -130,7 +114,7 @@
       <div class="tooltip-name" id="tt-name">—</div>
       <div class="tooltip-desc" id="tt-desc">—</div>
       <div class="tooltip-tags" id="tt-tags"></div>
-      <div class="tooltip-action">↩ CLIQUE PARA EXPLORAR</div>
+      <div class="tooltip-action">Abrir página</div>
     </div>
   </div>
 
@@ -145,15 +129,14 @@
   <!-- BACK TO TOP -->
   <button id="back-to-top" aria-label="Voltar ao topo" title="Voltar ao topo">🚀</button>
 
-  <script src="src/shared/lib/utils.js"></script>
-  <script src="src/widgets/loader/loader.js" defer></script>
-  <script src="src/pages/galaxy/model/galaxy.js" defer></script>
-  <script src="src/features/shortcuts/shortcuts.js"></script>
-  <script src="src/features/transitions/transitions.js"></script>
+  <script src="src/shared/lib/utils.js?v=20261026.2"></script>
+  <script src="src/pages/galaxy/model/galaxy.js?v=20261026.2" defer></script>
+  <script src="src/features/shortcuts/shortcuts.js?v=20261026.2"></script>
+  <script src="src/features/transitions/transitions.js?v=20261026.2"></script>
   <script>
     Utils.registerSW();
     Utils.initBackToTop();
   </script>
-  <script src="src/features/accessibility/accessibility.js"></script>
+  <script src="src/features/accessibility/accessibility.js?v=20261026.2"></script>
 </body>
 </html>

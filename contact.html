@@ -17,12 +17,12 @@
   <meta name="twitter:description" content="Converse com Breno J. Oliveira sobre oportunidades em desenvolvimento Full Stack, projetos e colaboração. Santo André, SP.">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="src/app/styles/globals.css" />
-  <link rel="stylesheet" href="src/widgets/hud/hud.css" />
-  <link rel="stylesheet" href="src/pages/contact/styles/contact.css" />
-  <link rel="stylesheet" href="src/app/styles/experience.css">
-  <script src="src/shared/lib/ui.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="src/app/styles/globals.css?v=20261026.2" />
+  <link rel="stylesheet" href="src/widgets/hud/hud.css?v=20261026.2" />
+  <link rel="stylesheet" href="src/pages/contact/styles/contact.css?v=20261026.2" />
+  <link rel="stylesheet" href="src/app/styles/experience.css?v=20261026.2">
+  <script src="src/shared/lib/ui.js?v=20261026.2"></script>
 </head>
 <body class="theme-contact">
   <a href="#hero" class="skip-link">Pular para o conteúdo</a>
@@ -40,7 +40,7 @@
   <div id="hud-container"></div>
   <script>
     window.HUD_ACTIVE = 'contact';
-    fetch('src/widgets/hud/hud.html')
+    fetch('src/widgets/hud/hud.html?v=20261026.2')
       .then(r => r.text())
       .then(html => {
         document.getElementById('hud-container').innerHTML = html;
@@ -54,14 +54,9 @@
   <div class="page-wrapper page-enter">
 
     <section id="hero">
-      <div class="hero-eyebrow reveal">VAMOS CONVERSAR</div>
-      <h1 class="hero-title reveal">
-        PRONTO PARA<br/><span class="hollow">CONSTRUIR?</span>
-      </h1>
-      <p class="hero-desc reveal">
-        Tem um projeto, uma dúvida ou quer trocar uma ideia sobre tecnologia?
-        Vamos conversar sobre desenvolvimento, uma oportunidade no seu time ou um projeto.
-      </p>
+
+      <h1 class="hero-title">Contato.</h1>
+      <p class="hero-desc">Para conversar sobre uma vaga ou um projeto, escreva por e-mail ou pelo LinkedIn.</p>
     </section>
 
     <div class="contact-grid">
@@ -69,27 +64,18 @@
       <!-- INFO -->
       <div class="contact-info">
 
-        <div class="info-block reveal">
-          <div class="info-label">Vamos conversar</div>
-          <div class="availability">
-            <div class="avail-dot"></div>
-            <span class="avail-text">Desenvolvimento Full Stack</span>
-          </div>
-          <div class="info-sub" style="margin-top:8px;">
-            Oportunidades em equipe, colaboração e projetos freelance.
-          </div>
-        </div>
+
 
         <div class="info-block reveal">
           <div class="info-label">E-mail</div>
           <div class="info-value">breno.emailsenai@gmail.com</div>
-          <a class="info-link" href="mailto:breno.emailsenai@gmail.com">ENVIAR E-MAIL →</a><button type="button" class="ui-button" id="copy-email">Copiar e-mail</button><p id="copy-email-status" role="status" class="content-note"></p>
+          <a class="info-link" href="mailto:breno.emailsenai@gmail.com">Escrever e-mail</a><button type="button" class="ui-button" id="copy-email">Copiar e-mail</button><p id="copy-email-status" role="status" class="content-note"></p>
         </div>
 
         <div class="info-block reveal">
           <div class="info-label">Instagram</div>
           <div class="info-value">@brenoov</div>
-          <a class="info-link" href="https://www.instagram.com/brenoov/" target="_blank" rel="noopener noreferrer">ABRIR PERFIL →</a>
+          <a class="info-link" href="https://www.instagram.com/brenoov/" target="_blank" rel="noopener noreferrer">Abrir perfil</a>
         </div>
 
         <div class="info-block reveal">
@@ -99,7 +85,7 @@
         </div>
 
         <div class="info-block reveal">
-          <div class="info-label">Redes Sociais</div>
+          <div class="info-label">Outros links</div>
           <div class="social-links">
             <a class="social-link" href="https://github.com/Breno-J-Oliveira" target="_blank" rel="noopener">GitHub</a>
             <a class="social-link" href="https://www.linkedin.com/in/brenojoliveira/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
@@ -107,18 +93,14 @@
           </div>
         </div>
 
-        <div class="info-block reveal">
-          <div class="info-label">Contato direto</div>
-          <div class="info-value">E-mail e LinkedIn</div>
-          <div class="info-sub">Escolha o canal mais prático para iniciar a conversa.</div>
-        </div>
+
 
       </div>
 
       <!-- FORM -->
       <div>
         <form id="contact-form" class="contact-form" novalidate>
-          <p class="content-note" id="contact-mode">Preencha para preparar um e-mail. Você revisa e envia pelo seu aplicativo de e-mail.</p>
+          <p class="content-note" id="contact-mode">Este formulário prepara um e-mail para você revisar e enviar.</p>
 
           <!-- Honeypot anti-spam -->
           <div class="form-honeypot" aria-hidden="true">
@@ -172,7 +154,7 @@
           <div class="draft-options"><label><input type="checkbox" id="save-draft"> Salvar meu rascunho neste navegador</label><p class="content-note" id="draft-notice">Opcional. O rascunho fica apenas neste navegador até você apagá-lo.</p><button type="button" class="ui-button" id="clear-draft">Limpar rascunho</button><button type="button" class="ui-button" id="undo-draft" hidden>Desfazer limpeza</button><p id="draft-status" role="status" class="content-note"></p></div>
           <div class="form-group reveal" id="submit-wrap">
             <button class="btn-submit" type="submit" id="submit-btn">
-              <span id="submit-label">PREPARAR E-MAIL</span>
+              <span id="submit-label">Preparar e-mail</span>
               <span>→</span>
             </button>
           </div>
@@ -186,19 +168,19 @@
     </div>
 
     <footer>
-      <span class="footer-copy">© 2026 BRENO J. OLIVEIRA — TODOS OS DIREITOS RESERVADOS</span>
-      <button class="footer-back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ VOLTAR AO TOPO</button>
+      <span class="footer-copy">© 2026 Breno J. Oliveira</span>
+      <button class="footer-back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Voltar ao início</button>
     </footer>
   </div>
 
   <!-- BACK TO TOP -->
   <button id="back-to-top" aria-label="Voltar ao topo" title="Voltar ao topo">🚀</button>
 
-  <script src="src/app/data/index.js"></script>
-  <script src="src/shared/lib/utils.js"></script>
-  <script src="src/pages/contact/model/contact.js"></script>
-  <script src="src/features/shortcuts/shortcuts.js"></script>
-  <script src="src/features/transitions/transitions.js"></script>
-  <script src="src/features/accessibility/accessibility.js"></script>
+  <script src="src/app/data/index.js?v=20261026.2"></script>
+  <script src="src/shared/lib/utils.js?v=20261026.2"></script>
+  <script src="src/pages/contact/model/contact.js?v=20261026.2"></script>
+  <script src="src/features/shortcuts/shortcuts.js?v=20261026.2"></script>
+  <script src="src/features/transitions/transitions.js?v=20261026.2"></script>
+  <script src="src/features/accessibility/accessibility.js?v=20261026.2"></script>
 </body>
 </html>

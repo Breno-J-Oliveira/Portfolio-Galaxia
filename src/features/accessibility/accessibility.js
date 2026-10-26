@@ -17,6 +17,12 @@
   const offline = document.createElement('p'); offline.className = 'offline-status'; offline.role = 'status'; offline.hidden = navigator.onLine;
   offline.textContent = 'Você está offline. O conteúdo já salvo continua disponível.';
   document.body.append(trigger, panel, offline);
+  function placeTrigger() {
+    const header = document.getElementById('hud-top');
+    if (header) header.appendChild(trigger);
+  }
+  document.addEventListener('hud:ready', placeTrigger);
+  placeTrigger();
   const motion = panel.querySelector('#motion-setting'); motion.checked = UI.paused();
   const shortcuts = panel.querySelector('#shortcuts-setting'); shortcuts.checked = UI.storage.get('shortcuts', true);
   trigger.addEventListener('click', () => panel.showModal());

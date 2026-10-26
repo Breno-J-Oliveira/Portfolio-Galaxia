@@ -1,4 +1,4 @@
-const CACHE = 'portfolio-v21';
+const CACHE = 'portfolio-v24';
 const ASSETS = [
   './',
   './index.html',
@@ -12,9 +12,6 @@ const ASSETS = [
   './src/widgets/hud/hud.css',
   './src/widgets/hud/hud.html',
   './src/widgets/hud/hud.js',
-  './src/widgets/loader/loader.css',
-  './src/widgets/loader/loader.html',
-  './src/widgets/loader/loader.js',
   './src/widgets/modal/modal.css',
   './src/widgets/modal/modal.html',
   './src/pages/galaxy/styles/galaxy.css',
@@ -58,7 +55,7 @@ self.addEventListener('install', event => {
 self.addEventListener('fetch', event => {
   // Formulários e serviços externos precisam da resposta real da rede.
   if (event.request.method !== 'GET' || new URL(event.request.url).origin !== self.location.origin) return;
-  event.respondWith(caches.match(event.request).then(cached => cached || fetch(event.request).catch(async () => {
+  event.respondWith(caches.open(CACHE).then(cache => cache.match(event.request, {ignoreSearch:true})).then(cached => cached || fetch(event.request).catch(async () => {
     if (event.request.mode === 'navigate') {
       const fallback = await caches.match(new URL('404.html', self.registration.scope).href);
       if (fallback) return fallback;

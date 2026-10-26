@@ -1,5 +1,7 @@
 # 39 melhorias — segunda rodada de 26/10/2026
 
+> Registro histórico. A revisão seguinte simplificou a apresentação e retirou partes repetidas. O estado atual está em [revisao-editorial.md](revisao-editorial.md).
+
 Implementadas no código local, preservando a galáxia, os dados de carreira verificados e a stack HTML/CSS/JavaScript. Cada linha descreve uma mudança de conteúdo ou comportamento, não uma contagem de ajustes de margem ou cor.
 
 | Nº | Área | Melhoria entregue |

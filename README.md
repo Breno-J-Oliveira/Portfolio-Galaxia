@@ -2,9 +2,9 @@
 
 > Desenvolvedor Full Stack · React, Next.js, NestJS e TypeScript
 
-Atualizado em **26/10/2026** com a trajetória atual, Nexly, ARQON, ZENITH e NexusAuth. Segunda rodada: [39 melhorias implementadas](docs/melhorias-2026-10-26.md). Consulte [estado e pendências](docs/status.md) e o [guia de conteúdo](docs/portfolio-info.md).
+Atualizado em **26/10/2026** com a trajetória atual, Nexly, ARQON, ZENITH e NexusAuth. A versão atual recebeu uma [revisão de texto, apresentação e navegação](docs/revisao-editorial.md). Consulte [estado e pendências](docs/status.md) e o [guia de conteúdo](docs/portfolio-info.md).
 
-Portfolio interativo com tema espacial/galáxia, engine de canvas customizada e design dark luxury.
+Portfólio em HTML, CSS e JavaScript. A Home tem uma galáxia interativa em Canvas 2D; as outras páginas apresentam perfil, projetos, serviços e contato.
 
 ## Estrutura do Projeto (FSD — Feature-Sliced Design)
 

@@ -682,8 +682,9 @@
     state.targetOffY = 0;
   });
 
-  // Touch support
-  document.addEventListener('touchmove', e => {
+  // O gesto é limitado ao canvas; menus e diálogos mantêm o toque nativo.
+  canvas.style.touchAction = 'none';
+  canvas.addEventListener('touchmove', e => {
     const t = e.touches[0];
     state.mouseX = t.clientX;
     state.mouseY = t.clientY;
@@ -695,10 +696,9 @@
     e.preventDefault();
   }, { passive: false });
 
-  document.addEventListener('touchstart', e => {
+  canvas.addEventListener('touchstart', e => {
     const t = e.touches[0];
     checkHover(t.clientX, t.clientY);
-    handleClick(t.clientX, t.clientY);
   });
 
   function getStarScreenPos(ps) {
@@ -777,7 +777,7 @@
       if (dist < ps.size * state.zoom * 12) {
         ps.clickRipples.push({ r: ps.size * 2, alpha: 1 });
         playStarClick();
-        setTimeout(() => warpTo(ps.url), 600);
+        window.location.assign(ps.url);
         return;
       }
     }
@@ -786,112 +786,20 @@
   /* ============================================================
      SCROLL ZOOM
   ============================================================ */
-  window.addEventListener('wheel', e => {
+  canvas.addEventListener('wheel', e => {
+    if (e.ctrlKey) return;
     e.preventDefault();
     const factor = e.deltaY > 0 ? 0.92 : 1.08;
     state.targetZoom = Math.max(0.4, Math.min(3.5, state.targetZoom * factor));
   }, { passive: false });
 
-  /* ============================================================
-     KEYBOARD NAV
-  ============================================================ */
-  let keyStarIdx = -1;
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Tab') {
-      e.preventDefault();
-      keyStarIdx = (keyStarIdx + 1) % projectStars.length;
-      const ps = projectStars[keyStarIdx];
-      for (const p2 of projectStars) p2.hovered = false;
-      ps.hovered = true;
-      state.hoveredStar = ps;
-      const { sx, sy } = getStarScreenPos(ps);
-      updateTooltip(ps, sx, sy);
-      var hudStatus = document.getElementById('hud-status-text');
-      if (hudStatus) hudStatus.textContent = ps.name.toUpperCase();
-    }
-    if (e.key === 'Enter' && state.hoveredStar) {
-      state.hoveredStar.clickRipples.push({ r: 5, alpha: 1 });
-      playStarClick();
-      setTimeout(() => warpTo(state.hoveredStar.url), 600);
-    }
-    if (e.key === '+' || e.key === '=') state.targetZoom = Math.min(3.5, state.targetZoom * 1.15);
-    if (e.key === '-') state.targetZoom = Math.max(0.4, state.targetZoom * 0.87);
+  /* Tab mantém a navegação nativa; o zoom só responde no canvas. */
+  canvas.setAttribute('tabindex', '0');
+  canvas.setAttribute('aria-label', 'Galáxia interativa. Use os links do menu para navegar.');
+  canvas.addEventListener('keydown', event => {
+    if (event.key === '+' || event.key === '=') state.targetZoom = Math.min(3.5, state.targetZoom * 1.15);
+    if (event.key === '-') state.targetZoom = Math.max(0.4, state.targetZoom * 0.87);
   });
-
-  /* ============================================================
-     WARP TRANSITION
-  ============================================================ */
-  const warpOverlay = document.getElementById('warp-overlay');
-  const warpCvs = document.getElementById('warp-canvas');
-  const warpText = document.getElementById('warp-text');
-
-  function warpTo(url) {
-    if (!warpOverlay || !warpCvs) { window.location.href = url; return; }
-    const warpCtx2 = warpCvs.getContext('2d');
-    warpCvs.width = window.innerWidth;
-    warpCvs.height = window.innerHeight;
-    warpOverlay.classList.add('active');
-
-    let alpha = 0;
-    let t = 0;
-    const warpStars = Array.from({ length: 300 }, () => ({
-      x: (Math.random() - 0.5) * window.innerWidth,
-      y: (Math.random() - 0.5) * window.innerHeight,
-      speed: Math.random() * 3 + 1,
-      color: NEB_COLORS[Math.floor(Math.random() * NEB_COLORS.length)],
-    }));
-
-    function animateWarp() {
-      t++;
-      alpha = Math.min(1, t / 30);
-      warpOverlay.style.opacity = alpha;
-      warpCtx2.fillStyle = `rgba(0,0,0,${0.15})`;
-      warpCtx2.fillRect(0, 0, warpCvs.width, warpCvs.height);
-
-      const cx2 = warpCvs.width / 2;
-      const cy2 = warpCvs.height / 2;
-      const progress = Math.min(t / 60, 1);
-
-      for (const ws of warpStars) {
-        const speed = ws.speed * (1 + progress * 15);
-        const nx2 = ws.x + (ws.x / Math.hypot(ws.x, ws.y)) * speed * t * 0.04;
-        const ny2 = ws.y + (ws.y / Math.hypot(ws.x, ws.y)) * speed * t * 0.04;
-        const [r2, g2, b2] = hexToRgb(ws.color);
-        const len = speed * t * 0.1 + 1;
-        const ang = Math.atan2(ny2, nx2);
-        warpCtx2.strokeStyle = `rgba(${r2},${g2},${b2},${0.6 * alpha})`;
-        warpCtx2.lineWidth = 1;
-        warpCtx2.beginPath();
-        warpCtx2.moveTo(cx2 + nx2, cy2 + ny2);
-        warpCtx2.lineTo(cx2 + nx2 + Math.cos(ang) * len * 3, cy2 + ny2 + Math.sin(ang) * len * 3);
-        warpCtx2.stroke();
-      }
-
-      if (t === 20 && warpText) {
-        warpText.style.opacity = '1';
-        warpText.style.transition = 'opacity 0.5s';
-      }
-
-      if (t < 80) {
-        requestAnimationFrame(animateWarp);
-      } else {
-        window.location.href = url;
-      }
-    }
-    animateWarp();
-  }
-
-  /* ============================================================
-     LOADING SEQUENCE
-  ============================================================ */
-  function runLoader() {
-    if (!window.LoaderWidget) {
-      console.warn('LoaderWidget não disponível — iniciando sem loader.');
-      finishLoad();
-      return;
-    }
-    window.LoaderWidget.run(finishLoad);
-  }
 
   function finishLoad() {
     if (window._stopLoaderCanvas) window._stopLoaderCanvas();
@@ -915,22 +823,7 @@
     });
   }
 
-  // Start — aguarda loader ser injetado via fetch()
-  function startGalaxy() {
-    runLoader();
-  }
-
-  function waitForLoader(retries) {
-    if (document.getElementById('loader')) {
-      startGalaxy();
-    } else if (retries > 0) {
-      setTimeout(() => waitForLoader(retries - 1), 50);
-    } else {
-      console.warn('Loader não injetado via fetch — iniciando galáxia sem loader.');
-      startGalaxy();
-    }
-  }
-  waitForLoader(40); // max 2s
+  finishLoad();
 
   /* ============================================================
      INTEGRAÇÃO COM UTILS COMPARTILHADOS

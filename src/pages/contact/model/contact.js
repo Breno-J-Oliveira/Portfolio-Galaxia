@@ -11,7 +11,7 @@
   const status = document.getElementById('form-status');
   const draft = document.getElementById('email-draft');
   const fields = ['name', 'email', 'message'].map(id => document.getElementById(id));
-  const idleLabel = configured ? 'ENVIAR MENSAGEM' : 'PREPARAR E-MAIL';
+  const idleLabel = configured ? 'Enviar mensagem' : 'Preparar e-mail';
   label.textContent = idleLabel;
   if (configured) document.getElementById('contact-mode').textContent = 'Envie uma mensagem pelo formulário ou use o e-mail direto.';
   function validate(field) {
@@ -58,7 +58,7 @@
   if(intent==='freelance')purpose.value='freelance';
   try{const brief=sessionStorage.getItem('portfolio:brief');if(brief){fields[2].value=(fields[2].value ? fields[2].value+'\n\n'+brief : brief).slice(0,5000);sessionStorage.removeItem('portfolio:brief');draftStatus.textContent='Briefing recebido. Você pode revisar e complementar antes de preparar o e-mail.';}}catch(_){}
   function refreshContact(){
-    const hiring=purpose.value==='opportunity';budget.disabled=hiring;budget.closest('.form-group').hidden=hiring;
+    const showBudget=['web','backend','automation','freelance'].includes(purpose.value);budget.disabled=!showBudget;budget.closest('.form-group').hidden=!showBudget;
     document.getElementById('message-count').textContent=fields[2].value.length.toLocaleString('pt-BR')+' / 5.000 caracteres';
     if(optIn.checked){const saved=UI.storage.set('contact-draft',draftData());if(!saved)draftStatus.textContent='O navegador não permitiu salvar. Seus dados continuam no formulário.';}
   }
@@ -91,7 +91,7 @@
       return;
     }
     button.disabled = true;
-    label.textContent = 'ENVIANDO…';
+    label.textContent = 'Enviando…';
     status.textContent = '';
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 15000);

@@ -4,6 +4,18 @@ Todos os registros de mudanças importantes neste projeto.
 
 ---
 
+## 26/10/2026 — Revisão editorial e de navegação
+
+- Navegação nativa, sem atrasos, warp ou carregamento simulado.
+- Textos dos projetos reescritos, títulos diretos e tipografia mais legível.
+- Removidos contadores, princípios genéricos e ferramentas duplicadas.
+- Filtros secundários e montador de pedido recolhidos inicialmente.
+- Galáxia preservada na Home; cursor nativo e páginas internas sem partículas/parallax.
+- Tab e toque corrigidos na Home para não capturar a navegação do menu.
+- Recursos versionados e cache isolado em `portfolio-v24`.
+- Configuração de publicação estática por GitHub Pages, com `.nojekyll`.
+- Validação detalhada em [revisao-editorial.md](revisao-editorial.md).
+
 ## 26/10/2026 — Segunda rodada: experiência e recursos
 
 - 39 melhorias detalhadas em [melhorias-2026-10-26.md](melhorias-2026-10-26.md).

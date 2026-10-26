@@ -8,7 +8,7 @@
       <span class="service-icon" aria-hidden="true">${s.icon}</span>
       <h3 class="service-name">${s.title}</h3><p class="service-desc">${s.description}</p>
       <ul class="service-includes">${s.includes.map(item => `<li>${item}</li>`).join('')}</ul>
-      <a class="info-link" href="contact.html">CONVERSAR SOBRE O ESCOPO →</a>
+      <a class="info-link" href="contact.html">Conversar sobre o projeto</a>
     </article>`).join('');
   const faq = document.getElementById('faq-list');
   if (faq) faq.innerHTML = data.faq.map((item, i) => `
@@ -37,8 +37,8 @@
   const choices={site:'Site ou landing page',app:'Aplicação web',api:'API e backend',automation:'Automação e integração'};
   function updateBrief(){
     const selected=[...briefForm.querySelectorAll('[name="scope"]:checked')].map(input=>input.value);
-    summary.textContent=[`Projeto: ${choices[document.getElementById('brief-type').value]}`,`Escopo: ${selected.length?selected.join('; '):'A definir em conjunto'}`,`Prazo: ${document.getElementById('brief-deadline').value}`,`Objetivo: ${goal.value.trim() || 'Quero entender as possibilidades.'}`].join('\n\n');
-    document.getElementById('brief-guidance').textContent=selected.includes('Integração com outra ferramenta')?'Na conversa, vamos identificar a ferramenta e quais dados precisam ser integrados.':selected.includes('Migração ou importação de dados')?'Vale trazer um exemplo dos dados e do formato atual para dimensionar a migração.':'Começar com os fluxos essenciais ajuda a definir uma primeira entrega.';
+    summary.textContent=[`Projeto: ${choices[document.getElementById('brief-type').value]}`,`Escopo: ${selected.length?selected.join('; '):'A definir em conjunto'}`,`Prazo: ${document.getElementById('brief-deadline').value}`,`Objetivo: ${goal.value.trim() || 'A definir.'}`].join('\n\n');
+    document.getElementById('brief-guidance').textContent=selected.includes('Integração com outra ferramenta')?'Na conversa, vamos identificar a ferramenta e quais dados precisam ser integrados.':selected.includes('Migração ou importação de dados')?'Vale trazer um exemplo dos dados e do formato atual para dimensionar a migração.':'O valor e o prazo são combinados depois da conversa.';
     document.getElementById('brief-status').textContent='';
   }
   briefForm.addEventListener('input',updateBrief);briefForm.addEventListener('change',updateBrief);briefForm.addEventListener('reset',()=>queueMicrotask(updateBrief));updateBrief();

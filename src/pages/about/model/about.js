@@ -110,7 +110,7 @@
   if (cv && D.owner.cvAvailable && D.owner.cv) {
     cv.href = D.owner.cv;
     cv.setAttribute('download', '');
-    cv.querySelector('span').textContent = 'BAIXAR CURRÍCULO';
+    cv.textContent = 'Baixar currículo';
   }
 
   /* Renderiza antes dos observers, para as animações capturarem os novos nós */
@@ -230,26 +230,6 @@
       }
     });
   });
-
-  /* ── PARALLAX ON HERO AVATAR (lerp suave) ───────────────── */
-  var avatarWrap = document.querySelector('.avatar-wrap');
-  if (avatarWrap) {
-    var ax = 0, ay = 0, tx = 0, ty = 0;
-    window.addEventListener('mousemove', function(e) {
-      tx = (e.clientX / window.innerWidth - 0.5) * 18;
-      ty = (e.clientY / window.innerHeight - 0.5) * 10;
-    });
-    let avatarFrame;
-    function tick() {
-      ax += (tx - ax) * 0.08;
-      ay += (ty - ay) * 0.08;
-      if (PortfolioUI.paused()) { avatarWrap.style.transform = ''; return; }
-      avatarWrap.style.transform = 'translate(' + ax + 'px, ' + ay + 'px)';
-      avatarFrame = requestAnimationFrame(tick);
-    }
-    document.addEventListener('portfolio:motion',()=>{cancelAnimationFrame(avatarFrame);tick();});
-    tick();
-  }
 
   /* ── TOOL PILL HOVER ───────────────────────────────────── */
   document.querySelectorAll('.tool-pill').forEach((pill) => {

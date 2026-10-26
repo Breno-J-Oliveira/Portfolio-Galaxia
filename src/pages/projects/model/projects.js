@@ -47,7 +47,7 @@
   function cardHTML(p, i) {
     const delay = ['', 'reveal-delay-1', 'reveal-delay-2'][i % 3];
     const badge = p.featured
-      ? '<div class="featured-badge">⭐ DESTAQUE</div>'
+      ? '<div class="featured-badge">Em destaque</div>'
       : '';
     const tags = p.tags.map(t => `<span class="project-tag">${t}</span>`).join('');
     return `
@@ -57,10 +57,10 @@
         ${coverHTML(p)}
         <div class="project-category">${p.categoryLabel}</div>
         <p class="project-status">${p.status}</p>
-        <div class="project-name">${p.title}</div>
+        <h2 class="project-name">${p.title}</h2>
         <p class="project-desc">${p.desc}</p>
         <div class="project-tags">${tags}</div>
-        <button type="button" class="project-open-hint" aria-label="Ver detalhes de ${p.title}">EXPLORAR PROJETO <span>→</span></button>
+        <button type="button" class="project-open-hint" aria-label="Ver detalhes de ${p.title}">Ver detalhes <span>→</span></button>
       </article>`;
   }
 
@@ -167,11 +167,11 @@
     let actions = '';
     if (p.live !== false) {
       const liveUrl = (typeof p.live === 'string' && p.live) ? p.live : `projetos/${p.id}/`;
-      actions += `<a class="modal-btn featured" href="${liveUrl}" target="_blank" rel="noopener"><span>VISUALIZAR</span><span>↗</span></a>`;
+      actions += `<a class="modal-btn featured" href="${liveUrl}" target="_blank" rel="noopener"><span>Visualizar</span><span>↗</span></a>`;
     }
-    if (p.demo)   actions += `<a class="modal-btn" href="${p.demo}" ${p.demo.startsWith('http') ? 'target="_blank" rel="noopener"' : ''}><span>VER AO VIVO</span><span>→</span></a>`;
-    if (p.docs) actions += `<a class="modal-btn" href="${p.docs}" target="_blank" rel="noopener noreferrer"><span>DOCUMENTAÇÃO</span><span>↗</span></a>`;
-    if (p.github) actions += `<a class="modal-btn" href="${p.github}" target="_blank" rel="noopener"><span>VER NO GITHUB</span><span>↗</span></a>`;
+    if (p.demo)   actions += `<a class="modal-btn" href="${p.demo}" ${p.demo.startsWith('http') ? 'target="_blank" rel="noopener"' : ''}><span>Abrir site</span><span>→</span></a>`;
+    if (p.docs) actions += `<a class="modal-btn" href="${p.docs}" target="_blank" rel="noopener noreferrer"><span>Documentação</span><span>↗</span></a>`;
+    if (p.github) actions += `<a class="modal-btn" href="${p.github}" target="_blank" rel="noopener"><span>Código no GitHub</span><span>↗</span></a>`;
     modalActions.innerHTML = actions || '<span class="modal-tag">Em breve mais detalhes</span>';
 
     const medias = [];

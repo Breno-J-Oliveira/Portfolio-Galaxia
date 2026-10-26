@@ -2,9 +2,13 @@
 
 Este registro substitui os checkboxes históricos de `planejamento.md` como referência do estado atual. A galáxia e a arquitetura em HTML, CSS e JavaScript foram preservadas.
 
-## Segunda rodada: 39 melhorias
+## Revisão atual
 
-Veja [a lista completa das melhorias e verificações](melhorias-2026-10-26.md). O site agora tem resumo profissional imprimível, favoritos, links diretos para projetos, briefing de freelance, rascunhos opcionais e preferências de navegação. A versão atual do cache é `portfolio-v21`, com 48 recursos. Os resultados v17 abaixo registram a primeira rodada.
+A [revisão editorial e de navegação](revisao-editorial.md) simplifica a interface, reescreve os textos e remove esperas artificiais. O cache atual é `portfolio-v24`, com 45 recursos. O commit anterior foi enviado ao GitHub como `325d182`.
+
+## Histórico da segunda rodada: 39 melhorias
+
+Veja [a lista completa das melhorias e verificações](melhorias-2026-10-26.md). O site agora tem resumo profissional imprimível, favoritos, links diretos para projetos, briefing de freelance, rascunhos opcionais e preferências de navegação. Naquela rodada, o cache era `portfolio-v21`, com 48 recursos. Os resultados v17 abaixo registram a primeira rodada.
 
 ## Conteúdo atualizado
 
@@ -28,7 +32,7 @@ O código preserva envio pelo Formspree se um endpoint real for configurado. Há
 - Gravações de idiomas: não fornecidas. O site mostra português nativo e inglês técnico, sem simular reprodução.
 - Depoimentos e credenciais: adicionar somente conteúdo real e autorizado.
 - Tabela/calculadora de preços e traduções completas continuam pendentes de escopo e conteúdo próprios. O montador de briefing está implementado e não calcula valores inventados.
-- Publicação: não realizada. Sitemap usa a estrutura de URL de `Breno-J-Oliveira/Portfolio-Galaxia`; confirmar domínio e pasta antes do deploy.
+- Publicação: destino definido em `Breno-J-Oliveira/Portfolio-Galaxia`, branch `main`, com GitHub Pages. Consulte `docs/deployment.md` para a configuração e verificação da entrega.
 
 ## Fontes e limites
 

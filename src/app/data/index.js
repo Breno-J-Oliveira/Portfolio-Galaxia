@@ -1,4 +1,4 @@
-/* Conteúdo do portfólio. Revisado em 26/10/2026 com o perfil e os repositórios. */
+/* Conteúdo do portfólio, revisado em 26/10/2026. */
 (function () {
   "use strict";
   window.PORTFOLIO_DATA = {
@@ -8,8 +8,8 @@
     "nameShort": "B.J.O",
     "role": "Desenvolvedor Full Stack",
     "tagline": "Aplicações web do banco de dados à interface.",
-    "bio": "Sou desenvolvedor Full Stack e estudante de Desenvolvimento de Sistemas no SENAI, em Santo André. Trabalho com React, Next.js, Node.js, NestJS, TypeScript e bancos SQL para transformar ideias em aplicações completas.",
-    "bioLong": "Meu principal projeto atual é o Nexly, TCC desenvolvido com a NexusTech. Também construo o ZENITH e o NexusAuth, estudo algoritmos em Python e levo para o desenvolvimento a experiência de organização de equipe na Axtron.IO. Busco minha primeira oportunidade profissional em desenvolvimento para aprender com um time e contribuir com projetos reais.",
+    "bio": "Sou de Santo André e estudo Desenvolvimento de Sistemas no SENAI. Nos meus projetos, uso React, Next.js, NestJS e TypeScript.",
+    "bioLong": "Hoje desenvolvo o Nexly com a NexusTech para o TCC. Também mantenho projetos pessoais de produtividade e autenticação. Busco minha primeira vaga em desenvolvimento; na Axtron.IO, minha experiência é com gestão de equipe.",
     "location": "Santo André, SP · Brasil",
     "email": "breno.emailsenai@gmail.com",
     "instagram": "@brenoov",
@@ -128,12 +128,12 @@
   "projects": [
     {
       "id": "nexly",
-      "title": "NEXLY",
+      "title": "Nexly",
       "category": "fullstack",
-      "categoryLabel": "Full Stack · TCC / NexusTech",
+      "categoryLabel": "Full Stack",
       "color": "c1",
       "featured": true,
-      "status": "Em desenvolvimento · Sprint 2",
+      "status": "TCC · Em desenvolvimento",
       "cover": "assets/projetos/nexly/dashboard-demo.webp",
       "gallery": [
         "assets/projetos/nexly/dashboard-demo.webp",
@@ -142,8 +142,8 @@
         "assets/projetos/nexly/pdv-demo.webp"
       ],
       "mediaNote": "Interfaces demonstrativas do produto, com dados fictícios.",
-      "desc": "Agenda, estoque e PDV no mesmo SaaS para pequenos negócios. Meu TCC no SENAI, desenvolvido com a NexusTech.",
-      "longDesc": "PROBLEMA\nPequenos negócios precisam conectar os atendimentos ao consumo de produtos e às vendas.\n\nSOLUÇÃO\nUma aplicação multiempresa com agenda, clientes, serviços, estoque, PDV e relatórios. A relação entre serviços e insumos conecta o atendimento às movimentações de estoque.\n\nMINHA PARTICIPAÇÃO\nDesenvolvimento Full Stack e atuação como Product Owner na equipe acadêmica NexusTech.\n\nMOMENTO ATUAL\nEm desenvolvimento. A entrega da Sprint 2, registrada em 23/10/2026, documenta integração frontend/backend, persistência com Prisma/PostgreSQL, operações CRUD e testes iniciais. A evolução e as evidências estão no repositório.",
+      "desc": "Agenda, estoque e vendas para pequenos negócios. TCC desenvolvido em equipe na NexusTech.",
+      "longDesc": "Desenvolvo o Nexly com a NexusTech como TCC do SENAI. A aplicação reúne agendamentos, clientes, estoque e ponto de venda para pequenos negócios.\n\nAtuo no desenvolvimento Full Stack e na organização das prioridades do produto. O projeto usa Next.js, NestJS e PostgreSQL.\n\nA entrega de outubro de 2026 inclui integração entre interface e API, persistência e operações CRUD. O trabalho continua em desenvolvimento; o repositório reúne o código e a documentação.",
       "tags": [
         "Next.js",
         "React",
@@ -161,9 +161,9 @@
     },
     {
       "id": "arqon",
-      "title": "ARQON — THE VAULT",
+      "title": "ARQON",
       "category": "fullstack",
-      "categoryLabel": "Full Stack · Projeto acadêmico",
+      "categoryLabel": "Full Stack",
       "color": "c3",
       "featured": true,
       "status": "Projeto acadêmico",
@@ -174,8 +174,8 @@
         "assets/projetos/arqon/produto.png"
       ],
       "mediaNote": "Capturas da interface do projeto acadêmico.",
-      "desc": "Plataforma de locação de roupas e artefatos de luxo, com catálogo, autenticação e painel administrativo em PHP e MySQL.",
-      "longDesc": "PROBLEMA\nOrganizar catálogo, usuários e operações de uma plataforma de locação em uma única aplicação.\n\nSOLUÇÃO\nAplicação web com PHP em arquitetura MVC, banco MySQL e API REST. Catálogo e painel administrativo fazem parte do mesmo fluxo.\n\nAPRENDIZADOS\nDesenvolvimento em equipe, organização de rotas e responsabilidades, autenticação e modelagem relacional. O projeto foi um marco na minha evolução de páginas isoladas para sistemas completos.\n\nCONTEXTO\nProjeto acadêmico da minha formação no SENAI. Código e documentação disponíveis no GitHub.",
+      "desc": "Plataforma acadêmica de locação, com catálogo, autenticação e administração em PHP e MySQL.",
+      "longDesc": "ARQON foi um dos meus primeiros projetos de uma aplicação completa: uma plataforma de locação de roupas e artefatos de luxo.\n\nO trabalho acadêmico usa PHP com arquitetura MVC, MySQL e JavaScript. Reúne catálogo, autenticação e painel administrativo.\n\nFoi nesse projeto que comecei a entender melhor a importância de organizar requisitos, rotas e responsabilidades antes de aumentar o código. O repositório registra a implementação e sua documentação.",
       "tags": [
         "PHP",
         "MySQL",
@@ -191,19 +191,19 @@
     },
     {
       "id": "zenith",
-      "title": "ZENITH",
+      "title": "Zenith",
       "category": "fullstack",
-      "categoryLabel": "Full Stack · Projeto pessoal",
+      "categoryLabel": "Full Stack",
       "color": "c2",
       "featured": true,
-      "status": "Em evolução",
+      "status": "Projeto pessoal · Em desenvolvimento",
       "cover": "assets/projetos/zenith.svg",
       "gallery": [
         "assets/projetos/zenith.svg"
       ],
       "mediaNote": "Diagrama ilustrativo das plataformas do projeto.",
-      "desc": "Organização pessoal com tarefas, metas, calendário e recursos de IA. Um monorepo que explora web, desktop e mobile.",
-      "longDesc": "PROBLEMA\nReunir tarefas, metas, rotinas e compromissos sem espalhar a organização por várias ferramentas.\n\nSOLUÇÃO\nAplicação de produtividade com páginas e blocos, calendário e chat com IA. O monorepo reúne as frentes web, desktop e mobile.\n\nMINHA PARTICIPAÇÃO\nProjeto pessoal: desenvolvimento e estudo de integração entre Next.js, NestJS, Prisma e NexusAuth, com exploração de Tauri e Expo.\n\nMOMENTO ATUAL\nEm evolução. Recursos de IA podem usar um provedor simulado conforme a configuração. A documentação descreve a arquitetura e o que está disponível em cada plataforma.",
+      "desc": "Projeto pessoal de organização, com tarefas, calendário e estudo de recursos de IA.",
+      "longDesc": "O Zenith é um projeto pessoal de organização: tarefas, metas, rotinas e calendário em um mesmo lugar.\n\nUso o projeto para estudar a integração de Next.js, NestJS, Prisma e NexusAuth. O monorepo também reúne as frentes de desktop e mobile, com Tauri e Expo.\n\nO desenvolvimento está em evolução. Os recursos de IA dependem da configuração do provedor e podem funcionar com uma implementação simulada no ambiente local.",
       "tags": [
         "Next.js",
         "TypeScript",
@@ -220,9 +220,9 @@
     },
     {
       "id": "nexusauth",
-      "title": "NEXUSAUTH",
+      "title": "NexusAuth",
       "category": "backend",
-      "categoryLabel": "Backend · Autenticação",
+      "categoryLabel": "Backend",
       "color": "c4",
       "featured": true,
       "status": "Projeto pessoal",
@@ -231,8 +231,8 @@
         "assets/projetos/nexusauth.png"
       ],
       "mediaNote": "Identidade visual do microsserviço.",
-      "desc": "Microsserviço de autenticação centralizada com NestJS, JWT RS256, JWKS, autorização por papéis e integração entre aplicações.",
-      "longDesc": "PROBLEMA\nEvitar recriar a autenticação a cada aplicação e concentrar o gerenciamento de acesso em um serviço.\n\nSOLUÇÃO\nAPI independente em NestJS e TypeScript, com PostgreSQL, Redis e Prisma. O projeto trabalha autenticação por JWT RS256, publicação de chaves via JWKS e autorização por papéis.\n\nMINHA PARTICIPAÇÃO\nProjeto pessoal dedicado ao estudo e à implementação de autenticação, sessões, integração de serviços e testes.\n\nEVIDÊNCIAS\nO repositório reúne implementação, configuração local e documentação dos fluxos. É um projeto de portfólio em evolução, sem alegação de certificação ou auditoria externa.",
+      "desc": "Serviço de autenticação em NestJS, com JWT, sessões e autorização por papéis.",
+      "longDesc": "Desenvolvi o NexusAuth para concentrar autenticação e autorização em um serviço que possa ser usado por outras aplicações.\n\nO projeto usa NestJS, TypeScript, PostgreSQL e Redis. Trabalha com JWT RS256, publicação de chaves por JWKS e controle de acesso por papéis.\n\nÉ também meu espaço de estudo de sessões, integração entre serviços e testes. O repositório explica como executar e integrar a API.",
       "tags": [
         "NestJS",
         "TypeScript",
@@ -250,16 +250,16 @@
     },
     {
       "id": "estudos-python",
-      "title": "ALGORITMOS EM PYTHON",
+      "title": "Algoritmos em Python",
       "category": "backend",
-      "categoryLabel": "Estudos · Algoritmos",
+      "categoryLabel": "Backend",
       "color": "c6",
       "featured": false,
       "status": "Estudo contínuo",
       "cover": "",
       "gallery": [],
-      "desc": "Exercícios de busca, estruturas de dados e aplicações práticas a partir de Entendendo Algoritmos.",
-      "longDesc": "ESTUDO CONTÍNUO\nExercícios de algoritmos e estruturas de dados em Python. Inclui busca binária e experimentos práticos para entender custo de execução e organização de dados.\n\nO repositório acompanha meu aprendizado e complementa os projetos de aplicações completas.",
+      "desc": "Exercícios de busca e estruturas de dados que acompanham meus estudos de Python.",
+      "longDesc": "Repositório de estudos a partir do livro Entendendo Algoritmos.\n\nReúne exercícios de busca binária, organização de dados e pequenos experimentos em Python. Uso esses exercícios para entender melhor os fundamentos que aparecem nas aplicações.",
       "tags": [
         "Python",
         "Algoritmos",
@@ -272,16 +272,16 @@
     },
     {
       "id": "cosmos",
-      "title": "PORTFÓLIO GALÁXIA",
+      "title": "Portfólio Galáxia",
       "category": "frontend",
-      "categoryLabel": "Frontend · Experiência interativa",
+      "categoryLabel": "Frontend",
       "color": "c5",
       "featured": false,
       "status": "Em evolução",
       "cover": "",
       "gallery": [],
-      "desc": "Este portfólio: navegação por uma galáxia em Canvas 2D, temas por página e JavaScript sem framework.",
-      "longDesc": "EXPERIÊNCIA INTERATIVA\nUm portfólio com identidade espacial e navegação por estrelas. Desenvolvido em HTML, CSS e JavaScript, com Canvas 2D, transições e componentes compartilhados.\n\nA organização por funcionalidades preserva o código da galáxia e permite evoluir cada página de forma independente.",
+      "desc": "Este site, feito com HTML, CSS, JavaScript e uma galáxia em Canvas 2D.",
+      "longDesc": "Este é o código do portfólio que você está visitando.\n\nA Home usa Canvas 2D para desenhar a galáxia e suas estrelas de navegação. As outras páginas são feitas com HTML, CSS e JavaScript, com componentes compartilhados.\n\nO site também tem uma versão de leitura offline e um resumo profissional para impressão.",
       "tags": [
         "JavaScript",
         "HTML",
@@ -398,7 +398,7 @@
     {
       "title": "Sites & interfaces",
       "icon": "◈",
-      "description": "Páginas e interfaces responsivas com foco em clareza, navegação e integração.",
+      "description": "Sites e interfaces para apresentar um negócio ou organizar uma tarefa.",
       "includes": [
         "HTML, CSS e JavaScript",
         "React e Next.js",
@@ -408,7 +408,7 @@
     {
       "title": "APIs & aplicações",
       "icon": "⌘",
-      "description": "Desenvolvimento de aplicações web, serviços e organização de dados.",
+      "description": "Aplicações web com API, banco de dados e controle de acesso.",
       "includes": [
         "Node.js / NestJS ou PHP",
         "PostgreSQL e MySQL",
@@ -418,7 +418,7 @@
     {
       "title": "Integrações & automações",
       "icon": "↻",
-      "description": "Scripts e integrações para reduzir tarefas manuais e conectar ferramentas.",
+      "description": "Scripts e integrações entre ferramentas para tarefas que se repetem.",
       "includes": [
         "Python e JavaScript",
         "Consumo de APIs",
@@ -433,7 +433,7 @@
     },
     {
       "q": "Como começamos um projeto?",
-      "a": "Me envie o objetivo, o público e o que precisa ser entregue. A partir disso, alinhamos o escopo, o prazo e uma proposta adequada."
+      "a": "Me conte o que precisa ser feito e quem vai usar. Com isso, consigo avaliar o escopo, as integrações e o prazo antes de enviar uma proposta."
     },
     {
       "q": "Você trabalha em equipe?",
@@ -441,7 +441,7 @@
     },
     {
       "q": "Como são definidos valores e prazos?",
-      "a": "São combinados após entender os requisitos e as integrações. Mudanças de escopo também precisam de um novo alinhamento."
+      "a": "Depois de entender o escopo. Se aparecer uma necessidade nova durante o trabalho, combinamos o impacto antes de continuar."
     },
     {
       "q": "Posso ver seu código?",

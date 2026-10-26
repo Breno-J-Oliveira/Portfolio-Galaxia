@@ -17,12 +17,12 @@
   <meta name="twitter:description" content="Desenvolvimento de sites, aplicações web, APIs e integrações. Projetos freelance com escopo combinado, por Breno J. Oliveira.">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="src/app/styles/globals.css" />
-  <link rel="stylesheet" href="src/widgets/hud/hud.css" />
-  <link rel="stylesheet" href="src/pages/services/styles/services.css" />
-  <link rel="stylesheet" href="src/app/styles/experience.css">
-  <script src="src/shared/lib/ui.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="src/app/styles/globals.css?v=20261026.2" />
+  <link rel="stylesheet" href="src/widgets/hud/hud.css?v=20261026.2" />
+  <link rel="stylesheet" href="src/pages/services/styles/services.css?v=20261026.2" />
+  <link rel="stylesheet" href="src/app/styles/experience.css?v=20261026.2">
+  <script src="src/shared/lib/ui.js?v=20261026.2"></script>
 </head>
 <body class="theme-services">
   <a href="#hero" class="skip-link">Pular para o conteúdo</a>
@@ -40,7 +40,7 @@
   <div id="hud-container"></div>
   <script>
     window.HUD_ACTIVE = 'services';
-    fetch('src/widgets/hud/hud.html')
+    fetch('src/widgets/hud/hud.html?v=20261026.2')
       .then(r => r.text())
       .then(html => {
         document.getElementById('hud-container').innerHTML = html;
@@ -54,90 +54,44 @@
   <div class="page-wrapper page-enter">
 
     <section id="hero">
-      <div class="hero-eyebrow reveal">O QUE OFEREÇO</div>
-      <h1 class="hero-title reveal">SOLUÇÕES QUE<br/><span class="hollow">FUNCIONAM</span></h1>
-      <p class="hero-desc reveal">Meu foco é atuar em um time de desenvolvimento Full Stack. Também avalio projetos freelance de sites, aplicações e integrações, com objetivos e escopo combinados.</p>
+
+      <h1 class="hero-title">Projetos sob medida.</h1>
+      <p class="hero-desc">Posso ajudar com sites, aplicações web e integrações. O primeiro passo é entender o que precisa ser feito.</p>
     </section>
 
     <!-- SERVIÇOS -->
     <section id="services" class="section">
       <div class="section-header">
         <div>
-          <div class="section-num">01 — ESPECIALIDADES</div>
-          <h2 class="section-title">Áreas de<br/>Atuação</h2>
+          <h2 class="section-title">Como posso ajudar</h2>
         </div>
-        <div class="section-subtitle">O QUE EU ENTREGO</div>
       </div>
       <div class="services-grid" id="services-grid"></div>
     </section>
 
     <section class="section section-alt" id="brief-builder" aria-labelledby="brief-title">
-      <div class="section-header"><div><h2 class="section-title" id="brief-title">Vamos desenhar<br>o escopo?</h2><p class="content-note">Monte um resumo para a primeira conversa. Valor e prazo são definidos após entender os requisitos.</p></div></div>
+      <details class="brief-disclosure"><summary>Organizar um pedido de projeto</summary>
+      <div class="section-header"><div><h2 class="section-title" id="brief-title">Descreva seu projeto</h2><p class="content-note">Se preferir, use este formulário para organizar o pedido antes de me escrever.</p></div></div>
       <div class="brief-layout"><form id="brief-form">
         <div class="brief-field"><label for="brief-type">O que você quer construir?</label><select id="brief-type"><option value="site">Site ou landing page</option><option value="app">Aplicação web</option><option value="api">API e backend</option><option value="automation">Automação e integração</option></select></div>
         <fieldset class="brief-options"><legend>O que precisa fazer parte?</legend><label><input type="checkbox" value="Login e controle de acesso" name="scope"> Login e controle de acesso</label><label><input type="checkbox" value="Painel de administração" name="scope"> Painel de administração</label><label><input type="checkbox" value="Integração com outra ferramenta" name="scope"> Integração com outra ferramenta</label><label><input type="checkbox" value="Migração ou importação de dados" name="scope"> Migração ou importação de dados</label><label><input type="checkbox" value="Ajuda com conteúdo e estrutura" name="scope"> Ajuda com conteúdo e estrutura</label></fieldset>
         <div class="brief-field"><label for="brief-deadline">Sobre o prazo</label><select id="brief-deadline"><option>Podemos combinar</option><option>Tenho uma data definida</option><option>Quero começar com um MVP</option></select></div>
         <div class="brief-field"><label for="brief-goal">Que problema você quer resolver?</label><textarea id="brief-goal" maxlength="600" rows="4" placeholder="Quem vai usar e o que precisa conseguir fazer?"></textarea></div>
         <button type="reset" class="ui-button">Recomeçar briefing</button>
-      </form><aside class="brief-preview" aria-label="Resumo do seu projeto"><h3>Seu ponto de partida</h3><pre id="brief-summary" aria-live="polite"></pre><p id="brief-guidance" class="content-note"></p><div class="brief-actions"><button id="copy-brief" class="ui-button" type="button">Copiar briefing</button><button id="send-brief" class="ui-button primary" type="button">Levar para o contato</button></div><p id="brief-status" role="status" class="content-note"></p></aside></div>
+      </form><aside class="brief-preview" aria-label="Resumo do seu projeto"><h3>Resumo do pedido</h3><pre id="brief-summary" aria-live="polite"></pre><p id="brief-guidance" class="content-note"></p><div class="brief-actions"><button id="copy-brief" class="ui-button" type="button">Copiar briefing</button><button id="send-brief" class="ui-button primary" type="button">Continuar para o contato</button></div><p id="brief-status" role="status" class="content-note"></p></aside></div>
+
+      </details>
     </section>
 
     <!-- PROCESSO -->
-    <section id="process" class="section section-alt">
-      <div class="section-header">
-        <div>
-          <div class="section-num">02 — COMO TRABALHO</div>
-          <h2 class="section-title">Processo<br/>Transparente</h2>
-        </div>
-        <div class="section-subtitle">SEM SURPRESAS</div>
-      </div>
-      <div class="process-steps">
-        <div class="process-step reveal">
-          <div class="process-step-num">01</div>
-          <div>
-            <div class="process-step-title">BRIEFING</div>
-            <p class="process-step-desc">Entendo o problema, os objetivos e as restrições. Quanto mais detalhes você trouxer, melhor a proposta.</p>
-          </div>
-        </div>
-        <div class="process-step reveal">
-          <div class="process-step-num">02</div>
-          <div>
-            <div class="process-step-title">PROPOSTA</div>
-            <p class="process-step-desc">Escopo detalhado, prazo realista e valor claro. Sem promessas vazias, sem escopo aberto.</p>
-          </div>
-        </div>
-        <div class="process-step reveal">
-          <div class="process-step-num">03</div>
-          <div>
-            <div class="process-step-title">DESENVOLVIMENTO</div>
-            <p class="process-step-desc">Desenvolvimento iterativo com atualizações semanais. Você acompanha o progresso em tempo real.</p>
-          </div>
-        </div>
-        <div class="process-step reveal">
-          <div class="process-step-num">04</div>
-          <div>
-            <div class="process-step-title">REVISÃO</div>
-            <p class="process-step-desc">Validamos a entrega com base nos requisitos combinados e alinhamos os ajustes necessários.</p>
-          </div>
-        </div>
-        <div class="process-step reveal">
-          <div class="process-step-num">05</div>
-          <div>
-            <div class="process-step-title">ENTREGA</div>
-            <p class="process-step-desc">Código, documentação e orientações de execução. Publicação e suporte são definidos na proposta.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+
 
     <!-- FAQ -->
     <section id="faq" class="section">
       <div class="section-header">
         <div>
-          <div class="section-num">03 — DÚVIDAS</div>
-          <h2 class="section-title">Perguntas<br/>Frequentes</h2>
+          <h2 class="section-title">Dúvidas frequentes</h2>
         </div>
-        <div class="section-subtitle">RESPONDENDO ANTES DE PERGUNTAR</div>
       </div>
       <div id="faq-list"></div>
     </section>
@@ -145,31 +99,28 @@
     <!-- CTA -->
     <section id="contact-cta">
       <div class="cta-bg"></div>
-      <div class="cta-label reveal">PRONTO PARA COMEÇAR?</div>
-      <h2 class="cta-title reveal">
-        <span>ME CONTA</span><br/>
-        <span class="hollow">SEU PROJETO</span>
-      </h2>
-      <p class="cta-sub reveal">Conte qual problema você quer resolver. Vamos entender os requisitos antes de definir a proposta.</p>
+
+      <h2 class="cta-title">Prefere falar direto?</h2>
+      <p class="cta-sub">Não precisa ter tudo definido. Me conte a ideia e o que você já tem.</p>
       <a class="btn-primary reveal" href="contact.html">
-        <span>SOLICITAR ORÇAMENTO</span><span>→</span>
+        <span>Entrar em contato</span><span>→</span>
       </a>
     </section>
 
     <footer>
-      <span class="footer-copy">© 2026 BRENO J. OLIVEIRA — TODOS OS DIREITOS RESERVADOS</span>
-      <button class="footer-back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ VOLTAR AO TOPO</button>
+      <span class="footer-copy">© 2026 Breno J. Oliveira</span>
+      <button class="footer-back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Voltar ao início</button>
     </footer>
   </div>
 
   <!-- BACK TO TOP -->
   <button id="back-to-top" aria-label="Voltar ao topo" title="Voltar ao topo">🚀</button>
 
-  <script src="src/app/data/index.js"></script>
-  <script src="src/shared/lib/utils.js"></script>
-  <script src="src/pages/services/model/services.js"></script>
-  <script src="src/features/shortcuts/shortcuts.js"></script>
-  <script src="src/features/transitions/transitions.js"></script>
-  <script src="src/features/accessibility/accessibility.js"></script>
+  <script src="src/app/data/index.js?v=20261026.2"></script>
+  <script src="src/shared/lib/utils.js?v=20261026.2"></script>
+  <script src="src/pages/services/model/services.js?v=20261026.2"></script>
+  <script src="src/features/shortcuts/shortcuts.js?v=20261026.2"></script>
+  <script src="src/features/transitions/transitions.js?v=20261026.2"></script>
+  <script src="src/features/accessibility/accessibility.js?v=20261026.2"></script>
 </body>
 </html>

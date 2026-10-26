@@ -11,6 +11,7 @@
 
   /* ── CUSTOM CURSOR ─────────────────────────────────────── */
   Utils.initCursor = function () {
+    if (!document.body.hasAttribute('data-custom-cursor')) return;
     if (document.body.classList.contains('cursor-ready')) return;
     const cursorRing = document.getElementById('cursor-ring');
     const cursorDot  = document.getElementById('cursor-dot');
@@ -142,7 +143,7 @@
   /* ── PAGE ENTRY ────────────────────────────────────────── */
   Utils.initPageEntry = function () {
     const el = document.querySelector('.page-enter');
-    if (el) el.style.animationDelay = '0.2s';
+    if (el) el.style.animationDelay = '0s';
   };
 
   /* ── BACK TO TOP + SW REGISTRATION ─────────────────────── */
@@ -214,7 +215,7 @@
   Utils.initPage = function (opts) {
     opts = opts || {};
     Utils.initCursor();
-    if (opts.bgCanvas !== false) Utils.initBgCanvas();
+    if (opts.bgCanvas === true) Utils.initBgCanvas();
     if (opts.readingProgress !== false) Utils.initReadingProgress();
     if (opts.scrollReveal !== false) Utils.initScrollReveal(opts.revealSelector);
     if (opts.pageEntry !== false) Utils.initPageEntry();
