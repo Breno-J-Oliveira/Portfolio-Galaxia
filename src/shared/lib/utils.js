@@ -216,10 +216,10 @@
     opts = opts || {};
     Utils.initCursor();
     if (opts.bgCanvas === true) Utils.initBgCanvas();
-    if (opts.readingProgress !== false) Utils.initReadingProgress();
-    if (opts.scrollReveal !== false) Utils.initScrollReveal(opts.revealSelector);
-    if (opts.pageEntry !== false) Utils.initPageEntry();
-    if (opts.sectionProgress !== false) Utils.initSectionProgress();
+    if (opts.readingProgress === true) Utils.initReadingProgress();
+    if (opts.scrollReveal === true) Utils.initScrollReveal(opts.revealSelector);
+    if (opts.pageEntry === true) Utils.initPageEntry();
+    if (opts.sectionProgress === true) Utils.initSectionProgress();
     Utils.initBackToTop();
     Utils.registerSW();
   };

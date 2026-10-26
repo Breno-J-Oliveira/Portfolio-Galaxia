@@ -1,11 +1,11 @@
 {
   "name": "Breno J. Oliveira · Desenvolvedor Full Stack",
-  "short_name": "Breno.dev",
+  "short_name": "Breno Galáxia",
   "description": "Portfólio de desenvolvimento Full Stack: Nexly, ARQON, ZENITH e NexusAuth.",
   "start_url": "./",
   "display": "standalone",
-  "theme_color": "#00ffff",
-  "background_color": "#0a0a1a",
+  "theme_color": "#050810",
+  "background_color": "#050810",
   "icons": [
     {
       "src": "favicon.svg",

@@ -4,7 +4,11 @@ Este registro substitui os checkboxes históricos de `planejamento.md` como refe
 
 ## Revisão atual
 
-A [revisão editorial e de navegação](revisao-editorial.md) simplifica a interface, reescreve os textos e remove esperas artificiais. O cache atual é `portfolio-v24`, com 45 recursos. O commit anterior foi enviado ao GitHub como `325d182`.
+A [direção Galáxia](direcao-galaxia.md) recupera a identidade espacial, preservando a leitura e a navegação direta. A Home convencional conduz aos projetos e ao contato; a galáxia original tem sua própria página, `galaxy.html`. A página Sobre inclui um cubo 3D com seis faces, controles acessíveis e conteúdo textual equivalente.
+
+Projetos reúne seis casos e um catálogo de 81 repositórios públicos, incluindo forks identificados. O catálogo é HTML estático, atualizável por `scripts/sync-repositories.py`, com busca, linguagem, origem, ordenação e paginação no navegador. A página `links.html` serve de entrada para redes sociais, conforme [o fluxo planejado](fluxo-redes.md).
+
+As fontes Inter e Orbitron estão hospedadas no próprio site. O cache atual é `portfolio-v26`, com 53 recursos. A [validação desta revisão](validacao-galaxia.md) registra os testes. A revisão editorial anterior permanece no histórico em `35cab2c`; o estado prévio a ela foi preservado em `325d182`.
 
 ## Histórico da segunda rodada: 39 melhorias
 

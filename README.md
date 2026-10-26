@@ -1,101 +1,65 @@
-# BRENO J. OLIVEIRA — Portfolio
+# Portfólio Galáxia · Breno J. Oliveira
 
-> Desenvolvedor Full Stack · React, Next.js, NestJS e TypeScript
+Portfólio de desenvolvimento Full Stack, em HTML, CSS e JavaScript, publicado em [GitHub Pages](https://breno-j-oliveira.github.io/Portfolio-Galaxia/).
 
-Atualizado em **26/10/2026** com a trajetória atual, Nexly, ARQON, ZENITH e NexusAuth. A versão atual recebeu uma [revisão de texto, apresentação e navegação](docs/revisao-editorial.md). Consulte [estado e pendências](docs/status.md) e o [guia de conteúdo](docs/portfolio-info.md).
+A identidade espacial acompanha uma navegação convencional. A galáxia em Canvas 2D é opcional; o cubo 3D da página Sobre retoma um elemento do portfólio anterior. O [plano de design e navegação](docs/direcao-galaxia.md) registra as decisões.
 
-Portfólio em HTML, CSS e JavaScript. A Home tem uma galáxia interativa em Canvas 2D; as outras páginas apresentam perfil, projetos, serviços e contato.
+## Páginas
 
-## Estrutura do Projeto (FSD — Feature-Sliced Design)
+| Página | Conteúdo |
+| --- | --- |
+| `index.html` | Apresentação, mapa do portfólio e projetos principais |
+| `about.html` | Perfil, cubo com seis faces, tecnologias, trajetória e formação |
+| `projects.html` | Casos com galeria e catálogo de 81 repositórios públicos |
+| `services.html` | Serviços e briefing que segue para o contato |
+| `contact.html` | E-mail, LinkedIn e preparação opcional de mensagem |
+| `resume.html` | Resumo profissional para leitura, impressão e PDF |
+| `links.html` | Entrada curta para usar nas redes sociais |
+| `galaxy.html` | Galáxia original, com menu e saída para o início |
 
-```
-PORTIFOLIO/
-├── index.html              # Página da Galáxia (home)
-├── about.html              # Sobre mim
-├── projects.html           # Projetos
-├── services.html           # Serviços
-├── contact.html            # Contato
-├── 404.html                # Página 404 personalizada
-├── sw.js                   # Service Worker
-├── .htaccess               # Configuração Apache
-├── manifest.webmanifest    # PWA Manifest
-├── sitemap.xml             # SEO
-├── favicon.svg
-│
-├── src/                    # Código fonte (FSD)
-│   ├── app/                # Núcleo da aplicação
-│   │   ├── styles/globals.css   # Variáveis CSS, reset, base
-│   │   └── data/index.js        # Dados centralizados
-│   │
-│   ├── pages/              # Páginas (uma slice por página)
-│   │   ├── galaxy/              # styles/ + model/
-│   │   ├── about/
-│   │   ├── projects/
-│   │   ├── services/
-│   │   └── contact/
-│   │
-├── widgets/            # Componentes reutilizáveis (injetados via fetch)
-│   │   ├── hud/                 # hud.html + hud.css + hud.js
-│   │   ├── loader/              # loader.html + loader.css
-│   │   └── modal/               # modal.html + modal.css
-│   │
-│   ├── features/           # Funcionalidades transversais
-│   │   ├── theme-toggle/        # Tema claro/escuro + accent picker
-│   │   ├── shortcuts/           # Atalhos de teclado
-│   │   └── transitions/         # Transições entre páginas
-│   │
-│   └── shared/             # Código compartilhado
-│       └── lib/utils.js         # Cursor, bg-canvas, progress, reveal
-│
-├── assets/                 # Recursos estáticos
-│   ├── fotos/                   # Fotos pessoais
-│   └── projetos/                # Imagens de projetos
-│
-├── projetos/               # Projetos de exemplo (demos)
-│   ├── PROJETO-ARQUON/
-│   ├── api-auth/
-│   ├── dashboard-financeiro/
-│   └── ...
-│
-├── docs/                   # Documentação
-│   ├── animations.md
-│   ├── changelog.md
-│   ├── components.md
-│   ├── deployment.md
-│   ├── design-system.md
-│   ├── galaxy-engine.md
-│   ├── seo.md
-│   ├── typography.md
-│   └── portfolio-info.md       # Guia de personalização
-│
-├── BACKUP/                 # Backups de segurança
-│   ├── css-v1/                  # CSS anterior à FSD
-│   ├── js-v1/                   # JS anterior à FSD
-│   └── README-arqon.md          # README do projeto ARQON
-│
-├── claude.md               # Guia de arquitetura FSD
-├── docs/status.md          # Estado atual e pendências reais
-└── README.md               # Este arquivo
+## Executar localmente
+
+Sirva esta pasta com Apache/XAMPP ou Python:
+
+```powershell
+python -m http.server 8765 --bind 127.0.0.1
 ```
 
-## Como rodar
+Abra `http://127.0.0.1:8765/`. Não há build de aplicação nem dependências npm para o site. O menu e o catálogo são HTML estático. Os recursos interativos são aprimoramentos em JavaScript; o service worker requer HTTP/HTTPS.
 
-1. Instale e inicie o **XAMPP**
-2. Coloque o projeto em `c:\xampp\htdocs\PORTIFOLIO\`
-3. Acesse `http://localhost/PORTIFOLIO/`
+## Organização
 
-> O projeto usa `fetch()` para injetar componentes (HUD, loader, modal), então **é necessário um servidor web** — não funciona abrindo direto do `file://`.
+- `src/app/data/index.js`: perfil, projetos selecionados, formação e serviços.
+- `src/app/styles/cosmos.css`: direção visual atual e responsividade.
+- `src/app/styles/experience.css`: controles compartilhados e preferências.
+- `src/pages/*/model/`: comportamento de cada página.
+- `src/features/profile-cube/cube.js`: rotação manual e seleção das faces.
+- `src/pages/projects/model/catalogue.js`: filtros, paginação e URL do catálogo.
+- `src/widgets/`: templates de referência do menu/modal e estilos compartilhados. Menu e modal são incorporados no HTML servido.
+- `assets/fonts/`: Inter e Orbitron servidas localmente, com licenças OFL.
+- `assets/projetos/`: imagens públicas; independente dos checkouts locais ignorados.
+- `assets/social-card.png`: imagem de compartilhamento das páginas.
+- `sw.js`: cache offline dos recursos públicos.
+- `docs/`: design, conteúdo, publicação e registros de validação.
 
-## Personalização
+## Atualizar os repositórios
 
-Edite `src/app/data/index.js` para alterar conteúdo (projetos, textos, links).
-Consulte `docs/portfolio-info.md` para o guia completo.
+```powershell
+python scripts/sync-repositories.py
+```
 
-## Stack
+O script consulta os repositórios **públicos**, inclui paginação do GitHub e atualiza o catálogo estático. Não precisa de token, não publica arquivos locais e preserva a página se a consulta falhar. Os forks ficam identificados. Descrições revisadas podem ser cadastradas em `src/app/data/repository-descriptions.json`; ausência de descrição não vira informação inventada.
 
-- HTML5 semântico
-- CSS3 (custom properties, grid, flexbox, animations)
-- JavaScript vanilla (sem frameworks)
-- Canvas 2D (engine de galáxia customizada)
-- Service Worker (PWA offline)
-- XAMPP/Apache (servidor local)
+Depois de atualizar, confira o diff e os links, aumente a versão do cache e publique. O catálogo registra sua data de consulta; ele não promete atualização em tempo real.
+
+## Contato e redes
+
+A página [links.html](https://breno-j-oliveira.github.io/Portfolio-Galaxia/links.html) pode ser usada na bio. O fluxo distingue recrutamento, projetos freelance e interesse técnico. Veja [fluxo de entrada e contato](docs/fluxo-redes.md).
+
+Sem endpoint configurado, o formulário prepara um `mailto:` para o visitante revisar e enviar no seu aplicativo de e-mail. Não afirma ter enviado mensagens. O rascunho local é opcional. O currículo final em PDF ainda não foi fornecido; `resume.html` pode ser impresso.
+
+## Publicar e verificar
+
+GitHub Pages usa `main`, pasta `/`, com `.nojekyll`. O remoto de entrega neste checkout é `portfolio`; `origin` aponta para outro repositório e foi preservado. Consulte [publicação](docs/deployment.md), [estado atual](docs/status.md) e [evidências desta revisão](docs/validacao-galaxia.md).
+
+`projetos/`, `BACKUP/`, `output/`, variáveis de ambiente e arquivos privados não fazem parte da publicação.

@@ -7,99 +7,50 @@
   <meta name="description" content="Converse com Breno J. Oliveira sobre oportunidades em desenvolvimento Full Stack, projetos e colaboração. Santo André, SP.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="favicon.svg">
-  <meta name="theme-color" content="#ff8c42">
+  <meta name="theme-color" content="#050810">
   <link rel="manifest" href="manifest.webmanifest">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Breno J. Oliveira — Contato">
   <meta property="og:description" content="Converse com Breno J. Oliveira sobre oportunidades em desenvolvimento Full Stack, projetos e colaboração. Santo André, SP.">
-  <meta name="twitter:card" content="summary">
+
   <meta name="twitter:title" content="Breno J. Oliveira — Contato">
   <meta name="twitter:description" content="Converse com Breno J. Oliveira sobre oportunidades em desenvolvimento Full Stack, projetos e colaboração. Santo André, SP.">
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="src/app/styles/globals.css?v=20261026.2" />
-  <link rel="stylesheet" href="src/widgets/hud/hud.css?v=20261026.2" />
-  <link rel="stylesheet" href="src/pages/contact/styles/contact.css?v=20261026.2" />
-  <link rel="stylesheet" href="src/app/styles/experience.css?v=20261026.2">
-  <script src="src/shared/lib/ui.js?v=20261026.2"></script>
-</head>
+  <link rel="stylesheet" href="src/app/styles/globals.css?v=20261026.4" />
+  <link rel="stylesheet" href="src/widgets/hud/hud.css?v=20261026.4" />
+  <link rel="stylesheet" href="src/pages/contact/styles/contact.css?v=20261026.4" />
+  <link rel="stylesheet" href="src/app/styles/experience.css?v=20261026.4">
+  <script src="src/shared/lib/ui.js?v=20261026.4"></script>
+<link rel="canonical" href="https://breno-j-oliveira.github.io/Portfolio-Galaxia/contact.html"><meta property="og:url" content="https://breno-j-oliveira.github.io/Portfolio-Galaxia/contact.html"><meta property="og:image" content="https://breno-j-oliveira.github.io/Portfolio-Galaxia/assets/social-card.png"><meta property="og:image:alt" content="Breno J. Oliveira — Desenvolvedor Full Stack — Portfólio Galáxia"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://breno-j-oliveira.github.io/Portfolio-Galaxia/assets/social-card.png"><link rel="stylesheet" href="src/app/styles/cosmos.css?v=20261026.4"></head>
 <body class="theme-contact">
-  <a href="#hero" class="skip-link">Pular para o conteúdo</a>
+  <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
   <div id="page-transition" aria-hidden="true"></div>
 
   <canvas id="bg-canvas"></canvas>
-  <div id="read-progress"></div>
-  <div id="scanlines"></div>
+
+
   <div id="cursor-ring"></div>
   <div id="cursor-dot"></div>
   <div class="corner-deco tl"></div><div class="corner-deco tr"></div>
   <div class="corner-deco bl"></div><div class="corner-deco br"></div>
 
   <!-- HUD TOP NAV (injetado via fetch) -->
-  <div id="hud-container"></div>
-  <script>
-    window.HUD_ACTIVE = 'contact';
-    fetch('src/widgets/hud/hud.html?v=20261026.2')
-      .then(r => r.text())
-      .then(html => {
-        document.getElementById('hud-container').innerHTML = html;
-        const s = document.createElement('script');
-        s.src = 'src/widgets/hud/hud.js';
-        document.body.appendChild(s);
-      })
-      .catch(err => console.error('HUD fetch failed:', err));
-  </script>
+  <header id="hud-top"><a class="hud-logo" href="index.html" aria-label="Breno J. Oliveira, início"><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="m20 7 12 7v13l-12 7-12-7V14Z M8 14l12 7 12-7 M20 21v13"/><ellipse cx="20" cy="20" rx="23" ry="9" transform="rotate(-30 20 20)"/></svg><span>Breno J. Oliveira<small>Portfólio Galáxia</small></span></a><nav aria-label="Navegação principal"><ul class="hud-nav"><li><a href="index.html" data-page="home">Início</a></li><li><a href="about.html" data-page="about">Sobre</a></li><li><a href="projects.html" data-page="projects">Projetos</a></li><li><a href="services.html" data-page="services">Serviços</a></li><li><a href="contact.html" data-page="contact" class="active" aria-current="page">Contato</a></li></ul></nav></header>
 
-  <div class="page-wrapper page-enter">
+  <main class="page-wrapper page-enter" id="main-content">
 
     <section id="hero">
 
-      <h1 class="hero-title">Contato.</h1>
-      <p class="hero-desc">Para conversar sobre uma vaga ou um projeto, escreva por e-mail ou pelo LinkedIn.</p>
+      <p class="role-line"><span class="status-dot" aria-hidden="true"></span>Contato</p><h1 class="hero-title">Vamos conversar.</h1>
+      <p class="hero-desc">Uma oportunidade, uma ideia ou uma conversa sobre código. Escolha o caminho que fizer mais sentido para você.</p><div class="contact-intents" role="group" aria-label="Motivo do contato"><button type="button" data-contact-intent="opportunity" aria-pressed="false">Oportunidade de trabalho</button><button type="button" data-contact-intent="freelance" aria-pressed="false">Quero criar um projeto</button><button type="button" data-contact-intent="other" aria-pressed="false">Outro assunto</button></div><div class="signal-orbit" aria-hidden="true"><i></i><i></i><i></i><span>✦</span></div>
     </section>
 
     <div class="contact-grid">
 
       <!-- INFO -->
-      <div class="contact-info">
-
-
-
-        <div class="info-block reveal">
-          <div class="info-label">E-mail</div>
-          <div class="info-value">breno.emailsenai@gmail.com</div>
-          <a class="info-link" href="mailto:breno.emailsenai@gmail.com">Escrever e-mail</a><button type="button" class="ui-button" id="copy-email">Copiar e-mail</button><p id="copy-email-status" role="status" class="content-note"></p>
-        </div>
-
-        <div class="info-block reveal">
-          <div class="info-label">Instagram</div>
-          <div class="info-value">@brenoov</div>
-          <a class="info-link" href="https://www.instagram.com/brenoov/" target="_blank" rel="noopener noreferrer">Abrir perfil</a>
-        </div>
-
-        <div class="info-block reveal">
-          <div class="info-label">Localização</div>
-          <div class="info-value">Santo André, SP · Brasil</div>
-          <div class="info-sub">Projetos e colaboração remota.</div>
-        </div>
-
-        <div class="info-block reveal">
-          <div class="info-label">Outros links</div>
-          <div class="social-links">
-            <a class="social-link" href="https://github.com/Breno-J-Oliveira" target="_blank" rel="noopener">GitHub</a>
-            <a class="social-link" href="https://www.linkedin.com/in/brenojoliveira/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a class="social-link" href="https://www.instagram.com/brenoov/" target="_blank" rel="noopener noreferrer">Instagram</a>
-          </div>
-        </div>
-
-
-
-      </div>
-
+      <aside class="contact-info" aria-label="Contato direto"><h2>Do seu jeito.</h2><p class="contact-aside-copy">Pode ir direto ao e-mail ou me chamar pelo LinkedIn. O formulário ajuda a organizar a mensagem, se você preferir.</p><div class="direct-channel"><span class="channel-icon" aria-hidden="true">@</span><div><h3>E-mail</h3><a class="email-address" href="mailto:breno.emailsenai@gmail.com">breno.emailsenai@gmail.com</a><div class="channel-actions"><a href="mailto:breno.emailsenai@gmail.com">Escrever e-mail ↗</a><button type="button" id="copy-email">Copiar endereço</button></div><p id="copy-email-status" role="status" class="content-note"></p></div></div><a class="direct-channel channel-link" href="https://www.linkedin.com/in/brenojoliveira/" target="_blank" rel="noopener noreferrer"><span class="channel-icon" aria-hidden="true">in</span><div><h3>LinkedIn <span aria-hidden="true">↗</span></h3><p>Trajetória profissional e oportunidades.</p></div></a><div class="contact-elsewhere"><h3>Também estou por aqui</h3><a href="https://github.com/Breno-J-Oliveira" target="_blank" rel="noopener noreferrer">GitHub <span>Código e repositórios ↗</span></a><a href="https://www.instagram.com/brenoov/" target="_blank" rel="noopener noreferrer">Instagram <span>@brenoov ↗</span></a></div><p class="contact-location"><span aria-hidden="true">⌖</span> Santo André, SP · Brasil</p></aside>
       <!-- FORM -->
       <div>
-        <form id="contact-form" class="contact-form" novalidate>
+        <form id="contact-form" class="contact-form" novalidate><h2>Prepare sua mensagem</h2><p class="form-context" id="intent-context">Escreva um pouco sobre o que trouxe você até aqui.</p>
           <p class="content-note" id="contact-mode">Este formulário prepara um e-mail para você revisar e enviar.</p>
 
           <!-- Honeypot anti-spam -->
@@ -133,7 +84,7 @@
               </select>
             </div>
             <div class="form-group reveal reveal-delay-1">
-              <label class="form-label" for="budget">Orçamento · apenas para freelance</label>
+              <label class="form-label" for="budget">Orçamento previsto (opcional)</label>
               <select class="form-select" id="budget" name="budget">
                 <option value="">Selecione...</option>
                 <option value="500-1500">R$ 500 – R$ 1.500</option>
@@ -160,27 +111,24 @@
           </div>
 
           <p id="form-status" class="content-note" role="status" aria-live="polite"></p>
-          <a id="email-draft" class="info-link" hidden>ABRIR RASCUNHO NO MEU E-MAIL ↗</a>
+          <a id="email-draft" class="info-link" hidden>Abrir rascunho no meu e-mail ↗</a>
           <p class="content-note">Você também pode escrever diretamente para <a href="mailto:breno.emailsenai@gmail.com">breno.emailsenai@gmail.com</a>.</p>
         </form>
       </div>
 
     </div>
 
-    <footer>
-      <span class="footer-copy">© 2026 Breno J. Oliveira</span>
-      <button class="footer-back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Voltar ao início</button>
-    </footer>
-  </div>
+    <footer class="site-footer"><div><a class="footer-brand" href="index.html"><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="m20 7 12 7v13l-12 7-12-7V14Z M8 14l12 7 12-7 M20 21v13"/><ellipse cx="20" cy="20" rx="23" ry="9" transform="rotate(-30 20 20)"/></svg><span>Breno J. Oliveira</span></a><p>Desenvolvimento Full Stack. Santo André, SP.</p><small>© 2026 · Feito para explorar, no seu ritmo.</small></div><nav aria-label="Mais sobre o portfólio"><a href="resume.html">Resumo profissional</a><a href="galaxy.html">Explorar a galáxia</a><a href="links.html">Links e redes</a></nav><nav aria-label="Redes sociais"><a href="https://www.linkedin.com/in/brenojoliveira/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a><a href="https://github.com/Breno-J-Oliveira" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a><a href="mailto:breno.emailsenai@gmail.com">E-mail</a></nav></footer>
+  </main>
 
   <!-- BACK TO TOP -->
   <button id="back-to-top" aria-label="Voltar ao topo" title="Voltar ao topo">🚀</button>
 
-  <script src="src/app/data/index.js?v=20261026.2"></script>
-  <script src="src/shared/lib/utils.js?v=20261026.2"></script>
-  <script src="src/pages/contact/model/contact.js?v=20261026.2"></script>
-  <script src="src/features/shortcuts/shortcuts.js?v=20261026.2"></script>
-  <script src="src/features/transitions/transitions.js?v=20261026.2"></script>
-  <script src="src/features/accessibility/accessibility.js?v=20261026.2"></script>
+  <script src="src/app/data/index.js?v=20261026.4"></script>
+  <script src="src/shared/lib/utils.js?v=20261026.4"></script>
+  <script src="src/pages/contact/model/contact.js?v=20261026.4"></script>
+  <script src="src/features/shortcuts/shortcuts.js?v=20261026.4"></script>
+  <script src="src/features/transitions/transitions.js?v=20261026.4"></script>
+  <script src="src/features/accessibility/accessibility.js?v=20261026.4"></script>
 </body>
 </html>

@@ -56,9 +56,26 @@
   const intent=new URLSearchParams(location.search).get('intent');
   if(intent==='opportunity')purpose.value='opportunity';
   if(intent==='freelance')purpose.value='freelance';
+  if(intent==='other')purpose.value='other';
+  const intentButtons=[...document.querySelectorAll('[data-contact-intent]')];
+  const intentContext=document.getElementById('intent-context');
+  const intentCopy={
+    opportunity:'Me conte sobre a vaga, o time e a forma de trabalho. Você também pode pedir meu currículo.',
+    freelance:'Me conte o que você quer construir, quem vai usar e se existe um prazo. O orçamento é opcional.',
+    other:'Uma dúvida, uma colaboração ou uma conversa sobre tecnologia. Fique à vontade para escrever.'
+  };
+  intentButtons.forEach(button=>button.addEventListener('click',()=>{
+    purpose.value=button.dataset.contactIntent;
+    draft.hidden=true;draft.removeAttribute('href');status.textContent='';
+    const url=new URL(location.href);url.searchParams.set('intent',purpose.value);history.replaceState({},'',url);
+    refreshContact();
+  }));
   try{const brief=sessionStorage.getItem('portfolio:brief');if(brief){fields[2].value=(fields[2].value ? fields[2].value+'\n\n'+brief : brief).slice(0,5000);sessionStorage.removeItem('portfolio:brief');draftStatus.textContent='Briefing recebido. Você pode revisar e complementar antes de preparar o e-mail.';}}catch(_){}
   function refreshContact(){
     const showBudget=['web','backend','automation','freelance'].includes(purpose.value);budget.disabled=!showBudget;budget.closest('.form-group').hidden=!showBudget;
+    const selected=showBudget?'freelance':purpose.value;
+    intentButtons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.contactIntent===selected)));
+    if(intentContext)intentContext.textContent=intentCopy[selected]||'Escreva um pouco sobre o que trouxe você até aqui.';
     document.getElementById('message-count').textContent=fields[2].value.length.toLocaleString('pt-BR')+' / 5.000 caracteres';
     if(optIn.checked){const saved=UI.storage.set('contact-draft',draftData());if(!saved)draftStatus.textContent='O navegador não permitiu salvar. Seus dados continuam no formulário.';}
   }

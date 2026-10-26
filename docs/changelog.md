@@ -4,6 +4,18 @@ Todos os registros de mudanças importantes neste projeto.
 
 ---
 
+## 26/10/2026 — Identidade Galáxia, cubo e caminhos de navegação
+
+- Home com apresentação direta, mapa estático e projetos; galáxia original em uma rota opcional.
+- Orbitron, órbitas, estrelas discretas e marcadores de cor recuperam a identidade sem transições de tela.
+- Cubo 3D inspirado no portfólio anterior, seis faces, teclado, botões e alternativa textual.
+- Menu estático com cinco destinos, legível no celular e utilizável sem JavaScript.
+- Catálogo dos 81 repositórios públicos, com forks identificados, filtros, paginação e script de atualização.
+- Página de links para redes, metadados e imagem própria de compartilhamento.
+- Contato por intenção, canais diretos e preservação do briefing/rascunho.
+- Fontes locais com licenças OFL; cache `portfolio-v26`.
+- [Direção e fluxo](direcao-galaxia.md), [redes](fluxo-redes.md) e [verificação](validacao-galaxia.md).
+
 ## 26/10/2026 — Revisão editorial e de navegação
 
 - Navegação nativa, sem atrasos, warp ou carregamento simulado.

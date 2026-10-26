@@ -1,7 +1,15 @@
-const CACHE = 'portfolio-v24';
+const CACHE = 'portfolio-v26';
 const ASSETS = [
   './',
   './index.html',
+  './galaxy.html',
+  './links.html',
+  './src/app/styles/cosmos.css',
+  './src/features/profile-cube/cube.js',
+  './src/pages/projects/model/catalogue.js',
+  './assets/social-card.png',
+  './assets/fonts/inter-latin.woff2',
+  './assets/fonts/orbitron-latin.woff2',
   './about.html',
   './projects.html',
   './services.html',

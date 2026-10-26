@@ -116,10 +116,10 @@
     const btn = document.getElementById('audio-btn');
     if (state.audioOn) {
       ambientGain.gain.setTargetAtTime(0.04, audioCtx.currentTime, 1);
-      if (btn) { btn.classList.add('active'); btn.textContent = '◉ SOM'; }
+      if (btn) { btn.classList.add('active'); btn.textContent = 'Desativar som'; btn.setAttribute('aria-pressed','true'); }
     } else {
       ambientGain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.5);
-      if (btn) { btn.classList.remove('active'); btn.textContent = '◎ SOM'; }
+      if (btn) { btn.classList.remove('active'); btn.textContent = 'Ativar som'; btn.setAttribute('aria-pressed','false'); }
     }
   }
   window.toggleAudio = toggleAudio;

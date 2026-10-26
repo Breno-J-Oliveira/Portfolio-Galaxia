@@ -10,7 +10,7 @@ Consulte [status.md](status.md) para o estado atual e as pendências reais.
 |---|---|
 | `owner` | Bio, foto, localização e currículo |
 | `social` | Referência dos perfis públicos |
-| `stats` | Valores e rótulos verificáveis da página Sobre |
+| `stats` | Dados históricos preservados; não são exibidos como contadores |
 | `skills`, `skillCategories`, `tools` | Tecnologias agrupadas, sem percentuais de proficiência |
 | `timeline`, `education` | Experiência, projetos acadêmicos e formação em andamento |
 | `polyglot.languages` | Idiomas; áudio só aparece com arquivo real em `audio` |
@@ -39,4 +39,12 @@ Adicione o PDF final, confira a regra de `.gitignore` para incluir explicitament
 
 ## Verificação
 
-Sirva o projeto pelo Apache/XAMPP ou por um servidor HTTP local. `file://` não suporta os widgets carregados por fetch. Confira console, imagens, filtros, teclado, contato e navegação mobile. Incremente `sw.js` quando mudar arquivos precacheados.
+Sirva o projeto pelo Apache/XAMPP ou por um servidor HTTP local. Menu e modal estão incorporados ao HTML; HTTP/HTTPS continua necessário para verificar corretamente cache, fontes e navegação. Confira console, imagens, filtros, teclado, contato e navegação mobile. Incremente `sw.js` quando mudar arquivos precacheados.
+
+## Cubo, catálogo e entrada social
+
+O cubo tem o texto de referência em `about.html` e os dados usados na seleção em `src/features/profile-cube/cube.js`; mantenha ambos coerentes ao alterar as seis faces. O visual e a rotação são CSS 3D, sem biblioteca WebGL ou rotação automática.
+
+O catálogo público é atualizado por `scripts/sync-repositories.py`. Descrições confirmadas podem ser revisadas em `src/app/data/repository-descriptions.json`. O script não publica os arquivos locais de `projetos/` e não altera os repositórios externos.
+
+`links.html` é a página de entrada para a bio das redes. Atualize os títulos, endereços canônicos e a imagem `assets/social-card.png` quando a identidade pública mudar.
