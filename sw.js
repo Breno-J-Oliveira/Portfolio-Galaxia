@@ -1,4 +1,4 @@
-const CACHE = 'portfolio-v28';
+const CACHE = 'portfolio-v29';
 const ASSETS = [
   './',
   './index.html',
@@ -50,6 +50,8 @@ const ASSETS = [
   './src/features/accessibility/accessibility.js',
   './assets/fotos/breno.png',
   './assets/projetos/nexusauth.png',
+  './assets/projetos/python.svg',
+  './assets/projetos/galaxia.jpg',
   './assets/projetos/zenith.svg',
   './assets/projetos/arqon/catalogo.png',
   './assets/projetos/arqon/home.png',

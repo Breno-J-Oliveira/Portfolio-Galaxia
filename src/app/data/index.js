@@ -157,7 +157,13 @@
       "github": "https://github.com/Breno-J-Oliveira/Nexly",
       "docs": "https://github.com/Breno-J-Oliveira/Nexly#readme",
       "demo": "",
-      "live": false
+      "live": false,
+      "galleryLabels": [
+        "Painel geral do Nexly com dados de demonstração",
+        "Agenda de atendimentos do Nexly com dados de demonstração",
+        "Gestão de estoque no Nexly com dados de demonstração",
+        "Ponto de venda do Nexly com dados de demonstração"
+      ]
     },
     {
       "id": "arqon",
@@ -187,7 +193,12 @@
       "github": "https://github.com/Breno-J-Oliveira/PROJETO-ARQUON",
       "docs": "https://github.com/Breno-J-Oliveira/PROJETO-ARQUON#readme",
       "demo": "",
-      "live": false
+      "live": false,
+      "galleryLabels": [
+        "Página inicial da plataforma ARQON",
+        "Catálogo de roupas e artefatos do ARQON",
+        "Página de um produto do ARQON"
+      ]
     },
     {
       "id": "zenith",
@@ -256,8 +267,10 @@
       "color": "c6",
       "featured": false,
       "status": "Estudo contínuo",
-      "cover": "",
-      "gallery": [],
+      "cover": "assets/projetos/python.svg",
+      "gallery": [
+        "assets/projetos/python.svg"
+      ],
       "desc": "Exercícios de busca e estruturas de dados que acompanham meus estudos de Python.",
       "longDesc": "Repositório de estudos a partir do livro Entendendo Algoritmos.\n\nReúne exercícios de busca binária, organização de dados e pequenos experimentos em Python. Uso esses exercícios para entender melhor os fundamentos que aparecem nas aplicações.",
       "tags": [
@@ -268,7 +281,11 @@
       "github": "https://github.com/Breno-J-Oliveira/_estudos-python",
       "docs": "https://github.com/Breno-J-Oliveira/_estudos-python#readme",
       "demo": "",
-      "live": false
+      "live": false,
+      "galleryLabels": [
+        "Ilustração de pesquisa binária em uma lista de números ordenados"
+      ],
+      "mediaNote": "Ilustração de pesquisa binária, um dos temas dos estudos. Não é uma captura de interface."
     },
     {
       "id": "cosmos",
@@ -278,8 +295,10 @@
       "color": "c5",
       "featured": false,
       "status": "Em evolução",
-      "cover": "",
-      "gallery": [],
+      "cover": "assets/projetos/galaxia.jpg",
+      "gallery": [
+        "assets/projetos/galaxia.jpg"
+      ],
       "desc": "Este site, feito com HTML, CSS, JavaScript e uma galáxia em Canvas 2D.",
       "longDesc": "Este é o código do portfólio que você está visitando.\n\nA Home é a galáxia interativa em Canvas 2D, com estrelas de navegação e um menu direto sempre disponível. O cubo 3D da página Sobre retoma meu portfólio anterior. O site usa HTML, CSS e JavaScript, com componentes compartilhados.\n\nO site também tem uma versão de leitura offline e um resumo profissional para impressão.",
       "tags": [
@@ -292,7 +311,11 @@
       "github": "https://github.com/Breno-J-Oliveira/Portfolio-Galaxia",
       "docs": "https://github.com/Breno-J-Oliveira/Portfolio-Galaxia#readme",
       "demo": "index.html",
-      "live": false
+      "live": false,
+      "galleryLabels": [
+        "Galáxia interativa da página inicial deste portfólio"
+      ],
+      "mediaNote": "Captura da Home deste portfólio, com a galáxia e suas estrelas de navegação."
     }
   ],
   "testimonials": [],

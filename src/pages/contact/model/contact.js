@@ -57,6 +57,15 @@
   if(intent==='opportunity')purpose.value='opportunity';
   if(intent==='freelance')purpose.value='freelance';
   if(intent==='other')purpose.value='other';
+  const sourceProject=window.PORTFOLIO_DATA.projects.find(project=>project.id===new URLSearchParams(location.search).get('project'));
+  const sourceProjectURL=sourceProject ? new URL('projects.html?project='+encodeURIComponent(sourceProject.id), location.href).href : '';
+  if(sourceProject){
+    const context=document.createElement('div');context.className='contact-project-context';
+    const text=document.createElement('p');text.textContent='Você veio do projeto '+sourceProject.title+'. A referência será incluída no e-mail.';
+    const link=document.createElement('a');link.href=sourceProjectURL;link.textContent='Voltar aos detalhes de '+sourceProject.title;
+    context.append(text,link);document.getElementById('contact-mode').before(context);
+    fields[2].placeholder='O que você gostaria de conversar sobre o '+sourceProject.title+'?';
+  }
   const intentButtons=[...document.querySelectorAll('[data-contact-intent]')];
   const intentContext=document.getElementById('intent-context');
   const intentCopy={
@@ -97,10 +106,11 @@
     if (!valid) { fields.find(field => field.getAttribute('aria-invalid') === 'true').focus(); return; }
     if (!configured) {
       const subjectSelect = document.getElementById('project-type');
-      const subject = subjectSelect.value ? subjectSelect.selectedOptions[0].text : 'Contato pelo portfólio';
+      const subject = sourceProject && ['','other'].includes(subjectSelect.value) ? 'Sobre o projeto '+sourceProject.title : subjectSelect.value ? subjectSelect.selectedOptions[0].text : 'Contato pelo portfólio';
       const budget = document.getElementById('budget');
       const body = 'Nome: ' + fields[0].value.trim() + '\nE-mail: ' + fields[1].value.trim() +
-        (!budget.disabled && budget.value ? '\nOrçamento: ' + budget.selectedOptions[0].text : '') + '\n\n' + fields[2].value.trim();
+        (!budget.disabled && budget.value ? '\nOrçamento: ' + budget.selectedOptions[0].text : '') +
+        (sourceProject ? '\nProjeto: '+sourceProject.title+'\nLink: '+sourceProjectURL : '') + '\n\n' + fields[2].value.trim();
       draft.href = 'mailto:' + data.emailDirect + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
       draft.hidden = false;
       status.textContent = 'Rascunho preparado. Abra seu aplicativo de e-mail para revisar e enviar. Nenhuma mensagem foi enviada pelo site.';
@@ -113,8 +123,10 @@
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 15000);
     try {
+      const payload=new FormData(form);
+      if(sourceProject){payload.set('project',sourceProject.title);payload.set('project_url',sourceProjectURL);}
       const response = await fetch('https://formspree.io/f/' + encodeURIComponent(data.formspreeId), {
-        method: 'POST', headers: {Accept: 'application/json'}, body: new FormData(form), signal: controller.signal
+        method: 'POST', headers: {Accept: 'application/json'}, body: payload, signal: controller.signal
       });
       if (!response.ok) throw new Error('send-failed');
       status.textContent = 'Mensagem enviada. Obrigado pelo contato!';

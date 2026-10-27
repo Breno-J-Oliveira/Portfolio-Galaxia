@@ -1,7 +1,7 @@
-<!-- PROJECT MODAL — injetado via fetch() na página de projetos -->
+<!-- Template do modal incorporado em projects.html. -->
 <div id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
   <div class="modal-box" id="modal-box">
-    <button class="modal-close" id="modal-close" aria-label="Fechar">✕</button>
+    <div class="project-modal-toolbar"><p id="modal-toolbar-title">Projeto</p><button class="modal-close" id="modal-close" type="button" aria-label="Fechar detalhes do projeto"><span>Fechar</span><span aria-hidden="true">✕</span></button></div>
     <div class="modal-media" id="modal-media"></div>
     <div class="modal-thumbs" id="modal-thumbs"></div>
     <div class="gallery-controls"><button class="ui-button" id="gallery-prev" type="button" aria-label="Imagem anterior">←</button><span id="gallery-position" aria-live="polite"></span><button class="ui-button" id="gallery-next" type="button" aria-label="Próxima imagem">→</button><button class="ui-button" id="gallery-zoom" type="button">Ampliar imagem</button></div>
@@ -10,7 +10,7 @@
       <div class="modal-cat" id="modal-cat"></div>
       <h2 class="modal-title" id="modal-title"></h2>
       <p class="modal-desc" id="modal-desc"></p>
-      <div class="modal-section-label">Stack & Tecnologias</div>
+      <div class="modal-section-label">Tecnologias</div>
       <div class="modal-tags" id="modal-tags"></div>
       <div class="modal-actions" id="modal-actions"></div>
       <div class="project-navigation"><button class="ui-button" type="button" id="project-prev">← Projeto anterior</button><button class="ui-button" type="button" id="project-next">Próximo projeto →</button><button class="ui-button" type="button" id="copy-project-link">Copiar link do projeto</button></div>

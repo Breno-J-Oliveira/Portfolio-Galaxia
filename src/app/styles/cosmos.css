@@ -2870,3 +2870,25 @@ body[class*="theme-"] #contact-cta {
 @media(max-width:760px){.theme-galaxy #hud-top{height:124px}.theme-galaxy #hud-left,.theme-galaxy #hud-right,.theme-galaxy #hud-bottom{display:none}#hud-top .hud-nav a{font-size:11px}#hud-top .hud-logo{font-size:12px;letter-spacing:0}.theme-galaxy .galaxy-access{bottom:83px}.theme-galaxy .corner-deco{display:none!important}.hero-bio,body[class*="theme-"] .hero-desc,.project-desc,.contact-aside-copy{font-size:18px}}
 .theme-galaxy #audio-btn{left:auto;right:32px;bottom:70px;width:auto}
 @media(max-width:760px){#hud-top .hud-nav{gap:0}.theme-galaxy #audio-btn{left:auto;right:20px;bottom:22px}}
+
+/* Projetos: leitura dos cards e controles sempre ao alcance. */
+.theme-projects .project-card.clickable { cursor:pointer; }
+.theme-projects .project-open-hint { margin-top:auto; font-size:17px; min-height:60px; }
+.theme-projects .project-card[data-id="nexusauth"] .project-cover img { object-fit:contain; padding:22px; background:#000; }
+.theme-projects .project-cover img { object-position:center top; }
+.projects-empty { padding:28px; border:1px solid #354b68; border-radius:8px; color:#bdcfe5; }
+.projects-empty p { margin-bottom:16px; font-size:18px; }
+#project-modal .modal-box { overflow:visible; }
+.project-modal-toolbar { position:sticky; top:0; z-index:10; display:flex; align-items:center; justify-content:space-between; gap:20px; min-height:62px; padding:10px 18px; background:#070e19f5; border-bottom:1px solid #354b68; border-top:2px solid #3b82f6; border-radius:9px 9px 0 0; backdrop-filter:blur(10px); }
+.project-modal-toolbar p { font:500 14px/1.5 var(--font-display); color:#d1e4ff; margin:0; }
+.project-modal-toolbar .modal-close { position:static; display:inline-flex; gap:12px; width:auto; min-width:100px; min-height:42px; padding:8px 12px; border:1px solid #61738c; border-radius:5px; background:#0c1829; color:#e7effb; font:600 17px/1.4 var(--font-body); }
+.project-modal-toolbar .modal-close:hover { transform:none; color:#fff; border-color:#8facff; background:#14243b; }
+.modal-thumbs { scrollbar-width:thin; }
+.modal-thumbs .modal-thumb { width:102px; height:65px; }
+.modal-thumb.active { border-width:2px; }
+.gallery-controls .ui-button { min-width:48px; }
+.modal-actions .project-contact-link { border-color:#6f8fb9; color:#c6dfff; }
+.contact-project-context { padding:15px 18px; border-left:2px solid #ff8c42; background:#17151a; border-radius:0 5px 5px 0; }
+.contact-project-context p { font:400 17px/1.6 var(--font-body); color:#ddc7b1; margin:0 0 8px; }
+.contact-project-context a { font:500 15px/1.5 var(--font-body); color:#cbdff5; min-height:36px; display:inline-flex; align-items:center; }
+@media(max-width:760px){.project-modal-toolbar{padding:8px 12px;min-height:60px;gap:12px}.project-modal-toolbar p{font-size:12px}.project-modal-toolbar .modal-close{min-width:94px}.modal-thumbs .modal-thumb{width:88px;height:56px}.gallery-controls .ui-button{font-size:16px}.project-navigation .ui-button{font-size:16px}}

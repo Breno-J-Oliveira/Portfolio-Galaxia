@@ -16,7 +16,7 @@ O remoto `portfolio` aponta para o repositório de entrega. O remoto `origin` an
 
 Após o push, acompanhe o build do Pages e confira o site servido: HTML, imagens, CSS e scripts. Não basta confirmar que o Git recebeu o commit.
 
-O cache atual é `portfolio-v28`, com 58 recursos. CSS e scripts referenciados no HTML usam `v=20261026.6`. Ao alterar esses recursos, atualize tanto o cache quanto essa identificação para que o navegador não reutilize uma versão anterior. Fontes locais e imagem de compartilhamento também fazem parte do cache.
+O cache atual é `portfolio-v29`, com 60 recursos. CSS e scripts referenciados no HTML usam `v=20261027.1`. Ao alterar esses recursos, atualize tanto o cache quanto essa identificação para que o navegador não reutilize uma versão anterior. Fontes locais, capas dos projetos e imagem de compartilhamento também fazem parte do cache.
 
 Além das páginas anteriores, confira `index.html` (galáxia como Home), `galaxy.html` (URL compatível), `links.html` (entrada social), as seis faces do cubo e o catálogo completo. Para atualizar os repositórios, execute `python scripts/sync-repositories.py` e revise as mudanças antes de publicar.
 

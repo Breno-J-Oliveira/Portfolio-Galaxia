@@ -4,6 +4,17 @@ Todos os registros de mudanças importantes neste projeto.
 
 ---
 
+## 27/10/2026 — Refinamento das páginas de Projetos e Contato
+
+- Fechamento dos detalhes sempre visível, com identificação do projeto.
+- Cards abrem pela capa/corpo; salvar e selecionar texto continuam independentes.
+- Troca de projeto volta ao início e respeita a ordem dos resultados filtrados.
+- Galerias com descrições próprias e controles reduzidos para imagem única.
+- Recuperação direta da busca vazia e filtros da URL visíveis.
+- Capas próprias para estudos em Python e este portfólio.
+- Caminho projeto → contato preserva o nome e o link no rascunho.
+- Cache `portfolio-v29`, 60 recursos; [verificações da rodada](refinamento-projetos.md).
+
 ## 26/10/2026 — Restauração da Home e das referências originais
 
 - Galáxia original restaurada como `index.html`, sem apresentação convencional na abertura.

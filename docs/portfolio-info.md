@@ -22,13 +22,15 @@ Os metadados, links sociais e textos de fallback também existem no HTML. Manten
 
 ## Projetos
 
-Cada projeto aceita `id`, `title`, `category`, `categoryLabel`, `status`, `featured`, `desc`, `longDesc`, `tags`, `cover`, `gallery`, `mediaNote`, `github`, `docs`, `demo` e `live`.
+Cada projeto aceita `id`, `title`, `category`, `categoryLabel`, `status`, `featured`, `desc`, `longDesc`, `tags`, `cover`, `gallery`, `galleryLabels`, `mediaNote`, `github`, `docs`, `demo` e `live`.
 
 - Categorias: `fullstack`, `backend` ou `frontend`.
 - `featured: false` inclui o item no filtro de estudos e extras.
 - `live: false` quando não houver demo pública confirmada.
 - Imagens publicáveis ficam em `assets/projetos/`. A pasta raiz `projetos/` é ignorada e contém repositórios separados.
 - `mediaNote` identifica dados fictícios e imagens ilustrativas.
+- `galleryLabels` descreve as imagens na mesma ordem de `gallery`; a descrição acompanha a seleção e a ampliação.
+- A ação de contato usa `contact.html?intent=other&project=<id>`. Apenas IDs cadastrados geram o contexto visível e a referência no e-mail.
 - Os campos são conteúdo editorial confiável do repositório; não inserir HTML recebido de visitantes.
 
 ## Currículo e contato

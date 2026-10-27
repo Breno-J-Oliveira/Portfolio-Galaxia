@@ -1,4 +1,4 @@
-# Estado do portfólio — 26/10/2026
+# Estado do portfólio — 27/10/2026
 
 Este registro substitui os checkboxes históricos de `planejamento.md` como referência do estado atual. A galáxia e a arquitetura em HTML, CSS e JavaScript foram preservadas.
 
@@ -8,7 +8,9 @@ A [direção Galáxia](direcao-galaxia.md) recupera a identidade espacial, prese
 
 Projetos reúne seis casos e um catálogo de 81 repositórios públicos, incluindo forks identificados. O catálogo é HTML estático, atualizável por `scripts/sync-repositories.py`, com busca, linguagem, origem, ordenação e paginação no navegador. A página `links.html` serve de entrada para redes sociais, conforme [o fluxo planejado](fluxo-redes.md).
 
-As fontes originais Orbitron, Rajdhani e Space Mono estão hospedadas no próprio site, com Inter preservada para compatibilidade. O cache atual é `portfolio-v28`, com 58 recursos. A [validação desta revisão](validacao-galaxia.md) registra os testes. A revisão editorial anterior permanece no histórico em `35cab2c`; o estado prévio a ela foi preservado em `325d182`.
+As fontes originais Orbitron, Rajdhani e Space Mono estão hospedadas no próprio site, com Inter preservada para compatibilidade. O cache atual é `portfolio-v29`, com 60 recursos. A [validação da restauração](validacao-galaxia.md) e o [refinamento de Projetos](refinamento-projetos.md) registram os testes. A revisão editorial anterior permanece no histórico em `35cab2c`; o estado prévio a ela foi preservado em `325d182`.
+
+Na rodada de 27/10, os detalhes dos projetos ganharam fechamento sempre visível, abertura pelo card, correção da rolagem e navegação entre resultados filtrados. O contato recebe o projeto escolhido; as duas capas extras têm conteúdo próprio, com ilustração identificada quando aplicável.
 
 ## Histórico da segunda rodada: 39 melhorias
 

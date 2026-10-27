@@ -60,7 +60,7 @@
         <h2 class="project-name">${p.title}</h2>
         <p class="project-desc">${p.desc}</p>
         <div class="project-tags">${tags}</div>
-        <button type="button" class="project-open-hint" aria-label="Ver detalhes de ${p.title}">Ver detalhes <span>→</span></button>
+        <button type="button" class="project-open-hint" aria-haspopup="dialog" aria-label="Ver detalhes de ${p.title}">Ver detalhes <span>→</span></button>
       </article>`;
   }
 
@@ -73,6 +73,11 @@
       card.addEventListener('mouseenter', () => document.body.classList.add('link-hover'));
       card.addEventListener('mouseleave', () => document.body.classList.remove('link-hover'));
       card.querySelector('.project-open-hint').addEventListener('click', () => openModal(card.dataset.id));
+      card.addEventListener('click', event => {
+        if (event.target.closest('button, a, input, select') || window.getSelection()?.type === 'Range') return;
+        card.querySelector('.project-open-hint').focus({preventScroll:true});
+        openModal(card.dataset.id);
+      });
     });
   }
   renderCards();
@@ -140,11 +145,11 @@
     return `<video src="${video}" controls></video><div class="video-badge">▶ Vídeo</div>`;
   }
 
-  function setMainMedia(p, type, src) {
+  function setMainMedia(p, type, src, alt) {
     if (type === 'video') {
       modalMedia.innerHTML = mediaVideoHTML(src);
     } else {
-      modalMedia.innerHTML = mediaImageHTML(src, p.title);
+      modalMedia.innerHTML = mediaImageHTML(src, alt || p.title);
     }
   }
 
@@ -159,6 +164,7 @@
     modalBox.className = 'modal-box ' + p.color;
     modalCat.textContent = p.categoryLabel + " · " + p.status;
     modalTitle.textContent = p.title;
+    document.getElementById('modal-toolbar-title').textContent = p.title;
     modalDesc.textContent = p.longDesc || p.desc;
     const note = document.getElementById("modal-media-note");
     if (note) note.textContent = p.mediaNote || "";
@@ -172,6 +178,7 @@
     if (p.demo)   actions += `<a class="modal-btn" href="${p.demo}" ${p.demo.startsWith('http') ? 'target="_blank" rel="noopener"' : ''}><span>Abrir site</span><span>→</span></a>`;
     if (p.docs) actions += `<a class="modal-btn" href="${p.docs}" target="_blank" rel="noopener noreferrer"><span>Documentação</span><span>↗</span></a>`;
     if (p.github) actions += `<a class="modal-btn" href="${p.github}" target="_blank" rel="noopener"><span>Código no GitHub</span><span>↗</span></a>`;
+    actions += `<a class="modal-btn project-contact-link" href="contact.html?intent=other&amp;project=${encodeURIComponent(p.id)}">Conversar sobre este projeto</a>`;
     modalActions.innerHTML = actions || '<span class="modal-tag">Em breve mais detalhes</span>';
 
     const medias = [];
@@ -179,16 +186,16 @@
     activeProject = p;
     galleryIndex = 0;
     if (p.video) medias.push({ type: 'video', src: p.video });
-    (p.gallery || []).slice(0, 6).forEach(src => medias.push({ type: 'image', src }));
+    (p.gallery || []).slice(0, 6).forEach((src, i) => medias.push({ type: 'image', src, alt: (p.galleryLabels || [])[i] || p.title }));
 
     if (medias.length === 0) {
       modalMedia.innerHTML = `<div class="modal-media-fallback">${p.title.charAt(0)}</div>`;
-      modalThumbs.style.display = 'none';
+      modalThumbs.hidden = true;
       document.querySelector('.gallery-controls').hidden = true;
     } else {
-      modalThumbs.style.display = 'flex';
+      modalThumbs.hidden = medias.length < 2;
       document.querySelector('.gallery-controls').hidden = false;
-      setMainMedia(p, medias[0].type, medias[0].src);
+      setMainMedia(p, medias[0].type, medias[0].src, medias[0].alt);
       modalThumbs.innerHTML = medias.map((m, i) => {
         const cls = 'modal-thumb' + (i === 0 ? ' active' : '') + (m.type === 'video' ? ' video-thumb' : '');
         const thumbImg = m.type === 'video'
@@ -217,11 +224,14 @@
     if (!modal.classList.contains('open')) { previousFocus = document.activeElement; inertBackground(true); }
     if (medias.length) selectGallery(0);
     document.getElementById('project-share-status').textContent = '';
-    document.getElementById('project-prev').disabled = visibleProjects().length < 2;
-    document.getElementById('project-next').disabled = visibleProjects().length < 2;
+    const visible = visibleProjects();
+    const canNavigate = visible.some(item => item.id === p.id) ? visible.length > 1 : visible.length > 0;
+    document.getElementById('project-prev').disabled = !canNavigate;
+    document.getElementById('project-next').disabled = !canNavigate;
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
     document.getElementById('modal-close').focus();
+    modal.scrollTop = 0;
     document.body.style.overflow = 'hidden';
   }
 
@@ -244,7 +254,7 @@
     const image=document.createElement('img');image.src=imgSrc;image.alt=imgAlt;
     lb.append(button,image);document.body.appendChild(lb);
     button.addEventListener('click',()=>lb.close());
-    lb.addEventListener('close',()=>{lb.remove();document.getElementById('gallery-zoom').focus();});
+    lb.addEventListener('close',()=>{lb.remove();document.getElementById('gallery-zoom').focus({preventScroll:true});});
     lb.showModal();
   }
 
@@ -252,10 +262,12 @@
   function selectGallery(index) {
     if (!galleryItems.length) return;
     galleryIndex=(index+galleryItems.length)%galleryItems.length;
-    const item=galleryItems[galleryIndex];setMainMedia(activeProject,item.type,item.src);
-    document.getElementById('gallery-position').textContent=`${galleryIndex+1} de ${galleryItems.length}`;
+    const item=galleryItems[galleryIndex];setMainMedia(activeProject,item.type,item.src,item.alt);
+    document.getElementById('gallery-position').textContent=galleryItems.length === 1 ? 'Imagem do projeto' : `${galleryIndex+1} de ${galleryItems.length}`;
     document.getElementById('gallery-prev').disabled=galleryItems.length<2;
     document.getElementById('gallery-next').disabled=galleryItems.length<2;
+    document.getElementById('gallery-prev').hidden=galleryItems.length<2;
+    document.getElementById('gallery-next').hidden=galleryItems.length<2;
     document.getElementById('gallery-zoom').hidden=item.type!=='image';
     modalThumbs.querySelectorAll('button').forEach((button,i)=>{button.classList.toggle('active',i===galleryIndex);button.setAttribute('aria-pressed',String(i===galleryIndex));});
   }
@@ -265,13 +277,18 @@
     else{inertNodes.forEach(([el,value])=>{el.inert=value;});inertNodes=[];}
   }
   function visibleProjects(){return [...grid.querySelectorAll('.project-card:not(.hidden)')].map(card=>PROJECTS.find(p=>p.id===card.dataset.id));}
-  function nextProject(direction){const list=visibleProjects();if(list.length<2)return;const index=list.findIndex(p=>p.id===activeProject.id);openModal(list[(index+direction+list.length)%list.length].id);}
+  function nextProject(direction){
+    const list=visibleProjects();if(!list.length)return;
+    const index=list.findIndex(p=>p.id===activeProject.id);
+    const next=index<0?(direction>0?0:list.length-1):(index+direction+list.length)%list.length;
+    openModal(list[next].id);
+  }
   // O widget chega por fetch: delegação preserva os controles após a injeção.
   document.addEventListener('click', async event=>{
     const target=event.target.closest('button');if(!target)return;
     if(target.id==='gallery-prev')selectGallery(galleryIndex-1);
     if(target.id==='gallery-next')selectGallery(galleryIndex+1);
-    if(target.id==='gallery-zoom' && galleryItems[galleryIndex])openLightbox(galleryItems[galleryIndex].src,activeProject.title);
+    if(target.id==='gallery-zoom' && galleryItems[galleryIndex])openLightbox(galleryItems[galleryIndex].src,galleryItems[galleryIndex].alt || activeProject.title);
     if(target.id==='project-prev')nextProject(-1);
     if(target.id==='project-next')nextProject(1);
     if(target.id==='copy-project-link')document.getElementById('project-share-status').textContent=await PortfolioUI.copy(location.href)?'Link do projeto copiado.':'Não foi possível copiar. Use o endereço do navegador.';
@@ -283,7 +300,7 @@
     if (!modal || !modal.classList.contains('open')) return;
     if (document.getElementById('lightbox')) return;
     if (e.key === 'Tab') {
-      const focusable = [...modal.querySelectorAll('a[href], button')].filter(el => el.getClientRects().length);
+      const focusable = [...modal.querySelectorAll('a[href], button')].filter(el => !el.disabled && el.getClientRects().length);
       const first = focusable[0], last = focusable[focusable.length - 1];
       if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
@@ -314,7 +331,9 @@
   searchInput.addEventListener('input',()=>{applyFilters();saveLocation(false);});
   sort.addEventListener('change',()=>{applyFilters();saveLocation(true);});
   featured.addEventListener('change',()=>{applyFilters();saveLocation(true);});
-  document.getElementById('clear-projects').addEventListener('click',()=>{searchInput.value='';sort.value='featured';featured.checked=false;activeCategory='all';applyFilters();saveLocation(true);searchInput.focus();});
+  function resetProjectFilters(){searchInput.value='';sort.value='featured';featured.checked=false;activeCategory='all';applyFilters();saveLocation(true);searchInput.focus();}
+  document.getElementById('clear-projects').addEventListener('click',resetProjectFilters);
+  document.getElementById('reset-empty-projects').addEventListener('click',resetProjectFilters);
   function saveLocation(push){
     const url=new URL(location.href);
     for(const key of ['q','category','sort','featured'])url.searchParams.delete(key);
@@ -343,7 +362,8 @@
       button.innerHTML=button.dataset.label+` <span aria-hidden="true">${total}</span>`;
       button.setAttribute('aria-label',button.dataset.label);button.setAttribute('aria-pressed',String(key===activeCategory));button.classList.toggle('active',key===activeCategory);
     });
-    document.getElementById('project-results').textContent=`${count} de ${PROJECTS.length} projetos encontrados.`;
+    const activeLabel=activeCategory==='all'?'':filterBtns.length && [...filterBtns].find(button=>button.dataset.filter===activeCategory)?.dataset.label;
+    document.getElementById('project-results').textContent=`${count} de ${PROJECTS.length} projetos encontrados.${activeLabel ? ' Categoria: '+activeLabel+'.' : ''}`;
     document.getElementById('projects-empty').hidden=count>0;
   }
   function syncLocation(){
@@ -351,6 +371,7 @@
     searchInput.value=params.get('q')||'';
     activeCategory=[...filterBtns].some(b=>b.dataset.filter===params.get('category'))?params.get('category'):'all';
     sort.value=params.get('sort')==='name'?'name':'featured';featured.checked=params.get('featured')==='1';
+    if(activeCategory!=='all'||sort.value!=='featured'||featured.checked)document.querySelector('.project-filters').open=true;
     applyFilters();
     const id=params.get('project');
     if(id && PROJECTS.some(p=>p.id===id)){if(modal)openModal(id,true);}
