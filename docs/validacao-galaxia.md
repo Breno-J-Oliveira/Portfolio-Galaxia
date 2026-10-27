@@ -1,5 +1,13 @@
 # Verificação da revisão Galáxia — 26/10/2026
 
+## Restauração da Home solicitada pelo autor
+
+A galáxia voltou a ser a Home (`index.html`). A proposta de abertura convencional foi rejeitada e substituída pela referência original: fundo preto, HUD espacial, Orbitron, Rajdhani, Space Mono e acentos por seção. O cubo e o catálogo permanecem nas páginas internas.
+
+`restored-galaxy-check.js` verificou o desenho real do canvas na Home, ausência da landing page, menu, cubo, modal, 81 repositórios e os quatro acentos originais. Passaram 24 combinações de página/largura (320, 375, 640, 768, 1024 e 1440 px), sem menu fora da tela ou rolagem horizontal. Auditoria axe da Home, Sobre, Projetos e Contato não detectou violações nos critérios A/AA executados. Nenhum erro JavaScript foi observado. Capturas `restored-galaxy-desktop.png`, `restored-index-375.png` e `restored-contact-desktop.png` foram inspecionadas.
+
+O cache da restauração é `portfolio-v28`, com 58 recursos; versão dos assets `20261026.6`. As seções seguintes registram a validação anterior das funcionalidades preservadas, não a abertura atual.
+
 ## Escopo e ambiente
 
 Site estático servido localmente em `127.0.0.1:8765`, Chromium real via Playwright CLI. Recursos interativos verificados com JavaScript; menu, contato direto e os 81 links do catálogo também verificados sem JavaScript. Nenhum e-mail ou mensagem externa foi enviado.

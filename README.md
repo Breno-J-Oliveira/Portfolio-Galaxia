@@ -2,20 +2,20 @@
 
 Portfólio de desenvolvimento Full Stack, em HTML, CSS e JavaScript, publicado em [GitHub Pages](https://breno-j-oliveira.github.io/Portfolio-Galaxia/).
 
-A identidade espacial acompanha uma navegação convencional. A galáxia em Canvas 2D é opcional; o cubo 3D da página Sobre retoma um elemento do portfólio anterior. O [plano de design e navegação](docs/direcao-galaxia.md) registra as decisões.
+A galáxia interativa em Canvas 2D é a Home e o centro da identidade do site. O menu direto fica sempre disponível; o cubo 3D da página Sobre retoma um elemento do portfólio anterior. O [plano de design e navegação](docs/direcao-galaxia.md) registra as decisões.
 
 ## Páginas
 
 | Página | Conteúdo |
 | --- | --- |
-| `index.html` | Apresentação, mapa do portfólio e projetos principais |
+| `index.html` | Galáxia original em tela cheia, estrelas de navegação e menu direto |
 | `about.html` | Perfil, cubo com seis faces, tecnologias, trajetória e formação |
 | `projects.html` | Casos com galeria e catálogo de 81 repositórios públicos |
 | `services.html` | Serviços e briefing que segue para o contato |
 | `contact.html` | E-mail, LinkedIn e preparação opcional de mensagem |
 | `resume.html` | Resumo profissional para leitura, impressão e PDF |
 | `links.html` | Entrada curta para usar nas redes sociais |
-| `galaxy.html` | Galáxia original, com menu e saída para o início |
+| `galaxy.html` | Endereço compatível da mesma galáxia, com canônica na Home |
 
 ## Executar localmente
 
@@ -36,7 +36,7 @@ Abra `http://127.0.0.1:8765/`. Não há build de aplicação nem dependências n
 - `src/features/profile-cube/cube.js`: rotação manual e seleção das faces.
 - `src/pages/projects/model/catalogue.js`: filtros, paginação e URL do catálogo.
 - `src/widgets/`: templates de referência do menu/modal e estilos compartilhados. Menu e modal são incorporados no HTML servido.
-- `assets/fonts/`: Inter e Orbitron servidas localmente, com licenças OFL.
+- `assets/fonts/`: Orbitron, Rajdhani e Space Mono originais servidas localmente; Inter preservada para compatibilidade, com licenças OFL.
 - `assets/projetos/`: imagens públicas; independente dos checkouts locais ignorados.
 - `assets/social-card.png`: imagem de compartilhamento das páginas.
 - `sw.js`: cache offline dos recursos públicos.

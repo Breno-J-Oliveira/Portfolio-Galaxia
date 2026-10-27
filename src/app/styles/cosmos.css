@@ -1,3 +1,8 @@
+@font-face{font-family:"Rajdhani";font-style:normal;font-weight:400;font-display:swap;src:url("../../../assets/fonts/rajdhani-400-latin.woff2") format("woff2")}
+@font-face{font-family:"Rajdhani";font-style:normal;font-weight:500;font-display:swap;src:url("../../../assets/fonts/rajdhani-500-latin.woff2") format("woff2")}
+@font-face{font-family:"Rajdhani";font-style:normal;font-weight:600;font-display:swap;src:url("../../../assets/fonts/rajdhani-600-latin.woff2") format("woff2")}
+@font-face{font-family:"Rajdhani";font-style:normal;font-weight:700;font-display:swap;src:url("../../../assets/fonts/rajdhani-700-latin.woff2") format("woff2")}
+@font-face{font-family:"Space Mono";font-style:normal;font-weight:400;font-display:swap;src:url("../../../assets/fonts/space-mono-400-latin.woff2") format("woff2")}
 /* Galáxia: uma identidade espacial, com leitura e caminhos convencionais. */
 @font-face {
   font-family: Inter;
@@ -12,19 +17,19 @@
   font-display: swap;
 }
 :root {
-  --black: #050810;
-  --void: #050810;
+  --black: #000000;
+  --void: #020408;
   --deep: #09101c;
   --surface: #0d1423;
   --panel: #101b2c;
   --white: #edf3ff;
   --dim: #a9b7cd;
   --muted: #a9b7cd;
-  --c1: #75e5e0;
-  --c1-rgb: 117, 229, 224;
+  --c1: #00f5ff;
+  --c1-rgb: 0, 245, 255;
   --font-display: Orbitron, system-ui, sans-serif;
-  --font-body: Inter, system-ui, sans-serif;
-  --font-mono: Consolas, monospace;
+  --font-body: "Rajdhani", system-ui, sans-serif;
+  --font-mono: "Space Mono", Consolas, monospace;
   --line: #28344a;
   --radius: 12px;
 }
@@ -34,7 +39,7 @@ html {
   color-scheme: dark;
 }
 body {
-  background: #050810;
+  background: #000000;
   color: var(--white);
   font-family: var(--font-body);
   font-size: 16px;
@@ -42,22 +47,30 @@ body {
   cursor: auto;
 }
 body[class*="theme-"] {
-  --c1: #75e5e0;
-  --c1-rgb: 117, 229, 224;
+  --c1: #00f5ff;
+  --c1-rgb: 0, 245, 255;
   --section-color: #75e5e0;
   padding-bottom: 0;
 }
 body.theme-about {
-  --section-color: #b9a0ff;
+  --section-color: #b44fff;
+  --c1: #b44fff;
+  --c1-rgb: 180, 79, 255;
 }
 body.theme-projects {
-  --section-color: #8facff;
+  --section-color: #3b82f6;
+  --c1: #3b82f6;
+  --c1-rgb: 59, 130, 246;
 }
 body.theme-services {
-  --section-color: #82d9b1;
+  --section-color: #00e0a0;
+  --c1: #00e0a0;
+  --c1-rgb: 0, 224, 160;
 }
 body.theme-contact {
-  --section-color: #e8b37c;
+  --section-color: #ff8c42;
+  --c1: #ff8c42;
+  --c1-rgb: 255, 140, 66;
 }
 body::before {
   content: "";
@@ -1336,7 +1349,7 @@ body.theme-projects #filter-bar {
   border-radius: 4px;
 }
 .image-lightbox {
-  background: #050810;
+  background: #000000;
 }
 .repo-section {
   border-top: 1px solid #2d3d56;
@@ -2820,3 +2833,40 @@ body[class*="theme-"] #contact-cta {
 .timeline-company {
   text-transform: none;
 }
+
+/* Origem restaurada: galáxia na abertura, HUD e tipografia do projeto. */
+.theme-galaxy { background:#000; }
+.theme-galaxy::before { display:none; }
+#hud-top { background:rgba(0,0,0,.72); border-bottom-color:rgba(255,255,255,.09); }
+#hud-top .hud-logo { font-weight:700; letter-spacing:.12em; font-size:13px; }
+#hud-top .hud-logo small { font:10px/1.6 var(--font-mono); letter-spacing:.14em; color:#9aabbe; }
+#hud-top .hud-nav a { font-family:var(--font-mono); font-size:12px; }
+.theme-galaxy #hud-top { height:72px; }
+.theme-galaxy #hud-left { display:flex; }
+.theme-galaxy #hud-right { display:flex; }
+.theme-galaxy #hud-bottom .hud-coords,.theme-galaxy #hud-bottom .hud-scale { display:block; color:#9eacbe; }
+.theme-galaxy .hud-star-count,.theme-galaxy .hud-vert-text { color:#9aaabe; }
+.theme-galaxy .hud-hint { font-family:var(--font-mono); animation:none; color:#becbdc; font-size:11px; }
+.theme-galaxy .corner-deco { display:block!important; border-color:#8bb7c747; }
+.theme-galaxy .galaxy-access { bottom:88px; }
+.theme-galaxy .galaxy-access a { font:12px/1.5 var(--font-mono); color:#d6e9f3; border-color:#3c6577; background:#020811c9; }
+.theme-galaxy #audio-btn { font-family:var(--font-mono); font-size:11px; }
+.hero-title,.hero-name .line-1 { text-transform:uppercase; font-weight:700; }
+.hero-name .line-2 { color:var(--section-color); }
+.role-line { font-family:var(--font-mono); font-size:12px; }
+.hero-bio,body[class*="theme-"] .hero-desc,.project-desc,.service-desc,.contact-aside-copy,#cube-detail p:not(.cube-kicker),.modal-desc { font-size:18px; line-height:1.8; }
+.contact-form .form-context { font-size:17px; }
+.ui-button,.btn-primary,.btn-secondary,.btn-submit,.modal-btn { font-weight:600; font-size:16px; }
+.project-status,.project-category,.project-tag,.repo-meta,.repo-item p { font-size:14px; }
+.repo-item h3 { font-size:17px; }
+.skill-items .skill-tag { font-size:14px; }
+.theme-contact .signal-orbit { color:#ff8c42; }
+.signal-orbit span { color:#ff8c42; }
+.signal-orbit i { border-color:#ff8c4240; }
+.contact-form::before { background:#ff8c42; }
+.channel-icon { color:#ffb47e; border-color:#785337; }
+.theme-about .avatar-orbit { border-color:#b44fff70; }
+@media(max-width:1100px){#hud-top .hud-nav{gap:18px}#hud-top .hud-logo{letter-spacing:.03em}}
+@media(max-width:760px){.theme-galaxy #hud-top{height:124px}.theme-galaxy #hud-left,.theme-galaxy #hud-right,.theme-galaxy #hud-bottom{display:none}#hud-top .hud-nav a{font-size:11px}#hud-top .hud-logo{font-size:12px;letter-spacing:0}.theme-galaxy .galaxy-access{bottom:83px}.theme-galaxy .corner-deco{display:none!important}.hero-bio,body[class*="theme-"] .hero-desc,.project-desc,.contact-aside-copy{font-size:18px}}
+.theme-galaxy #audio-btn{left:auto;right:32px;bottom:70px;width:auto}
+@media(max-width:760px){#hud-top .hud-nav{gap:0}.theme-galaxy #audio-btn{left:auto;right:20px;bottom:22px}}

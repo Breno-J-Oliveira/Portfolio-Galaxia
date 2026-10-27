@@ -4,7 +4,15 @@ Todos os registros de mudanças importantes neste projeto.
 
 ---
 
-## 26/10/2026 — Identidade Galáxia, cubo e caminhos de navegação
+## 26/10/2026 — Restauração da Home e das referências originais
+
+- Galáxia original restaurada como `index.html`, sem apresentação convencional na abertura.
+- Menu direto complementa as estrelas, mantendo acesso simples às páginas internas.
+- Fontes originais Orbitron, Rajdhani e Space Mono, fundo preto, HUD e acentos por seção recuperados.
+- Cubo, catálogo de 81 repositórios e fluxos de contato preservados.
+- Cache `portfolio-v28`, recursos `v=20261026.6`.
+
+## 26/10/2026 — Identidade Galáxia, cubo e caminhos de navegação (rodada anterior)
 
 - Home com apresentação direta, mapa estático e projetos; galáxia original em uma rota opcional.
 - Orbitron, órbitas, estrelas discretas e marcadores de cor recuperam a identidade sem transições de tela.

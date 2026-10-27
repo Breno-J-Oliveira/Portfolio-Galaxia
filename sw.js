@@ -1,4 +1,4 @@
-const CACHE = 'portfolio-v26';
+const CACHE = 'portfolio-v28';
 const ASSETS = [
   './',
   './index.html',
@@ -10,6 +10,11 @@ const ASSETS = [
   './assets/social-card.png',
   './assets/fonts/inter-latin.woff2',
   './assets/fonts/orbitron-latin.woff2',
+  './assets/fonts/rajdhani-400-latin.woff2',
+  './assets/fonts/rajdhani-500-latin.woff2',
+  './assets/fonts/rajdhani-600-latin.woff2',
+  './assets/fonts/rajdhani-700-latin.woff2',
+  './assets/fonts/space-mono-400-latin.woff2',
   './about.html',
   './projects.html',
   './services.html',

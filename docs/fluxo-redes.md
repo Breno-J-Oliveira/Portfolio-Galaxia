@@ -15,7 +15,7 @@ A página apresenta nome, foto, foco Full Stack e cinco destinos. O visitante es
 | GitHub, interesse técnico | `projects.html#repositorios` | Buscar, filtrar, abrir o repositório público |
 | Instagram ou visita geral | `links.html` → `index.html` / `about.html` | Projetos, trajetória e contato |
 | Pedido de site ou aplicação | `services.html` → briefing opcional | `contact.html?intent=freelance` com resumo preservado |
-| Exploração visual | `index.html` → `galaxy.html` | Mesmas páginas do menu, com saída sempre visível |
+| Entrada principal | `index.html` (galáxia original) | Estrelas e menu direto levam às páginas internas |
 
 ## Contato
 

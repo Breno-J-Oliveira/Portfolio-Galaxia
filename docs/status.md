@@ -4,11 +4,11 @@ Este registro substitui os checkboxes históricos de `planejamento.md` como refe
 
 ## Revisão atual
 
-A [direção Galáxia](direcao-galaxia.md) recupera a identidade espacial, preservando a leitura e a navegação direta. A Home convencional conduz aos projetos e ao contato; a galáxia original tem sua própria página, `galaxy.html`. A página Sobre inclui um cubo 3D com seis faces, controles acessíveis e conteúdo textual equivalente.
+A [direção Galáxia](direcao-galaxia.md) recupera a identidade espacial, preservando a leitura e a navegação direta. A Home é novamente a galáxia original em tela cheia. O menu direto complementa a navegação por estrelas. A apresentação permanece nas páginas internas, conforme o planejamento original. A página Sobre inclui um cubo 3D com seis faces, controles acessíveis e conteúdo textual equivalente.
 
 Projetos reúne seis casos e um catálogo de 81 repositórios públicos, incluindo forks identificados. O catálogo é HTML estático, atualizável por `scripts/sync-repositories.py`, com busca, linguagem, origem, ordenação e paginação no navegador. A página `links.html` serve de entrada para redes sociais, conforme [o fluxo planejado](fluxo-redes.md).
 
-As fontes Inter e Orbitron estão hospedadas no próprio site. O cache atual é `portfolio-v26`, com 53 recursos. A [validação desta revisão](validacao-galaxia.md) registra os testes. A revisão editorial anterior permanece no histórico em `35cab2c`; o estado prévio a ela foi preservado em `325d182`.
+As fontes originais Orbitron, Rajdhani e Space Mono estão hospedadas no próprio site, com Inter preservada para compatibilidade. O cache atual é `portfolio-v28`, com 58 recursos. A [validação desta revisão](validacao-galaxia.md) registra os testes. A revisão editorial anterior permanece no histórico em `35cab2c`; o estado prévio a ela foi preservado em `325d182`.
 
 ## Histórico da segunda rodada: 39 melhorias
 

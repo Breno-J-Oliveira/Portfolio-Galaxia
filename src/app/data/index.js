@@ -281,7 +281,7 @@
       "cover": "",
       "gallery": [],
       "desc": "Este site, feito com HTML, CSS, JavaScript e uma galáxia em Canvas 2D.",
-      "longDesc": "Este é o código do portfólio que você está visitando.\n\nA página inicial oferece navegação direta. A galáxia em Canvas 2D é uma forma opcional de explorar as mesmas páginas, e o cubo 3D da página Sobre retoma meu portfólio anterior. O site usa HTML, CSS e JavaScript, com componentes compartilhados.\n\nO site também tem uma versão de leitura offline e um resumo profissional para impressão.",
+      "longDesc": "Este é o código do portfólio que você está visitando.\n\nA Home é a galáxia interativa em Canvas 2D, com estrelas de navegação e um menu direto sempre disponível. O cubo 3D da página Sobre retoma meu portfólio anterior. O site usa HTML, CSS e JavaScript, com componentes compartilhados.\n\nO site também tem uma versão de leitura offline e um resumo profissional para impressão.",
       "tags": [
         "JavaScript",
         "HTML",

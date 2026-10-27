@@ -1,5 +1,13 @@
 # Galáxia: identidade e caminhos de navegação
 
+## Direção vigente — correção solicitada pelo autor
+
+A galáxia é a Home (`index.html`) e o centro do portfólio. O planejamento original do autor pede uma abertura apenas com a galáxia e informações de navegação; nome, apresentação e projetos detalhados pertencem às páginas internas. Não substituir essa abertura por uma landing page, mapa estático, cards ou hero convencional. O menu direto é complementar à navegação pelas estrelas.
+
+Referência de implementação: estado anterior à revisão editorial (`325d182` / `97c5b21`), com Orbitron, Rajdhani, Space Mono, fundo preto, HUD espacial e acentos por seção. Preservar navegação imediata e controle de movimento; a referência visual não exige atrasos artificiais.
+
+O plano abaixo registra a proposta anterior, rejeitada pelo autor quanto à Home. Ele é histórico e não se sobrepõe à direção vigente.
+
 ## Intenção
 
 Preservar o universo espacial criado por Breno sem exigir que o visitante aprenda a navegar num canvas. O portfólio antigo em `projetos/REPOSITORIO/fazer readme/_portfolios/Portifolio_antigo` fornece a referência do cubo. O chat PERFIL e os projetos locais fornecem o conteúdo profissional. Dados públicos do GitHub conferidos em 26/10/2026; o LinkedIn bloqueou leitura automática.
